@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+  aca_backend:
+    image: aca_backend_api
+    container_name: aca_backend_api
+    ports:
+      - 8000:8000
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:8000"]
+      interval: 20s
+      timeout: 10s
+      retries: 3
+    networks:
+      - overlay
+
+networks:
+  overlay:
