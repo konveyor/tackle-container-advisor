@@ -6,7 +6,7 @@ Tackle Containerization Advisor takes client applications as a natural language 
 
 The advisor takes the following steps to recommend the containerization. 
 
-1. Assessment (supported in this release): One it does the assessment of the application where it standardizes the inputs to map them to relevant named entities present in our knowledge base. For details on knowledge base please check aca_db. For example, the inputs in App1 gets mapped as the following.
+1. Assessment (supported in this release): One it does the assessment of the application where it standardizes the inputs to map them to relevant named entities present in our knowledge base. For details on knowledge base please check aca_db. For example, the inputs in App1 get mapped as the following.
 		
 		1. App1: rhel: Linux|RedHat Linux, db2: DB2, java: Java, tomcat: Apache Tomcat
 	
