@@ -1,0 +1,16 @@
+# App Dependencies
+Flask==1.0.2
+Flask-API==1.1
+flask-restplus==0.13.0
+Werkzeug==0.16.1
+pandas==1.2.4
+scikit-learn==0.24.2
+joblib==0.15.1
+scipy==1.4.1
+scikit-multilearn==0.2.0
+pathlib==1.0.1
+requests==2.23.0
+#pycryptodome==3.10.1
+
+# Runtime
+gunicorn==20.0

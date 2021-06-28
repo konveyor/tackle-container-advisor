@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>service package &mdash; Tackle Containerization Advisory ACA Backend API 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="planner module" href="planner.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tackle Containerization Advisory ACA Backend API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">aca_backend_api</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="planner.html">planner module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">service package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service.containerize_assessment">service.containerize_assessment module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service.entity_detection">service.entity_detection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service.routes">service.routes module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service.sim_applier">service.sim_applier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service.utils">service.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service.utils_nlp">service.utils_nlp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service.version_detector">service.version_detector module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tackle Containerization Advisory ACA Backend API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">aca_backend_api</a> &raquo;</li>
+        
+      <li>service package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/service.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="service-package">
+<h1>service package<a class="headerlink" href="#service-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-service.containerize_assessment">
+<span id="service-containerize-assessment-module"></span><h2>service.containerize_assessment module<a class="headerlink" href="#module-service.containerize_assessment" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="service.containerize_assessment.Assessment">
+<em class="property">class </em><code class="sig-prename descclassname">service.containerize_assessment.</code><code class="sig-name descname">Assessment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logger</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_assessment.Assessment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class for containerize Assessment</p>
+<dl class="py method">
+<dt id="service.containerize_assessment.Assessment.app_validation">
+<code class="sig-name descname">app_validation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">appL</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_assessment.Assessment.app_validation" title="Permalink to this definition">¶</a></dt>
+<dd><p>app_validation method takes assessed input data and check if any low/medium confidence entities or
+general technology or unknown technology entities are present. If it’s present, it will be added in assessment reason.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.containerize_assessment.Assessment.output_to_ui_assessment">
+<code class="sig-name descname">output_to_ui_assessment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">appL</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_assessment.Assessment.output_to_ui_assessment" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>output_to_ui assessment methods takes the final assessed data as input and formats it &amp; keeps</dt><dd><p>only required fields and returns it as output assessment response</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-service.entity_detection">
+<span id="service-entity-detection-module"></span><h2>service.entity_detection module<a class="headerlink" href="#module-service.entity_detection" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="service.entity_detection.EntityDetection">
+<em class="property">class </em><code class="sig-prename descclassname">service.entity_detection.</code><code class="sig-name descname">EntityDetection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logger</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.entity_detection.EntityDetection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="service.entity_detection.EntityDetection.compose_app">
+<code class="sig-name descname">compose_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.entity_detection.EntityDetection.compose_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the ontologies and model objects are loaded properly and preprocess the input tech stack.
+Call entity_detection method to get the respective standardized form with version and confidence score.
+Using the confidence score, low or medium confidence scored entities are separated out. Using class_type_mapper,
+general and unknown technologies are added separately in assessment data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.entity_detection.EntityDetection.entity_detector">
+<code class="sig-name descname">entity_detector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tech_stack</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.entity_detection.EntityDetection.entity_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>entity_detector methods takes the input entity, preprocess it and detects its standardized form and version with
+confidence score</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.entity_detection.EntityDetection.get_aca_input_mapper">
+<code class="sig-name descname">get_aca_input_mapper</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#service.entity_detection.EntityDetection.get_aca_input_mapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches the aca_input_mapper predefined values which act as sample input</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-service.routes">
+<span id="service-routes-module"></span><h2>service.routes module<a class="headerlink" href="#module-service.routes" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="service.routes.ContainerizationAssessment">
+<em class="property">class </em><code class="sig-prename descclassname">service.routes.</code><code class="sig-name descname">ContainerizationAssessment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">api</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.ContainerizationAssessment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restplus.resource.Resource</span></code></p>
+<p>ContainerizationAssessment class creates the assessment in the form of assessment_model for the
+application/component details given in the input_model</p>
+<dl class="py attribute">
+<dt id="service.routes.ContainerizationAssessment.endpoint">
+<code class="sig-name descname">endpoint</code><em class="property"> = 'containerization_assessment'</em><a class="headerlink" href="#service.routes.ContainerizationAssessment.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="service.routes.ContainerizationAssessment.mediatypes">
+<code class="sig-name descname">mediatypes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.ContainerizationAssessment.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="service.routes.ContainerizationAssessment.methods">
+<code class="sig-name descname">methods</code><em class="property"> = ['POST']</em><a class="headerlink" href="#service.routes.ContainerizationAssessment.methods" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="service.routes.ContainerizationAssessment.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.ContainerizationAssessment.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoke do_assessment method in assessment class to initiate assessment process</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="service.routes.HealthCheck">
+<em class="property">class </em><code class="sig-prename descclassname">service.routes.</code><code class="sig-name descname">HealthCheck</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">api</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.HealthCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restplus.resource.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="service.routes.HealthCheck.endpoint">
+<code class="sig-name descname">endpoint</code><em class="property"> = 'health_check'</em><a class="headerlink" href="#service.routes.HealthCheck.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="service.routes.HealthCheck.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.HealthCheck.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Healthcheck api is monitor all the api requests and responses. Terminate the service if any issue encountered in
+api request processing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.routes.HealthCheck.mediatypes">
+<code class="sig-name descname">mediatypes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.HealthCheck.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="service.routes.HealthCheck.methods">
+<code class="sig-name descname">methods</code><em class="property"> = ['GET']</em><a class="headerlink" href="#service.routes.HealthCheck.methods" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-service.sim_applier">
+<span id="service-sim-applier-module"></span><h2>service.sim_applier module<a class="headerlink" href="#module-service.sim_applier" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="service.sim_applier.sim_applier">
+<em class="property">class </em><code class="sig-prename descclassname">service.sim_applier.</code><code class="sig-name descname">sim_applier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logger</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.sim_applier.sim_applier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="service.sim_applier.sim_applier.calc_CosineSimilarity">
+<code class="sig-name descname">calc_CosineSimilarity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tfs_text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.sim_applier.sim_applier.calc_CosineSimilarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>calc_CosineSimilarity takes the input tfs_text and calculate the cosine similarity between the input tfs_text and
+entities present in the model objects and return the sorted entity list based on similarity score</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.sim_applier.sim_applier.entity_standardization">
+<code class="sig-name descname">entity_standardization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_</span></em>, <em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.sim_applier.sim_applier.entity_standardization" title="Permalink to this definition">¶</a></dt>
+<dd><p>entity_standardization preprocesses the input text and removes stop words in input text. Then it performs tfidf
+transform, find the cosinesimilarity with all the entities and remove duplicate categories. The number of
+standardized entities are added to score list based on comparison between similarity score and threshold values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.sim_applier.sim_applier.remove_duplicate_category">
+<code class="sig-name descname">remove_duplicate_category</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.sim_applier.sim_applier.remove_duplicate_category" title="Permalink to this definition">¶</a></dt>
+<dd><p>remove_duplicate_category checks the category for each element in the given old_list and remove the elements
+if its respective category is already present.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.sim_applier.sim_applier.tech_stack_standardization">
+<code class="sig-name descname">tech_stack_standardization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tech_stack</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.sim_applier.sim_applier.tech_stack_standardization" title="Permalink to this definition">¶</a></dt>
+<dd><p>tech_stack_standardization splits the input text with comma delimiter, remove duplicates in the splitted text,
+remove the predefined stop words and invoke entity_standardization function</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-service.utils">
+<span id="service-utils-module"></span><h2>service.utils module<a class="headerlink" href="#module-service.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="service.utils.Utils">
+<em class="property">class </em><code class="sig-prename descclassname">service.utils.</code><code class="sig-name descname">Utils</code><a class="headerlink" href="#service.utils.Utils" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="service.utils.Utils.mergeDicts">
+<em class="property">static </em><code class="sig-name descname">mergeDicts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result</span></em>, <em class="sig-param"><span class="n">app_tech</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils.Utils.mergeDicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>mergeDicts merges the nested dictionaries</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.utils.Utils.preprocess_tech_stack_for_sim">
+<em class="property">static </em><code class="sig-name descname">preprocess_tech_stack_for_sim</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tech_stack</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils.Utils.preprocess_tech_stack_for_sim" title="Permalink to this definition">¶</a></dt>
+<dd><p>preprocess_tech_stack_for_sim method takes the input string and removes any non aschii character
+present in that string.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-service.utils_nlp">
+<span id="service-utils-nlp-module"></span><h2>service.utils_nlp module<a class="headerlink" href="#module-service.utils_nlp" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="service.utils_nlp.utils">
+<em class="property">class </em><code class="sig-prename descclassname">service.utils_nlp.</code><code class="sig-name descname">utils</code><a class="headerlink" href="#service.utils_nlp.utils" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="service.utils_nlp.utils.input_preprocess">
+<em class="property">static </em><code class="sig-name descname">input_preprocess</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils_nlp.utils.input_preprocess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preprocess the input text by replacing the special characters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.utils_nlp.utils.my_tokenization0">
+<em class="property">static </em><code class="sig-name descname">my_tokenization0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils_nlp.utils.my_tokenization0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the stop list words in the input text</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.utils_nlp.utils.preprocess">
+<em class="property">static </em><code class="sig-name descname">preprocess</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tech_stack</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils_nlp.utils.preprocess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split the text with comma delimiter and remove if any stop words to be removed in the subtext and remove
+duplicates</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.utils_nlp.utils.remove_duplicate">
+<em class="property">static </em><code class="sig-name descname">remove_duplicate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils_nlp.utils.remove_duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the duplicate elements present in the input list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.utils_nlp.utils.remove_duplicate_tuple">
+<em class="property">static </em><code class="sig-name descname">remove_duplicate_tuple</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils_nlp.utils.remove_duplicate_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the duplicate elements which belongs to same category in the input list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.utils_nlp.utils.remove_noise_snippet">
+<em class="property">static </em><code class="sig-name descname">remove_noise_snippet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils_nlp.utils.remove_noise_snippet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if any of the values in remove_list or exact_remove_list are present in the input text</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.utils_nlp.utils.replace_special_character">
+<em class="property">static </em><code class="sig-name descname">replace_special_character</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils_nlp.utils.replace_special_character" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace special characters such as c# to c-sharp, c++ to c-plus-plus</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.utils_nlp.utils.split_subtext">
+<em class="property">static </em><code class="sig-name descname">split_subtext</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils_nlp.utils.split_subtext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formats the input text based on predefined split_list, keep_list values</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-service.version_detector">
+<span id="service-version-detector-module"></span><h2>service.version_detector module<a class="headerlink" href="#module-service.version_detector" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="service.version_detector.version_detector">
+<em class="property">class </em><code class="sig-prename descclassname">service.version_detector.</code><code class="sig-name descname">version_detector</code><a class="headerlink" href="#service.version_detector.version_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="service.version_detector.version_detector.get_version_strings">
+<em class="property">static </em><code class="sig-name descname">get_version_strings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.version_detector.version_detector.get_version_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mask the input text and apply the predefined pattern to extract version from the input text</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.version_detector.version_detector.mask_entity">
+<em class="property">static </em><code class="sig-name descname">mask_entity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.version_detector.version_detector.mask_entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace the text with ‘Entity_MASK’ if its subtring is present in the blacklist since the numbers in the blacklist
+elements shouldn’t be considered as version</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-service">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-service" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="planner.html" class="btn btn-neutral float-left" title="planner module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Auto Document Generation by Sphinx.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

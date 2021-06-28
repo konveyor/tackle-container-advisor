@@ -1,0 +1,5 @@
+openpyxl==3.0.4
+pathlib==1.0.1
+pycryptodome==3.10.1
+sphinx==3.2.1
+sphinx_rtd_theme==0.5.2
