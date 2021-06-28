@@ -1,3 +1,22 @@
+## Purpose
+
+Tackle Containerization Advisor takes client applications as a natural language description and recommends whether client applications can be containerized. For example, a client provides the application description as the following. 
+		
+		1. App1: rhel, db2, java, tomcat
+
+The advisor takes the following steps to recommend the containerization. 
+
+1. Assessment (supported in this release): One it does the assessment of the application where it standardizes the inputs to map them to relevant named entities present in our knowledge base. For details on knowledge base please check aca_db. For example, the inputs in App1 get mapped as the following.
+		
+		1. App1: rhel: Linux|RedHat Linux, db2: DB2, java: Java, tomcat: Apache Tomcat
+	
+
+2. Containerization (coming soon): It maps App1 to relevant containers in DockerHub or Openshift. For example, with DockerHub App1 has the following set of containers.
+		
+		1. App1: tomcat|https://hub.docker.com/_/tomcat, db2|https://hub.docker.com/r/ibmcom/db2
+
+
+
 ### Instructions to setup the Tackle Containerization Adviser
 
 Below we mention the process to generate prequisite for tackle containerization adviser. Note the current release only support assessment.
