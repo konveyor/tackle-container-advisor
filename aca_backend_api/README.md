@@ -5,7 +5,7 @@ is_disable_access_token=yes
 
 Then run the following to build and run the image
 ```
-docker-compose  -f 'docker-compose-api.yml' up -d --build
+docker-compose  -f 'docker-compose-api.yml' --env-file ./config.ini up -d --build
 ```
 
 You can make RESTful calls to the containerization advisor backend service to get assessment details of your application workload. It accepts a `POST` request and a `json` payload. Following is the input data format and the output response format. 
