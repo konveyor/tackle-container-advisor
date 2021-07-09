@@ -6,7 +6,8 @@ sqlite3
 
 We represent the knowledge base in terms of a database. Below we provide an entity-relationship diagram.
 
-<img width="549" alt="Screen Shot 2021-06-08 at 1 43 29 PM" src="https://media.github.ibm.com/user/26986/files/a9bb3a00-c85f-11eb-8611-20ce3c09365e">
+<img width="1107" alt="Screen Shot 2021-07-09 at 2 06 58 PM" src="https://user-images.githubusercontent.com/8302569/125119913-bd0c3000-e0bf-11eb-9dc4-a40c5a1bf6a1.png">
+
 
 #generate a .db file from .sql 
 
@@ -41,11 +42,11 @@ A new entry can be added as
 
 For external link use the following format
 
-``{'name': '', 'qid': '<QID>', 'url': 'https://www.wikidata.org/wiki/<QID>', 'score': 1}``
+	``{'name': '', 'qid': '<QID>', 'url': 'https://www.wikidata.org/wiki/<QID>', 'score': 1}``
 
 The QID can for a named enitity can be obtained from 
 
-``https://www.wikidata.org/wiki/Wikidata:Main_Page``
+	``https://www.wikidata.org/wiki/Wikidata:Main_Page``
 
 
 3. entity mentions: This contains mappings of raw mentions with their entities. Each entity could have multiple mentions. For example, Apache Tomcat can be called as Tomcat or Apache Tomcat.
@@ -54,4 +55,53 @@ The QID can for a named enitity can be obtained from
 
 A new entry can be added as 
 
-``INSERT INTO entity_mentions(entity_mention_name, entity_type_id, entity_id) VALUES(?,?,?)``
+	``INSERT INTO entity_mentions(entity_mention_name, entity_type_id, entity_id) VALUES(?,?,?)``
+
+4. entity relations: This contains mappings of entities based on their compatibilities. For example, a relation might exists between Linux|* and Apache Tomcat which suggest Apache Tomcat is compatible with different variants of Linux such as RedHat Linux, Ubuntu, CentOS and so on.
+
+<img width="878" alt="Screen Shot 2021-07-09 at 2 21 12 PM" src="https://user-images.githubusercontent.com/8302569/125120916-280a3680-e0c1-11eb-9347-8d3c62820534.png">
+
+A new entry can be added as 
+
+	`` INSERT INTO entity_relations(entity_parent_type_id, entity_parent_id, entity_child_type_id, entity_child_id, COTS) VALUES(?,?,?,?,?) ``
+
+5. docker base os images: This contains Docker specific base OS images. For example, RedHat Linux along with its mapping a DockerHub image.
+
+<img width="1245" alt="Screen Shot 2021-07-09 at 2 21 35 PM" src="https://user-images.githubusercontent.com/8302569/125120953-39534300-e0c1-11eb-927b-c5527c028886.png">
+
+A new entry can be added as
+
+	`` INSERT INTO docker_baseos_images(container_name, OS, Docker_URL, Notes, CertOfImageAndPublisher, Certification_Status, OfficialImage, VerifiedPublisher, OpenShift_Correspondent_Image_URL, OpenShiftStatus) VALUES(?,?,?,?,?,?,?,?,?,?) ``
+
+
+6. openshift base os images: This contains Openshift specific base OS images. For example, RedHat Linux along with its mapping a OpenShift image.
+
+<img width="1317" alt="Screen Shot 2021-07-09 at 2 21 52 PM" src="https://user-images.githubusercontent.com/8302569/125121014-4cfea980-e0c1-11eb-8bab-f20db5039dc6.png">
+
+A new entry can be added as
+
+`` INSERT INTO openshift_baseos_images(container_name, OS, OpenShift_Correspondent_Image_URL, Notes, OpenShiftStatus, DockerImageType)
+              VALUES(?,?,?,?,?,?) ``
+
+
+7. docker images: This contains Docker specific images. For example, Apache Tomcat long with its mapping a DockerHub image.
+
+<img width="1415" alt="Screen Shot 2021-07-09 at 2 22 07 PM" src="https://user-images.githubusercontent.com/8302569/125121060-5c7df280-e0c1-11eb-9b3c-305efde20b2a.png">
+
+A new entry can be added as
+
+	`` INSERT INTO docker_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Docker_URL, Notes, CertOfImageAndPublisher)
+              VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ``
+
+
+8. openshift images: This contains OpenShift specific images. For example, Apache Tomcat long with its mapping a OpenShift image.
+
+<img width="1405" alt="Screen Shot 2021-07-09 at 2 22 26 PM" src="https://user-images.githubusercontent.com/8302569/125121100-6acc0e80-e0c1-11eb-9193-19297a7e1c67.png">
+
+A new entry can be added as
+
+	`` INSERT INTO docker_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Docker_URL, Notes, CertOfImageAndPublisher)
+              VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ``
+              
+
+
