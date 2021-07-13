@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "-----------Setting up Tackle Containerzation Adviser---------"
-aca_sql_file="aca_kg_ce_1.0.0.sql"
-aca_db_file="aca_kg_ce_1.0.0.db"
+aca_sql_file="aca_kg_ent_1.0.0.sql"
+aca_db_file="aca_kg_ent_1.0.0.db"
 
 ##generate the DB file
 echo "-----------Generating DB file--------------------------------"
