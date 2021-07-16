@@ -41,6 +41,11 @@ This step generate several files such as DB, utilities, and models.
 
 ### Running Tackle Containerization Adviser with a new DB
 
+##Prerequisite
+sqlite3
+Python 3.8
+pip for Python 3.8
+
 Please perform the following steps.
 
 1. In the aca_db folder add a new new_db.sql file
