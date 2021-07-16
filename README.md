@@ -19,6 +19,12 @@ The advisor takes the following steps to recommend the containerization.
 
 ### Instructions to setup the Tackle Containerization Adviser
 
+##Prerequisite
+- sqlite3
+- Python 3.8
+- pip for Python 3.8
+
+
 Below we mention the process to generate prequisite for tackle containerization adviser. Note the current release only support assessment.
 
 
@@ -41,10 +47,6 @@ This step generate several files such as DB, utilities, and models.
 
 ### Running Tackle Containerization Adviser with a new DB
 
-##Prerequisite
-sqlite3
-Python 3.8
-pip for Python 3.8
 
 Please perform the following steps.
 
