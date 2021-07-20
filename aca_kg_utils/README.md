@@ -1,6 +1,9 @@
 
 Python scripts to generate JSON from Database
 
+### Install Anaconda3 
+- Follow instructions to download and install Anaconda3 
+
 ### Create conda virtual environment
 	# Requires python 3.8
 	conda create --name <env-name> python=3.8
