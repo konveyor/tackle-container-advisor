@@ -17,7 +17,7 @@ The advisor takes the following steps to recommend the containerization.
 
 
 ### Install Anaconda3 
-	-Follow instructions to download and install Anaconda3 [doc](https://docs.anaconda.com/anaconda/install/)
+	-Follow instructions to download and install Anaconda3 [doc](https://docs.anaconda.com/anaconda/install/).
 
 ### Create a Conda virtual environmment with python3.8
 
