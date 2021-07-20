@@ -16,6 +16,13 @@ The advisor takes the following steps to recommend the containerization.
 		1. App1: tomcat|https://hub.docker.com/_/tomcat, db2|https://hub.docker.com/r/ibmcom/db2
 
 
+### Install Anaconda3 
+	-Follow instructions to download and install Anaconda3 [link to doc !](https://docs.anaconda.com/anaconda/install/)
+
+### Create a Conda virtual environmment with python3.8
+
+	conda create --name <env-name> python=3.8
+	conda activate <env-name>
 
 ### Instructions to setup the Tackle Containerization Adviser
 
