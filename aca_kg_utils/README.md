@@ -9,7 +9,7 @@ Python scripts to generate JSON from Database
 	conda create --name <env-name> python=3.8
 	conda activate <env-name>
 ### Clone ACA 
-	git clone git@github.ibm.com:tackle/tackle-advise-containerization.git
+	git clone git@github.ibm.com:tackle/tackle-advise-containerization.git or git@github.com:konveyor/tackle-container-advisor.git
 
 ### How to use
 - ``cd tackle-advise-containerization/aca_kg_utils``
