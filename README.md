@@ -23,6 +23,9 @@ The advisor takes the following steps to recommend the containerization.
 
 	conda create --name <env-name> python=3.8
 	conda activate <env-name>
+### Clone the Repo
+   	git clone https://github.com/konveyor/tackle-container-advisor.git or git clone git@github.com:konveyor/tackle-container-advisor.git
+   	cd tackle-container-advisor
 
 ### Instructions to setup the Tackle Containerization Adviser
 
