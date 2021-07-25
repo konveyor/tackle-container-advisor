@@ -94,7 +94,11 @@ def entity_mapper(db_connection):
     return parent_class
 
 
-def saveJSON(json_file , file_name):
+def save_json(json_file , file_name):
+    """
+    Save json file to the ontologies folder
+    
+    """
 
     path =  fr'aca_kg_utils/{config_obj["kg"]["ontologies"]}'  
     dst_pth = fr'aca_backend_api/{config_obj["kg"]["ontologies"]}'
@@ -112,7 +116,7 @@ def saveJSON(json_file , file_name):
 
 
 
-def createClassTypeMapper(db_connection):
+def create_class_type_mapper(db_connection):
     
     """
     Method to extract Entities from sql db and create  mapping each entity to the  corresponding type ("APP, APP SERVER , RUNTIME , LANG , LIB, OS)
@@ -144,14 +148,18 @@ def createClassTypeMapper(db_connection):
         entity = entity_names[index]
         entity_mentions["mappings"][entity] = class_type
     
-    saveJSON(entity_mentions, "class_type_mapper")
+    save_json(entity_mentions, "class_type_mapper")
     
 
     
 
 
 
-def createInvertedCompatibilityKG(db_connection):
+def create_inverted_compatibility_kg(db_connection):
+    """
+    Create inverted compatibility kwonledge graph
+    
+    """
     inverted_compatibilty_kg = {}
     inverted_cursor = db_connection.cursor()
     inverted_cursor.execute("SELECT * FROM entity_relations")
@@ -175,15 +183,18 @@ def createInvertedCompatibilityKG(db_connection):
         inverted_compatibilty_kg[child_class] = inverted_lst
     
 
-    saveJSON(inverted_compatibilty_kg,"inverted_compatibilityKG")
+    save_json(inverted_compatibilty_kg,"inverted_compatibilityKG")
 
 
 
 
 
 
-def createCompatibiltyKg(db_connection):
-    "Compatibility Knowledge graph"
+def create_compatibilty_kg(db_connection):
+    """
+    
+    
+    """
 
     CompatibilityKG= {}
     compatibility_list = []
@@ -209,11 +220,15 @@ def createCompatibiltyKg(db_connection):
 
     CompatibilityKG["Compatibility List"] =  compatibility_list
 
-    saveJSON(CompatibilityKG,"compatibilityKG")
+    save_json(CompatibilityKG,"compatibilityKG")
 
 
 
-def createBaseOSKG(db_connection):
+def create_base_os_kg(db_connection):
+    """
+    
+    
+    """
 
     base_cursor = db_connection.cursor()
     base_cursor.execute("SELECT * FROM  docker_baseos_images")
@@ -237,10 +252,14 @@ def createBaseOSKG(db_connection):
         base_os["Container Images"][baseos_image]["Docker_URL"] = docker_url
         base_os["Container Images"][baseos_image]["Notes"] , base_os["Container Images"][baseos_image]["Status"]  = Note , Status 
 
-    saveJSON(base_os, "baseOSKG")
+    save_json(base_os, "baseOSKG")
        
 
-def createOpenshiftbaseOSKG(db_connection):
+def create_openshift_base_os_kg(db_connection):
+    """
+    
+    
+    """
 
     base_cursor = db_connection.cursor()
     base_cursor.execute("SELECT * FROM  openshift_baseos_images")
@@ -264,11 +283,14 @@ def createOpenshiftbaseOSKG(db_connection):
         base_os["Container Images"][baseos_image]["Docker_URL"] = docker_url
         base_os["Container Images"][baseos_image]["Notes"] , base_os["Container Images"][baseos_image]["Status"]  = Note , Status 
         
-    saveJSON(base_os, "openshiftbaseOSKG")
+    save_json(base_os, "openshiftbaseOSKG")
 
     
 
-def createInvertedOpenshiftbaseOSKG(db_connection):
+def create_inverted_openshift_base_os_kg(db_connection):
+    """
+    
+    """
 
     base_cursor = db_connection.cursor()
     base_cursor.execute("SELECT * FROM  openshift_baseos_images")
@@ -282,11 +304,14 @@ def createInvertedOpenshiftbaseOSKG(db_connection):
         os , os_id = base_image[1],  base_image[2]
         inverted_openshift_kg[mapped_os[str(os_id)]] = [os]
 
-    saveJSON(inverted_openshift_kg , "inverted_openshiftbaseOSKG")
+    save_json(inverted_openshift_kg , "inverted_openshiftbaseOSKG")
 
 
 
-def createInverted_baseOSKG(db_connection):
+def create_inverted_base_os_kg(db_connection):
+    """
+    
+    """
 
     base_cursor = db_connection.cursor()
     base_cursor.execute("SELECT * FROM  docker_baseos_images")
@@ -300,10 +325,13 @@ def createInverted_baseOSKG(db_connection):
         os , os_id = base_image[1],  base_image[2]
         inverted_os_kg[mapped_os[str(os_id)]] = [os]
 
-    saveJSON(inverted_os_kg, "inverted_baseOSKG")
+    save_json(inverted_os_kg, "inverted_baseOSKG")
 
   
-def getOSVariants(db_connection):
+def get_os_variants(db_connection):
+    """
+    
+    """
 
     cur = db_connection.cursor()
     cur.execute("SELECT * FROM  entities")
@@ -337,7 +365,11 @@ def getOSVariants(db_connection):
     return os_variants
 
 
-def createCompatibilityOSKG(db_connection):
+def create_compatibility_os_kg(db_connection):
+    """
+    
+    
+    """
 
     cursor1 = db_connection.cursor()
     cursor2 = db_connection.cursor()
@@ -349,7 +381,7 @@ def createCompatibilityOSKG(db_connection):
     compatibilty_os_kg = {}
     compatibilty_os_kg["KG Version"] =  config_obj["db"]["version"]
     
-    os_variant = getOSVariants(db_connection)
+    os_variant = get_os_variants(db_connection)
 
     for relation in cursor1.fetchall():
         parent_type_id , _, _, child_id = relation[1:5]
@@ -383,12 +415,16 @@ def createCompatibilityOSKG(db_connection):
             else:
                 compatibilty_os_kg[child].append(parent_os)
 
-    saveJSON(compatibilty_os_kg,"compatibilityOSKG")
+    save_json(compatibilty_os_kg,"compatibilityOSKG")
     
 
 
 
-def createDockerImageKG(db_connect):
+def create_docker_image_kg(db_connect):
+    """
+    
+    
+    """
     docker_cursor = db_connect.cursor()
     docker_cursor.execute("SELECT *  FROM  docker_images")
     entities = entity_mapper(db_connect)
@@ -398,49 +434,52 @@ def createDockerImageKG(db_connect):
     docker_image_kg["KG Version"] =  config_obj["db"]["version"]
 
 
-
+    docker_image_kg["Container Images"]  = {}
     for image in docker_cursor.fetchall():
         container_name, os_entity_id, lang_id , lib_id, app_id, app_server_id, plugin_id , runlib_id , runtime_id, Docker_URL, Notes, CertOfImageAndPublisher = image[1:]
 
-        docker_image_kg[container_name] = {}
-        docker_image_kg[container_name]["OS"] =  [{"Class": entities[str(os_entity_id)], "Variants": "" ,"Versions": "" , "Type": "OS", "Subtype":""}]
+        docker_image_kg["Container Images"][container_name] = {}
+        docker_image_kg["Container Images"][container_name]["OS"] =  [{"Class": entities[str(os_entity_id)], "Variants": "" ,"Versions": "" , "Type": "OS", "Subtype":""}]
         
 
 
-        if lang_id == None: docker_image_kg[container_name]["Lang"] = []
-        else: docker_image_kg[container_name]["Lang"] = entities[str(lang_id)]
+        if lang_id == None: docker_image_kg["Container Images"][container_name]["Lang"] = []
+        else: docker_image_kg["Container Images"][container_name]["Lang"] = entities[str(lang_id)]
         
-        if lib_id == None:docker_image_kg[container_name]["Lib"] = []
-        else: docker_image_kg[container_name]["Lib"] = entities[str(lib_id)]
+        if lib_id == None:docker_image_kg["Container Images"][container_name]["Lib"] = []
+        else: docker_image_kg["Container Images"][container_name]["Lib"] = entities[str(lib_id)]
 
-        if app_id == None: docker_image_kg[container_name]["App"] = []
-        else: docker_image_kg[container_name]["App"] =  [{"Class":entities[str(app_id)], "Variants": '' ,'Versions': '' , 'Type':"App",'Subtype':''}]
+        if app_id == None: docker_image_kg["Container Images"][container_name]["App"] = []
+        else: docker_image_kg["Container Images"][container_name]["App"] =  [{"Class":entities[str(app_id)], "Variants": '' ,'Versions': '' , 'Type':"App",'Subtype':''}]
 
 
-        if app_server_id == None: docker_image_kg[container_name]["App Server"] = []
-        else: docker_image_kg[container_name]["App Server"] = entities[str(app_server_id)]
+        if app_server_id == None: docker_image_kg["Container Images"][container_name]["App Server"] = []
+        else: docker_image_kg["Container Images"][container_name]["App Server"] = entities[str(app_server_id)]
 
-        if plugin_id == None: docker_image_kg[container_name]["Plugin"] = []
-        else: docker_image_kg[container_name]["Plugin"] = entities[str(plugin_id)]
+        if plugin_id == None: docker_image_kg["Container Images"][container_name]["Plugin"] = []
+        else: docker_image_kg["Container Images"][container_name]["Plugin"] = entities[str(plugin_id)]
 
                
-        if runlib_id == None: docker_image_kg[container_name]["Runlib"] = []
-        else: docker_image_kg[container_name]["Runlib"] = entities[str(runlib_id)]
+        if runlib_id == None: docker_image_kg["Container Images"][container_name]["Runlib"] = []
+        else: docker_image_kg["Container Images"][container_name]["Runlib"] = entities[str(runlib_id)]
 
         
-        if runtime_id == None: docker_image_kg[container_name]["Runtime"] = []
-        else: docker_image_kg[container_name]["Runtime"] = entities[str(runtime_id)]
+        if runtime_id == None: docker_image_kg["Container Images"][container_name]["Runtime"] = []
+        else: docker_image_kg["Container Images"][container_name]["Runtime"] = entities[str(runtime_id)]
 
-        docker_image_kg[container_name]["Docker_URL"] = Docker_URL
-        docker_image_kg[container_name]["Note"] = Notes
-        docker_image_kg[container_name]["CertOfImageAndPublisher"] = CertOfImageAndPublisher
+        docker_image_kg["Container Images"][container_name]["Docker_URL"] = Docker_URL
+        docker_image_kg["Container Images"][container_name]["Note"] = Notes
+        docker_image_kg["Container Images"][container_name]["CertOfImageAndPublisher"] = CertOfImageAndPublisher
     
-    saveJSON(docker_image_kg,"dockerimageKG")
+    save_json(docker_image_kg,"dockerimageKG")
     
 
 
 
-def createOpenshiftImageKG(db_connect):
+def create_openshift_image_kg(db_connect):
+    """
+    
+    """
     openshift_cursor = db_connect.cursor()
     openshift_cursor.execute("SELECT *  FROM  openshift_images")
     entities = entity_mapper(db_connect)
@@ -450,44 +489,48 @@ def createOpenshiftImageKG(db_connect):
     openshift_image_kg["KG Version"] =    config_obj["db"]["version"]
 
 
-
+    openshift_image_kg["Container Images"] = {}
     for image in openshift_cursor.fetchall():
         container_name, os_entity_id, lang_id , lib_id, app_id, app_server_id, plugin_id , runlib_id , runtime_id, Docker_URL,_= image[1:]
 
-        openshift_image_kg[container_name] = {}
-        openshift_image_kg[container_name]["OS"] =  [{"Class": entities[str(os_entity_id)], "Variants": "" ,"Versions": "" , "Type": "OS", "Subtype":""}]
+        openshift_image_kg["Container Images"][container_name] = {}
+        openshift_image_kg["Container Images"][container_name]["OS"] =  [{"Class": entities[str(os_entity_id)], "Variants": "" ,"Versions": "" , "Type": "OS", "Subtype":""}]
         
 
-        if lang_id == None: openshift_image_kg[container_name]["Lang"] = []
-        else: openshift_image_kg[container_name]["Lang"] = entities[str(lang_id)]
+        if lang_id == None: openshift_image_kg["Container Images"][container_name]["Lang"] = []
+        else: openshift_image_kg["Container Images"][container_name]["Lang"] = entities[str(lang_id)]
         
-        if lib_id == None:openshift_image_kg[container_name]["Lib"] = []
-        else: openshift_image_kg[container_name]["Lib"] = entities[str(lib_id)]
+        if lib_id == None:openshift_image_kg["Container Images"][container_name]["Lib"] = []
+        else: openshift_image_kg["Container Images"][container_name]["Lib"] = entities[str(lib_id)]
 
-        if app_id == None: openshift_image_kg[container_name]["App"] = []
-        else: openshift_image_kg[container_name]["App"] =  [{"Class":entities[str(app_id)], "Variants": '' ,'Versions': '' , 'Type':"App",'Subtype':''}]
+        if app_id == None: openshift_image_kg["Container Images"][container_name]["App"] = []
+        else: openshift_image_kg["Container Images"][container_name]["App"] =  [{"Class":entities[str(app_id)], "Variants": '' ,'Versions': '' , 'Type':"App",'Subtype':''}]
         
-        if app_server_id == None: openshift_image_kg[container_name]["App Server"] = []
-        else: openshift_image_kg[container_name]["App Server"] = entities[str(app_server_id)]
+        if app_server_id == None: openshift_image_kg["Container Images"][container_name]["App Server"] = []
+        else: openshift_image_kg["Container Images"][container_name]["App Server"] = entities[str(app_server_id)]
 
-        if plugin_id == None: openshift_image_kg[container_name]["Plugin"] = []
-        else: openshift_image_kg[container_name]["Plugin"] = entities[str(plugin_id)]
-
-        
-        if runlib_id == None: openshift_image_kg[container_name]["Runlib"] = []
-        else: openshift_image_kg[container_name]["Runlib"] = entities[str(runlib_id)]
+        if plugin_id == None: openshift_image_kg["Container Images"][container_name]["Plugin"] = []
+        else: openshift_image_kg["Container Images"][container_name]["Plugin"] = entities[str(plugin_id)]
 
         
-        if runtime_id == None: openshift_image_kg[container_name]["Runtime"] = []
-        else: openshift_image_kg[container_name]["Runtime"] = entities[str(runtime_id)]
+        if runlib_id == None: openshift_image_kg["Container Images"][container_name]["Runlib"] = []
+        else: openshift_image_kg["Container Images"][container_name]["Runlib"] = entities[str(runlib_id)]
 
-        openshift_image_kg[container_name]["Docker_URL"] = Docker_URL
+        
+        if runtime_id == None: openshift_image_kg["Container Images"][container_name]["Runtime"] = []
+        else: openshift_image_kg["Container Images"][container_name]["Runtime"] = entities[str(runtime_id)]
+
+        openshift_image_kg["Container Images"][container_name]["Docker_URL"] = Docker_URL
         
     
-    saveJSON(openshift_image_kg, "openshiftimageKG")
+    save_json(openshift_image_kg, "openshiftimageKG")
 
 
-def createInvertedDockerImageKG(database_connect):
+def create_inverted_docker_image_kg(database_connect):
+    """
+    
+    
+    """
 
     inverted_cur = database_connect.cursor()
     inverted_cur.execute("SELECT * FROM docker_images")
@@ -557,12 +600,16 @@ def createInvertedDockerImageKG(database_connect):
         if runtime_id == None: pass
         else: inverted_docker_images_kg[entities[str(runtime_id)]].append(container_name)
 
-    saveJSON(inverted_docker_images_kg, "inverted_dockerimageKG")
+    save_json(inverted_docker_images_kg, "inverted_dockerimageKG")
     
 
 
 
-def createInvertedOpenshifhtImageKG(db_connection):
+def create_inverted_openshifht_image_kg(db_connection):
+    """
+    
+    
+    """
 
     inverted_cur = db_connection.cursor()
     inverted_cur.execute("SELECT * FROM openshift_images")  #
@@ -630,10 +677,79 @@ def createInvertedOpenshifhtImageKG(db_connection):
         if runtime_id == None: pass
         else: inverted_openshift_images_kg[entities[str(runtime_id)]].append(container_name)
     
-    saveJSON(inverted_openshift_images_kg, "inverted_openshiftimageKG")
+    save_json(inverted_openshift_images_kg, "inverted_openshiftimageKG")
   
 
+def create_cot_kg(db_connection):
 
+    """
+    
+    
+    """
+
+    
+    cur = db_connection.cursor()
+    cur.execute("SELECT * FROM  entities")  
+    entities = entity_mapper(db_connection)
+    cot_kg = {}
+    cot_kg['Version'] =  config_obj["db"]["version"]
+
+    cots = []
+    for entity in cur.fetchall():
+
+        entity_name  = entity[1]
+
+        cots.append(entity_name)
+    
+    cot_kg["COTS"] = cots
+
+    save_json(cot_kg , "cot_kg")
+
+
+
+def create_openshift_base_os_kg(db_connection):
+    """
+    
+    
+    """
+
+
+    cur = db_connection.cursor()
+    cur.execute("SELECT * FROM  openshift_baseos_images")  
+    entities = entity_mapper(db_connection)
+    openshift_base_os_kg = {}
+    openshift_base_os_kg['Version'] =  config_obj["db"]["version"]
+
+    
+    openshift_base_os_kg["Container Images"] = {}
+    for base_os in cur.fetchall():
+        container_name, os_entity_id, OpenShift_Correspondent_Image_URL , Notes, OpenShiftStatus, DockerImageType = base_os[1:]
+        openshift_base_os_kg["Container Images"][container_name] ={}
+
+        openshift_base_os_kg["Container Images"][container_name]["OS"] =  [{"Class": entities[str(os_entity_id)], "Variants": "" ,"Versions": "" , "Type": "OS", "Subtype":""}]
+        
+
+        
+        openshift_base_os_kg["Container Images"][container_name]["Lang"] = []
+        openshift_base_os_kg["Container Images"][container_name]["Lib"] = []
+        
+        openshift_base_os_kg["Container Images"][container_name]["App"] = []
+        
+        openshift_base_os_kg["Container Images"][container_name]["App Server"] = []
+
+        openshift_base_os_kg["Container Images"][container_name]["Plugin"] = []
+
+        
+        openshift_base_os_kg["Container Images"][container_name]["Runlib"] = []
+
+        openshift_base_os_kg["Container Images"][container_name]["Runtime"] = []
+
+        openshift_base_os_kg["Container Images"][container_name]["Docker_URL"] = OpenShift_Correspondent_Image_URL
+    
+    save_json( openshift_base_os_kg , "openshiftbaseOSKG")
+        
+
+    
 
 
 
@@ -691,31 +807,20 @@ if __name__== '__main__':
     else:
 
         connection = create_db_connection(db_path)  
-        createInvertedCompatibilityKG(connection)
-        createClassTypeMapper(connection)
-        createOpenshiftImageKG(connection)
-        createDockerImageKG(connection)
-        createInvertedDockerImageKG(connection)
-        createCompatibilityOSKG(connection)
-        createCompatibiltyKg(connection)
-        createInvertedOpenshiftbaseOSKG(connection)
-        createInvertedOpenshifhtImageKG(connection)
-        createBaseOSKG(connection)
-        createOpenshiftbaseOSKG(connection)
-        createInverted_baseOSKG(connection)
-
-        #explore_db(connection)
-        #type_mapper(connection)
-        #entity_mapper(connection)
-
-
-            
-            
-        
+        create_inverted_compatibility_kg(connection)
+        create_class_type_mapper(connection)
+        create_openshift_image_kg(connection)
+        create_docker_image_kg(connection)
+        create_inverted_docker_image_kg(connection)
+        create_compatibility_os_kg(connection)
+        create_compatibilty_kg(connection)
+        create_inverted_openshift_base_os_kg(connection)
+        create_inverted_openshifht_image_kg(connection)
+        create_base_os_kg(connection)
+        create_inverted_base_os_kg(connection)
+        create_openshift_base_os_kg(connection)
+        create_cot_kg(connection)
     
-        
-
-
     
 
 
