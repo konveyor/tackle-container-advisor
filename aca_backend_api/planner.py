@@ -20,7 +20,8 @@ import traceback
 
 from service.entity_detection import EntityDetection
 from service.containerize_assessment import Assessment
-
+from service.infer_tech import InferTech
+from service.containerize_planning import Plan
 import configparser
 
 config = configparser.ConfigParser()
@@ -36,7 +37,9 @@ class Planner:
 		Set default values for token based variables
 		"""
 		self.entity_detection = EntityDetection()
+		self.inferTech = InferTech()
 		self.assess = Assessment()
+		self.plan = Plan()
 		# logging.warn(f'auth_url: {auth_url}')
 
 		self.is_disable_access_token = None
@@ -114,7 +117,7 @@ class Planner:
 			logging.error(str(e))
 			raise e
 
-	def containerization_plan(self,auth_url,headers,auth_headers,app_data):
+	def containerization_assessment(self,auth_url,headers,auth_headers,app_data):
 		"""
 		Invokes detect_access_token for accesstoken validation and if it's valid, it will call
 		compose_app for assessment and app_validation for validation the assessed application data
@@ -133,8 +136,9 @@ class Planner:
 			assessment = self.assess.output_to_ui_assessment(appL)
 
 			logging.warn(f'{str(datetime.now())} output assessment num: {str(len(assessment))} ')
+			return dict(status=201, message="Assessment completed successfully!", assessment=assessment), 201
 
-			return dict(status = 201,message = "Assessment completed successfully!",assessment=assessment), 201
+
 		except Exception as e:
 			# print(e)
 			logging.error(str(e))
@@ -142,14 +146,52 @@ class Planner:
 			print(track)
 			return dict(status = 400,message = 'Input data format doesn\'t match the format expected by ACA'), 400
 
-def do_plan(auth_url,headers,auth_headers,app_data):
+	def containerization_plan(self, auth_url, headers, auth_headers, assessment_data,catalog):
+		"""
+		Invokes detect_access_token for accesstoken validation and if it's valid, it will call
+		compose_app for assessment and app_validation for validation the assessed application data
+		and finally call output_to_ui_assessment to return the formatted assessment data
+		"""
+		try:
+			resp, code, is_valid = self.detect_access_token(auth_url, headers, auth_headers)
+			if not is_valid:
+				return resp, code
+
+
+			appL = self.plan.ui_to_input_assessment(assessment_data)
+			appL = self.plan.validate_app(appL)
+			appL = self.inferTech.infer_missing_tech(appL)
+			containerL = self.plan.map_to_docker(appL, catalog)
+			planning = self.plan.output_to_ui_planning(containerL)
+
+			logging.warn(f'{str(datetime.now())} output planning num: {str(len(planning))}')
+			return dict(status=201, message="Planning completed successfully!", planning=planning), 201
+
+		except Exception as e:
+			logging.error(str(e))
+			track = traceback.format_exc()
+			print(track)
+			return dict(status=400, message='Input data format doesn\'t match the format expected by ACA'), 400
+
+def do_assessment(auth_url,headers,auth_headers,app_data):
 	"""
 	Creates the instance for Planner Class and invoke containerization_plan method
 	"""
 	global controller
 	if not controller:
 		controller = Planner()
-	resp, code = controller.containerization_plan(auth_url,headers,auth_headers,app_data)
+	resp, code = controller.containerization_assessment(auth_url,headers,auth_headers,app_data)
+
+	return resp, code
+
+def do_plan(auth_url,headers,auth_headers,assessment_data,catalog):
+	"""
+	Creates the instance for Planner Class and invoke containerization_plan method
+	"""
+	global controller
+	if not controller:
+		controller = Planner()
+	resp, code = controller.containerization_plan(auth_url,headers,auth_headers,assessment_data,catalog)
 
 	return resp, code
 

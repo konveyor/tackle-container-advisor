@@ -29,6 +29,18 @@ class Utils:
         except Exception as e:
             logging.error(str(e))
 
+    @staticmethod
+    def getEntityString(obj):
+        ## obj: {snippet:{entity:version}}
+        ## return: entity, entity
+        if not obj:
+            return ''
+        tech = []
+        for entityversion in obj.values():
+            for x in entityversion.keys():
+                if x:
+                    tech.append(x)
+        return ', '.join(filter(None, tech))
     
     @staticmethod
     def mergeDicts(result, app_tech):
