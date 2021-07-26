@@ -45,6 +45,7 @@ class Assessment():
 
         try:
             for app in appL:
+                app['valid_assessment'] = True
                 app['assessment_reason'] = []
 
                 # Tech confidence
@@ -97,12 +98,8 @@ class Assessment():
                 pApp['Lang'] = app["Lang"]
                 pApp["App Server"] = app["App Server"]
                 pApp["Dependent Apps"] = app["App"]
-
-                libs = {}
-                libs = Utils.mergeDicts(libs, app["Runtime"])
-                libs = Utils.mergeDicts(libs, app["Lib"])
-
-                pApp["Libs"] = libs
+                pApp["Runtime"] = app["Runtime"]
+                pApp["Libs"] = app["Lib"]
 
                 try :
                     pApp["KG Version"] = app["KG Version"]
