@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aca_db_file="aca_kg_ce_1.0.0.db"
+aca_db_file="aca_kg_ent_1.0.0.db"
 echo "-----------Cleaning Files and Folders---------"
 
 ##remove files from backend api
@@ -9,8 +9,8 @@ if [ -d "aca_backend_api/model_objects" ]; then
 fi
 
 #remove files from ontologies
-if [ -f aca_backend_api/ontologies/class_type_mapper.json ]; then
-    rm aca_backend_api/ontologies/class_type_mapper.json
+if [ -d aca_backend_api/ontologies/ ]; then
+    rm  -rf aca_backend_api/ontologies/
 fi
 
 ## remove db file from DB, kg_utils, and entity_standardizer
