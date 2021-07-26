@@ -444,28 +444,38 @@ def create_docker_image_kg(db_connect):
 
 
         if lang_id == None: docker_image_kg["Container Images"][container_name]["Lang"] = []
-        else: docker_image_kg["Container Images"][container_name]["Lang"] = entities[str(lang_id)]
+        else: docker_image_kg["Container Images"][container_name]["Lang"] =  [{"Class": entities[str(lang_id)], "Variants": "" ,"Versions": "" , "Type": "Lang", "Subtype":""}]
+
         
         if lib_id == None:docker_image_kg["Container Images"][container_name]["Lib"] = []
-        else: docker_image_kg["Container Images"][container_name]["Lib"] = entities[str(lib_id)]
+        else: docker_image_kg["Container Images"][container_name]["Lib"] =  [{"Class": entities[str(lib_id)], "Variants": "" ,"Versions": "" , "Type": "Lib", "Subtype":""}]
 
         if app_id == None: docker_image_kg["Container Images"][container_name]["App"] = []
         else: docker_image_kg["Container Images"][container_name]["App"] =  [{"Class":entities[str(app_id)], "Variants": '' ,'Versions': '' , 'Type':"App",'Subtype':''}]
 
 
         if app_server_id == None: docker_image_kg["Container Images"][container_name]["App Server"] = []
-        else: docker_image_kg["Container Images"][container_name]["App Server"] = entities[str(app_server_id)]
+        else: docker_image_kg["Container Images"][container_name]["App Server"] =  [{"Class":entities[str(app_server_id)], "Variants": '' ,'Versions': '' , 'Type':"App Server",'Subtype':''}]
+
+
 
         if plugin_id == None: docker_image_kg["Container Images"][container_name]["Plugin"] = []
-        else: docker_image_kg["Container Images"][container_name]["Plugin"] = entities[str(plugin_id)]
+        else: docker_image_kg["Container Images"][container_name]["Plugin"] =  [{"Class":entities[str(plugin_id)], "Variants": '' ,'Versions': '' , 'Type':"Plugin",'Subtype':''}]
+
+
 
                
         if runlib_id == None: docker_image_kg["Container Images"][container_name]["Runlib"] = []
-        else: docker_image_kg["Container Images"][container_name]["Runlib"] = entities[str(runlib_id)]
+        else: docker_image_kg["Container Images"][container_name]["Runlib"] =  [{"Class":entities[str(runlib_id)], "Variants": '' ,'Versions': '' , 'Type':"Runlib",'Subtype':''}]
+
+
 
         
         if runtime_id == None: docker_image_kg["Container Images"][container_name]["Runtime"] = []
-        else: docker_image_kg["Container Images"][container_name]["Runtime"] = entities[str(runtime_id)]
+        else: docker_image_kg["Container Images"][container_name]["Runtime"] =  [{"Class":entities[str(runtime_id)], "Variants": '' ,'Versions': '' , 'Type':"Runtime",'Subtype':''}]
+
+
+
 
         docker_image_kg["Container Images"][container_name]["Docker_URL"] = Docker_URL
         docker_image_kg["Container Images"][container_name]["Note"] = Notes
