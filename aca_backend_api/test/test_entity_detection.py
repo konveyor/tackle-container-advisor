@@ -42,5 +42,4 @@ class TestEntityDetection(unittest.TestCase):
 
         app_data = entity_detection.compose_app(app_data)
 
-        print('app data',app_data)
         self.assertTrue(app_data == expected)
