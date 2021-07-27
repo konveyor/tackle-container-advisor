@@ -20,6 +20,7 @@ class TestApplySIM(unittest.TestCase):
         sim = sim_applier()
         tech_stack="cobol    java    javascript:  : , , unix/mainframe, unix/mainframe: unknown , db2    "
         extracted = sim.tech_stack_standardization(tech_stack)
+        print(extracted)
         expected = [['COBOL', 1.0], ['Java', 1.0], ['JavaScript', 1.0], ['Unix', 1.0], ['mainframe', 1.0], ['DB2', 1.0]]
 
         self.assertTrue(extracted == expected)
