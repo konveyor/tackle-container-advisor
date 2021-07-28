@@ -16,7 +16,7 @@ import configparser
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
+import numpy as np
 from utils_nlp import  utils
 from sim_utils import sim_utils
 
@@ -68,7 +68,7 @@ class sim_applier:
         matrixValue = cosine_similarity(tfs_text,self.tfs)
         id=0
         for  each in matrixValue[0]:
-            sims.append(each)
+            sims.append(np.round(each,3))
             id+=1
     
         sims_sorted = sorted(enumerate(sims), key = lambda item:-item[1])
