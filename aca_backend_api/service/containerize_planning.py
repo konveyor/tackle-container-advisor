@@ -240,7 +240,7 @@ class Plan():
             # app['scope_images_confidence']['mapping'][child] = scope_image
 
 
-        app['scope_images_confidence']['image_confidence'] = images_score/cum_scores
+        app['scope_images_confidence']['image_confidence'] = round(images_score/cum_scores,3)
         app['scope_images_confidence']['images_score'] = images_score
         app['scope_images_confidence']['cum_scores'] = cum_scores
         app['scope_images_confidence']['custom_installations_needed'] = custom_installations_needed
@@ -543,7 +543,7 @@ class Plan():
                         pApp['Reason'] += 'Additional Installations in container image ' + counter_list + ':' + ', '.join(filter(None, app['scope_images_confidence_win']['custom_installations_needed']))
                     
                     if 'scope_images_confidence_win' in app and app['scope_images_confidence_win']:
-                        pApp["Confidence"] = (app['scope_images_confidence']['images_score'] + app['scope_images_confidence_win']['images_score'])/(app['scope_images_confidence']['cum_scores'] + app['scope_images_confidence_win']['cum_scores'])
+                        pApp["Confidence"] = round((app['scope_images_confidence']['images_score'] + app['scope_images_confidence_win']['images_score'])/(app['scope_images_confidence']['cum_scores'] + app['scope_images_confidence_win']['cum_scores']),3)
                 elif 'Windows' in app['RepackageOS']:
                     ## Openshift env, Windows does not contain any base OS
                     win_not_supported = []
