@@ -553,7 +553,7 @@ class Plan():
                     if win_not_supported:
                         if 'scope_images_confidence_win' in app and app['scope_images_confidence_win']:
                             pApp["Confidence"] = (app['scope_images_confidence']['images_score'] + app['scope_images_confidence_win']['images_score'])/(app['scope_images_confidence']['cum_scores'] + app['scope_images_confidence_win']['cum_scores'])
-                        
+
                         if pApp['Reason']:
                             pApp['Reason'] += '\n '
                         pApp['Reason'] += 'Reason 400: Not supported by any container image: ' + ', '.join(filter(None, win_not_supported))
