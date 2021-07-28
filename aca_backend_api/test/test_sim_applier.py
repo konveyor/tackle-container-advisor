@@ -21,6 +21,6 @@ class TestApplySIM(unittest.TestCase):
         tech_stack="cobol    java    javascript:  : , , unix/mainframe, unix/mainframe: unknown , db2    "
         extracted = sim.tech_stack_standardization(tech_stack)
         print(extracted)
-        expected = [['COBOL', 1.0], ['Java', 1.0], ['JavaScript', 1.0], ['Unix', 1.0], ['mainframe', 1.0], ['DB2', 1.0]]
+        expected = [['Java', 1.0], ['JavaScript', 1.0], ['DB2', 1.0], ['Linux|Red Hat Enterprise Linux', 0.733], ['NA_CATEGORY', 0.3]]
 
         self.assertTrue(extracted == expected)
