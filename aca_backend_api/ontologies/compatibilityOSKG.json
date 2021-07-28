@@ -1,0 +1,54 @@
+{
+  "KG Version": "1.0.0",
+  "Node.js": [],
+  "Go": [],
+  "Perl|*": [],
+  "PHP": [],
+  "Swift": [],
+  "Apache HTTP Server": [],
+  "Apache Tomcat": [
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "HAProxy": [],
+  "JBoss": [
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Nginx": [],
+  "Spark": [],
+  "Websphere Application Server (WAS)": [],
+  "WebSphere Liberty": [],
+  "Ansible": [],
+  "Apache ActiveMQ": [],
+  "Apache Hive": [],
+  "Apache Kafka": [],
+  "Apache Solr": [],
+  "DB2": [],
+  "Hadoop": [
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "IBM Websphere MQ": [],
+  "IBM WebSphere Transformation Extender (WTX)": [],
+  "Ingres": [],
+  "Jenkins": [
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "MongoDB": [],
+  "MS SQL Server|*": [],
+  "MySQL": [],
+  "PostgreSQL": [],
+  "RabbitMQ": [],
+  "Redis": [
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Splunk": [],
+  "Wherescape Red": [],
+  "IBM Maximo": [],
+  "IBM Operational Decision Manager (ODM)": [],
+  "MarkLogic DB": [
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Memcached": [],
+  "VMware Tools": [
+    "Linux|Red Hat Enterprise Linux"
+  ]
+}
