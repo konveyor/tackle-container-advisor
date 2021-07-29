@@ -23,6 +23,9 @@ config.read('config.ini')
 
 class InferTech:
     def __init__(self, logger=False):
+        """
+        Initialize and loads the class mapper and OS compatability KG json files
+        """
 
         logging.basicConfig(level=logging.INFO)
 
@@ -47,8 +50,11 @@ class InferTech:
         if logger == True:
             self.logfile = codecs.open('logfile.txt','w',encoding='utf-8')
     
-    ############ Infer missing elements in the technology stack
+
     def __identify_parent_OS(self, child):
+        """
+        Identify the appropriate  parent operating System
+        """
         child_class_variants = [child, child+'|*']
         candidate_OS = []
         for child_class in child_class_variants:
@@ -56,8 +62,11 @@ class InferTech:
                 candidate_OS.extend(self.__compatibilityOSKG[child_class])
         return candidate_OS
 
-    ## Reduce the OS to base forms
+
     def __reduce_to_base_OS(self, os_list):
+        """
+        Reduce the OS to base forms
+        """
         final_os = []
         if os_list:
             for os in os_list:
@@ -69,6 +78,9 @@ class InferTech:
 
     ## Update the list of recommended OS
     def __update_recommended_OS(self, candidate_OS, recommended_OS):
+        """
+        Updates the list of recommended OS
+        """
         if not recommended_OS or len(recommended_OS) == 0:
             return recommended_OS
         if not candidate_OS or len(candidate_OS) == 0:
@@ -89,6 +101,9 @@ class InferTech:
         return recommended_OS
 
     def __get_candidate_OS(self, app_tech):
+        '''
+        Calls identify_parent_os method to figure out the parent operating system for the given technology
+        '''
         tech_list = app_tech.split(', ')
         candidate_OS = []
         for tech in tech_list:
@@ -96,6 +111,9 @@ class InferTech:
         return candidate_OS
     
     def __check_OS_compatible(self, candidate_OS, input_OS):
+        """
+        Checks the OS compatibility between input operating system and identified operating system for given tech.
+        """
         if not candidate_OS or len(candidate_OS) == 0 or not input_OS or len(input_OS) == 0:
             return False
         if not set(candidate_OS).intersection(set(input_OS)):
@@ -108,8 +126,11 @@ class InferTech:
         else:
             return True
 
-    ## Infer missing Tech and Compatibility of OS
+
     def infer_missing_tech(self, appL):
+        """
+        Infers the missing technology and checks OS compatibility
+        """
         if len(self.__compatibilityOSKG) == 0 or len(self.__class_type_mapper) == 0:
             logging.error('infer_tech init failed')
             return appL
