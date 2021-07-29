@@ -18,10 +18,10 @@ TCA takes the following steps to recommend the containerization.
 
 2. **Containerization**: First, it recommends whether *App1* can be containerized, partially containerized, or kept as it is. Then if App1 is recommended as containerized or partially containerized, TCA generates container images based on DockerHub or Openshift. For example, if a user decides to generate DockerHub related images, then TCA generates the following images.
 
-
+```
 	1. tomcat|https://hub.docker.com/_/tomcat
 	2. db2|https://hub.docker.com/r/ibmcom/db2
-
+```
 
 For Openshift, TCA generates the following images.
 
