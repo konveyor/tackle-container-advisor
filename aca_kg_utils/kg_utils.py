@@ -250,7 +250,8 @@ def create_base_os_kg(db_connection):
 
         base_os["Container Images"][baseos_image]["Plugin"] , base_os["Container Images"][baseos_image]["Runlib"],  base_os["Container Images"][baseos_image]["Runtime"] =[] ,[] ,[]
         base_os["Container Images"][baseos_image]["Docker_URL"] = docker_url
-        base_os["Container Images"][baseos_image]["Notes"] , base_os["Container Images"][baseos_image]["Status"]  = Note , Status 
+        base_os["Container Images"][baseos_image]["Notes"] , base_os["Container Images"][baseos_image]["CertOfImageAndPublisher"]  = Note , Status 
+        
 
     save_json(base_os, "baseOSKG")
        
@@ -281,7 +282,9 @@ def create_openshift_base_os_kg(db_connection):
 
         base_os["Container Images"][baseos_image]["Plugin"] , base_os["Container Images"][baseos_image]["Runlib"],  base_os["Container Images"][baseos_image]["Runtime"] =[] ,[] ,[]
         base_os["Container Images"][baseos_image]["Docker_URL"] = docker_url
-        base_os["Container Images"][baseos_image]["Notes"] , base_os["Container Images"][baseos_image]["Status"]  = Note , Status 
+        base_os["Container Images"][baseos_image]["Notes"] , base_os["Container Images"][baseos_image]["CertOfImageAndPublisher"]  = Note , Status 
+        
+      
         
     save_json(base_os, "openshiftbaseOSKG")
 
@@ -725,47 +728,7 @@ def create_cot_kg(db_connection):
 
 
 
-def create_openshift_base_os_kg(db_connection):
-    """
-    
-    
-    """
 
-
-    cur = db_connection.cursor()
-    cur.execute("SELECT * FROM  openshift_baseos_images")  
-    entities = entity_mapper(db_connection)
-    openshift_base_os_kg = {}
-    openshift_base_os_kg['Version'] =  config_obj["db"]["version"]
-
-    
-    openshift_base_os_kg["Container Images"] = {}
-    for base_os in cur.fetchall():
-        container_name, os_entity_id, OpenShift_Correspondent_Image_URL , Notes, OpenShiftStatus, DockerImageType = base_os[1:]
-        openshift_base_os_kg["Container Images"][container_name] ={}
-
-        openshift_base_os_kg["Container Images"][container_name]["OS"] =  [{"Class": entities[str(os_entity_id)], "Variants": "" ,"Versions": "" , "Type": "OS", "Subtype":""}]
-        
-
-        
-        openshift_base_os_kg["Container Images"][container_name]["Lang"] = []
-        openshift_base_os_kg["Container Images"][container_name]["Lib"] = []
-        
-        openshift_base_os_kg["Container Images"][container_name]["App"] = []
-        
-        openshift_base_os_kg["Container Images"][container_name]["App Server"] = []
-
-        openshift_base_os_kg["Container Images"][container_name]["Plugin"] = []
-
-        
-        openshift_base_os_kg["Container Images"][container_name]["Runlib"] = []
-
-        openshift_base_os_kg["Container Images"][container_name]["Runtime"] = []
-
-        openshift_base_os_kg["Container Images"][container_name]["Docker_URL"] = OpenShift_Correspondent_Image_URL
-    
-    save_json( openshift_base_os_kg , "openshiftbaseOSKG")
-        
 
     
 

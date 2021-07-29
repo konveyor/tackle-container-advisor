@@ -47,10 +47,10 @@ app.wsgi_app = ProxyFix(app.wsgi_app)
 ######################################################################
 api = Api(app,
           version='1.0.0',
-          title='Application Containerization Advisor API',
-          description='These are the REST calls you can make to the ACA to get assessment and planning details.',
+          title='Tackle Container Advisor (TCA)',
+          description='These are the REST calls you can make to the TCA to get assessment and planning details.',
           default='Containerization',
-          default_label='Containerization Advisor',
+          default_label='Tackle Container Advisor',
           doc='/', # default also could use doc='/apidocs/'
           authorizations=authorizations,
           # prefix='/api'
@@ -103,7 +103,7 @@ output_model_assessment = api.model('Assessment Output', {
 output_model_planning = api.model('Planning Output', {
     "status": fields.Integer(required=True, description='Status of the call'),
     "message": fields.String(required=True, description='Status message'),
-    "planning": fields.List(fields.Nested(planning_model), required=True, description='An array of containerization assessment for application workload')
+    "containerization": fields.List(fields.Nested(planning_model), required=True, description='An array of containerization assessment for application workload')
     })
 
 @api.route('/containerization-assessment', strict_slashes=False)
@@ -138,7 +138,7 @@ class ContainerizationPlanning(Resource):
     application/component details given in the input_model
     """
     @api.doc('create_containerization_planning')
-    @api.response(201, 'Planning Completed successfully!')
+    @api.response(201, 'Container recommendation generated!')
     @api.response(400, 'Input data format doesn\'t match the format expected by ACA')
     @api.response(401, 'Unauthorized, missing or invalid access token')
     @api.response(500, 'Internal Server Error, missing or wrong config of RBAC access token validation url')

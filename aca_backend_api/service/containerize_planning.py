@@ -24,6 +24,9 @@ config.read('config.ini')
 
 class Plan():
     def __init__(self, logger=False):
+        '''
+        Loads the docker and openshift KG json file data
+        '''
 
         logging.basicConfig(level=logging.INFO)
 
@@ -97,13 +100,17 @@ class Plan():
             self.logfile = codecs.open('logfile.txt','w',encoding='utf-8')
         
         self.MAJOR_VERSION_NUMBER_REGEX = re.compile('([0-9]+)')
-    
-    #######################################
-    ############## Map to docker ##########
-    #######################################
 
-    ### Select a set of images and Calculate confidence for one component
-    def __compute_confidence(self, app, tech_version = {}, catalog = 'dockerhub'):
+    def __compute_confidence(self, app, catalog = 'dockerhub'):
+        """
+        Selects the best image for each detected entities and compute the overall confidence for the component.
+
+        :param app: list of application/component details
+                catalog: A string containing catalog name to fetch the corresponding images
+
+        :returns: Updated application/component details with selected best images and confidence score
+
+        """
         scores_dict = {'OS': 40, 'App': 20, 'App Server': 20, 'Runtime': 10, 'Lang': 10,'unknown':10}
 
         scope_images = app['scope_images']
@@ -162,6 +169,7 @@ class Plan():
                                     break
                             scope_image = best_image
                             images_score += scores_dict[child_type]
+                            print(str(scope_image))
                             app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']}
                             app['scope_images_confidence']['mapping'][child] = scope_image
                             if child_type in app_appserver_child_types:
@@ -225,7 +233,7 @@ class Plan():
                                 break
                         scope_image = best_image
                         images_score += scores_dict['Lang']
-                        app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher'], 'Versions': containerimageKG['Container Images'][scope_image]['Versions']}
+                        app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']}
                         app['scope_images_confidence']['mapping'][child] = scope_image
                     else:
                         custom_installations_needed.append(child)
@@ -235,8 +243,8 @@ class Plan():
         if not app['scope_images'] and scope_images:
             # find best for OS
             scope_image = scope_images[0]
-            
-            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher'], 'Versions': containerimageKG['Container Images'][scope_image]['Versions']}
+            print(scope_image)
+            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']}
             # app['scope_images_confidence']['mapping'][child] = scope_image
 
 
@@ -251,12 +259,18 @@ class Plan():
         
         return app
 
-    # def __sigmoid(self, x):
-    #     return 1 / (1 + math.exp(-x))
 
-    
-    ## Search Docker Images for one component with one OS
     def __search_docker(self, app, catalog = 'dockerhub'):
+
+        """
+        Searches the docker or openshift images for each detected entities based on selected catalog.
+
+        :param app: list of application/component details
+                catalog: A string containing catalog name to fetch the corresponding images
+
+        :returns: Updated application/component details with detected docker or openshift images
+
+        """
         if (not app) or ('OS' not in app) or ('App Server' not in app) or ('App' not in app) or ('Runtime' not in app) or ('Lang' not in app):
             return app
         if app['OS'] == '':
@@ -299,9 +313,17 @@ class Plan():
                 app['scope_images'] = list(set(backup_images))
         return app
 
-    ## Find Linux OS by priority
-    ## os: 'Linux', 'Windows'
+
     def __find_best_os(self, app, os):
+
+        """
+        Find the best operating system
+        :param app: list of application/component details
+                    os: A string contains operating system value
+
+        :returns: best operating system value
+
+        """
         linux_list = ['Linux|Red Hat Enterprise Linux', 'Linux|Ubuntu', 'Linux|CentOS', 'Linux|Fedora', 'Linux|Debian', '	Linux|Oracle Linux', '	Linux|openSUSE', '	Linux|Amazon Linux']
         result = os
         for inputOS in Utils.getEntityString(app['OS']).split(', '):
@@ -314,27 +336,15 @@ class Plan():
                     result = linuxOS
                     break
         return result
-    
-    ## Get tech-version hash
-    def __getTechVersion(self, app):
-        tech_version = {}
-        child_types = ["OS", "App Server", "App", "Runtime","Lang"]
-        for child_type in child_types:
-            if app[child_type]:
-                for snippet, obj in app[child_type].items():
-                    if not obj:
-                        continue
-                    for tech, version in obj.items():
-                        if tech not in tech_version:
-                            tech_version[tech] = []
-                        if version not in tech_version[tech]:
-                            tech_version[tech].append(version)
-        return tech_version
 
     def ui_to_input_assessment(self, assessment_data):
         """
-        output_to_ui assessment methods takes the final assessed data as input and formats it & keeps
-         only required fields and returns it as output assessment response
+        ui_to_input_assessment method takes the assessment ouput and format it to list of application details
+        which will be further used for planning
+
+        :param assessment_data: list of assessment output for each component
+
+        :returns: list of formatted application details to be processed in planning
 
         """
         pAppL = []
@@ -381,6 +391,14 @@ class Plan():
 
 
     def validate_app(self,appL):
+        """
+        validate_app methods validates each component if it's having any OS or RepackageOS value and set valid_assessment
+        value accordingly.
+
+        :param appL: list of application details
+
+        :returns: list of application details with updated valid_assessment values
+        """
         try:
             for app in appL:
                 app['valid_assessment'] = True
@@ -394,6 +412,15 @@ class Plan():
 
     ############ Map to Docker
     def map_to_docker(self, appL, catalog = 'dockerhub'):
+        """
+        validate_app methods validates each component if it's having any OS or RepackageOS value and set valid_assessment
+        value accordingly.
+
+        :param appL: list of application details
+
+        :returns: list of application details with updated valid_assessment values
+
+        """
         if len(self.__dockerimage_KG) == 0 or len(self.__osBaseImages) == 0 or len(self.__inverted_dockerimageKG) == 0:
             logging.error('service/containerize_planning.py init failed')
             return appL
@@ -408,7 +435,7 @@ class Plan():
                 app['scope_images'] = []
                 app['scope_images_confidence'] = {}
 
-                tech_version = self.__getTechVersion(app)
+
 
                 if len(app['RepackageOS']) > 0:
                     ## Means input need several OS to containerize
@@ -429,7 +456,7 @@ class Plan():
                                 subapp['unknown'] = app['unknown']
                             except Exception :
                                 subapp['unknown'] = []
-                            subapp = self.__compute_confidence(subapp,tech_version, catalog)
+                            subapp = self.__compute_confidence(subapp, catalog)
                             if os == 'Windows' and len(app['RepackageOS']) == 2:
                                 app['scope_images_win'] = subapp['scope_images']
                                 app['scope_images_confidence_win'] = subapp['scope_images_confidence']
@@ -460,7 +487,7 @@ class Plan():
                                 subapp['unknown'] = app['unknown']
                             except Exception :
                                 subapp['unknown'] = []
-                            subapp = self.__compute_confidence(subapp, tech_version, catalog)
+                            subapp = self.__compute_confidence(subapp, catalog)
                             if os == 'Windows' and 'Linux' in app['OS']:
                                 app['scope_images_win'] = subapp['scope_images']
                                 app['scope_images_confidence_win'] = subapp['scope_images_confidence']

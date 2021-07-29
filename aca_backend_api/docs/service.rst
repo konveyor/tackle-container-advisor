@@ -12,10 +12,26 @@ service.containerize\_assessment module
    :undoc-members:
    :show-inheritance:
 
+service.containerize\_planning module
+-------------------------------------
+
+.. automodule:: service.containerize_planning
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 service.entity\_detection module
 --------------------------------
 
 .. automodule:: service.entity_detection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+service.infer\_tech module
+--------------------------
+
+.. automodule:: service.infer_tech
    :members:
    :undoc-members:
    :show-inheritance:

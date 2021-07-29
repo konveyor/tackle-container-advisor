@@ -91,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">planner module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test package</a></li>
 </ul>
 </li>
 </ul>
@@ -162,48 +163,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-planner">
-<span id="planner-module"></span><h1>planner module<a class="headerlink" href="#module-planner" title="Permalink to this headline">¶</a></h1>
-<dl class="py class">
-<dt id="planner.Planner">
-<em class="property">class </em><code class="sig-prename descclassname">planner.</code><code class="sig-name descname">Planner</code><a class="headerlink" href="#planner.Planner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt id="planner.Planner.compose_app">
-<code class="sig-name descname">compose_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#planner.Planner.compose_app" title="Permalink to this definition">¶</a></dt>
-<dd><p>compose_app methods takes app_data as input and split into batch with batch size 20000 and invoke compose_app
-method in entity_detection class to start the assessment process</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="planner.Planner.containerization_plan">
-<code class="sig-name descname">containerization_plan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">auth_url</span></em>, <em class="sig-param"><span class="n">headers</span></em>, <em class="sig-param"><span class="n">auth_headers</span></em>, <em class="sig-param"><span class="n">app_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#planner.Planner.containerization_plan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Invokes detect_access_token for accesstoken validation and if it’s valid, it will call
-compose_app for assessment and app_validation for validation the assessed application data
-and finally call output_to_ui_assessment to return the formatted assessment data</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="planner.Planner.detect_access_token">
-<code class="sig-name descname">detect_access_token</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">auth_url</span></em>, <em class="sig-param"><span class="n">headers</span></em>, <em class="sig-param"><span class="n">auth_headers</span></em><span class="sig-paren">)</span><a class="headerlink" href="#planner.Planner.detect_access_token" title="Permalink to this definition">¶</a></dt>
-<dd><p>detect_access_token checks if the access_token is enabled or disabled. If it’s enabled, it will validate
-the accesstoken in auth_headers in RBAC</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt id="planner.do_plan">
-<code class="sig-prename descclassname">planner.</code><code class="sig-name descname">do_plan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">auth_url</span></em>, <em class="sig-param"><span class="n">headers</span></em>, <em class="sig-param"><span class="n">auth_headers</span></em>, <em class="sig-param"><span class="n">app_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#planner.do_plan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates the instance for Planner Class and invoke containerization_plan method</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="planner.get_supported_metamodels">
-<code class="sig-prename descclassname">planner.</code><code class="sig-name descname">get_supported_metamodels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#planner.get_supported_metamodels" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates the instance for Planner Class and get the keys for aca_input_mapper in entity_detection class</p>
-</dd></dl>
-
+  <div class="section" id="planner-module">
+<h1>planner module<a class="headerlink" href="#planner-module" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
