@@ -20,7 +20,7 @@
       "Runtime": [],
       "Docker_URL": "https://hub.docker.com/r/roboxes/rhel7",
       "Notes": "",
-      "Status": ""
+      "CertOfImageAndPublisher": ""
     }
   }
 }

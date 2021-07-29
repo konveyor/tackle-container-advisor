@@ -1,12 +1,12 @@
 {
-  "Version": "1.0.0",
+  "KG Version": "1.0.0",
   "Container Images": {
     "Red Hat Enterprise Linux": {
       "OS": [
         {
           "Class": "Linux|Red Hat Enterprise Linux",
           "Variants": "",
-          "Versions": "",
+          "Version": "",
           "Type": "OS",
           "Subtype": ""
         }
@@ -18,7 +18,9 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel7/57ea8cee9c624c035f96f3af"
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel7/57ea8cee9c624c035f96f3af",
+      "Notes": "",
+      "CertOfImageAndPublisher": ""
     }
   }
 }

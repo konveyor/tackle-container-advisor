@@ -169,6 +169,7 @@ class Plan():
                                     break
                             scope_image = best_image
                             images_score += scores_dict[child_type]
+                            print(str(scope_image))
                             app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']}
                             app['scope_images_confidence']['mapping'][child] = scope_image
                             if child_type in app_appserver_child_types:
@@ -232,7 +233,7 @@ class Plan():
                                 break
                         scope_image = best_image
                         images_score += scores_dict['Lang']
-                        app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher'], 'Versions': containerimageKG['Container Images'][scope_image]['Versions']}
+                        app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']}
                         app['scope_images_confidence']['mapping'][child] = scope_image
                     else:
                         custom_installations_needed.append(child)
@@ -242,8 +243,8 @@ class Plan():
         if not app['scope_images'] and scope_images:
             # find best for OS
             scope_image = scope_images[0]
-            
-            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher'], 'Versions': containerimageKG['Container Images'][scope_image]['Versions']}
+            print(scope_image)
+            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']}
             # app['scope_images_confidence']['mapping'][child] = scope_image
 
 
