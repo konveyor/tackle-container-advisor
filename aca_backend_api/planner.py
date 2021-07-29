@@ -159,13 +159,15 @@ class Planner:
 
 
 			appL = self.plan.ui_to_input_assessment(assessment_data)
-			appL = self.plan.validate_app(appL)
+			print(str(appL))
 			appL = self.inferTech.infer_missing_tech(appL)
+			print(str(appL))
+			appL = self.plan.validate_app(appL)
 			containerL = self.plan.map_to_docker(appL, catalog)
 			planning = self.plan.output_to_ui_planning(containerL)
 
 			logging.warn(f'{str(datetime.now())} output planning num: {str(len(planning))}')
-			return dict(status=201, message="Planning completed successfully!", planning=planning), 201
+			return dict(status=201, message="Container recommendation generated!", containerization=planning), 201
 
 		except Exception as e:
 			logging.error(str(e))
