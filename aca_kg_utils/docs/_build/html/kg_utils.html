@@ -178,8 +178,25 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="kg_utils.createClassTypeMapper">
-<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">createClassTypeMapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.createClassTypeMapper" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="kg_utils.create_base_os_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_base_os_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_base_os_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create base OS  KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves base OS  KG to the ontology folder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_class_type_mapper">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_class_type_mapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_class_type_mapper" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to extract Entities from sql db and create  mapping each entity to the  corresponding type (“APP, APP SERVER , RUNTIME , LANG , LIB, OS)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -190,6 +207,57 @@
 </dd>
 <dt class="field-odd">Retype</dt>
 <dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_compatibility_os_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_compatibility_os_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_compatibility_os_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create  compatibility  OS  KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves  compatibility OS  KG to the ontology folder.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_compatibilty_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_compatibilty_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_compatibilty_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create compatibility KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves compatibility KG to the ontology folder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_cot_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_cot_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_cot_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create  COT  KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves COT KG to the ontology folder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
 </dd>
 </dl>
 </dd></dl>
@@ -212,15 +280,151 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="kg_utils.load_class_type">
-<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">load_class_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.load_class_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maps each entity to the corresponding type</p>
+<dt class="sig sig-object py" id="kg_utils.create_docker_image_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_docker_image_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connect</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_docker_image_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create docker image  KG.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>conn</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+<dd class="field-odd"><p><strong>db_connect</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>{‘1’: ‘Lang’, ‘2’: ‘Lib’, ‘3’: ‘App Server’, ‘4’: ‘Runtime’, ‘5’: ‘App’, ‘6’: ‘OS’}</p>
+<dd class="field-even"><p>Saves  docker image KG to the ontology folder.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_inverted_base_os_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_inverted_base_os_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_inverted_base_os_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create inverted base OS  KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves  inverted base OS  KG to the ontology folder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_inverted_compatibility_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_inverted_compatibility_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_inverted_compatibility_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create inverted compatibility kwonledge graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves inverted compatibility kwonledge to the ontology folder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_inverted_docker_image_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_inverted_docker_image_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_connect</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_inverted_docker_image_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create  inverted docker image KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>database_connect</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves  inverted docker iamge KG to the ontology folder.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_inverted_openshifht_image_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_inverted_openshifht_image_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_inverted_openshifht_image_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create  inverted openshift image  KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves inverted openshift image KG to the ontology folder.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_inverted_openshift_base_os_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_inverted_openshift_base_os_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_inverted_openshift_base_os_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create  inverted openshift based OS KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves inverted openshift based OS KG to the ontology folder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_openshift_base_os_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_openshift_base_os_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_openshift_base_os_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create openshift base OS KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves openshift base OS KG to the ontology folder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.create_openshift_image_kg">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">create_openshift_image_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connect</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.create_openshift_image_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create  openshift image KG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connect</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saves openshift image KG to the ontology folder.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.entity_mapper">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">entity_mapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.entity_mapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to load entity names from “entities” table from mysql db</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary of entity_names</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
@@ -229,15 +433,38 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="kg_utils.load_entity_names">
-<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">load_entity_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.load_entity_names" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to load entity names from “entities” table from mysql db</p>
+<dt class="sig sig-object py" id="kg_utils.get_os_variants">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">get_os_variants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.get_os_variants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract OS Variants from the entities database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>db_connection</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A dictionary of entity_names</p>
+<dd class="field-even"><p>Dictionary containing variants for each OS type.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.save_json">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">save_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.save_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save json file to the ontologies folder</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kg_utils.type_mapper">
+<span class="sig-prename descclassname"><span class="pre">kg_utils.</span></span><span class="sig-name descname"><span class="pre">type_mapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kg_utils.type_mapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps each entity to the corresponding type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>conn</strong> (<em>&lt;class 'sqlite3.Connection'&gt;</em>) – A connection to mysql</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{‘1’: ‘Lang’, ‘2’: ‘Lib’, ‘3’: ‘App Server’, ‘4’: ‘Runtime’, ‘5’: ‘App’, ‘6’: ‘OS’}</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
