@@ -157,9 +157,16 @@ def create_class_type_mapper(db_connection):
 
 def create_inverted_compatibility_kg(db_connection):
     """
-    Create inverted compatibility kwonledge graph
-    
+    Create inverted compatibility kwonledge graph.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves inverted compatibility kwonledge to the ontology folder
+    :rtype: JSON file 
+
     """
+    
     inverted_compatibilty_kg = {}
     inverted_cursor = db_connection.cursor()
     inverted_cursor.execute("SELECT * FROM entity_relations")
@@ -192,9 +199,16 @@ def create_inverted_compatibility_kg(db_connection):
 
 def create_compatibilty_kg(db_connection):
     """
-    
+    Create compatibility KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves compatibility KG to the ontology folder
+    :rtype: JSON file 
     
     """
+   
 
     CompatibilityKG= {}
     compatibility_list = []
@@ -226,7 +240,13 @@ def create_compatibilty_kg(db_connection):
 
 def create_base_os_kg(db_connection):
     """
-    
+    Create base OS  KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves base OS  KG to the ontology folder
+    :rtype: JSON file
     
     """
 
@@ -258,6 +278,13 @@ def create_base_os_kg(db_connection):
 
 def create_openshift_base_os_kg(db_connection):
     """
+    Create openshift base OS KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves openshift base OS KG to the ontology folder
+    :rtype: JSON file  
     
     
     """
@@ -292,6 +319,13 @@ def create_openshift_base_os_kg(db_connection):
 
 def create_inverted_openshift_base_os_kg(db_connection):
     """
+    Create  inverted openshift based OS KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves inverted openshift based OS KG to the ontology folder
+    :rtype: JSON file 
     
     """
 
@@ -313,6 +347,13 @@ def create_inverted_openshift_base_os_kg(db_connection):
 
 def create_inverted_base_os_kg(db_connection):
     """
+    Create inverted base OS  KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves  inverted base OS  KG to the ontology folder
+    :rtype: JSON file 
     
     """
 
@@ -333,6 +374,13 @@ def create_inverted_base_os_kg(db_connection):
   
 def get_os_variants(db_connection):
     """
+    Extract OS Variants from the entities database.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Dictionary containing variants for each OS type.
+    :rtype: dict
     
     """
 
@@ -357,7 +405,9 @@ def get_os_variants(db_connection):
 
     os_variants["|*"] = OS
 
-    for  os_variant in list(os_variants.keys())[1:]:
+    for  os_variant in list(os_variants.keys()):
+
+        if os_variant == "|*": continue
 
         var_lst = []     
         for variant in OS:
@@ -370,6 +420,13 @@ def get_os_variants(db_connection):
 
 def create_compatibility_os_kg(db_connection):
     """
+    Create  compatibility  OS  KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves  compatibility OS  KG to the ontology folder.
+    :rtype: JSON file 
     
     
     """
@@ -425,6 +482,13 @@ def create_compatibility_os_kg(db_connection):
 
 def create_docker_image_kg(db_connect):
     """
+    Create docker image  KG.
+
+    :param db_connect:  A connection to mysql
+    :type db_connect:  <class 'sqlite3.Connection'>
+
+    :returns: Saves  docker image KG to the ontology folder.
+    :rtype: JSON file 
     
     
     """
@@ -491,6 +555,13 @@ def create_docker_image_kg(db_connect):
 
 def create_openshift_image_kg(db_connect):
     """
+    Create  openshift image KG.
+
+    :param db_connect:  A connection to mysql
+    :type db_connect:  <class 'sqlite3.Connection'>
+
+    :returns: Saves openshift image KG to the ontology folder.
+    :rtype: JSON file 
     
     """
     openshift_cursor = db_connect.cursor()
@@ -549,6 +620,13 @@ def create_openshift_image_kg(db_connect):
 
 def create_inverted_docker_image_kg(database_connect):
     """
+    Create  inverted docker image KG.
+
+    :param database_connect:  A connection to mysql
+    :type database_connect:  <class 'sqlite3.Connection'>
+
+    :returns: Saves  inverted docker iamge KG to the ontology folder.
+    :rtype: JSON file 
     
     
     """
@@ -628,6 +706,13 @@ def create_inverted_docker_image_kg(database_connect):
 
 def create_inverted_openshifht_image_kg(db_connection):
     """
+    Create  inverted openshift image  KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves inverted openshift image KG to the ontology folder.
+    :rtype: JSON file 
     
     
     """
@@ -704,7 +789,13 @@ def create_inverted_openshifht_image_kg(db_connection):
 def create_cot_kg(db_connection):
 
     """
-    
+    Create  COT  KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves COT KG to the ontology folder
+    :rtype: JSON file 
     
     """
 
@@ -725,12 +816,6 @@ def create_cot_kg(db_connection):
     cot_kg["COTS"] = cots
 
     save_json(cot_kg , "cot_kg")
-
-
-
-
-
-    
 
 
 

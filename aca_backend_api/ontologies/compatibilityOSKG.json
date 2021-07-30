@@ -1,53 +1,149 @@
 {
   "KG Version": "1.0.0",
-  "Node.js": [],
-  "Go": [],
-  "Perl|*": [],
-  "PHP": [],
-  "Swift": [],
-  "Apache HTTP Server": [],
+  "Node.js": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Go": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Perl|*": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "PHP": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Swift": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Apache HTTP Server": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
   "Apache Tomcat": [
+    "Linux|Red Hat Enterprise Linux",
+    "Linux",
     "Linux|Red Hat Enterprise Linux"
   ],
-  "HAProxy": [],
+  "HAProxy": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
   "JBoss": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux",
+    "Linux|Red Hat Enterprise Linux",
+    "Linux",
     "Linux|Red Hat Enterprise Linux"
   ],
-  "Nginx": [],
-  "Spark": [],
-  "Websphere Application Server (WAS)": [],
-  "WebSphere Liberty": [],
-  "Ansible": [],
-  "Apache ActiveMQ": [],
-  "Apache Hive": [],
-  "Apache Kafka": [],
-  "Apache Solr": [],
-  "DB2": [],
+  "Nginx": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Spark": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Websphere Application Server (WAS)": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "WebSphere Liberty": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Ansible": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Apache ActiveMQ": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Apache Hive": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Apache Kafka": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Apache Solr": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "DB2": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
   "Hadoop": [
     "Linux|Red Hat Enterprise Linux"
   ],
-  "IBM Websphere MQ": [],
-  "IBM WebSphere Transformation Extender (WTX)": [],
-  "Ingres": [],
+  "IBM Websphere MQ": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "IBM WebSphere Transformation Extender (WTX)": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Ingres": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
   "Jenkins": [
     "Linux|Red Hat Enterprise Linux"
   ],
-  "MongoDB": [],
-  "MS SQL Server|*": [],
-  "MySQL": [],
-  "PostgreSQL": [],
-  "RabbitMQ": [],
+  "MongoDB": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "MS SQL Server|*": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "MySQL": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "PostgreSQL": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "RabbitMQ": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
   "Redis": [
     "Linux|Red Hat Enterprise Linux"
   ],
-  "Splunk": [],
-  "Wherescape Red": [],
-  "IBM Maximo": [],
-  "IBM Operational Decision Manager (ODM)": [],
+  "Splunk": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "Wherescape Red": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "IBM Maximo": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
+  "IBM Operational Decision Manager (ODM)": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
   "MarkLogic DB": [
     "Linux|Red Hat Enterprise Linux"
   ],
-  "Memcached": [],
+  "Memcached": [
+    "Linux",
+    "Linux|Red Hat Enterprise Linux"
+  ],
   "VMware Tools": [
     "Linux|Red Hat Enterprise Linux"
   ]
