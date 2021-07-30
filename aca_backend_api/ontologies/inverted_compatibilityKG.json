@@ -1,0 +1,549 @@
+{
+  "KG Version": "1.0.0",
+  "Node.js": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "JBoss|JBoss Seam": [
+    {
+      "Parent Type": "App Server",
+      "Parent Class": "JBoss",
+      "Child Type": "Runlib"
+    }
+  ],
+  "Java|Apache Camel": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Apache Commons BeanUtils": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Apache PDFBox": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Apache Velocity": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|EclipseLink": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Enterprise JavaBeans (EJB)": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|EZMorph": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Google Web Toolkit (GWT)": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Hibernate": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|IBM SDK": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Java Development Kit (JDK)": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Java Message Service (JMS)": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Java Web Start": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|JavaServer Faces (JSF)": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|JDBC": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|JRuby Core": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Log4j": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Quartz": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Remote Method Invocation (RMI)": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Servlet": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Spring": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Spring|Spring Boot": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Spring|Spring Cloud Data Flow": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Spring|Spring MVC": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Struts": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Swing": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Java|Vaadin": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|AJAX": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|AngularJS": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|Draw2D": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|Express.js": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|Ext JS": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|jqGrid": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|JQuery": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|Jquery|jQuery UI": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|React": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|script.aculo.us": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "JavaScript|Valums AJAX File Uploader": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "OWASP Enterprise Security API (ESAPI)": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Python|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Perl|Oraperl": [
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Perl|*",
+      "Child Type": "Lib"
+    }
+  ],
+  "Go": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang"
+    }
+  ],
+  "Perl|*": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang"
+    }
+  ],
+  "PHP": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang"
+    }
+  ],
+  "Swift": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang"
+    }
+  ],
+  "Apache HTTP Server": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "Apache Tomcat": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "HAProxy": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "JBoss": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "Nginx": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "Spark": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "Websphere Application Server (WAS)": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "WebSphere Liberty": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "Ansible": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Apache ActiveMQ": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Apache Hive": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Apache Kafka": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Apache Solr": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "DB2": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Hadoop": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App"
+    }
+  ],
+  "IBM Websphere MQ": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "IBM WebSphere Transformation Extender (WTX)": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Ingres": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Jenkins": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App"
+    }
+  ],
+  "MongoDB": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "MS SQL Server|*": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "MySQL": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "PostgreSQL": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "RabbitMQ": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Redis": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App"
+    }
+  ],
+  "Splunk": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Wherescape Red": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "IBM Maximo": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "IBM Operational Decision Manager (ODM)": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "MarkLogic DB": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App"
+    }
+  ],
+  "Memcached": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "VMware Tools": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App"
+    }
+  ]
+}

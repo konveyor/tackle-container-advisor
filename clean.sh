@@ -9,8 +9,8 @@ if [ -d "aca_backend_api/model_objects" ]; then
 fi
 
 #remove files from ontologies
-if [ -f aca_backend_api/ontologies/class_type_mapper.json ]; then
-    rm aca_backend_api/ontologies/class_type_mapper.json
+if [ -d aca_backend_api/ontologies/ ]; then
+    rm  -rf aca_backend_api/ontologies/
 fi
 
 ## remove db file from DB, kg_utils, and entity_standardizer

@@ -5,7 +5,7 @@ is_disable_access_token=yes
 
 Then run the following to build and run the image
 ```
-docker-compose  -f 'docker-compose-api.yml' --env-file ./config.ini up -d --build
+docker-compose  -f 'docker-compose-api.yml' up -d --build
 ```
 
 You can make RESTful calls to the containerization advisor backend service to get assessment details of your application workload. It accepts a `POST` request and a `json` payload. Following is the input data format and the output response format. 
@@ -42,8 +42,8 @@ You can make RESTful calls to the containerization advisor backend service to ge
 
 
 
-### Response format to a post request:
-Following is the `json` response format given by ACA to a `post` request.
+### Response format to a post request /containerization-assessment:
+Following is the `json` response format given by ACA to a `post /containerization-assessment` request.
 
 ```
 {
@@ -58,6 +58,7 @@ Following is the `json` response format given by ACA to a `post` request.
       "Lang": "{'Java': {'Java': ''}}",
       "App Server": "{}",
       "Dependent Apps": "{'SqLServer': {'MS SQL Server': ''}, 'MQ 7.5': {'IBM Websphere MQ': '7.5'}}",
+      "Runtime": "{}",
       "Libs": "{}",
       "Reason": "Reason 101: Medium or low confidence for the inferred data: {\".net framewrk 3.x 4.x\": {\"Linux|Red Hat Enterprise Linux\": \"3.x 4.x\", \"Websphere Application Server (WAS)\": \"3.x 4.x\", \"Java|Enterprise JavaBeans (EJB)\": \"3.x 4.x\"}, \"MQ Client 7.5\": {\"IBM Websphere MQ\": \"7.5\"}, \"RightFax client 10\": {\"IBM Websphere MQ\": \"10\"}, \"Windows\": {\"Java|IBM SDK\": \"\"}}\nReason 103: Unknown technologies detected: .NET Framework, IIS7.5 (ftp), Tivoli, .NET",
       "KG Version": "1.0.0"
@@ -70,13 +71,47 @@ Following is the `json` response format given by ACA to a `post` request.
       "Lang": "{'Java 8': {'Java': '8'}}",
       "App Server": "{'Websphere Application Server': {'Websphere Application Server (WAS)': ''}}",
       "Dependent Apps": "{'DB2': {'DB2': ''}, 'MQ 7.5': {'IBM Websphere MQ': '7.5'}}",
+      "Runtime": "{}",
       "Libs": "{}",
       "Reason": "Reason 101: Medium or low confidence for the inferred data: {\"RightFax client 10\": {\"IBM Websphere MQ\": \"10\"}}",
       "KG Version": "1.0.0"
     }
   ]
 }
+```
 
+Please note that the above assessment output act as planning input
+
+### Response format to a post request /containerization-planning:
+Following is the `json` response format given by ACA to a `post /containerization-planning` request.
+
+```
+{
+  "status": 201,
+  "message": "Planning completed successfully!",
+  "planning": [
+    {
+      "Name": "App 001",
+      "Desc": "Description of App 001",
+      "Cmpt": "Component 1",
+      "Valid": true,
+      "Ref Dockers": "1. {'Microsoft SQL Server(Verified Publisher)': 'https://hub.docker.com/_/microsoft-mssql-server'}\n2. {'mq': 'https://hub.docker.com/r/ibmcom/mq/'}",
+      "Confidence": 0.89,
+      "Reason": "Additional Installations in container image 1,2: Java",
+      "Recommend": "Partially Containerize"
+    },
+    {
+      "Name": "App 002",
+      "Desc": "Description of App 002",
+      "Cmpt": "Component 1",
+      "Valid": true,
+      "Ref Dockers": "1. {'websphere-traditional': 'https://hub.docker.com/r/ibmcom/websphere-traditional/'}\n2. {'db2': 'https://hub.docker.com/r/ibmcom/db2'}\n3. {'mq': 'https://hub.docker.com/r/ibmcom/mq/'}",
+      "Confidence": 1,
+      "Reason": "No additonal installations required.",
+      "Recommend": "Partially Containerize"
+    }
+  ]
+}
 ```
 
 ## Add Access Token for backend API
