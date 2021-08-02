@@ -7,3 +7,4 @@ aca_backend_api
    config
    planner
    service
+   test

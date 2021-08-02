@@ -39,6 +39,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test package" href="test.html" />
     <link rel="prev" title="planner module" href="planner.html" /> 
 </head>
 
@@ -91,16 +92,19 @@
 <li class="toctree-l2"><a class="reference internal" href="planner.html">planner module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">service package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-service.containerize_assessment">service.containerize_assessment module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#service-containerize-assessment-module">service.containerize_assessment module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service.containerize_planning">service.containerize_planning module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-service.entity_detection">service.entity_detection module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-service.routes">service.routes module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-service.infer_tech">service.infer_tech module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#service-routes-module">service.routes module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-service.sim_applier">service.sim_applier module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-service.utils">service.utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-service.utils_nlp">service.utils_nlp module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-service.version_detector">service.version_detector module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-service">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test package</a></li>
 </ul>
 </li>
 </ul>
@@ -177,25 +181,61 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-service.containerize_assessment">
-<span id="service-containerize-assessment-module"></span><h2>service.containerize_assessment module<a class="headerlink" href="#module-service.containerize_assessment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="service-containerize-assessment-module">
+<h2>service.containerize_assessment module<a class="headerlink" href="#service-containerize-assessment-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-service.containerize_planning">
+<span id="service-containerize-planning-module"></span><h2>service.containerize_planning module<a class="headerlink" href="#module-service.containerize_planning" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="service.containerize_assessment.Assessment">
-<em class="property">class </em><code class="sig-prename descclassname">service.containerize_assessment.</code><code class="sig-name descname">Assessment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logger</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_assessment.Assessment" title="Permalink to this definition">¶</a></dt>
+<dt id="service.containerize_planning.Plan">
+<em class="property">class </em><code class="sig-prename descclassname">service.containerize_planning.</code><code class="sig-name descname">Plan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logger</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_planning.Plan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This class for containerize Assessment</p>
 <dl class="py method">
-<dt id="service.containerize_assessment.Assessment.app_validation">
-<code class="sig-name descname">app_validation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">appL</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_assessment.Assessment.app_validation" title="Permalink to this definition">¶</a></dt>
-<dd><p>app_validation method takes assessed input data and check if any low/medium confidence entities or
-general technology or unknown technology entities are present. If it’s present, it will be added in assessment reason.</p>
+<dt id="service.containerize_planning.Plan.map_to_docker">
+<code class="sig-name descname">map_to_docker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">appL</span></em>, <em class="sig-param"><span class="n">catalog</span><span class="o">=</span><span class="default_value">'dockerhub'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_planning.Plan.map_to_docker" title="Permalink to this definition">¶</a></dt>
+<dd><p>validate_app methods validates each component if it’s having any OS or RepackageOS value and set valid_assessment
+value accordingly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>appL</strong> – list of application details</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of application details with updated valid_assessment values</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="service.containerize_assessment.Assessment.output_to_ui_assessment">
-<code class="sig-name descname">output_to_ui_assessment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">appL</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_assessment.Assessment.output_to_ui_assessment" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>output_to_ui assessment methods takes the final assessed data as input and formats it &amp; keeps</dt><dd><p>only required fields and returns it as output assessment response</p>
+<dt id="service.containerize_planning.Plan.output_to_ui_planning">
+<code class="sig-name descname">output_to_ui_planning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">containerL</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_planning.Plan.output_to_ui_planning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="service.containerize_planning.Plan.ui_to_input_assessment">
+<code class="sig-name descname">ui_to_input_assessment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">assessment_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_planning.Plan.ui_to_input_assessment" title="Permalink to this definition">¶</a></dt>
+<dd><p>ui_to_input_assessment method takes the assessment ouput and format it to list of application details
+which will be further used for planning</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>assessment_data</strong> – list of assessment output for each component</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of formatted application details to be processed in planning</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.containerize_planning.Plan.validate_app">
+<code class="sig-name descname">validate_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">appL</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.containerize_planning.Plan.validate_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>validate_app methods validates each component if it’s having any OS or RepackageOS value and set valid_assessment
+value accordingly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>appL</strong> – list of application details</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of application details with updated valid_assessment values</p>
 </dd>
 </dl>
 </dd></dl>
@@ -234,65 +274,23 @@ confidence score</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-service.routes">
-<span id="service-routes-module"></span><h2>service.routes module<a class="headerlink" href="#module-service.routes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-service.infer_tech">
+<span id="service-infer-tech-module"></span><h2>service.infer_tech module<a class="headerlink" href="#module-service.infer_tech" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="service.routes.ContainerizationAssessment">
-<em class="property">class </em><code class="sig-prename descclassname">service.routes.</code><code class="sig-name descname">ContainerizationAssessment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">api</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.ContainerizationAssessment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restplus.resource.Resource</span></code></p>
-<p>ContainerizationAssessment class creates the assessment in the form of assessment_model for the
-application/component details given in the input_model</p>
-<dl class="py attribute">
-<dt id="service.routes.ContainerizationAssessment.endpoint">
-<code class="sig-name descname">endpoint</code><em class="property"> = 'containerization_assessment'</em><a class="headerlink" href="#service.routes.ContainerizationAssessment.endpoint" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dt id="service.infer_tech.InferTech">
+<em class="property">class </em><code class="sig-prename descclassname">service.infer_tech.</code><code class="sig-name descname">InferTech</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logger</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.infer_tech.InferTech" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt id="service.routes.ContainerizationAssessment.mediatypes">
-<code class="sig-name descname">mediatypes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.ContainerizationAssessment.mediatypes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="service.routes.ContainerizationAssessment.methods">
-<code class="sig-name descname">methods</code><em class="property"> = ['POST']</em><a class="headerlink" href="#service.routes.ContainerizationAssessment.methods" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="service.routes.ContainerizationAssessment.post">
-<code class="sig-name descname">post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.ContainerizationAssessment.post" title="Permalink to this definition">¶</a></dt>
-<dd><p>Invoke do_assessment method in assessment class to initiate assessment process</p>
+<dt id="service.infer_tech.InferTech.infer_missing_tech">
+<code class="sig-name descname">infer_missing_tech</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">appL</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.infer_tech.InferTech.infer_missing_tech" title="Permalink to this definition">¶</a></dt>
+<dd><p>Infers the missing technology and checks OS compatibility</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="py class">
-<dt id="service.routes.HealthCheck">
-<em class="property">class </em><code class="sig-prename descclassname">service.routes.</code><code class="sig-name descname">HealthCheck</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">api</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.HealthCheck" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restplus.resource.Resource</span></code></p>
-<dl class="py attribute">
-<dt id="service.routes.HealthCheck.endpoint">
-<code class="sig-name descname">endpoint</code><em class="property"> = 'health_check'</em><a class="headerlink" href="#service.routes.HealthCheck.endpoint" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="service.routes.HealthCheck.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.HealthCheck.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Healthcheck api is monitor all the api requests and responses. Terminate the service if any issue encountered in
-api request processing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="service.routes.HealthCheck.mediatypes">
-<code class="sig-name descname">mediatypes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#service.routes.HealthCheck.mediatypes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="service.routes.HealthCheck.methods">
-<code class="sig-name descname">methods</code><em class="property"> = ['GET']</em><a class="headerlink" href="#service.routes.HealthCheck.methods" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+</div>
+<div class="section" id="service-routes-module">
+<h2>service.routes module<a class="headerlink" href="#service-routes-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-service.sim_applier">
 <span id="service-sim-applier-module"></span><h2>service.sim_applier module<a class="headerlink" href="#module-service.sim_applier" title="Permalink to this headline">¶</a></h2>
@@ -338,6 +336,11 @@ remove the predefined stop words and invoke entity_standardization function</p>
 <dt id="service.utils.Utils">
 <em class="property">class </em><code class="sig-prename descclassname">service.utils.</code><code class="sig-name descname">Utils</code><a class="headerlink" href="#service.utils.Utils" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="service.utils.Utils.getEntityString">
+<em class="property">static </em><code class="sig-name descname">getEntityString</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils.Utils.getEntityString" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt id="service.utils.Utils.mergeDicts">
 <em class="property">static </em><code class="sig-name descname">mergeDicts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result</span></em>, <em class="sig-param"><span class="n">app_tech</span></em><span class="sig-paren">)</span><a class="headerlink" href="#service.utils.Utils.mergeDicts" title="Permalink to this definition">¶</a></dt>
@@ -434,8 +437,8 @@ elements shouldn’t be considered as version</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-service">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-service" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -445,6 +448,7 @@ elements shouldn’t be considered as version</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="test.html" class="btn btn-neutral float-right" title="test package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="planner.html" class="btn btn-neutral float-left" title="planner module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
