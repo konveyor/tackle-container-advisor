@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8
 
-COPY sqlite3.tar.gz /tmp
+COPY ./sqlite3.tar.gz /tmp
 
 # RUN \
 #    tar xvfz /tmp/sqlite.tar.gz \
