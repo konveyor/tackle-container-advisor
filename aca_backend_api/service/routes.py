@@ -172,4 +172,4 @@ class HealthCheck(Resource):
         Healthcheck api is monitor all the api requests and responses. Terminate the service if any issue encountered in
         api request processing
         """
-        return 'RUNNING'
+        return 'RUNNING NEW'
