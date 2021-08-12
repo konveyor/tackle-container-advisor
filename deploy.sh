@@ -1,4 +1,4 @@
-ACA_GITHUB_REPO=https://github.com/${GH_USER}/tackle-container-advisor
+ACA_GITHUB_REPO=https://github.com/mihirc-github/tackle-container-advisor
 ACA_GITHUB_BRANCH=os_kg_utils
 ACA_GITHUB_DIR=aca_backend_api
 ACA_DEPLOY_NAME=aca
