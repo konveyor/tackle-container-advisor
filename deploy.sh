@@ -2,7 +2,7 @@ ACA_GITHUB_REPO=https://github.com/${GH_USER}/tackle-container-advisor
 ACA_GITHUB_BRANCH=os_kg_utils
 ACA_GITHUB_DIR=aca_backend_api
 ACA_DEPLOY_NAME=aca
-OCP4_ACCESS_TOKEN=sha256~yKP_8aQTwpGl1gZGNYfbK5hspd7bCFn5JMpKmszzOGs
+OCP4_ACCESS_TOKEN=sha256~xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 OCP4_API_SERVER=https://api.sandbox-m2.ll9k.p1.openshiftapps.com:6443
 
 
