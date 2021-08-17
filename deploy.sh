@@ -8,7 +8,6 @@ OCP4_API_SERVER=https://api.sandbox-m2.ll9k.p1.openshiftapps.com:6443
 
 oc login --token=${OCP4_ACCESS_TOKEN} --server=${OCP4_API_SERVER}
 oc projects
-oc delete all --selector  app=aca
 oc delete all --selector  app=tca
 echo "Creating application from ${TCA_GITHUB_REPO}/${TCA_GITHUB_DIR}#${TCA_GITHUB_BRANCH}"
 oc new-app ${TCA_GITHUB_REPO}#${TCA_GITHUB_BRANCH} --context-dir=${TCA_GITHUB_DIR} --name ${TCA_DEPLOY_NAME}
