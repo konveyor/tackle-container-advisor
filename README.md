@@ -1,4 +1,4 @@
-## Tackle Containerization Advisor (TCA)
+## Tackle Container Advisor (TCA)
 ### Purpose
 
 TCA takes client applications as a natural language description and recommends whether client applications can be containerized. For example, a client can provide the application description as the following. 
