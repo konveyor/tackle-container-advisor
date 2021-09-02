@@ -1,6 +1,42 @@
 {
   "KG Version": "1.0.0",
+  "Windows|Windows Server": [
+    "Windows Server Core"
+  ],
   "Linux|Red Hat Enterprise Linux": [
     "Red Hat Enterprise Linux"
+  ],
+  "Linux|Ubuntu": [
+    "Ubuntu"
+  ],
+  "Linux|Debian": [
+    "Debian"
+  ],
+  "Linux|CentOS": [
+    "CentOS"
+  ],
+  "Linux|Fedora": [
+    "Fedora"
+  ],
+  "Linux|Oracle Linux": [
+    "Oracle Linux"
+  ],
+  "Linux|Amazon Linux": [
+    "Amazon Linux"
+  ],
+  "Linux|openSUSE": [
+    "openSUSE"
+  ],
+  "Linux|SUSE Linux Enterprise Server": [
+    "SUSE Linux Enterprise Server"
+  ],
+  "Linux|Junos OS": [
+    "Junos OS"
+  ],
+  "Linux|Photon OS": [
+    "Photon OS"
+  ],
+  "Windows": [
+    "Windows"
   ]
 }

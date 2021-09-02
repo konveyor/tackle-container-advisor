@@ -717,6 +717,146 @@
       "Docker_URL": "https://access.redhat.com/containers/#/registry.connect.redhat.com/ubix/hive",
       "CertOfImageAndPublisher": ""
     },
+    "kafka": {
+      "OS": [
+        {
+          "Class": "Linux|Debian",
+          "Variants": "",
+          "Versions": "",
+          "Type": "OS",
+          "Subtype": ""
+        }
+      ],
+      "Lang": [],
+      "Lib": [],
+      "App": [
+        {
+          "Class": "Apache Kafka",
+          "Variants": "",
+          "Versions": "",
+          "Type": "App",
+          "Subtype": ""
+        }
+      ],
+      "App Server": [],
+      "Plugin": [],
+      "Runlib": [],
+      "Runtime": [],
+      "Docker_URL": "https://access.redhat.com/containers/#/non_registry/ibm/kafka2",
+      "CertOfImageAndPublisher": ""
+    },
+    "postgresql": {
+      "OS": [
+        {
+          "Class": "Linux|Debian",
+          "Variants": "",
+          "Versions": "",
+          "Type": "OS",
+          "Subtype": ""
+        }
+      ],
+      "Lang": [],
+      "Lib": [],
+      "App": [
+        {
+          "Class": "PostgreSQL",
+          "Variants": "",
+          "Versions": "",
+          "Type": "App",
+          "Subtype": ""
+        }
+      ],
+      "App Server": [],
+      "Plugin": [],
+      "Runlib": [],
+      "Runtime": [],
+      "Docker_URL": "https://access.redhat.com/containers/#/registry.access.redhat.com/rhel8/postgresql-96",
+      "CertOfImageAndPublisher": ""
+    },
+    "spark": {
+      "OS": [
+        {
+          "Class": "Linux|Debian",
+          "Variants": "",
+          "Versions": "",
+          "Type": "OS",
+          "Subtype": ""
+        }
+      ],
+      "Lang": [],
+      "Lib": [],
+      "App": [],
+      "App Server": [
+        {
+          "Class": "Spark",
+          "Variants": "",
+          "Versions": "",
+          "Type": "App Server",
+          "Subtype": ""
+        }
+      ],
+      "Plugin": [],
+      "Runlib": [],
+      "Runtime": [],
+      "Docker_URL": "https://access.redhat.com/containers/#/us.icr.io/cp/ibm-watson-discovery/sdu-spark",
+      "CertOfImageAndPublisher": ""
+    },
+    "vmware-tools": {
+      "OS": [
+        {
+          "Class": "Linux|Ubuntu",
+          "Variants": "",
+          "Versions": "",
+          "Type": "OS",
+          "Subtype": ""
+        }
+      ],
+      "Lang": [],
+      "Lib": [],
+      "App": [
+        {
+          "Class": "VMware Tools",
+          "Variants": "",
+          "Versions": "",
+          "Type": "App",
+          "Subtype": ""
+        }
+      ],
+      "App Server": [],
+      "Plugin": [],
+      "Runlib": [],
+      "Runtime": [],
+      "Docker_URL": "https://access.redhat.com/containers/#/registry.access.redhat.com/container-native-virtualization/kubevirt-vmware",
+      "CertOfImageAndPublisher": ""
+    },
+    "fabric-ca": {
+      "OS": [
+        {
+          "Class": "Linux",
+          "Variants": "",
+          "Versions": "",
+          "Type": "OS",
+          "Subtype": ""
+        }
+      ],
+      "Lang": [],
+      "Lib": [],
+      "App": [
+        {
+          "Class": "Fabric OS",
+          "Variants": "",
+          "Versions": "",
+          "Type": "App",
+          "Subtype": ""
+        }
+      ],
+      "App Server": [],
+      "Plugin": [],
+      "Runlib": [],
+      "Runtime": [],
+      "Docker_URL": "https://access.redhat.com/containers/#/non_registry/ibm/ca-base",
+      "CertOfImageAndPublisher": ""
+    },
     "db2": {
       "OS": [
         {
