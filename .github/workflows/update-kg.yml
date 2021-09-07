@@ -23,12 +23,12 @@ jobs:
         cd aca_kg_utils
         pip install -r requirements.txt
     - name: Cleanup
-        run: |
-          bash clean.sh
+      run: |
+        bash clean.sh
     - name: Setup Containerization Advisor
-        run: |
-          bash setup.sh
+      run: |
+        bash setup.sh
     - name: Update KG
-        run: |
-          cd aca_kg_utils
-          python update_kg.py
+      run: |
+        cd aca_kg_utils
+        python update_kg.py
