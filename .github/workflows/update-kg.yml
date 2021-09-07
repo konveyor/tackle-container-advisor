@@ -29,6 +29,6 @@ jobs:
         run: |
           bash setup.sh
     - name: Update KG
-      run: |
-        cd aca_kg_utils
-        python update_kg.py
+        run: |
+          cd aca_kg_utils
+          python update_kg.py
