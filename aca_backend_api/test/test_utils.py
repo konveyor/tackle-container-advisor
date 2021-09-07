@@ -21,7 +21,6 @@ class TestUtils(unittest.TestCase):
 
     def test_preprocess_tech_stack(self):
         tech_stack = Utils.preprocess_tech_stack_for_sim('Tivoli Access Manager\u00a0(TAM), DB2_[WAS] Tivoli')
-        print(tech_stack)
         tech_stack_List = tech_stack.split()
         tech_stack_List.sort()
         tech_stack = ' '.join(tech_stack_List)

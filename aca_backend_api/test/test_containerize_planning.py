@@ -46,9 +46,8 @@ class TestPlan(unittest.TestCase):
     def test_infer_missing_tech(self):
         inferTech = InferTech()
         appL = [{'application_name': 'App Name 0114', 'application_description': 'App Desc 0114', 'component_name': 'Comp 1', 'OS': {'RHEL': {'Linux|Red Hat Enterprise Linux': ''}}, 'Lang': {'Java': {'Java': ''}}, 'App Server': {'WebSphere Application Server': {'Websphere Application Server (WAS)': ''}}, 'App': {'db2 10.0': {'DB2': '10.0'}, 'Redis': {'Redis': ''}, 'jenkins': {'Jenkins': ''}}, 'Runtime': {}, 'Lib': {'angularJs': {'JavaScript|AngularJS': ''}, 'express.js': {'JavaScript|Express.js': ''}}, 'assessment_reason': '', 'KG Version': '1.0.0', 'valid_assessment': True}]
-        expected = [{'application_name': 'App Name 0114', 'application_description': 'App Desc 0114', 'component_name': 'Comp 1', 'OS': {'RHEL': {'Linux|Red Hat Enterprise Linux': ''}}, 'Lang': {'Java': {'Java': ''}, 'angularJs': {'JavaScript': ''}}, 'App Server': {'WebSphere Application Server': {'Websphere Application Server (WAS)': ''}}, 'App': {'db2 10.0': {'DB2': '10.0'}, 'Redis': {'Redis': ''}, 'jenkins': {'Jenkins': ''}}, 'Runtime': {}, 'Lib': {'angularJs': {'JavaScript|AngularJS': ''}, 'express.js': {'JavaScript|Express.js': ''}},'assessment_reason': '', 'KG Version': '1.0.0', 'valid_assessment': True, 'Runlib': {}, 'Inferred': {'Lang': ['JavaScript'], 'App': [], 'App Server': [], 'Runtime': [], 'OS': []}, 'Recommended OS': 'Linux', 'Linux': {'Lang': [], 'App': ['DB2','Redis', 'Jenkins'], 'App Server': ['Websphere Application Server (WAS)'], 'Runtime': []}, 'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux']}]
+        expected = [{'application_name': 'App Name 0114', 'application_description': 'App Desc 0114', 'component_name': 'Comp 1', 'OS': {'RHEL': {'Linux|Red Hat Enterprise Linux': ''}}, 'Lang': {'Java': {'Java': ''}, 'angularJs': {'JavaScript': ''}}, 'App Server': {'WebSphere Application Server': {'Websphere Application Server (WAS)': ''}}, 'App': {'db2 10.0': {'DB2': '10.0'}, 'Redis': {'Redis': ''}, 'jenkins': {'Jenkins': ''}}, 'Runtime': {}, 'Lib': {'angularJs': {'JavaScript|AngularJS': ''}, 'express.js': {'JavaScript|Express.js': ''}}, 'assessment_reason': '', 'KG Version': '1.0.0', 'valid_assessment': True, 'VM': {}, 'Technology': {}, 'Storage': {}, 'Plugin': {}, 'Runlib': {}, 'HW': {}, 'Inferred': {'Lang': ['JavaScript'], 'App': [], 'App Server': [], 'Runtime': [], 'OS': []}, 'Recommended OS': 'Linux', 'Linux': {'Lang': ['Java', 'JavaScript'], 'App': ['DB2', 'Redis', 'Jenkins'], 'App Server': ['Websphere Application Server (WAS)'], 'Runtime': []}, 'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux']}]
         appL = inferTech.infer_missing_tech(appL)
-        print('appL',appL)
         assert appL == expected
 
 
@@ -105,5 +104,4 @@ class TestPlan(unittest.TestCase):
         expected = OrderedDict(expected)
         expected = [expected]
         pAppL = plan.output_to_ui_planning(appL)
-        print('pAPPL is ', pAppL)
         self.assertTrue(pAppL == expected)
