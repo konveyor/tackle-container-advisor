@@ -1,0 +1,28 @@
+name: Update KG
+
+on:
+  push:
+    branches: [ test ]
+  pull_request:
+    branches: [ test ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        cd aca_kg_utils
+        pip install -r requirements.txt
+    - name: Update KG
+      run: |
+        cd aca_kg_utils
+        python update_kg.py
