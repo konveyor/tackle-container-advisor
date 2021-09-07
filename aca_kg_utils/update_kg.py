@@ -81,8 +81,8 @@ config_obj.read("./config.ini")
 logging.basicConfig(filename='logging.log',level=logging.ERROR, filemode='w')
 db_path = config_obj["db"]["db_path"]
 if not os.path.isfile(db_path):
-    logging.error(f'{db_path} is not a file. Run "sh setup" from /tackle-advise-containerizeation folder to generate db files')
-    print(f'{db_path} is not a file. Run "sh setup.sh" from /tackle-advise-containerizeation folder to generate db files')
+    logging.error(f'{db_path} is not a file. Run "sh setup" from /tackle-container-advisor folder to generate db files')
+    print(f'{db_path} is not a file. Run "sh setup.sh" from /tackle-container-advisor folder to generate db files')
     exit()
 
 try:
