@@ -74,7 +74,7 @@ Following is the `json` response format given by ACA to a `post /containerizatio
       "Runtime": "{}",
       "Libs": "{}",
       "Reason": "Reason 101: Medium or low confidence for the inferred data: {\"RightFax client 10\": {\"IBM Websphere MQ\": \"10\"}}",
-      "KG Version": "1.0.0"
+      "KG Version": "1.0.1"
     }
   ]
 }
@@ -138,4 +138,10 @@ We need to config RBAC_auth_url=https://rbac-dev.nextgen-ose-85ee131ed8e71cabc20
 ### For testing different use cases
 -``python sim_standardizer_tester.py``
 
-	
+
+### For running test cases in a standalone mode.
+
+```
+cd aca_backend_api
+python -m unittest discover -s test
+```

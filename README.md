@@ -107,8 +107,22 @@ Please perform the following steps.
     
 ##### Modify the *clean.sh* script to reflect the sql and db file accordingly
 
-	1. aca_db_file="aca_kg_ce_1.0.0.db"
+	1. aca_db_file="aca_kg_ce_1.0.1.db"
+
+### Creating a New Version of the Knowledge Base
+
+Please perform the following changes when you create a new version
+
+##### Update all the tests and README file with the new version information in aca_backend_api
+
+##### Change the *config.ini*  in the aca_kg_utils and aca_entity_standardizer to reflect the new version
+
+##### Change the README file in aca_db with new version information
+
+##### Change all the scripts (clean.sh and setup.sh) to reflect the latest version of the knowledge base
 
 ### References
+
+* Anup K. Kalia. Tackle Containerization Advisory for Legacy Applications. (link to the video: https://www.youtube.com/watch?v=VapEooROERw, link to the slides: https://www.slideshare.net/KonveyorIO/tackle-containerization-advisor-tca-for-legacy-applications)
 
 * Anup K. Kalia, Raghav Batta, Jin Xiao, Mihir Choudhury and Maja Vukovic. *ACA: Application Containerization Advisory Framework for Modernizing Legacy Applications*.  IEEE International Conference on Cloud Computing (Cloud) [Work-in-progress], sept, pages 1--3, 2021.
