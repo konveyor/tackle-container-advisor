@@ -22,6 +22,16 @@ from pathlib import Path
 from db import create_db_connection
 
 def find_match(old, candidates):
+    """
+    Searches through candidates to find a new external link that matches qid of old link
+
+    :param old: Dictionary of old external link {'name':,'qid':,'url':,'score':}
+    :type  old: <class 'dict'>
+    :param candidates: List of candidate tuples for external links
+    :type  candidates: List of tuples
+
+    :returns: New external link dictionary
+    """
     old_qid = None
     if old:
         old_qid = old['qid']
@@ -46,6 +56,15 @@ def find_match(old, candidates):
 
 
 def update_external_link(connection):
+    """
+    Invokes entity linking API for each entity name in the KG and updates the external link field with best match
+
+    :param connection: A connection to mysql
+    :type  connection:  <class 'sqlite3.Connection'>
+    
+    :returns: Prints the updated entity records for .sql file of KG
+    """
+
     EL_URL  = "http://9.59.199.65:5002/json-example?"
     entity_cursor = connection.cursor()
     entity_cursor.execute("SELECT * FROM entities")
