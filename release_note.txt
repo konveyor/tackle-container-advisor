@@ -1,0 +1,27 @@
+==========
+Aug 2021
+==========
+We released a new version of KG 1.0.1 with new entity types, entities, entity mentions, entity relations, and container images.
+
+Known issues:
+
+All the openshift images URLs need to be changed.
+
+==========
+July 2021
+==========
+We enhanced KG 1.0.0 with additional information such as entity relations, and container images. 
+We added container image recommendation feature 
+
+Known issues:
+
+None
+
+==========
+June 2021
+==========
+We released the initial version of TCA with application assessment feature.
+
+Known issues:
+
+None
