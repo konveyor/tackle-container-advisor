@@ -1,5 +1,9 @@
 name: test-cases-git-actions
-on: [push,pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   run-test-cases:
     runs-on: ubuntu-latest
