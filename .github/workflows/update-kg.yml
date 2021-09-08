@@ -31,4 +31,3 @@ jobs:
     - name: Update KG
       run: |
         cd aca_kg_utils
-        python update_kg.py
