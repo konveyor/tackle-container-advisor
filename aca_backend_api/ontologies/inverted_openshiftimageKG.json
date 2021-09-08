@@ -1,5 +1,5 @@
 {
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "Linux|Red Hat Enterprise Linux": [
     "IBM Maximo Asset Management",
     "OpenLDAP",
@@ -35,6 +35,7 @@
     "node",
     "php",
     "rabbitmq",
+    "fabric-ca",
     "db2",
     "mq",
     "base",
@@ -133,6 +134,30 @@
   "Apache Hive": [
     "hive"
   ],
+  "Linux|Debian": [
+    "kafka",
+    "postgresql",
+    "spark"
+  ],
+  "Apache Kafka": [
+    "kafka"
+  ],
+  "PostgreSQL": [
+    "postgresql",
+    "postgres"
+  ],
+  "Spark": [
+    "spark"
+  ],
+  "Linux|Ubuntu": [
+    "vmware-tools"
+  ],
+  "VMware Tools": [
+    "vmware-tools"
+  ],
+  "Fabric OS": [
+    "fabric-ca"
+  ],
   "DB2": [
     "db2"
   ],
@@ -180,9 +205,6 @@
   ],
   "Perl": [
     "perl"
-  ],
-  "PostgreSQL": [
-    "postgres"
   ],
   "Apache Solr": [
     "solr"
