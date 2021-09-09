@@ -11,7 +11,7 @@ if [[ -f $aca_sql_file ]]; then
     
     ## if a file exist it will remove before generating a new file
     if [[ -f $aca_db_file ]]; then
-        rm $aca_db_file
+	rm $aca_db_file
     fi
         
     cat $aca_sql_file | sqlite3 $aca_db_file
