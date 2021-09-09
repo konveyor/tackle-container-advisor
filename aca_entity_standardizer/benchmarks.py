@@ -32,7 +32,9 @@ def clean(mention):
         u'\uff03': u'\x23', # Full-width number sign
         u'\u266f': u'\x23', # Music Sharp Sign
         u'\u2160': u'\x49', # Roman Numeral One
-        u'\u042f': u'\x52'  # Cyrillic Capital Letter Ya
+        u'\u042f': u'\x52', # Cyrillic Capital Letter Ya
+        u'\u2013': u'\x2d', # En Dash
+        u'\xae'  : u''      # Registered Sign
     }
 
     for c in charmap:
