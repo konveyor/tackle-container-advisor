@@ -79,9 +79,7 @@ def create_zero_shot_test(connection):
     mention_cursor = connection.cursor()
     mention_cursor.execute("SELECT * FROM entity_mentions")    
     for mention_tuple in mention_cursor.fetchall():        
-        # print("Mention tuple = ", mention_tuple )
         mention_id, mention, entity_type_id, entity_id, source = mention_tuple        
-        # print(mention_id, mention, entity_type_id, entity_id, source)
         qid = eid_to_qid.get(entity_id, None)
         if qid:
             qid_to_data[qid].append((mention, mention_id))
@@ -95,8 +93,6 @@ def create_zero_shot_test(connection):
                     mention    = d[0]
                     mention_id = d[1]
                     mention = clean(mention)
-                    print("Mention id = ", mention_id)
-                    print("Mention = ", mention)
                     if not is_ascii(mention):
                         print("(W) Mention %d has non-ascii characters: %s" % 
                                         (mention_id, " ".join([c for c in mention if ord(c) >= 128])), [hex(ord(c)) for c in mention if ord(c) >= 128])
