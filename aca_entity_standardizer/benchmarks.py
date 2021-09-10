@@ -190,5 +190,5 @@ if not os.path.isfile(db_path):
     exit()
 else:
     connection = create_db_connection(db_path)
-    # create_zero_shot_test(connection)
+    create_zero_shot_test(connection)
     create_few_shot_test(connection)
