@@ -117,21 +117,7 @@ def create_few_shot_test(connection):
 
     :returns: Saves train, test set to csv file
     """
-
-    '''
-    entity_cursor = connection.cursor()
-    entity_cursor.execute("SELECT * FROM entities")
-    eid_to_qid  = {}
-    qid_to_data = {}
-    for entity_tuple in entity_cursor.fetchall():
-        entity_id , entity, entity_type_id, external_link = entity_tuple
-        external = eval(external_link)
-        if external:
-            qid = external['qid']
-            eid_to_qid[entity_id] = eid_to_qid.get(entity_id, qid)
-            qid_to_data[qid]      = qid_to_data.get(qid, []) + [(entity, entity_id)]
-    '''
-
+    
     eid_to_data = {}
     mention_cursor = connection.cursor()
     mention_cursor.execute("SELECT * FROM entity_mentions")    
