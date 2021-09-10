@@ -117,7 +117,7 @@ def create_few_shot_test(connection):
 
     :returns: Saves train, test set to csv file
     """
-    
+
     eid_to_data = {}
     mention_cursor = connection.cursor()
     mention_cursor.execute("SELECT * FROM entity_mentions")    
@@ -171,8 +171,8 @@ except KeyError as k:
     exit()
 
 if not os.path.isfile(db_path):
-    logging.error(f'{db_path} is not a file. Run "sh setup" from /tackle-advise-containerizeation folder to generate db files')
-    print(f'{db_path} is not a file. Run "sh setup.sh" from /tackle-advise-containerizeation folder to generate db files')
+    logging.error(f'{db_path} is not a file. Run "sh setup" from /tackle-container-advisor folder to generate db files')
+    print(f'{db_path} is not a file. Run "sh setup.sh" from /tackle-container-advisor folder to generate db files')
     exit()
 else:
     connection = create_db_connection(db_path)
