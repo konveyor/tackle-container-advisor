@@ -17,6 +17,7 @@ from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
 from pathlib import Path
 from db import create_db_connection
+from sklearn.model_selection import train_test_split
 
 def clean(mention):
     """
@@ -107,6 +108,70 @@ def create_zero_shot_test(connection):
     print(len(qid_to_data), "qids have data.")
 
 
+def create_few_shot_test(connection):
+    """
+    Create the train, test set for few shot algorithms
+
+    :param connection: A connection to mysql
+    :type  connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves train, test set to csv file
+    """
+
+    '''
+    entity_cursor = connection.cursor()
+    entity_cursor.execute("SELECT * FROM entities")
+    eid_to_qid  = {}
+    qid_to_data = {}
+    for entity_tuple in entity_cursor.fetchall():
+        entity_id , entity, entity_type_id, external_link = entity_tuple
+        external = eval(external_link)
+        if external:
+            qid = external['qid']
+            eid_to_qid[entity_id] = eid_to_qid.get(entity_id, qid)
+            qid_to_data[qid]      = qid_to_data.get(qid, []) + [(entity, entity_id)]
+    '''
+
+    eid_to_data = {}
+    mention_cursor = connection.cursor()
+    mention_cursor.execute("SELECT * FROM entity_mentions")    
+    for mention_tuple in mention_cursor.fetchall():        
+        mention_id, mention, entity_type_id, entity_id, source = mention_tuple        
+        mentions = eid_to_data.get(entity_id, [])
+        mentions.append(mention)
+        eid_to_data[entity_id] = mentions
+
+    x_data = []
+    y_data = []
+    for eid in eid_to_data:
+        mentions = eid_to_data[eid]
+        for mention in mentions:
+            mention = clean(mention)
+            if not is_ascii(mention):
+                print("(W) Mention %s has non-ascii characters: %s" % 
+                    (mention, " ".join([c for c in mention if ord(c) >= 128])), [hex(ord(c)) for c in mention if ord(c) >= 128])
+            x_data.append(mention)
+            y_data.append(eid)
+    
+    x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.33, random_state=42)
+
+    try:
+        os.makedirs(config_obj['benchmark']['data_path'], exist_ok=True)
+        fs_train_filename = os.path.join(config_obj['benchmark']['data_path'], 'fs_train.csv')        
+        with open(fs_train_filename, 'w') as few_shot:
+            for (x,y) in zip(x_train, y_train):
+                few_shot.write("%s\t%d\n" % (x, y))
+        fs_test_filename = os.path.join(config_obj['benchmark']['data_path'], 'fs_test.csv')        
+        with open(fs_test_filename, 'w') as few_shot:
+            for (x,y) in zip(x_test, y_test):
+                few_shot.write("%s\t%d\n" % (x, y))
+    except OSError as exception:
+        logging.error(exception)
+        exit()
+
+    print(len(eid_to_data), "entities have at least one mention.")
+
+
 config_obj = configparser.ConfigParser()
 config_obj.read("config.ini")
 
@@ -125,4 +190,5 @@ if not os.path.isfile(db_path):
     exit()
 else:
     connection = create_db_connection(db_path)
-    create_zero_shot_test(connection)
+    # create_zero_shot_test(connection)
+    create_few_shot_test(connection)
