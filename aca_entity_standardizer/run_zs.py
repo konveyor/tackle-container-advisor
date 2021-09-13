@@ -173,8 +173,9 @@ def run_zero_shot():
         except OSError as exception:
             logging.error(exception)
             exit()
-        
-        print("Testing on %d mentions" % len(data_to_qid))
+        print("---------------------------------------------")
+        print("Testing zero shot algorithms on %d mentions" % len(data_to_qid))
+        print("---------------------------------------------")
         el_qids = run_entity_linking(data_to_qid, context='')
         print("EL with no ctx")
         get_topk_accuracy(data_to_qid, el_qids)
@@ -226,7 +227,10 @@ def run_few_shot(connection):
             print("Mention", mention, "not found in data_to_eid")
         if correct_eid != predicted_eid:
             num_correct += 1
-    print("Accuracy = ", num_correct/len(mentions))
+    print("---------------------------------------------")
+    print("Testing few shot algorithms with %d mentions." % (len(mentions)))
+    print("---------------------------------------------")
+    print("Accuracy with tf-idf = ", num_correct/len(mentions))
 
 config_obj = configparser.ConfigParser()
 config_obj.read("./config.ini")
