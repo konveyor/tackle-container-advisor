@@ -26,7 +26,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/ema-maximo-integration/5d79b41f3d73db51b9ba7ea7?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/ema-maximo-integration/5d79b41f3d73db51b9ba7ea7",
       "CertOfImageAndPublisher": ""
     },
     "OpenLDAP": {
@@ -54,7 +54,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/netcool-openldap-16/5d1a1e94702c56364a5d4101?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/netcool-openldap-16/5d1a1e94702c56364a5d4101",
       "CertOfImageAndPublisher": ""
     },
     "gcc": {
@@ -82,7 +82,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/gcc-toolset-10-toolchain/5ea311fd5a13466876a077ca?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/gcc-toolset-10-toolchain/5ea311fd5a13466876a077ca",
       "CertOfImageAndPublisher": ""
     },
     "golang_Linux": {
@@ -110,7 +110,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/go-toolset/5b9c810add19c70b45cbd666?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/go-toolset/5b9c810add19c70b45cbd666",
       "CertOfImageAndPublisher": ""
     },
     "haproxy": {
@@ -138,7 +138,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/openshift4/ose-haproxy-router/5cd9b367bed8bd5717d4fdaa?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/openshift4/ose-haproxy-router/5cd9b367bed8bd5717d4fdaa",
       "CertOfImageAndPublisher": ""
     },
     "httpd": {
@@ -194,7 +194,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b",
       "CertOfImageAndPublisher": ""
     },
     "MarkLogic": {
@@ -250,7 +250,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhacm2/memcached-rhel8/5f523955ee8349144fa8634a?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhacm2/memcached-rhel8/5f523955ee8349144fa8634a",
       "CertOfImageAndPublisher": ""
     },
     "Java SE JRE_Linux": {
@@ -278,7 +278,7 @@
           "Subtype": ""
         }
       ],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ubi8/openjdk-11/5dd6a4b45a13461646f677f4?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ubi8/openjdk-11/5dd6a4b45a13461646f677f4",
       "CertOfImageAndPublisher": ""
     },
     "Microsoft SQL Server": {
@@ -306,7 +306,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/mssql/rhel/server/5ba50865f5a0de06555a2ee7?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/mssql/rhel/server/5ba50865f5a0de06555a2ee7",
       "CertOfImageAndPublisher": ""
     },
     "Mongo_Linux": {
@@ -334,7 +334,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rh-marketplace/mongodb-enterprise-advanced-ibm-bundle/5f84ce93ecb524508951386d?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rh-marketplace/mongodb-enterprise-advanced-ibm-bundle/5f84ce93ecb524508951386d",
       "CertOfImageAndPublisher": ""
     },
     "mysql": {
@@ -362,7 +362,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/mysql-80/5ba0ad4cdd19c70b45cbf48c?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/mysql-80/5ba0ad4cdd19c70b45cbf48c",
       "CertOfImageAndPublisher": ""
     },
     "nginx": {
@@ -390,7 +390,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/nginx-118/5f521a46e05bbcd88f128b64?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/nginx-118/5f521a46e05bbcd88f128b64",
       "CertOfImageAndPublisher": ""
     },
     "node": {
@@ -418,7 +418,7 @@
           "Subtype": ""
         }
       ],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/nodejs-14/5ed76a59d70cc50e69c2f891?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/nodejs-14/5ed76a59d70cc50e69c2f891",
       "CertOfImageAndPublisher": ""
     },
     "php": {
@@ -446,7 +446,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ubi8/php-74/5f521244e05bbcd88f128b63?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ubi8/php-74/5f521244e05bbcd88f128b63",
       "CertOfImageAndPublisher": ""
     },
     "Python_Linux": {
@@ -474,7 +474,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhscl/python-27-rhel7/57ea8d049c624c035f96f430?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhscl/python-27-rhel7/57ea8d049c624c035f96f430",
       "CertOfImageAndPublisher": ""
     },
     "rabbitmq": {
@@ -502,7 +502,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/jfrog/xray-rabbitmq/5ec6ef9eecb5246c0903f401?container-tabs=gti&gti-tabs=registry-tokens",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/jfrog/xray-rabbitmq/5ec6ef9eecb5246c0903f401",
       "CertOfImageAndPublisher": ""
     },
     "redis_Linux": {
@@ -530,7 +530,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/redis-5/5c401b0cbed8bd75a2c4c287?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/redis-5/5c401b0cbed8bd75a2c4c287",
       "CertOfImageAndPublisher": ""
     },
     "ruby": {
@@ -558,7 +558,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/ruby-26/5d3ffc6a5a13461f5fb862e6?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/ruby-26/5d3ffc6a5a13461f5fb862e6",
       "CertOfImageAndPublisher": ""
     },
     "swift": {
@@ -586,7 +586,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhosp-beta/openstack-swift-base/5cdcbbcbdd19c778293be49f?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhosp-beta/openstack-swift-base/5cdcbbcbdd19c778293be49f",
       "CertOfImageAndPublisher": ""
     },
     "tomcat": {
@@ -622,7 +622,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/jboss-webserver-5/webserver55-openj9-11-tomcat9-openshift-rhel8/6047a5df6280a414853ec5f3?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/jboss-webserver-5/webserver55-openj9-11-tomcat9-openshift-rhel8/6047a5df6280a414853ec5f3",
       "CertOfImageAndPublisher": ""
     },
     "websphere-liberty": {
@@ -714,7 +714,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/openshift4/ose-metering-hive/5d96f106d70cc50ebeaadb53?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/openshift4/ose-metering-hive/5d96f106d70cc50ebeaadb53",
       "CertOfImageAndPublisher": ""
     },
     "kafka": {
@@ -742,7 +742,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/kafka2/5e8208a8ac3db903708fe0a5?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/kafka2/5e8208a8ac3db903708fe0a5",
       "CertOfImageAndPublisher": ""
     },
     "postgresql": {
@@ -770,7 +770,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/postgresql-12/5db133bd5a13461646df330b?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/postgresql-12/5db133bd5a13461646df330b",
       "CertOfImageAndPublisher": ""
     },
     "spark": {
@@ -798,7 +798,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/sdu-spark/5d695066d095e36f9d387421?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/sdu-spark/5d695066d095e36f9d387421",
       "CertOfImageAndPublisher": ""
     },
     "vmware-tools": {
@@ -826,7 +826,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel7/open-vm-tools/58ee4f6e4b339a32b5fb7bae?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel7/open-vm-tools/58ee4f6e4b339a32b5fb7bae",
       "CertOfImageAndPublisher": ""
     },
     "fabric-ca": {
@@ -854,7 +854,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/ca-base/5d09538bf5a0de52d548efd3?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/ca-base/5d09538bf5a0de52d548efd3",
       "CertOfImageAndPublisher": ""
     },
     "db2": {
@@ -882,7 +882,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17",
       "CertOfImageAndPublisher": ""
     },
     "mq": {
@@ -910,7 +910,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/ibm-mqadvanced-server/5bacf2bf4841f1065681eb5f?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/ibm-mqadvanced-server/5bacf2bf4841f1065681eb5f",
       "CertOfImageAndPublisher": ""
     },
     "websphere-traditional": {
@@ -946,7 +946,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b",
       "CertOfImageAndPublisher": ""
     },
     "base": {
@@ -974,7 +974,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/jboss-webserver-5/webserver55-openj9-11-tomcat9-openshift-rhel8/6047a5df6280a414853ec5f3?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/jboss-webserver-5/webserver55-openj9-11-tomcat9-openshift-rhel8/6047a5df6280a414853ec5f3",
       "CertOfImageAndPublisher": ""
     },
     "wildfly": {
@@ -1002,7 +1002,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/jboss-webserver-5/webserver55-openj9-11-tomcat9-openshift-rhel8/6047a5df6280a414853ec5f3?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/jboss-webserver-5/webserver55-openj9-11-tomcat9-openshift-rhel8/6047a5df6280a414853ec5f3",
       "CertOfImageAndPublisher": ""
     },
     "nginx-proxy": {
@@ -1030,7 +1030,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/anaconda/nginx-proxy/5ea3014becb5246c0903c5da?container-tabs=gti&gti-tabs=red-hat-login",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/anaconda/nginx-proxy/5ea3014becb5246c0903c5da",
       "CertOfImageAndPublisher": ""
     },
     "javascript-node.js": {
@@ -1066,7 +1066,7 @@
           "Subtype": ""
         }
       ],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/nodejs-12/5d3fff06d70cc5521d0009c2?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/nodejs-12/5d3fff06d70cc5521d0009c2",
       "CertOfImageAndPublisher": ""
     },
     "objectivec-gcc": {
@@ -1094,7 +1094,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/gcc-toolset-10-perftools/5ea31291dd19c778961bf8da?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhel8/gcc-toolset-10-perftools/5ea31291dd19c778961bf8da",
       "CertOfImageAndPublisher": ""
     },
     "nginx-ingress": {
@@ -1122,7 +1122,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/nginx/nginx-ingress-operator/5e7ce1b8ecb5246c09fe03c7?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/nginx/nginx-ingress-operator/5e7ce1b8ecb5246c09fe03c7",
       "CertOfImageAndPublisher": ""
     },
     "node-red-docker": {
@@ -1150,7 +1150,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm-edge/node-red/5ecf8c35ecb5246c0903fb58?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm-edge/node-red/5ecf8c35ecb5246c0903fb58",
       "CertOfImageAndPublisher": ""
     },
     "sas": {
@@ -1178,7 +1178,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/sas-base/5e2b5c69ac3db9037062d878?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/sas-base/5e2b5c69ac3db9037062d878",
       "CertOfImageAndPublisher": ""
     },
     "activemq": {
@@ -1206,7 +1206,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/tremolosecurity/activemq/5cbbc19e293738790b2fc3d2?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/tremolosecurity/activemq/5cbbc19e293738790b2fc3d2",
       "CertOfImageAndPublisher": ""
     },
     "hadoop-docker": {
@@ -1234,7 +1234,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/openshift4/ose-metering-hadoop/5d963124bed8bd2245d85da3?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/openshift4/ose-metering-hadoop/5d963124bed8bd2245d85da3",
       "CertOfImageAndPublisher": ""
     },
     "nexus3": {
@@ -1262,7 +1262,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/sonatype/nexus-repository-manager/594c281c1fbe9847af657690?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/sonatype/nexus-repository-manager/594c281c1fbe9847af657690",
       "CertOfImageAndPublisher": ""
     },
     "splunk": {
@@ -1290,7 +1290,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/layers/splunk/splunk/7.3-redhat/images/sha256-55050c2097d994abc0e6d1c9f7fd0f0c2fb5f4019a9b1e094ffdf33a70a/5e162fab69aea316427f7947?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/layers/splunk/splunk/7.3-redhat/images/sha256-55050c2097d994abc0e6d1c9f7fd0f0c2fb5f4019a9b1e094ffdf33a70a/5e162fab69aea316427f7947",
       "CertOfImageAndPublisher": ""
     },
     "IBM Transformation Extender": {
@@ -1318,7 +1318,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibmcom/ibm-itx-rs-operator/5f9c27ddac3db90370a213a4?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibmcom/ibm-itx-rs-operator/5f9c27ddac3db90370a213a4",
       "CertOfImageAndPublisher": ""
     },
     "openjdk_Linux": {
@@ -1346,7 +1346,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ubi8/openjdk-11/5dd6a4b45a13461646f677f4?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ubi8/openjdk-11/5dd6a4b45a13461646f677f4",
       "CertOfImageAndPublisher": ""
     },
     "perl": {
@@ -1374,7 +1374,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ubi8/perl-526/5c83998abed8bd28d0e74c0f?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ubi8/perl-526/5c83998abed8bd28d0e74c0f",
       "CertOfImageAndPublisher": ""
     },
     "postgres": {
@@ -1402,7 +1402,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/rhscl/postgresql-13-rhel7/60af640142119b927780b520?container-tabs=gti&gti-tabs=get-the-source",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/rhscl/postgresql-13-rhel7/60af640142119b927780b520",
       "CertOfImageAndPublisher": ""
     },
     "solr": {
@@ -1430,7 +1430,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/cp/cpd/solr-ubi/5db082ea69aea35a1c141026?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/cp/cpd/solr-ubi/5db082ea69aea35a1c141026",
       "CertOfImageAndPublisher": ""
     },
     "odm": {
@@ -1458,7 +1458,7 @@
       "Plugin": [],
       "Runlib": [],
       "Runtime": [],
-      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/odm-dbserver/5d80f766702c566f4cbf46e6?container-tabs=gti",
+      "Docker_URL": "https://catalog.redhat.com/software/containers/ibm/odm-dbserver/5d80f766702c566f4cbf46e6",
       "CertOfImageAndPublisher": ""
     }
   }
