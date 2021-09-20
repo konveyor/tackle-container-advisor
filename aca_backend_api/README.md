@@ -139,9 +139,65 @@ We need to config RBAC_auth_url=https://rbac-dev.nextgen-ose-85ee131ed8e71cabc20
 -``python sim_standardizer_tester.py``
 
 
+## Testing
+
 ### For running test cases in a standalone mode.
 
 ```
 cd aca_backend_api
 python -m unittest discover -s test
 ```
+
+## Performance
+
+### For scaling the API we need to do the following.
+```
+cd aca_backend_api
+```
+- change the ``config.ini`` as follows (default for 2 cpus to match the settings specified in ``Dockerfile`` for gunicorn and ``docker-compose-api.yml``)
+```
+[Performance]
+multiprocessing_enabled=YES
+processes=2
+maxtasksperchild=500
+chunksize=32
+```
+
+- Make the changes in ``Dockerfile`` as follows
+```
+CMD ["gunicorn", "--workers=2", "--threads=500", "--timeout", "300", "service:app"]
+```
+
+- Make the changes in ``docker-compose-api.yml`` as follows
+```
+cpus: "2"
+```
+
+- If you want to process the input data with 4 CPUs, make the changes as follows
+
+```
+processes=4
+CMD ["gunicorn", "--workers=4", "--threads=500", "--timeout", "300", "service:app"]
+cpus: "4"
+```
+
+- If you want to do serial processing change the ``config.ini`` as follows
+
+```
+[Performance]
+multiprocessing_enabled=NO
+```
+
+### Performance Benchmarking
+
+- Serial vs Parallel
+
+| #Records | Time (serial) | Time (parallel, 2cpus) | Time (parallel, 4cpus) |
+|---------|---------------|------------------------|------------------------|
+| 1       | 0.20s         | 0.24s                  | 0.26s                  |
+| 10      | 1.83s         | 1.84s                  | 1.95s                  |
+| 100     | 17.9s         | 11.27s                 | 6.19s                  |
+| 200     | 35.9s         | 18.46s                 | 12.48s                 |
+| 1000    | 178.54s       | 94.51s                 | 51.8s                  |
+
+
