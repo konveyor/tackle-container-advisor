@@ -22,12 +22,36 @@
     "websphere-liberty",
     "ansible",
     "hive",
+    "websphere-traditional",
+    "IBM Maximo Asset Management",
+    "OpenLDAP",
+    "golang_Linux",
+    "haproxy",
+    "httpd",
+    "jenkins",
+    "MarkLogic",
+    "memcached",
+    "Java SE JRE_Linux",
+    "Microsoft SQL Server",
+    "Mongo_Linux",
+    "mysql",
+    "nginx",
+    "Python_Linux",
+    "redis_Linux",
+    "ruby",
+    "swift",
+    "tomcat",
+    "websphere-liberty",
+    "ansible",
+    "hive",
     "websphere-traditional"
   ],
   "IBM Maximo": [
+    "IBM Maximo Asset Management",
     "IBM Maximo Asset Management"
   ],
   "OpenLDAP": [
+    "OpenLDAP",
     "OpenLDAP"
   ],
   "Linux": [
@@ -55,161 +79,243 @@
     "perl",
     "postgres",
     "solr",
+    "odm",
+    "gcc",
+    "node",
+    "php",
+    "rabbitmq",
+    "fabric-ca",
+    "db2",
+    "mq",
+    "base",
+    "wildfly",
+    "nginx-proxy",
+    "javascript-node.js",
+    "objectivec-gcc",
+    "nginx-ingress",
+    "node-red-docker",
+    "sas",
+    "activemq",
+    "hadoop-docker",
+    "nexus3",
+    "splunk",
+    "IBM Transformation Extender",
+    "openjdk_Linux",
+    "perl",
+    "postgres",
+    "solr",
     "odm"
   ],
   "C++": [
+    "gcc",
     "gcc"
   ],
   "Go": [
+    "golang_Linux",
     "golang_Linux"
   ],
   "HAProxy": [
+    "haproxy",
     "haproxy"
   ],
   "Apache HTTP Server": [
+    "httpd",
     "httpd"
   ],
   "Jenkins": [
+    "jenkins",
     "jenkins"
   ],
   "MarkLogic DB": [
+    "MarkLogic",
     "MarkLogic"
   ],
   "Memcached": [
+    "memcached",
     "memcached"
   ],
   "Java Runtime Environment (JRE)": [
+    "Java SE JRE_Linux",
     "Java SE JRE_Linux"
   ],
   "MS SQL Server": [
+    "Microsoft SQL Server",
     "Microsoft SQL Server"
   ],
   "MongoDB": [
+    "Mongo_Linux",
     "Mongo_Linux"
   ],
   "MySQL": [
+    "mysql",
     "mysql"
   ],
   "Nginx": [
+    "nginx",
+    "nginx-proxy",
     "nginx",
     "nginx-proxy"
   ],
   "Node.js": [
     "node",
+    "javascript-node.js",
+    "node",
     "javascript-node.js"
   ],
   "PHP": [
+    "php",
     "php"
   ],
   "Python": [
+    "Python_Linux",
     "Python_Linux"
   ],
   "RabbitMQ": [
+    "rabbitmq",
     "rabbitmq"
   ],
   "Redis": [
+    "redis_Linux",
     "redis_Linux"
   ],
   "Ruby": [
+    "ruby",
     "ruby"
   ],
   "Swift": [
+    "swift",
     "swift"
   ],
   "Java": [
     "tomcat",
     "websphere-liberty",
     "websphere-traditional",
+    "openjdk_Linux",
+    "tomcat",
+    "websphere-liberty",
+    "websphere-traditional",
     "openjdk_Linux"
   ],
   "Apache Tomcat": [
+    "tomcat",
     "tomcat"
   ],
   "WebSphere Liberty": [
+    "websphere-liberty",
     "websphere-liberty"
   ],
   "Ansible": [
+    "ansible",
     "ansible"
   ],
   "Apache Hive": [
+    "hive",
     "hive"
   ],
   "Linux|Debian": [
     "kafka",
     "postgresql",
+    "spark",
+    "kafka",
+    "postgresql",
     "spark"
   ],
   "Apache Kafka": [
+    "kafka",
     "kafka"
   ],
   "PostgreSQL": [
     "postgresql",
+    "postgres",
+    "postgresql",
     "postgres"
   ],
   "Spark": [
+    "spark",
     "spark"
   ],
   "Linux|Ubuntu": [
+    "vmware-tools",
     "vmware-tools"
   ],
   "VMware Tools": [
+    "vmware-tools",
     "vmware-tools"
   ],
   "Fabric OS": [
+    "fabric-ca",
     "fabric-ca"
   ],
   "DB2": [
+    "db2",
     "db2"
   ],
   "IBM Websphere MQ": [
+    "mq",
     "mq"
   ],
   "Websphere Application Server (WAS)": [
+    "websphere-traditional",
     "websphere-traditional"
   ],
   "JBoss": [
+    "base",
     "base"
   ],
   "JBoss|Wildfly": [
+    "wildfly",
     "wildfly"
   ],
   "JavaScript": [
+    "javascript-node.js",
     "javascript-node.js"
   ],
   "Objective C": [
+    "objectivec-gcc",
     "objectivec-gcc"
   ],
   "Ingres": [
+    "nginx-ingress",
     "nginx-ingress"
   ],
   "Wherescape Red": [
+    "node-red-docker",
     "node-red-docker"
   ],
   "SAS": [
+    "sas",
     "sas"
   ],
   "Apache ActiveMQ": [
+    "activemq",
     "activemq"
   ],
   "Hadoop": [
+    "hadoop-docker",
     "hadoop-docker"
   ],
   "Nexus Repository OSS": [
+    "nexus3",
     "nexus3"
   ],
   "Splunk": [
+    "splunk",
     "splunk"
   ],
   "IBM WebSphere Transformation Extender (WTX)": [
+    "IBM Transformation Extender",
     "IBM Transformation Extender"
   ],
   "Perl": [
+    "perl",
     "perl"
   ],
   "Apache Solr": [
+    "solr",
     "solr"
   ],
   "IBM Operational Decision Manager (ODM)": [
+    "odm",
     "odm"
   ]
 }

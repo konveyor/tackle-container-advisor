@@ -121,9 +121,131 @@
     "docker-sybase",
     "netscaler-cpx",
     "sqlite",
+    "vb",
+    "Oracle Middleware (including Oracle Forms & Reports and Oracle Traffic Director)",
+    "Oracle Designer",
+    "OpenLDAP",
+    "Tivoli Monitoring Server (HUB TEMS)",
+    "CA Wily Introscope",
+    "drupal",
+    "gcc",
+    "glassfish",
+    "golang_Linux",
+    "groovy",
+    "haproxy",
+    "httpd",
+    "IBM Security Access Manager",
+    "jenkins",
+    "MarkLogic",
+    "memcached",
+    "Java SE JRE_Linux",
+    "Microsoft SQL Server",
+    "Mongo_Linux",
+    "mysql",
+    "neo4j",
+    "nginx",
+    "node",
+    "Oracle Database Enterprise Edition",
+    "Oracle WebLogic Server",
+    "Progress Application Server (PAS) for OpenEdge",
+    "php",
+    "Python_Linux",
+    "r-base",
+    "rabbitmq",
+    "rails",
+    "redis_Linux",
+    "ruby",
+    "SAP HANA, express edition (database and application services)",
+    "Sentry",
+    "sonarqube",
+    "swift",
+    "tomcat",
+    "websphere-liberty",
+    "wordpress",
+    "xml-to-bootstrap",
+    "ahfcmd",
+    "hive",
+    "cordova",
+    "chrome",
+    "docker-pentaho",
+    "zerto-exporter",
+    "management_frontend",
+    "activiti",
+    "webfocus",
+    "alpine-sass",
+    "oracle-soa-suite-12c",
+    "docker-cobol",
+    "svn-apache",
+    "static-file-server",
+    "hbase",
+    "scala-sbt",
+    "fabric-ca",
+    "db2",
+    "ibm-http-server",
+    "iib",
+    "informix-developer-database",
+    "mq",
+    "websphere-portal",
+    "websphere-traditional",
+    "opentext",
+    "cognos",
+    "base",
+    "wildfly",
+    "docker-teradata-client",
+    "firefox",
+    "nginx-proxy",
+    "remedy-admin",
+    "uniface",
+    "rv-tibco",
+    "openvpn-as",
+    "lucee52",
+    "sqldeveloper",
+    "term_ssh_wine_winmerge",
+    "openbd",
+    "mdw",
+    "infobright",
+    "alpine-expect",
+    "acroread",
+    "fortran-gfortran",
+    "javascript-node.js",
+    "objectivec-gcc",
+    "pascal-fp_compiler",
+    "smalltalk-gnu",
+    "nginx-ingress",
+    "nix",
+    "node-red-docker",
+    "graphql-demo",
+    "sas",
+    "flash",
+    "vcenter",
+    "gpdb-devel",
+    "pivotal-tc-server",
+    "activemq",
+    "svf",
+    "typescript",
+    "hadoop-docker",
+    "nexus3",
+    "splunk",
+    "docker-eas-peoplesoft-base",
+    "imsdb",
+    "spfx",
+    "arcgisserver",
+    "zeromq",
+    "IBM Workload Scheduler 9.5",
+    "IBM Transformation Extender",
+    "openjdk_Linux",
+    "perl",
+    "postgres",
+    "solr",
+    "odm",
+    "maxdb-provider",
+    "docker-sybase",
+    "netscaler-cpx",
+    "sqlite",
     "vb"
   ],
   "Oracle Forms": [
+    "Oracle Middleware (including Oracle Forms & Reports and Oracle Traffic Director)",
     "Oracle Middleware (including Oracle Forms & Reports and Oracle Traffic Director)"
   ],
   "Linux|Ubuntu": [
@@ -139,29 +261,65 @@
     "xampp",
     "sqlanywhere",
     "tcl",
+    "kitura-ubuntu",
+    "eclipse",
+    "SAP MaxDB",
+    "IBM Maximo Asset Management",
+    "ansible",
+    "oracle-apex-ords",
+    "bmc",
+    "riak-kv_Ubuntu",
+    "chef",
+    "vmware-tools",
+    "xampp",
+    "sqlanywhere",
+    "tcl",
     "kitura-ubuntu"
   ],
   "Eclipse": [
+    "eclipse",
     "eclipse"
   ],
   "SAP MaxDB": [
     "SAP MaxDB",
+    "maxdb-provider",
+    "SAP MaxDB",
     "maxdb-provider"
   ],
   "IBM Maximo": [
+    "IBM Maximo Asset Management",
     "IBM Maximo Asset Management"
   ],
   "Oracle Designer": [
+    "Oracle Designer",
     "Oracle Designer"
   ],
   "Linux|Oracle Linux": [
     "Oracle Real Application Clusters (RAC) Database",
+    "Oracle Siebel",
+    "Oracle Real Application Clusters (RAC) Database",
     "Oracle Siebel"
   ],
   "Oracle Real Application Clusters (RAC)": [
+    "Oracle Real Application Clusters (RAC) Database",
     "Oracle Real Application Clusters (RAC) Database"
   ],
   "Windows": [
+    "Oracle Database Windows",
+    "golang_Windows",
+    ".NET Framework",
+    "ASP.NET",
+    "Java SE JRE_Windows",
+    "Windows IIS",
+    "Python_Windows",
+    "redis_Windows",
+    "ooce",
+    "dynamics-nav",
+    "asp-docker",
+    "sysinternals",
+    "openjdk_Windows",
+    "mssql-server-windows-developer",
+    "mssql-server-windows-express",
     "Oracle Database Windows",
     "golang_Windows",
     ".NET Framework",
@@ -180,133 +338,186 @@
   ],
   "Oracle Database": [
     "Oracle Database Windows",
+    "Oracle Database Enterprise Edition",
+    "Oracle Database Windows",
     "Oracle Database Enterprise Edition"
   ],
   "Siebel": [
     "Oracle Siebel",
+    "siebelapp",
+    "Oracle Siebel",
     "siebelapp"
   ],
   "OpenLDAP": [
+    "OpenLDAP",
     "OpenLDAP"
   ],
   "IBM Tivoli Monitoring": [
+    "Tivoli Monitoring Server (HUB TEMS)",
     "Tivoli Monitoring Server (HUB TEMS)"
   ],
   "CA Introscope": [
+    "CA Wily Introscope",
     "CA Wily Introscope"
   ],
   "Drupal": [
+    "drupal",
     "drupal"
   ],
   "C++": [
+    "gcc",
     "gcc"
   ],
   "Java|Java Enterprise Edition (Java EE)": [
     "glassfish",
+    "Oracle WebLogic Server",
+    "glassfish",
     "Oracle WebLogic Server"
   ],
   "GlassFish": [
+    "glassfish",
     "glassfish"
   ],
   "Go": [
     "golang_Windows",
+    "golang_Linux",
+    "golang_Windows",
     "golang_Linux"
   ],
   "Groovy": [
+    "groovy",
     "groovy"
   ],
   "HAProxy": [
+    "haproxy",
     "haproxy"
   ],
   "Apache HTTP Server": [
+    "httpd",
     "httpd"
   ],
   "Tivoli Access Manager (TAM)": [
+    "IBM Security Access Manager",
     "IBM Security Access Manager"
   ],
   "Jenkins": [
+    "jenkins",
     "jenkins"
   ],
   "MarkLogic DB": [
+    "MarkLogic",
     "MarkLogic"
   ],
   "Memcached": [
+    "memcached",
     "memcached"
   ],
   ".NET Framework": [
+    ".NET Framework",
     ".NET Framework"
   ],
   "Active Server Pages (ASP)": [
+    "ASP.NET",
+    "asp-docker",
     "ASP.NET",
     "asp-docker"
   ],
   "Java Runtime Environment (JRE)": [
     "Java SE JRE_Windows",
+    "Java SE JRE_Linux",
+    "Java SE JRE_Windows",
     "Java SE JRE_Linux"
   ],
   "MS SQL Server": [
     "Microsoft SQL Server",
+    "mssql-server-windows-developer",
+    "Microsoft SQL Server",
     "mssql-server-windows-developer"
   ],
   "IIS": [
+    "Windows IIS",
     "Windows IIS"
   ],
   "Windows|Windows Server": [
+    "Mongo_Windows",
     "Mongo_Windows"
   ],
   "MongoDB": [
     "Mongo_Windows",
+    "Mongo_Linux",
+    "Mongo_Windows",
     "Mongo_Linux"
   ],
   "MySQL": [
+    "mysql",
     "mysql"
   ],
   "Neo4j": [
+    "neo4j",
     "neo4j"
   ],
   "Nginx": [
+    "nginx",
+    "nginx-proxy",
     "nginx",
     "nginx-proxy"
   ],
   "Node.js": [
     "node",
+    "javascript-node.js",
+    "node",
     "javascript-node.js"
   ],
   "Oracle WebLogic Server": [
+    "Oracle WebLogic Server",
     "Oracle WebLogic Server"
   ],
   "OpenEdge ABL": [
+    "Progress Application Server (PAS) for OpenEdge",
     "Progress Application Server (PAS) for OpenEdge"
   ],
   "PHP": [
+    "php",
+    "wordpress",
     "php",
     "wordpress"
   ],
   "Python": [
     "Python_Windows",
+    "Python_Linux",
+    "Python_Windows",
     "Python_Linux"
   ],
   "R": [
+    "r-base",
     "r-base"
   ],
   "RabbitMQ": [
+    "rabbitmq",
     "rabbitmq"
   ],
   "Ruby": [
     "rails",
+    "ruby",
+    "rails",
     "ruby"
   ],
   "Ruby on Rails": [
+    "rails",
     "rails"
   ],
   "Redis": [
     "redis_Windows",
+    "redis_Linux",
+    "redis_Windows",
     "redis_Linux"
   ],
   "SAP HANA DB": [
+    "SAP HANA, express edition (database and application services)",
     "SAP HANA, express edition (database and application services)"
   ],
   "Sentry": [
+    "Sentry",
     "Sentry"
   ],
   "Java": [
@@ -318,24 +529,39 @@
     "websphere-portal",
     "websphere-traditional",
     "openjdk_Windows",
+    "openjdk_Linux",
+    "sonarqube",
+    "tomcat",
+    "websphere-liberty",
+    "riak-kv_Ubuntu",
+    "riak-kv_CentOS",
+    "websphere-portal",
+    "websphere-traditional",
+    "openjdk_Windows",
     "openjdk_Linux"
   ],
   "SonarQube": [
+    "sonarqube",
     "sonarqube"
   ],
   "Swift": [
+    "swift",
     "swift"
   ],
   "Apache Tomcat": [
+    "tomcat",
     "tomcat"
   ],
   "WebSphere Liberty": [
+    "websphere-liberty",
     "websphere-liberty"
   ],
   "Wordpress": [
+    "wordpress",
     "wordpress"
   ],
   "Extensible Markup Language (XML)": [
+    "xml-to-bootstrap",
     "xml-to-bootstrap"
   ],
   "Linux|Debian": [
@@ -345,313 +571,425 @@
     "reportserver",
     "spark",
     "lisp",
+    "delphi-prod",
+    "asterisk",
+    "kafka",
+    "postgresql",
+    "reportserver",
+    "spark",
+    "lisp",
     "delphi-prod"
   ],
   "Asterisk": [
+    "asterisk",
     "asterisk"
   ],
   "Ansible": [
+    "ansible",
     "ansible"
   ],
   "Extensible Stylesheet Language (XSL)": [
+    "ahfcmd",
     "ahfcmd"
   ],
   "Oracle APEX": [
+    "oracle-apex-ords",
     "oracle-apex-ords"
   ],
   "Linux|Red Hat Enterprise Linux": [
+    "siebelapp",
     "siebelapp"
   ],
   "BMC Identity Management": [
+    "bmc",
     "bmc"
   ],
   "Riak": [
+    "riak-kv_Ubuntu",
+    "riak-kv_CentOS",
     "riak-kv_Ubuntu",
     "riak-kv_CentOS"
   ],
   "Linux|CentOS": [
     "riak-kv_CentOS",
     "apache-servicemix",
+    "resin",
+    "riak-kv_CentOS",
+    "apache-servicemix",
     "resin"
   ],
   "Apache Hive": [
+    "hive",
     "hive"
   ],
   "Apache Cordova": [
+    "cordova",
     "cordova"
   ],
   "Apache Kafka": [
+    "kafka",
     "kafka"
   ],
   "PostgreSQL": [
     "postgresql",
+    "postgres",
+    "postgresql",
     "postgres"
   ],
   "Business Intelligence and Reporting Tools (BIRT)": [
+    "reportserver",
     "reportserver"
   ],
   "Spark": [
+    "spark",
     "spark"
   ],
   "Google Chrome": [
+    "chrome",
     "chrome"
   ],
   "Pentaho": [
+    "docker-pentaho",
     "docker-pentaho"
   ],
   "Chef Automate": [
+    "chef",
     "chef"
   ],
   "Zerto Virtual Replication": [
+    "zerto-exporter",
     "zerto-exporter"
   ],
   "Clipper": [
+    "management_frontend",
     "management_frontend"
   ],
   "VMware Tools": [
+    "vmware-tools",
     "vmware-tools"
   ],
   "XAMPP": [
+    "xampp",
     "xampp"
   ],
   "Activiti": [
+    "activiti",
     "activiti"
   ],
   "SAP SQL Anywhere": [
+    "sqlanywhere",
     "sqlanywhere"
   ],
   "Lisp": [
+    "lisp",
     "lisp"
   ],
   "WebFOCUS": [
+    "webfocus",
     "webfocus"
   ],
   "Apache ServiceMix": [
+    "apache-servicemix",
     "apache-servicemix"
   ],
   "TCL": [
+    "tcl",
     "tcl"
   ],
   "Sass": [
+    "alpine-sass",
     "alpine-sass"
   ],
   "Oracle SOA Suite": [
+    "oracle-soa-suite-12c",
     "oracle-soa-suite-12c"
   ],
   "Resin Web Server": [
+    "resin",
     "resin"
   ],
   "COBOL": [
+    "docker-cobol",
     "docker-cobol"
   ],
   "Apache Subversion": [
+    "svn-apache",
     "svn-apache"
   ],
   "HTTP File Server": [
+    "static-file-server",
     "static-file-server"
   ],
   "Apache Hbase": [
+    "hbase",
     "hbase"
   ],
   "HP Operations Orchestration (HPOO)": [
+    "ooce",
     "ooce"
   ],
   "Scala": [
+    "scala-sbt",
     "scala-sbt"
   ],
   "Delphi": [
+    "delphi-prod",
     "delphi-prod"
   ],
   "Fabric OS": [
+    "fabric-ca",
     "fabric-ca"
   ],
   "DB2": [
+    "db2",
     "db2"
   ],
   "IBM HTTP Server": [
+    "ibm-http-server",
     "ibm-http-server"
   ],
   "IBM Integration Bus": [
+    "iib",
     "iib"
   ],
   "IBM Informix-4GL": [
+    "informix-developer-database",
     "informix-developer-database"
   ],
   "Kitura": [
+    "kitura-ubuntu",
     "kitura-ubuntu"
   ],
   "IBM Websphere MQ": [
+    "mq",
     "mq"
   ],
   "WebSphere Portal Server": [
+    "websphere-portal",
     "websphere-portal"
   ],
   "Websphere Application Server (WAS)": [
+    "websphere-traditional",
     "websphere-traditional"
   ],
   "OpenText Exstream": [
+    "opentext",
     "opentext"
   ],
   "Cognos": [
+    "cognos",
     "cognos"
   ],
   "JBoss": [
+    "base",
     "base"
   ],
   "JBoss|Wildfly": [
+    "wildfly",
     "wildfly"
   ],
   "Teradata": [
+    "docker-teradata-client",
     "docker-teradata-client"
   ],
   "Mozilla Firefox": [
+    "firefox",
     "firefox"
   ],
   "Remedy": [
+    "remedy-admin",
     "remedy-admin"
   ],
   "Uniface": [
+    "uniface",
     "uniface"
   ],
   "TIBCO Rendezvous": [
+    "rv-tibco",
     "rv-tibco"
   ],
   "OpenVPN": [
+    "openvpn-as",
     "openvpn-as"
   ],
   "Lucee": [
+    "lucee52",
     "lucee52"
   ],
   "Oracle SQL Developer": [
+    "sqldeveloper",
     "sqldeveloper"
   ],
   "WinMerge": [
+    "term_ssh_wine_winmerge",
     "term_ssh_wine_winmerge"
   ],
   "ColdFusion Markup Language (CFML)": [
+    "openbd",
     "openbd"
   ],
   "Model Driven Workflow (MDW)": [
+    "mdw",
     "mdw"
   ],
   "Infobright Community Edition (ICE)": [
+    "infobright",
     "infobright"
   ],
   "Expect": [
+    "alpine-expect",
     "alpine-expect"
   ],
   "Adobe Acrobat Reader": [
+    "acroread",
     "acroread"
   ],
   "Microsoft Dynamics AX": [
+    "dynamics-nav",
     "dynamics-nav"
   ],
   "Fortran": [
+    "fortran-gfortran",
     "fortran-gfortran"
   ],
   "JavaScript": [
+    "javascript-node.js",
     "javascript-node.js"
   ],
   "Objective C": [
+    "objectivec-gcc",
     "objectivec-gcc"
   ],
   "Pascal": [
+    "pascal-fp_compiler",
     "pascal-fp_compiler"
   ],
   "Smalltalk": [
+    "smalltalk-gnu",
     "smalltalk-gnu"
   ],
   "Ingres": [
+    "nginx-ingress",
     "nginx-ingress"
   ],
   "Nix package manager": [
+    "nix",
     "nix"
   ],
   "Wherescape Red": [
+    "node-red-docker",
     "node-red-docker"
   ],
   "GraphQL": [
+    "graphql-demo",
     "graphql-demo"
   ],
   "SAS": [
+    "sas",
     "sas"
   ],
   "Flash": [
+    "flash",
     "flash"
   ],
   "VMware vCenter": [
+    "vcenter",
     "vcenter"
   ],
   "Greenplum DB": [
+    "gpdb-devel",
     "gpdb-devel"
   ],
   "Pivotal tc Server": [
+    "pivotal-tc-server",
     "pivotal-tc-server"
   ],
   "Apache ActiveMQ": [
+    "activemq",
     "activemq"
   ],
   "WingArc SVF": [
+    "svf",
     "svf"
   ],
   "TypeScript": [
+    "typescript",
     "typescript"
   ],
   "Hadoop": [
+    "hadoop-docker",
     "hadoop-docker"
   ],
   "Nexus Repository OSS": [
+    "nexus3",
     "nexus3"
   ],
   "Splunk": [
+    "splunk",
     "splunk"
   ],
   "PeopleSoft": [
+    "docker-eas-peoplesoft-base",
     "docker-eas-peoplesoft-base"
   ],
   "IMS DB": [
+    "imsdb",
     "imsdb"
   ],
   "SharePoint": [
+    "spfx",
     "spfx"
   ],
   "Sysinternal Tools": [
+    "sysinternals",
     "sysinternals"
   ],
   "ArcGIS Server": [
+    "arcgisserver",
     "arcgisserver"
   ],
   "ZeroMQ": [
+    "zeromq",
     "zeromq"
   ],
   "IBM Tivoli Workload Scheduler (TWS)": [
+    "IBM Workload Scheduler 9.5",
     "IBM Workload Scheduler 9.5"
   ],
   "IBM WebSphere Transformation Extender (WTX)": [
+    "IBM Transformation Extender",
     "IBM Transformation Extender"
   ],
   "Perl": [
+    "perl",
     "perl"
   ],
   "Apache Solr": [
+    "solr",
     "solr"
   ],
   "IBM Operational Decision Manager (ODM)": [
+    "odm",
     "odm"
   ],
   "MS SQL Server Compact": [
+    "mssql-server-windows-express",
     "mssql-server-windows-express"
   ],
   "Sybase SQL Server": [
+    "docker-sybase",
     "docker-sybase"
   ],
   "Citrix ADC CPX": [
+    "netscaler-cpx",
     "netscaler-cpx"
   ],
   "SQLite": [
+    "sqlite",
     "sqlite"
   ],
   "VB.NET": [
+    "vb",
     "vb"
   ]
 }

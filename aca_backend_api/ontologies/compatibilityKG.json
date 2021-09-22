@@ -7566,6 +7566,7572 @@
       "Parent Class": "Linux|*",
       "Child Type": "App",
       "Child Class": "Fortran"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": ".NET Framework"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": "Active Directory (AD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": "Active Server Pages (ASP)|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": "ActiveX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "Runtime",
+      "Child Class": "Apache Cordova"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "Runtime",
+      "Child Class": "Apache Cordova"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Runtime",
+      "Child Class": "Apache Cordova"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": "Apache Cordova"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "Runtime",
+      "Child Class": "CICS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "Runtime",
+      "Child Class": "CICS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime",
+      "Child Class": "Docker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Runtime",
+      "Child Class": "Docker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": "Docker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "Runtime",
+      "Child Class": "Flash"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "Runtime",
+      "Child Class": "Flash"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime",
+      "Child Class": "Flash"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Runtime",
+      "Child Class": "Flash"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "Runtime",
+      "Child Class": "Flash"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": "Flash"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": "HTTP File Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Runtime",
+      "Child Class": "Java Runtime Environment (JRE)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime",
+      "Child Class": "Node.js"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Runtime",
+      "Child Class": "Node.js"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "Runtime",
+      "Child Class": "Node.js"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "Runtime",
+      "Child Class": "Node.js"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|OpenBSD",
+      "Child Type": "Runtime",
+      "Child Class": "Node.js"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": "Node.js"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime",
+      "Child Class": "Ruby on Rails"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Runtime",
+      "Child Class": "Ruby on Rails"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Runtime",
+      "Child Class": "Ruby on Rails"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Runtime",
+      "Child Class": "VisualForce"
+    },
+    {
+      "Parent Type": "App Server",
+      "Parent Class": "IIS",
+      "Child Type": "Runlib",
+      "Child Class": "IIS|Application Request Routing (ARR)"
+    },
+    {
+      "Parent Type": "App Server",
+      "Parent Class": "IIS",
+      "Child Type": "Runlib",
+      "Child Class": "IIS|Easy Migration Tool (IEMT)"
+    },
+    {
+      "Parent Type": "App Server",
+      "Parent Class": "IIS",
+      "Child Type": "Runlib",
+      "Child Class": "IIS|IIS Manager"
+    },
+    {
+      "Parent Type": "App Server",
+      "Parent Class": "JBoss",
+      "Child Type": "Runlib",
+      "Child Class": "JBoss|JBoss Seam"
+    },
+    {
+      "Parent Type": "App Server",
+      "Parent Class": "Oracle Application Server",
+      "Child Type": "Runlib",
+      "Child Class": "Oracle Application Server|Oracle Transparent Gateway"
+    },
+    {
+      "Parent Type": "App Server",
+      "Parent Class": "Oracle WebCenter Content Server",
+      "Child Type": "Runlib",
+      "Child Class": "Oracle WebCenter Content Server|Idoc Script"
+    },
+    {
+      "Parent Type": "App Server",
+      "Parent Class": "SAP NetWeaver App Server",
+      "Child Type": "Runlib",
+      "Child Class": "SAP NetWeaver App Server|ABAP"
+    },
+    {
+      "Parent Type": "Runtime",
+      "Parent Class": ".NET Framework",
+      "Child Type": "Runlib",
+      "Child Class": ".NET Framework|Common Runtime Library"
+    },
+    {
+      "Parent Type": "Runtime",
+      "Parent Class": ".NET Framework",
+      "Child Type": "Runlib",
+      "Child Class": ".NET Framework|log4net"
+    },
+    {
+      "Parent Type": "Runtime",
+      "Parent Class": ".NET Framework",
+      "Child Type": "Runlib",
+      "Child Class": ".NET Framework|Magick.NET"
+    },
+    {
+      "Parent Type": "Runtime",
+      "Parent Class": ".NET Framework",
+      "Child Type": "Runlib",
+      "Child Class": ".NET Framework|Windows Communication Foundation (WCF)"
+    },
+    {
+      "Parent Type": "Runtime",
+      "Parent Class": ".NET Framework",
+      "Child Type": "Runlib",
+      "Child Class": ".NET Framework|Windows Workflow Foundation (WF)"
+    },
+    {
+      "Parent Type": "Runtime",
+      "Parent Class": ".NET Framework",
+      "Child Type": "Runlib",
+      "Child Class": ".NET Framework|WinForms"
+    },
+    {
+      "Parent Type": "Runtime",
+      "Parent Class": "ActiveX",
+      "Child Type": "Runlib",
+      "Child Class": "ActiveX|ADO"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "Clarify",
+      "Child Type": "Plugin",
+      "Child Class": "Clarify|Clear Basic"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "Eclipse",
+      "Child Type": "Plugin",
+      "Child Class": "Eclipse|ATLAS Transformation Language (ATL)"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "IBM BigFix Platform",
+      "Child Type": "Plugin",
+      "Child Class": "IBM BigFix Platform|Client Deploy Tool"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "IBM Integration Bus",
+      "Child Type": "Plugin",
+      "Child Class": "IBM Integration Bus|Extended Structured Query Language (ESQL)"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "IBM Tivoli Asset Management",
+      "Child Type": "Plugin",
+      "Child Class": "IBM Tivoli Asset Management|Asset Discovery for Distributed"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "IBM Tivoli Storage Manager",
+      "Child Type": "Plugin",
+      "Child Class": "IBM Tivoli Storage Manager|TSM API"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "IBM Tivoli Storage Manager",
+      "Child Type": "Plugin",
+      "Child Class": "IBM Tivoli Storage Manager|TSM Client"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "IBM Tivoli Storage Manager",
+      "Child Type": "Plugin",
+      "Child Class": "IBM Tivoli Storage Manager|TSM Storage Agent"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "IBM Tivoli Storage Manager",
+      "Child Type": "Plugin",
+      "Child Class": "IBM Tivoli Storage Manager|VSS Requestor"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "Microsoft Exchange Server",
+      "Child Type": "Plugin",
+      "Child Class": "Microsoft Exchange Server|Veeam Explorer"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "MS SQL Server|*",
+      "Child Type": "Plugin",
+      "Child Class": "MS SQL Server|Data Transformation Services"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "MS SQL Server|*",
+      "Child Type": "Plugin",
+      "Child Class": "MS SQL Server|Log Reader Agent"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "MS SQL Server|*",
+      "Child Type": "Plugin",
+      "Child Class": "MS SQL Server|SQL Server Analysis Services (SSAS)"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "MS SQL Server|*",
+      "Child Type": "Plugin",
+      "Child Class": "MS SQL Server|SQL Server Database Engine"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "MS SQL Server|*",
+      "Child Type": "Plugin",
+      "Child Class": "MS SQL Server|SQL Server Integration Services (SSIS)"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "MS SQL Server|*",
+      "Child Type": "Plugin",
+      "Child Class": "MS SQL Server|SQL Server Management Studio"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "MS SQL Server|*",
+      "Child Type": "Plugin",
+      "Child Class": "MS SQL Server|SQL Server Reporting Services (SSRS)"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "MS SQL Server|*",
+      "Child Type": "Plugin",
+      "Child Class": "MS SQL Server|MS SQL Server Browser"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "MS SQL Server|*",
+      "Child Type": "Plugin",
+      "Child Class": "MS SQL Server|SQL Server Report Builder"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "Oracle Database",
+      "Child Type": "Plugin",
+      "Child Class": "Oracle Database|Jserver"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "Oracle Database",
+      "Child Type": "Plugin",
+      "Child Class": "Oracle Database|Oracle Spatial and Graph"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "Oracle Database",
+      "Child Type": "Plugin",
+      "Child Class": "Oracle Database|SQL*Plus"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "SAP ERP",
+      "Child Type": "Plugin",
+      "Child Class": "SAP ERP|SAP EHP"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "SAP ERP",
+      "Child Type": "Plugin",
+      "Child Class": "SAP ERP|SAP Kernel"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "Sybase SQL Server",
+      "Child Type": "Plugin",
+      "Child Class": "Sybase SQL Server|Sybase Central"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "Sybase SQL Server",
+      "Child Type": "Plugin",
+      "Child Class": "Sybase SQL Server|Sybase Dsedit"
+    },
+    {
+      "Parent Type": "App",
+      "Parent Class": "TIBCO Business Works (BW)",
+      "Child Type": "Plugin",
+      "Child Class": "TIBCO Business Works (BW)|Integration Manager"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "C#|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Lucene"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "C++|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Lucene"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Lucene"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Pascal|Object Pascal",
+      "Child Type": "Lib",
+      "Child Class": "Apache Lucene"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Perl|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Lucene"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "PHP|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Lucene"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Python|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Lucene"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Ruby|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Lucene"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "C++|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Xerces"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Xerces"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Perl|*",
+      "Child Type": "Lib",
+      "Child Class": "Apache Xerces"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Cascading Style Sheets (CSS)",
+      "Child Type": "Lib",
+      "Child Class": "Cascading Style Sheets (CSS)|Bootstrap"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Apache Camel"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Apache Commons BeanUtils"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Apache PDFBox"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Apache Velocity"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|EclipseLink"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Enterprise JavaBeans (EJB)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|EZMorph"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Google Web Toolkit (GWT)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Hibernate"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|IBM SDK"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Java Development Kit (JDK)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Java Message Service (JMS)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Java Web Start"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|JavaServer Faces (JSF)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|JDBC"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|JRuby Core"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Log4j"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Quartz"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Remote Method Invocation (RMI)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Servlet"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Spring"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Spring|Spring Boot"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Spring|Spring Cloud Data Flow"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Spring|Spring MVC"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Struts"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Swing"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "Java|Vaadin"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|AJAX"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|AngularJS"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|Draw2D"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|Express.js"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|Ext JS"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|jqGrid"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|JQuery"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|Jquery|jQuery UI"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|React"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|script.aculo.us"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "JavaScript|Valums AJAX File Uploader"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "ColdFusion Markup Language (CFML)",
+      "Child Type": "Lib",
+      "Child Class": "OWASP Enterprise Security API (ESAPI)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Java|*",
+      "Child Type": "Lib",
+      "Child Class": "OWASP Enterprise Security API (ESAPI)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "JavaScript|*",
+      "Child Type": "Lib",
+      "Child Class": "OWASP Enterprise Security API (ESAPI)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "PHP|*",
+      "Child Type": "Lib",
+      "Child Class": "OWASP Enterprise Security API (ESAPI)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Python|*",
+      "Child Type": "Lib",
+      "Child Class": "OWASP Enterprise Security API (ESAPI)"
+    },
+    {
+      "Parent Type": "Lang",
+      "Parent Class": "Perl|*",
+      "Child Type": "Lib",
+      "Child Class": "Perl|Oraperl"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "AutoIt"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "AWK"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "AWK"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "BASIC"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Brainscript"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "C"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "C#"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "C++|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Cascading Style Sheets (CSS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MS-DOS",
+      "Child Type": "Lang",
+      "Child Class": "Clipper"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|*",
+      "Child Type": "Lang",
+      "Child Class": "CLIST"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "Lang",
+      "Child Class": "COBOL|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OpenVMS",
+      "Child Type": "Lang",
+      "Child Class": "COBOL|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "COBOL|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "COBOL|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "VME",
+      "Child Type": "Lang",
+      "Child Class": "COBOL|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "COBOL|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "Lang",
+      "Child Class": "COBOL|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "ColdFusion Markup Language (CFML)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Data Language Interface (DL/I)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "Lang",
+      "Child Class": "Delphi"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "Lang",
+      "Child Class": "Delphi"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "Delphi"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "Delphi"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Delphi"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "Easytrieve"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "Lang",
+      "Child Class": "Easytrieve"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "Easytrieve"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Easytrieve"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VM",
+      "Child Type": "Lang",
+      "Child Class": "Easytrieve"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "Lang",
+      "Child Class": "Easytrieve"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Expect"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "eXtensible HyperText Markup Language (XHTML)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Extensible Markup Language (XML)|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Extensible Stylesheet Language (XSL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Extensible Stylesheet Language Transformations (XLST)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "DOS/360",
+      "Child Type": "Lang",
+      "Child Class": "FOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|*",
+      "Child Type": "Lang",
+      "Child Class": "FOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OpenVMS",
+      "Child Type": "Lang",
+      "Child Class": "FOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OS/2",
+      "Child Type": "Lang",
+      "Child Class": "FOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "FOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VM",
+      "Child Type": "Lang",
+      "Child Class": "FOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Fortran"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "Go"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "Go"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|*",
+      "Child Type": "Lang",
+      "Child Class": "Go"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Go"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "GraphQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Groovy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "HiveQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Hypertext Markup Language (HTML)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "Lang",
+      "Child Class": "IBM High Level Assembler (HLASM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/TPF",
+      "Child Type": "Lang",
+      "Child Class": "IBM High Level Assembler (HLASM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VM",
+      "Child Type": "Lang",
+      "Child Class": "IBM High Level Assembler (HLASM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "Lang",
+      "Child Class": "IBM High Level Assembler (HLASM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "Lang",
+      "Child Class": "IBM i Control Language (CL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "IBM Informix-4GL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Java|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "JavaScript|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "DOS/360",
+      "Child Type": "Lang",
+      "Child Class": "JCL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|*",
+      "Child Type": "Lang",
+      "Child Class": "JCL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "Lang",
+      "Child Class": "JCL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "Job Information Language (JIL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "Job Information Language (JIL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Job Information Language (JIL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "JScript"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Lisp"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|openSUSE",
+      "Child Type": "Lang",
+      "Child Class": "Niakwa Programming Language (NPL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OpenVMS",
+      "Child Type": "Lang",
+      "Child Class": "Niakwa Programming Language (NPL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "Lang",
+      "Child Class": "Niakwa Programming Language (NPL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "Lang",
+      "Child Class": "Niakwa Programming Language (NPL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "Lang",
+      "Child Class": "Niakwa Programming Language (NPL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Niakwa Programming Language (NPL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Objective C"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "OpenEdge ABL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Pascal|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "Perl|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "Perl|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "Perl|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Perl|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "PHP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "PHP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "PHP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "PHP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS",
+      "Child Type": "Lang",
+      "Child Class": "PL/I"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "Lang",
+      "Child Class": "PL/I"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "PL/I"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VM",
+      "Child Type": "Lang",
+      "Child Class": "PL/I"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "PL/SQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "PRO*C"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Python|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "R"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "Lang",
+      "Child Class": "Rexx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|*",
+      "Child Type": "Lang",
+      "Child Class": "Rexx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OS/2",
+      "Child Type": "Lang",
+      "Child Class": "Rexx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "Lang",
+      "Child Class": "Rexx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VM",
+      "Child Type": "Lang",
+      "Child Class": "Rexx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "Lang",
+      "Child Class": "Rexx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "Lang",
+      "Child Class": "RPG"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "Lang",
+      "Child Class": "RPG"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OpenVMS",
+      "Child Type": "Lang",
+      "Child Class": "RPG"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "RPG"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "Lang",
+      "Child Class": "RPG"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Ruby"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Salesforce Object Query Language (SOQL)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "SAS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Sass"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "Scala"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "Scala"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "Scala"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Scala"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "Smalltalk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "Smalltalk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "Smalltalk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Smalltalk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "Swift"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "Swift"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "Lang",
+      "Child Class": "Swift"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "Lang",
+      "Child Class": "Swift"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Swift"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "TCL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "TCL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "TCL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "TCL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "Transact-SQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "TypeScript"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "Lang",
+      "Child Class": "VB.NET"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "Lang",
+      "Child Class": "VB.NET"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Lang",
+      "Child Class": "VB.NET"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "VB.NET"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "Lang",
+      "Child Class": "VB.NET"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|*",
+      "Child Type": "Lang",
+      "Child Class": "VB.NET"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "VB.NET"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "VBScript"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MS-DOS",
+      "Child Type": "Lang",
+      "Child Class": "Visual Basic"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Visual Basic"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "Lang",
+      "Child Class": "Visual Basic for Applications (VBA)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Visual Basic for Applications (VBA)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Visual FoxPro"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "Lang",
+      "Child Class": "VoiceXML"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "Lang",
+      "Child Class": "Xbase++"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Apache HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Apache HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Apache HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Apache HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Apache HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App Server",
+      "Child Class": "Apache Tomcat"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App Server",
+      "Child Class": "Apache Tomcat"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Apache Tomcat"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Apache Tomcat"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Apache Tomcat"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App Server",
+      "Child Class": "Apache Tomcat"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "Apache Tomcat"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "ArcGIS Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "ArcGIS Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App Server",
+      "Child Class": "GlassFish"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App Server",
+      "Child Class": "GlassFish"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App Server",
+      "Child Class": "GlassFish"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "GlassFish"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "GlassFish"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "GlassFish"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "GlassFish"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "HAProxy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "HAProxy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "HAProxy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App Server",
+      "Child Class": "HAProxy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|OpenBSD",
+      "Child Type": "App Server",
+      "Child Class": "HAProxy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "HAProxy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "IIS|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "JBoss"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App Server",
+      "Child Class": "JBoss"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App Server",
+      "Child Class": "JBoss"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "JBoss"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "JBoss"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "JBoss"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App Server",
+      "Child Class": "Kitura"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Kitura"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "Kitura"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Lotus Domino"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "Lotus Domino"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Lotus Domino"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Lucee"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "Lucee"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App Server",
+      "Child Class": "Lucee"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Lucee"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Netscape Application Server (NAS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Netscape Application Server (NAS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Netscape Enterprise Server (NES)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Netscape Enterprise Server (NES)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Netscape Enterprise Server (NES)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Netscape Enterprise Server (NES)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Netscape Enterprise Server (NES)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Nginx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "Nginx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Nginx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|*",
+      "Child Type": "App Server",
+      "Child Class": "Nginx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Nginx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Nginx"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Application Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Application Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Application Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Application Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Application Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Application Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Application Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Application Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebCenter Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebCenter Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebCenter Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebCenter Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebCenter Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebCenter Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebCenter Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Resin Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "Resin Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App Server",
+      "Child Class": "Resin Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Resin Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Spark"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "Spark"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Spark"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "UltiDev Web Server Pro (UWS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Oracle WebLogic Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App Server",
+      "Child Class": "webMethods Integration Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "webMethods Integration Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "webMethods Integration Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "webMethods Integration Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "webMethods Integration Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "webMethods Integration Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Application Server (WAS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Application Server (WAS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Application Server (WAS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Application Server (WAS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Application Server (WAS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Application Server (WAS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Application Server (WAS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Liberty"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Liberty"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Liberty"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Liberty"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Liberty"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Liberty"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Liberty"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Liberty"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Portal Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Portal Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Portal Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Portal Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Portal Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Portal Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "WebSphere Portal Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Process Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Process Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Process Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Process Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Process Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Process Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Websphere Process Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "IBM HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "IBM HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "IBM HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "IBM HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "IBM HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App Server",
+      "Child Class": "IBM HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App Server",
+      "Child Class": "IBM HTTP Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App Server",
+      "Child Class": "Pivotal tc Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App Server",
+      "Child Class": "Pivotal tc Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App Server",
+      "Child Class": "Pivotal tc Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App Server",
+      "Child Class": "Pivotal tc Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App Server",
+      "Child Class": "Pivotal tc Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Pivotal tc Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Pivotal tc Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App Server",
+      "Child Class": "Pivotal tc Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "SAP NetWeaver App Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "SAP NetWeaver App Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "SAP NetWeaver App Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "SAP NetWeaver App Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Oracle iPlanet Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle iPlanet Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle iPlanet Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle iPlanet Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App Server",
+      "Child Class": "Oracle iPlanet Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Oracle iPlanet Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App Server",
+      "Child Class": "Oracle iPlanet Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App Server",
+      "Child Class": "Oracle iPlanet Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "JBoss"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "JBoss"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App Server",
+      "Child Class": "JBoss"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "(E)JES"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Activiti"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Ansible"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Ansible"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Ansible"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Ansible"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Apache ActiveMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Apache ActiveMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Apache ActiveMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Apache ActiveMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Apache Hive"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Apache Hive"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Apache Hive"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Apache Hive"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Apache Kafka"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Apache Kafka"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Apache Kafka"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Apache Kafka"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Apache ServiceMix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Apache ServiceMix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Apache ServiceMix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Apache ServiceMix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Apache Solr"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Apache Solr"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Apache Solr"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "BeOS",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Debian",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|openSUSE",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OS/2",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|*",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Apache Subversion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Application Development Facility (ADF)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Asterisk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Asterisk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|*",
+      "Child Type": "App",
+      "Child Class": "Asterisk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Asterisk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Automic Job Scheduler"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Automic Job Scheduler"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Automic Job Scheduler"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Autosys"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Autosys"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Autosys"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Autosys"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Autosys"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "BMC Identity Management"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "BMC Identity Management"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "BMC Identity Management"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "BMC Identity Management"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "BMC Identity Management"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Business Intelligence and Reporting Tools (BIRT)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|openSUSE",
+      "Child Type": "App",
+      "Child Class": "Business Intelligence and Reporting Tools (BIRT)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Business Intelligence and Reporting Tools (BIRT)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Business Intelligence and Reporting Tools (BIRT)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Business Intelligence and Reporting Tools (BIRT)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Business Intelligence and Reporting Tools (BIRT)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "CA Introscope"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "CA Introscope"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "CA Introscope"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "CA Introscope"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "CA-TELON"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MS-DOS",
+      "Child Type": "App",
+      "Child Class": "CA-TELON"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS",
+      "Child Type": "App",
+      "Child Class": "CA-TELON"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OS/2",
+      "Child Type": "App",
+      "Child Class": "CA-TELON"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "CA-TELON"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "CA-TELON"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "App",
+      "Child Class": "CA-TELON"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Casegen"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Debian",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Chef Automate"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "CiscoWorks LAN Management Solution (LMS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "CiscoWorks LAN Management Solution (LMS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Citrix ADC CPX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Citrix Provisioning"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Citrix Provisioning"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Clarify"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "Cognos"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "Cognos"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Cognos"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Cognos"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Cognos"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Cognos"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Cognos"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Cognos"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Coldfusion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Coldfusion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Coldfusion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Coldfusion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Coldfusion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Coldfusion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "ConceptWave"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "CONNAPI"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Connect Direct"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Connect Direct"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "Connect Direct"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Connect Direct"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Connect Direct"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Connect Direct"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Connect Direct"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Cornerstone software"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Crystal Reports"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "DB2"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "DB2"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "DB2"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "DB2"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Documentum Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Documentum Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Documentum Content Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Drupal"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Drupal"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Drupal"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Drupal"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Eclipse"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Eclipse"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Eclipse"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Eclipse"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Elastic (ELK) Stack"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Debian",
+      "Child Type": "App",
+      "Child Class": "Elastic (ELK) Stack"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|openSUSE",
+      "Child Type": "App",
+      "Child Class": "Elastic (ELK) Stack"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Elastic (ELK) Stack"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Elastic (ELK) Stack"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Elastic (ELK) Stack"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Elastic (ELK) Stack"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Elastic (ELK) Stack"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "F5 Secure Web Gateway Services"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "FileMaker Pro"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "FileMaker Pro"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "FileMaker Pro"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "Genymotion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "Genymotion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Genymotion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Genymotion"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Hadoop"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Debian",
+      "Child Type": "App",
+      "Child Class": "Hadoop"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Hadoop"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Hadoop"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Hadoop"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Hadoop"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Hadoop"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "HP aC++ compiler"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "HP C/ANSI C compiler"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "HP Operations Orchestration (HPOO)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "HP Operations Orchestration (HPOO)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "HP Operations Orchestration (HPOO)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "HP Operations Orchestration (HPOO)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "HP Operations Orchestration (HPOO)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "HP Server Automation (HPSA)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "IBM Content Manager OnDemand (CMOD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "IBM Content Manager OnDemand (CMOD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|zLinux",
+      "Child Type": "App",
+      "Child Class": "IBM Content Manager OnDemand (CMOD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Content Manager OnDemand (CMOD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Content Manager OnDemand (CMOD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM Content Manager OnDemand (CMOD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Content Manager OnDemand (CMOD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM FileNet P8 Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM FileNet P8 Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM FileNet P8 Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM FileNet P8 Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM FileNet P8 Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM InfoSphere DataStage"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM InfoSphere DataStage"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM InfoSphere DataStage"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Integration Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "IBM Integration Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Integration Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Integration Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM Integration Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Integration Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Migration Utility"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "IBM Mobile Foundation"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "IBM Mobile Foundation"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Mobile Foundation"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "IBM Mobile Foundation"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Mobile Foundation"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Mobile Foundation"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM Mobile Foundation"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Mobile Foundation"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Workload Scheduler (TWS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Workload Scheduler (TWS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Workload Scheduler (TWS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Workload Scheduler (TWS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Workload Scheduler (TWS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Workload Scheduler (TWS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "IBM Websphere MQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Websphere MQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "IBM Websphere MQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Websphere MQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Websphere MQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM Websphere MQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Websphere MQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "App",
+      "Child Class": "IBM Websphere MQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere MQ Telemetry"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere MQ Telemetry"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere MQ Telemetry"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere MQ Telemetry"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Transformation Extender (WTX)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Transformation Extender (WTX)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Transformation Extender (WTX)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Transformation Extender (WTX)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Transformation Extender (WTX)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Transformation Extender (WTX)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Websphere ILOG JRules BRMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "Websphere ILOG JRules BRMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Websphere ILOG JRules BRMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Websphere ILOG JRules BRMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Websphere ILOG JRules BRMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Websphere ILOG JRules BRMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "IMS DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Infobright Community Edition (ICE)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Infobright Community Edition (ICE)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Informatica PowerCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Informatica PowerCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Informatica PowerCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Informatica PowerCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Informatica PowerCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Ingres"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OpenVMS",
+      "Child Type": "App",
+      "Child Class": "Ingres"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Ingres"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Ingres"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Ingres"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Ingres"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Debian",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Fedora",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|openSUSE",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|OpenBSD",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Jenkins"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Lotus Notes"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Lotus Notes"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Lotus Notes"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "MaaS360"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "MaaS360"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "MaaS360"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "MaaS360"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "ManageEngine ADSelfService Plus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Access"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft BizTalk Adapters for Host Systems"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Dynamics AX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Endpoint Configuration Manager (SCCM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Exchange Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft InfoPath"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft MQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Web Deploy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Web Farm Framework (WFF)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Web Platform Installer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Model Driven Workflow (MDW)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Model Driven Workflow (MDW)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Model Driven Workflow (MDW)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "MongoDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "MongoDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "MongoDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "MongoDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "MongoDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "MQ Client"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "MQ Client"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "MQ Client"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "MQ Client"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "MQ Client"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "MQ Client"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "MQ Client"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "MS SQL Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "MS SQL Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "MS SQL Server|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "MS SQL Server Compact"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "MySQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "MySQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "MySQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "MySQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "MySQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "MySQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "MySQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Neo4j"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Debian",
+      "Child Type": "App",
+      "Child Class": "Neo4j"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Fedora",
+      "Child Type": "App",
+      "Child Class": "Neo4j"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Neo4j"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Neo4j"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Neo4j"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Neo4j"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Neo4j"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Nexus Repository OSS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Nix package manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Nix package manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "OpenLDAP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "OpenLDAP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "OpenLDAP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "OpenLDAP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|*",
+      "Child Type": "App",
+      "Child Class": "OpenLDAP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "OpenLDAP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "OpenLDAP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "OpenLDAP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "OpenText Exstream"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "OpenVPN"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "OpenVPN"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "OpenVPN"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|NetBSD",
+      "Child Type": "App",
+      "Child Class": "OpenVPN"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|OpenBSD",
+      "Child Type": "App",
+      "Child Class": "OpenVPN"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "OpenVPN"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "OpenVPN"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Access Management"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle ADF"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle ADF"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Oracle ADF"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Oracle ADF"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle ADF"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Oracle APEX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Oracle APEX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Oracle APEX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Oracle APEX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle APEX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle BI Publisher"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle BI Publisher"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Oracle BI Publisher"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle BI Publisher"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Business Intelligence"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Business Intelligence"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Oracle Business Intelligence"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Oracle Business Intelligence"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Oracle Business Intelligence"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Oracle Business Intelligence"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Business Intelligence"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Oracle Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Oracle Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Oracle Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "Oracle Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "Oracle Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Designer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Enterprise Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Oracle Enterprise Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Oracle Enterprise Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Oracle Enterprise Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Enterprise Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Forms"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Forms"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Oracle Forms"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Oracle Forms"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Oracle Forms"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Oracle Forms"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Forms"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Net Services"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Real Application Clusters (RAC)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Service Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Service Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Oracle Service Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Oracle Service Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Oracle Service Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Oracle Service Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Service Bus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle TimesTen In-Memory Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle TimesTen In-Memory Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Oracle TimesTen In-Memory Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Oracle TimesTen In-Memory Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Oracle TimesTen In-Memory Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Oracle TimesTen In-Memory Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle TimesTen In-Memory Database"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Warehouse Builder (OWB)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle Warehouse Builder (OWB)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Oracle Warehouse Builder (OWB)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Oracle Warehouse Builder (OWB)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Oracle Warehouse Builder (OWB)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Warehouse Builder (OWB)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|*",
+      "Child Type": "App",
+      "Child Class": "Orbix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OS/2",
+      "Child Type": "App",
+      "Child Class": "Orbix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Orbix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Orbix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Orbix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Orbix"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Pentaho"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Pentaho"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Pentaho"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "PeopleSoft"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Perkin Elmer Informatics (PKI)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "PostgreSQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "PostgreSQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "PostgreSQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|OpenBSD",
+      "Child Type": "App",
+      "Child Class": "PostgreSQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "PostgreSQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Powerbuilder"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Pro*COBOL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Pro*COBOL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Pro*COBOL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "PVCS Version Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "PVCS Version Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "PVCS Version Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "PVCS Version Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "RabbitMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "RabbitMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "RabbitMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "RabbitMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "RabbitMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Amazon Linux",
+      "Child Type": "App",
+      "Child Class": "Redis"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Redis"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Redis"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Redis"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Remedy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Remedy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Remedy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Remedy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Remedy"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Riak"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Riak"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|*",
+      "Child Type": "App",
+      "Child Class": "Riak"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Riak"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "RightFax"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Rumba"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SAP BusinessObjects BI server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "SAP Web Dynpro"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Sentry"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SharePoint|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Siebel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Siebel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Siebel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Siebel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Siebel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Siebel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Siebel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SNA Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Splunk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Splunk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Splunk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "Splunk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Splunk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Splunk"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SQLIO"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Sybase SQL Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "Syncsort"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Teradata"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Teradata QS Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "TIBCO Business Works (BW)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "TIBCO Business Works (BW)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "TIBCO Business Works (BW)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "TIBCO Business Works (BW)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "TIBCO Business Works (BW)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "TIBCO Business Works (BW)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "TIBCO InConcert"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "TIBCO Rendezvous"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "TIBCO Rendezvous"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "TIBCO Rendezvous"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "TIBCO Rendezvous"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OpenVMS",
+      "Child Type": "App",
+      "Child Class": "TIBCO Rendezvous"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "TIBCO Rendezvous"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "TIBCO Rendezvous"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "TIBCO Rendezvous"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "TIBCO Rendezvous"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Tivoli Access Manager (TAM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Tivoli Access Manager (TAM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|zLinux",
+      "Child Type": "App",
+      "Child Class": "Tivoli Access Manager (TAM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Tivoli Access Manager (TAM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Tivoli Access Manager (TAM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Tivoli Access Manager (TAM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "TSO/ISPF"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "TWS zCentric"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "ViewNow X Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "Virtual I/O Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Virtual I/O Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Virtual I/O Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Virtual I/O Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Visibroker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Visibroker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Visibroker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Visibroker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Visibroker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Visibroker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Visibroker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "WebFOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "WebFOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|zLinux",
+      "Child Type": "App",
+      "Child Class": "WebFOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "WebFOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "WebFOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "WebFOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "WebFOCUS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "WebLogic Integration"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "WebLogic Integration"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "WebLogic Integration"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "WebLogic Integration"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "WebLogic Integration"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "WebLogic Integration"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "WebLogic Integration"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "WebSphere Message Broker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "WebSphere Message Broker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "WebSphere Message Broker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "WebSphere Message Broker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "WebSphere Message Broker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "WebSphere Message Broker"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Wherescape Red"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Wherescape Red"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Wherescape Red"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Windchill"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Wise Package Studio"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Wordpress"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Wordpress"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Wordpress"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "XAMPP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "XAMPP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "XAMPP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "ZeroMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Debian",
+      "Child Type": "App",
+      "Child Class": "ZeroMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Fedora",
+      "Child Type": "App",
+      "Child Class": "ZeroMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "ZeroMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "ZeroMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "ZeroMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "ZeroMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "ZeroMQ"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "A-Auto Job Scheduling Software"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "A-Auto Job Scheduling Software"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "A-Auto Job Scheduling Software"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "A-Auto Job Scheduling Software"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Adobe Acrobat Reader"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Adobe Acrobat Reader"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "Adobe Acrobat Reader"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "Adobe Acrobat Reader"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Adobe Acrobat Reader"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Adobe Acrobat Reader"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Adobe Acrobat Reader"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Adobe Acrobat Reader"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "Apache Hbase"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Bluebeam|Bluebeam Q"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Amazon Linux",
+      "Child Type": "App",
+      "Child Class": "BMC Control-M"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "BMC Control-M"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "BMC Control-M"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "BMC Control-M"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "BMC Control-M"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "BMC Control-M"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "BMC Control-M"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "BMC Control-M"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Borland Database Engine (BDE)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "CA Gen"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "CA Gen"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "CA Gen"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "CA Gen"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "CA-Panvalet"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "z/VSE",
+      "Child Type": "App",
+      "Child Class": "CA-Panvalet"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Sysinternal Tools|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Tableau"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Tableau"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Tableau"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Storage Manager|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Storage Manager|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Storage Manager|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Storage Manager|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Storage Manager|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Excel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Microsoft Excel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "Microsoft Excel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "Microsoft Excel"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Monitoring"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Monitoring"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Monitoring"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Monitoring"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Monitoring"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Monitoring"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Monitoring"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "Mozilla Firefox"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Mozilla Firefox"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Mozilla Firefox"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "Mozilla Firefox"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Mozilla Firefox"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|FreeBSD",
+      "Child Type": "App",
+      "Child Class": "Mozilla Firefox"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|NetBSD",
+      "Child Type": "App",
+      "Child Class": "Mozilla Firefox"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|OpenBSD",
+      "Child Type": "App",
+      "Child Class": "Mozilla Firefox"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Mozilla Firefox"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "MS Office 365"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "MS Office 365"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "MS Office 365"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "MS Office 365"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "MS SQL Server Compact"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Citrix Virtual Apps and Desktops"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "DB2"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "Google Chrome"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "Google Chrome"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Google Chrome"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Google Chrome"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Google Chrome"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Greenplum DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Greenplum DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Greenplum DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Business Monitor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Business Monitor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Business Monitor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Business Monitor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "Cisco AMP for Endpoints"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "Cisco AMP for Endpoints"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Cisco AMP for Endpoints"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Cisco AMP for Endpoints"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Cisco AMP for Endpoints"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Clarity LIMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Clarity LIMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Clarity LIMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Clarity LIMS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "ETAP License Manager (LM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "ExamDiff"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "FlexNet Manager Suite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "FlexNet Manager Suite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Amazon Linux",
+      "Child Type": "App",
+      "Child Class": "FlexNet Manager Suite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "FlexNet Manager Suite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Debian",
+      "Child Type": "App",
+      "Child Class": "FlexNet Manager Suite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "FTP Voyager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM BigFix Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM BigFix Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM BigFix Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM BigFix Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "IBM BigFix Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "IBM BigFix Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "IBM BigFix Platform"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Business Process Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Business Process Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Business Process Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Business Process Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM License Metric Tool"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM License Metric Tool"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "IBM License Metric Tool"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM License Metric Tool"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM License Metric Tool"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM License Metric Tool"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Maximo"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Maximo"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Maximo"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Operational Decision Manager (ODM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Operational Decision Manager (ODM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Operational Decision Manager (ODM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "IBM Operational Decision Manager (ODM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Spectrum Scale|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Spectrum Scale|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Spectrum Scale|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Asset Management|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Asset Management|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Asset Management|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Asset Management|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Asset Management|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Composite Application Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Composite Application Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Composite Application Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Composite Application Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM Tivoli Composite Application Manager"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Business Integration Adaptor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Business Integration Adaptor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Business Integration Adaptor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Business Integration Adaptor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Business Integration Adaptor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "IBM WebSphere Business Integration Adaptor"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Info-ZIP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Info-ZIP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|*",
+      "Child Type": "App",
+      "Child Class": "joinIT"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "LifeFlow"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "LifeFlow"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Malwarebytes Anti-Malware"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Malwarebytes Anti-Malware"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "Malwarebytes Anti-Malware"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "Malwarebytes Anti-Malware"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "MarkLogic DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "MarkLogic DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "MarkLogic DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "MarkLogic DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "MarkLogic DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Amazon Linux",
+      "Child Type": "App",
+      "Child Class": "MarkLogic DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "MarkLogic DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Memcached"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Memcached"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Memcached"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Forefront Identity Manager (FIM)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Internet Explorer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Microsoft Internet Explorer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Microsoft Internet Explorer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Microsoft Internet Explorer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft ISA Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft System Center Endpoint Protection"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft System Center Endpoint Protection"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Microsoft System Center Endpoint Protection"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Microsoft Visual Studio"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Microsoft Visual Studio"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Hyperion|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Hyperion|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Oracle Hyperion|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Oracle Hyperion|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Oracle Hyperion|*"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Oracle Retail Point-of-Service"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle Smart View"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle SOA Suite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle SOA Suite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle SOA Suite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Oracle SOA Suite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Oracle SQL Developer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle SQL Developer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Oracle SQL Developer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Oracle SQL Developer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Oracle SQL Developer"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Pervasive PSQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Pervasive PSQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Pervasive PSQL"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "PIPE-FLO"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MS-DOS",
+      "Child Type": "App",
+      "Child Class": "PKZIP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OS/2",
+      "Child Type": "App",
+      "Child Class": "PKZIP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "PKZIP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Planview"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Planview"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Primavera P6"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Primavera P6"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "iOS",
+      "Child Type": "App",
+      "Child Class": "Primavera P6"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Android",
+      "Child Type": "App",
+      "Child Class": "Primavera P6"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "ProjectWise"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "ProjectWise Web Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "QlikView"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Rational ClearCase"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Rational ClearCase"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Rational ClearCase"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "Rational ClearCase"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "Rational ClearCase"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Rational ClearCase"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Rational ClearCase"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Rational ClearQuest"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "Rational ClearQuest"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Rational ClearQuest"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "Rational ClearQuest"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Rational ClearQuest"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SAP ERP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "SAP ERP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "SAP ERP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "SAP ERP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "SAP ERP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "SAP ERP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "SAP HANA DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "SAP HANA DB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "SAP MaxDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "SAP MaxDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "SAP MaxDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "SAP MaxDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "SAP MaxDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SAP MaxDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "SAP NetWeaver Business Warehouse"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "SAP NetWeaver Business Warehouse"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SAP NetWeaver Business Warehouse"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SAP SQL Anywhere"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "SAP SQL Anywhere"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "SAP SQL Anywhere"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "SAP SQL Anywhere"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|HP-UX",
+      "Child Type": "App",
+      "Child Class": "SAP SQL Anywhere"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "SAP SQL Anywhere"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "SnagIt"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SnagIt"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "solidDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "solidDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "solidDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|zLinux",
+      "Child Type": "App",
+      "Child Class": "solidDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "solidDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "solidDB"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "SonarQube"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SpaceMonger"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "TCPLink Enterprise Server"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "TortoiseCVS"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "TortoiseSVN"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Uniface"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "OpenVMS",
+      "Child Type": "App",
+      "Child Class": "Uniface"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "Uniface"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "Uniface"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App",
+      "Child Class": "Uniface"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "|*",
+      "Child Type": "App",
+      "Child Class": "VMware Solution Exchange Marketplace (VSX)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "VMware Tools"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "VMware Tools"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "VMware Tools"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "VMware Tools"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "macOS",
+      "Child Type": "App",
+      "Child Class": "VMware Tools"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "VMware Tools"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "VMware vCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "VMware vCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "VMware vCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "VMware vCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "VMware vCenter"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "WebSphere Commerce Suite (WCS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|zLinux",
+      "Child Type": "App",
+      "Child Class": "WebSphere Commerce Suite (WCS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "WebSphere Commerce Suite (WCS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "WebSphere Commerce Suite (WCS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|BSD|SunOS",
+      "Child Type": "App",
+      "Child Class": "WebSphere Commerce Suite (WCS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "WebSphere Commerce Suite (WCS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "WebSphere Commerce Suite (WCS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Windows Indexing Service"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Windows Terminal Server (WTS)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "WingArc SVF"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "WinMerge"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "WinRAR"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "WinSCP"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "ZAP BI"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "Zerto Virtual Replication"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Red Hat Enterprise Linux",
+      "Child Type": "App",
+      "Child Class": "Zerto Virtual Replication"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|SUSE Linux Enterprise Server",
+      "Child Type": "App",
+      "Child Class": "Zerto Virtual Replication"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|CentOS",
+      "Child Type": "App",
+      "Child Class": "Zerto Virtual Replication"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Ubuntu",
+      "Child Type": "App",
+      "Child Class": "Zerto Virtual Replication"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|Oracle Linux",
+      "Child Type": "App",
+      "Child Class": "Zerto Virtual Replication"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "MVS|z/OS",
+      "Child Type": "App",
+      "Child Class": "DB2"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "TWS zCentric"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "TWS zCentric"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Real-Time Decisions (RTD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Real-Time Decisions (RTD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|*",
+      "Child Type": "App Server",
+      "Child Class": "Oracle Real-Time Decisions (RTD)"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "IBM PowerHA"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "IBM i",
+      "Child Type": "App",
+      "Child Class": "IBM PowerHA"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM PowerHA"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Unix|AIX",
+      "Child Type": "App",
+      "Child Class": "Tivoli Netcool/OMNIbus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Tivoli Netcool/OMNIbus"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG Views"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG Views"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG CPLEX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG CPLEX"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG Jviews"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG Jviews"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG Elixir"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG Elixir"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG Supply Chain Apps"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "IBM ILOG Supply Chain Apps"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "ILOG Solver"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "ILOG Solver"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Windows|*",
+      "Child Type": "App",
+      "Child Class": "SQLite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "SQLite"
+    },
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App",
+      "Child Class": "Fortran"
     }
   ]
 }
