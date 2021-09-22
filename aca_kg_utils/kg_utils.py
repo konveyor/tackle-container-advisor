@@ -18,12 +18,13 @@ import os
 from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
 from pathlib import Path
-
-
+from typing import Container
 
 config_obj = configparser.ConfigParser()
-config_obj.read("./config.ini")
 
+#config_obj.read("aca_kg_utils/config.ini")
+
+config_obj.read("./config.ini")
 os.chdir('..')
 
 def cleanStrValue(value):
@@ -41,6 +42,65 @@ def cleanStrValue(value):
     else:
         value = ''
     return value
+
+
+
+def explore_db(conn):
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = []
+
+    for col in cursor.fetchall():
+        tables.append(col[0])
+    print("tables: {}".format(tables))
+   
+    for table in tables:
+        print(table)
+        print("===============================")
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM  {}".format(table))
+
+        #view Column names
+        col_name_list = [tuple[0] for tuple in cur.description]
+        print(col_name_list)
+        #view first two rows
+        for row in cur.fetchmany(5):
+            print(row)
+        print("\n")
+
+
+def load_docker_openshift_urls(connect):
+
+    doc_cursor = connect.cursor()
+    doc_cursor.execute("SELECT * FROM docker_images")
+
+    open_cursor = connect.cursor()
+    open_cursor.execute("SELECT * FROM openshift_images")
+
+    
+    docker_urls  = {}
+    openshift_urls = {}
+    for img in doc_cursor.fetchall():
+        container_name  , docker_url = img[1] , img [10]
+        docker_urls[container_name] = docker_url
+
+    for open_imag in open_cursor.fetchall():
+        openshift_container_name , open_url = img[1] , img [10]
+        openshift_urls[openshift_container_name] = open_url
+
+    print(json.dumps(docker_urls , indent= 4))
+
+    
+
+
+
+
+
+
+
+    pass
+
 
 
 
@@ -784,7 +844,36 @@ def create_inverted_openshifht_image_kg(db_connection):
         else: inverted_openshift_images_kg[entities[str(runtime_id)]].append(container_name)
     
     save_json(inverted_openshift_images_kg, "inverted_openshiftimageKG")
-  
+
+def create_env_var_kg(connection):
+
+    """
+    Create  environment variable  KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves environment variables  KG to the ontology folder.
+    :rtype: JSON file 
+    """
+
+    cur = connection.cursor()
+    cur.execute("SELECT * FROM  environment_variables")  
+    env_kg = {}
+    env_kg['Version'] =  config_obj["db"]["version"]
+
+
+    for env in cur.fetchall():    
+
+        env_var ,container_name  = env[1:3]
+
+        if container_name not in env_kg.keys():
+            env_kg[container_name] =  []
+        else:
+            env_kg[container_name].append(env_var)
+
+    save_json(env_kg, "environment_variablesKG")
+
 
 def create_cot_kg(db_connection):
 
@@ -810,7 +899,6 @@ def create_cot_kg(db_connection):
     for entity in cur.fetchall():
 
         entity_name  = entity[1]
-
         cots.append(entity_name)
     
     cot_kg["COTS"] = cots
@@ -864,7 +952,6 @@ if __name__== '__main__':
         print(f'{k} is not a key in your config.ini file.')
         exit()
 
-
     if not os.path.isfile(db_path):
         logging.error(f'{db_path} is not a valid file. Check your config.ini file for valid file under "db_path" key  ')
         print("{} is not a valid file. Check your config.ini file for valid file under 'db_path' key ".format(db_path))
@@ -872,7 +959,11 @@ if __name__== '__main__':
 
     else:
 
-        connection = create_db_connection(db_path)  
+        connection = create_db_connection(db_path)
+
+        #explore_db(connection)
+        #load_docker_openshift_urls(connection)
+        create_env_var_kg(connection)
         create_inverted_compatibility_kg(connection)
         create_class_type_mapper(connection)
         create_openshift_image_kg(connection)
