@@ -1,4 +1,10 @@
 ==========
+Sept 2021
+==========
+Openshift URLs have been corrected.
+Added support for parallel processing to scale the backend API.
+
+==========
 Aug 2021
 ==========
 We released a new version of KG 1.0.1 with new entity types, entities, entity mentions, entity relations, and container images.

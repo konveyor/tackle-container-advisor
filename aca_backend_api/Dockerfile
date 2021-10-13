@@ -17,6 +17,7 @@ WORKDIR /app
 ADD ./service /app/service
 ADD ./config.py /app/config.py
 ADD ./planner.py /app/planner.py
+ADD ./multiprocessing_mapreduce.py /app/multiprocessing_mapreduce.py
 ADD ./model_objects /app/model_objects
 ADD ./ontologies /app/ontologies
 ADD ./config.ini /app/config.ini
@@ -37,4 +38,4 @@ ENV PORT 8000
 EXPOSE $PORT
 
 ENV GUNICORN_BIND 0.0.0.0:$PORT
-CMD ["gunicorn", "--workers=3", "--timeout", "300", "service:app"]
+CMD ["gunicorn", "--workers=2", "--threads=500", "--timeout", "300", "service:app"]
