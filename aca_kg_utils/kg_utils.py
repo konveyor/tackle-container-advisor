@@ -91,18 +91,6 @@ def load_docker_openshift_urls(connect):
 
     print(json.dumps(docker_urls , indent= 4))
 
-    
-
-
-
-
-
-
-
-    pass
-
-
-
 
 
 def type_mapper(db_connection):
@@ -858,7 +846,7 @@ def create_env_var_kg(connection):
     """
 
     cur = connection.cursor()
-    cur.execute("SELECT * FROM  environment_variables")  
+    cur.execute("SELECT * FROM  docker_environment_variables")  
     env_kg = {}
     env_kg['Version'] =  config_obj["db"]["version"]
 
@@ -961,8 +949,8 @@ if __name__== '__main__':
 
         connection = create_db_connection(db_path)
 
-        #explore_db(connection)
-        #load_docker_openshift_urls(connection)
+        explore_db(connection)
+        load_docker_openshift_urls(connection)
         create_env_var_kg(connection)
         create_inverted_compatibility_kg(connection)
         create_class_type_mapper(connection)
