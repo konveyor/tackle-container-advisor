@@ -24,45 +24,6 @@ from sim_applier import sim_applier
 import requests
 from time import time
 
-def run_entity_linking(data_to_qid, context='software'):
-    """
-    Runs entity linking on zero shot test set
-
-    :param data_to_qid: Dictionary containing mapping of test mention to Wikidata qid
-    :type data_to_qid: <class 'dict'> 
-    :param context: Context to be applied to entity linking API
-    :type context: string
-
-    :returns: Returns a dictionary of test mention to predicted Wikidata qid
-    """
-    EL_URL     = config_obj['url']['el_url']
-    payload    = []
-    id_to_data = {}
-    for i, data in enumerate(data_to_qid):
-        qid = data_to_qid[data]
-        id_to_data[str(i)] = (data, qid)   
-        payload.append({'id': i, 'mention': data, 'context_left': '', 'context_right': context})
-
-    el_qids   = {}
-    data_json = json.dumps(payload)
-    headers   = {'Content-type': 'application/json'}
-    try:
-        response = requests.post(EL_URL, data=data_json, headers=headers)
-        candidates = response.json()
-    except Exception as e:
-        print("Error querying entity linking url", EL_URL, ":", e)
-        return el_qids
-
-    for i in candidates:
-        mention = id_to_data[i][0]
-        el_qids[mention] = el_qids.get(mention, [])
-        cdata = eval(candidates[i]['top_k_entities'])
-        for j, candidate in enumerate(cdata):
-            qid = candidate[1]
-            el_qids[mention].append(qid)
-
-    return el_qids
-
 def get_data_combinations(data):
     """
     Generate phrases from words in data
@@ -225,29 +186,13 @@ def run_zero_shot():
         print("---------------------------------------------")
         print("Testing zero shot algorithms on %d mentions." % len(data_to_qid))
         print("---------------------------------------------")
-      
-        el_start= time()
-        el_qids = run_entity_linking(data_to_qid, context='')
-        el_end  = time()
-        print(f'EL with no ctx took {(el_end-el_start):.2f} seconds: ', end='')
-        get_topk_accuracy(data_to_qid, el_qids)
-      
+            
         wd_start= time()
         wd_qids = run_wikidata_autocomplete(data_to_qid)
         wd_end  = time()
         print(f'WD api with no ctx took {(wd_end-wd_start):.2f} seconds: ', end='')
         get_topk_accuracy(data_to_qid, wd_qids)
-        
-        elctx_start= time()    
-        elctx_qids = run_entity_linking(data_to_qid)
-        elctx_end  = time()    
-        print(f'EL with ctx=software took {(elctx_end-elctx_start):.2f} seconds: ', end='')
-        get_topk_accuracy(data_to_qid, elctx_qids)
-
-        for data, qid in data_to_qid.items():    
-            if qid in elctx_qids[data] and qid not in wd_qids[data]:
-                logging.info(f"Data = {data}, QID = {qid} not in {wd_qids[data]}")
-        
+                
 
 def run_few_shot(connection):
     fs_test_filename = os.path.join(config_obj['benchmark']['data_path'], 'fs_test.csv')
