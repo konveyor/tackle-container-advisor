@@ -14108,11 +14108,11 @@ INSERT INTO entity_types VALUES(9,'Lang');
 INSERT INTO entity_types VALUES(10,'Runtime');
 INSERT INTO entity_types VALUES(11,'Storage');
 INSERT INTO entity_types VALUES(12,'Lib');
-INSERT INTO entity_types VALUES(13,'Lib');
-INSERT INTO entity_types VALUES(14,'Runtime');
-INSERT INTO entity_types VALUES(15,'Runlib');
-INSERT INTO entity_types VALUES(16,'App Server');
-INSERT INTO entity_types VALUES(17,'App');
+INSERT INTO entity_types VALUES(13,'Runtime');
+INSERT INTO entity_types VALUES(14,'App Server');
+INSERT INTO entity_types VALUES(15,'Lib');
+INSERT INTO entity_types VALUES(16,'App');
+INSERT INTO entity_types VALUES(17,'Runlib');
 INSERT INTO entity_types VALUES(18,'OS');
 INSERT INTO entity_types VALUES(19,'Lang');
 CREATE TABLE openshift_baseos_images (
@@ -14251,7 +14251,7 @@ INSERT INTO openshift_images VALUES(99,'perl',426,347,NULL,NULL,NULL,NULL,NULL,N
 INSERT INTO openshift_images VALUES(100,'postgres',426,NULL,NULL,157,NULL,NULL,NULL,NULL,'https://access.redhat.com/containers/#/registry.connect.redhat.com/ubix/postgres','App');
 INSERT INTO openshift_images VALUES(101,'solr',426,NULL,NULL,11,NULL,NULL,NULL,NULL,'https://access.redhat.com/containers/#/cp.icr.io/cp/cpd/solr-ubi','App');
 INSERT INTO openshift_images VALUES(102,'odm',426,NULL,NULL,73,NULL,NULL,NULL,NULL,'https://access.redhat.com/containers/#/registry.connect.redhat.com/ibm/odm-dbserver','App');
-CREATE TABLE environment_variables(
+CREATE TABLE docker_environment_variables(
                                         id integer PRIMARY KEY AUTOINCREMENT,
                                         Environment_Variables text NOT NULL,
                                         Container_Name text NOT NULL,
@@ -14262,34 +14262,34 @@ CREATE TABLE environment_variables(
                                         FOREIGN KEY (Required) REFERENCES entity_types (id),
                                         FOREIGN KEY (Default_Values) REFERENCES entity_types (id)
                                     );
-INSERT INTO environment_variables VALUES(1,'DB2INSTANCE','db2','Y','');
-INSERT INTO environment_variables VALUES(2,'DB2INST1_PASSWORD','db2','Y','');
-INSERT INTO environment_variables VALUES(3,'DBNAME','db2','Y','');
-INSERT INTO environment_variables VALUES(4,'BLU','db2','N','True');
-INSERT INTO environment_variables VALUES(5,'ENABLE_ORACLE_COMPATIBILITY','db2','','');
-INSERT INTO environment_variables VALUES(6,'SAMPLEDB','db2','','');
-INSERT INTO environment_variables VALUES(7,'PERSISTENT_HOME','db2','','');
-INSERT INTO environment_variables VALUES(8,'HADR_ENABLED','db2','','');
-INSERT INTO environment_variables VALUES(9,'ETCD_ENDPOINT','db2','','');
-INSERT INTO environment_variables VALUES(10,'ETCD_USERNAME','db2','','');
-INSERT INTO environment_variables VALUES(11,'ETCD_PASSWORD','db2','','');
-INSERT INTO environment_variables VALUES(12,'TEXT_SEARCH','db2','N','');
-INSERT INTO environment_variables VALUES(13,'ARCHIVE_LOGS','db2','N','True');
-INSERT INTO environment_variables VALUES(14,'AUTOCONFIG','db2','N','True');
-INSERT INTO environment_variables VALUES(15,'MYSQL_HOST','mysql','','');
-INSERT INTO environment_variables VALUES(16,'MYSQL_ROOT_PASSWORD','mysql','','');
-INSERT INTO environment_variables VALUES(17,'MYSQL_DATABASE','mysql','','');
-INSERT INTO environment_variables VALUES(18,'MYSQL_USER','mysql','','');
-INSERT INTO environment_variables VALUES(19,'MYSQL_PASSWORD','mysql','','');
-INSERT INTO environment_variables VALUES(20,'MYSQL_ALLOW_EMPTY_PASSWORD','mysql','','');
-INSERT INTO environment_variables VALUES(21,'MYSQL_RANDOM_ROOT_PASSWORD','mysql','','');
-INSERT INTO environment_variables VALUES(22,'MYSQL_ONETIME_PASSWORD','mysql','','');
-INSERT INTO environment_variables VALUES(23,'MYSQL_INITDB_SKIP_TZINFO','mysql','','');
-INSERT INTO environment_variables VALUES(24,'CATALINA_BASE','tomcat','','');
-INSERT INTO environment_variables VALUES(25,'CATALINA_HOME','tomcat','','');
-INSERT INTO environment_variables VALUES(26,'CATALINA_TMPDIR','tomcat','','');
-INSERT INTO environment_variables VALUES(27,'JRE_HOME','tomcat','','');
-INSERT INTO environment_variables VALUES(28,'CLASSPATH','tomcat','','');
+INSERT INTO docker_environment_variables VALUES(1,'DB2INSTANCE','db2','Y','');
+INSERT INTO docker_environment_variables VALUES(2,'DB2INST1_PASSWORD','db2','Y','');
+INSERT INTO docker_environment_variables VALUES(3,'DBNAME','db2','Y','');
+INSERT INTO docker_environment_variables VALUES(4,'BLU','db2','N','True');
+INSERT INTO docker_environment_variables VALUES(5,'ENABLE_ORACLE_COMPATIBILITY','db2','','');
+INSERT INTO docker_environment_variables VALUES(6,'SAMPLEDB','db2','','');
+INSERT INTO docker_environment_variables VALUES(7,'PERSISTENT_HOME','db2','','');
+INSERT INTO docker_environment_variables VALUES(8,'HADR_ENABLED','db2','','');
+INSERT INTO docker_environment_variables VALUES(9,'ETCD_ENDPOINT','db2','','');
+INSERT INTO docker_environment_variables VALUES(10,'ETCD_USERNAME','db2','','');
+INSERT INTO docker_environment_variables VALUES(11,'ETCD_PASSWORD','db2','','');
+INSERT INTO docker_environment_variables VALUES(12,'TEXT_SEARCH','db2','N','');
+INSERT INTO docker_environment_variables VALUES(13,'ARCHIVE_LOGS','db2','N','True');
+INSERT INTO docker_environment_variables VALUES(14,'AUTOCONFIG','db2','N','True');
+INSERT INTO docker_environment_variables VALUES(15,'MYSQL_HOST','mysql','','');
+INSERT INTO docker_environment_variables VALUES(16,'MYSQL_ROOT_PASSWORD','mysql','','');
+INSERT INTO docker_environment_variables VALUES(17,'MYSQL_DATABASE','mysql','','');
+INSERT INTO docker_environment_variables VALUES(18,'MYSQL_USER','mysql','','');
+INSERT INTO docker_environment_variables VALUES(19,'MYSQL_PASSWORD','mysql','','');
+INSERT INTO docker_environment_variables VALUES(20,'MYSQL_ALLOW_EMPTY_PASSWORD','mysql','','');
+INSERT INTO docker_environment_variables VALUES(21,'MYSQL_RANDOM_ROOT_PASSWORD','mysql','','');
+INSERT INTO docker_environment_variables VALUES(22,'MYSQL_ONETIME_PASSWORD','mysql','','');
+INSERT INTO docker_environment_variables VALUES(23,'MYSQL_INITDB_SKIP_TZINFO','mysql','','');
+INSERT INTO docker_environment_variables VALUES(24,'CATALINA_BASE','tomcat','','');
+INSERT INTO docker_environment_variables VALUES(25,'CATALINA_HOME','tomcat','','');
+INSERT INTO docker_environment_variables VALUES(26,'CATALINA_TMPDIR','tomcat','','');
+INSERT INTO docker_environment_variables VALUES(27,'JRE_HOME','tomcat','','');
+INSERT INTO docker_environment_variables VALUES(28,'CLASSPATH','tomcat','','');
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('docker_baseos_images',26);
 INSERT INTO sqlite_sequence VALUES('docker_images',326);
@@ -14299,5 +14299,5 @@ INSERT INTO sqlite_sequence VALUES('entity_relations',2522);
 INSERT INTO sqlite_sequence VALUES('entity_types',19);
 INSERT INTO sqlite_sequence VALUES('openshift_baseos_images',2);
 INSERT INTO sqlite_sequence VALUES('openshift_images',102);
-INSERT INTO sqlite_sequence VALUES('environment_variables',28);
+INSERT INTO sqlite_sequence VALUES('docker_environment_variables',28);
 COMMIT;
