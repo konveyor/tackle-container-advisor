@@ -45,6 +45,10 @@ Two, you can directly run the docker as follows.
 	1. cd aca_backend_api/
 	2. docker-compose  -f 'docker-compose-api.yml' --env-file ./config.ini up -d --build
 
+### Deploying TCA's Backend API on RedHat developer sandbox OpenShift cluster
+
+	1. sh deploy.sh
+	
 ### Updating TCA's Knowledge Base
 
 If you want to make changes to TCA's Knowledge Base, please follow the instructions below.
@@ -120,6 +124,8 @@ Please perform the following changes when you create a new version
 ##### Change the README file in aca_db with new version information
 
 ##### Change all the scripts (clean.sh and setup.sh) to reflect the latest version of the knowledge base
+
+
 
 ### References
 

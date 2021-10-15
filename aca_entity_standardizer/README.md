@@ -48,4 +48,11 @@ Python scripts to generate entity standardization model
 ### For testing different use cases
 -``python sim_standardizer_tester.py``
 
+### For generating zero shot and few shot benchmarks
+- ``python benchmarks.py``
+
+### For running zero shot and few shot baselines
+- ``python run_tests.py``
+
+
 	
