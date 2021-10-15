@@ -178,7 +178,6 @@ def get_topk_accuracy(data_to_ids, alg_ids, is_qid=True):
     :returns: Prints top-1, top-3, top-5, top-10, top-inf accuracy
     """
 
-    total_mentions = len(data_to_ids)
     topk  = (0, 0, 0, 0, 0) # Top-1, top-3, top-5, top-10, top-inf
     for mention in data_to_ids:
         (entity_id, wiki_id) = data_to_ids[mention]
@@ -198,7 +197,7 @@ def get_topk_accuracy(data_to_ids, alg_ids, is_qid=True):
                     topk = (topk[0],topk[1],topk[2],topk[3]+1,topk[4])
                 break
 
-    print(f"Top-1 = {topk[0]/total_mentions:.2f}, top-3 = {topk[1]/total_mentions:.2f}, top-5 = {topk[2]/total_mentions:.2f}, top-10= {topk[3]/total_mentions:.2f}, top-inf = {topk[4]/total_mentions:.2f}({topk[4]})")
+    return topk
 
 def run_baselines(connection):
     """
@@ -228,22 +227,27 @@ def run_baselines(connection):
             logging.error(exception)
             exit()
         
-        print("---------------------------------------------")
-        print("Running baselines on %d mentions." % len(data_to_ids))
-        print("---------------------------------------------")
-        
+        total_mentions = len(data_to_ids)                        
+        '''
         wd_start= time()
         wd_qids = run_wikidata_autocomplete(data_to_ids)
         wd_end  = time()
         print(f'WD api with no ctx took {(wd_end-wd_start):.2f} seconds: ', end='')
-        get_topk_accuracy(data_to_ids, wd_qids)
+        wd_topk = get_topk_accuracy(data_to_ids, wd_qids)        
+        print(f"Top-1 = {wd_topk[0]/total_mentions:.2f}, top-3 = {wd_topk[1]/total_mentions:.2f}, top-5 = {wd_topk[2]/total_mentions:.2f}, top-10= {wd_topk[3]/total_mentions:.2f}, top-inf = {wd_topk[4]/total_mentions:.2f}({wd_topk[4]})")
+        '''
+        wd_topk = (0, 0, 0, 0, 0)
 
         tf_start= time()
         tf_eids = run_tfidf(data_to_ids, connection)
         tf_end  = time()
         print(f'TFIDF model took {(tf_end-tf_start):.2f} seconds: ', end='')
-        get_topk_accuracy(data_to_ids, tf_eids, is_qid=False)
-
+        tf_topk = get_topk_accuracy(data_to_ids, tf_eids, is_qid=False)
+        print(f"Top-1 = {tf_topk[0]/total_mentions:.2f}, top-3 = {tf_topk[1]/total_mentions:.2f}, top-5 = {tf_topk[2]/total_mentions:.2f}, top-10= {tf_topk[3]/total_mentions:.2f}, top-inf = {tf_topk[4]/total_mentions:.2f}({tf_topk[4]})")
+        print(f"|Method|top-1|top-3|top-5|top-10|top-inf(count)|")
+        print(f"|------|-----|-----|-----|------|--------------|")
+        print(f"|WD api|{wd_topk[0]/total_mentions:.2f}|{wd_topk[1]/total_mentions:.2f}|{wd_topk[2]/total_mentions:.2f}|{wd_topk[3]/total_mentions:.2f}|{wd_topk[4]/total_mentions:.2f}({wd_topk[4]})|")
+        print(f"|TFIDF |{tf_topk[0]/total_mentions:.2f}|{tf_topk[1]/total_mentions:.2f}|{tf_topk[2]/total_mentions:.2f}|{tf_topk[3]/total_mentions:.2f}|{tf_topk[4]/total_mentions:.2f}({tf_topk[4]})|")
 
 config_obj = configparser.ConfigParser()
 config_obj.read("./config.ini")

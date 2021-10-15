@@ -69,10 +69,12 @@ def create_train_test_sets(connection):
     """
     eid_to_qid  = {}
     data_to_ids = {}
-    total = 0
+    total       = 0
     no_external = 0
     no_mention  = 0
-    no_qid   = 0
+    no_qid      = 0
+    duplicates  = 0
+    conflicts   = 0
 
     entity_cursor = connection.cursor()
     entity_cursor.execute("SELECT * FROM entities")
@@ -103,8 +105,10 @@ def create_train_test_sets(connection):
             (eid, qid, src) = data_to_ids[mention]
             if eid != entity_id or qid != wiki_id:
                 logging.error(f"Conflict: {mention} -> {eid} vs. {entity_id}, {qid} vs. {wiki_id}")
+                conflicts += 1
             else:
                 logging.warning(f"Duplicate: {mention} -> {eid}, {qid}")
+                duplicates += 1
         else:
             data_to_ids[mention] = (entity_id, wiki_id, 'class')
 
@@ -125,8 +129,10 @@ def create_train_test_sets(connection):
             (eid, qid, src) = data_to_ids[mention]
             if eid != entity_id or qid != wiki_id:
                 logging.error(f"Conflict: {mention} -> {eid} vs. {entity_id}, {qid} vs. {wiki_id}")
+                conflicts += 1
             else:
                 logging.warning(f"Duplicate: {mention} -> {qid}")
+                duplicates += 1
         else:
             data_to_ids[mention] = (entity_id, wiki_id, source)
 
@@ -150,14 +156,9 @@ def create_train_test_sets(connection):
         logging.error(exception)
         exit()
     print(f"---------------------------------------------")
-    print(f"{len(eid_to_qid)} entities have qids.")
-    print(f"{len(data_to_ids)} mentions collected.")
-    print(f"{no_external} mentions have no external link.")
-    print(f"{no_qid} mentions have no qid.")
-    print(f"{no_mention} mentions are empty.")
-    print(f"{num_train} mentions added to train set.")
-    print(f"{num_test} mentions added to test set.")
-    print(f"---------------------------------------------")
+    print(f"Entities: {len(eid_to_qid)} entities have qids.")
+    print(f"Mentions: {len(data_to_ids)} collected, {no_external} no external link, {no_qid} no qid, {no_mention} empty, {duplicates} duplicates, {conflicts} conflicts.")    
+    print(f"Samples:  {num_train} train, {num_test} test.")
 
 config_obj = configparser.ConfigParser()
 config_obj.read("config.ini")
