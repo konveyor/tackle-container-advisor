@@ -57,13 +57,16 @@ Python scripts to generate entity standardization model
 ### History of Basline runs
 <details>
   <summary>List of baseline runs after PR merges</summary><p>
-	{{
- 	 |Method|top-1|top-3|top-5|top-10|top-inf(count)|
-     |------|-----|-----|-----|------|--------------|
-     |WD api|0.39 |0.53 |0.59 |0.61  |0.68 (1470)   |
-     |TFIDF |0.00 |0.00 |0.00 |0.00  |0.00 (1)      |
-	}}
-</p></details>
+	<table>
+    <thead>
+    <tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th></tr>
+    </thead>
+    <tbody>
+    <tr><td>WD api</td><td>0.39</td><td>0.53</td><td>0.59</td><td>0.61</td><td>0.68 (1470)</td></tr>	     
+    <tr><td>TFIDF</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00 (1)</td></tr>	     
+    </tbody>
+    </table>
+</details>
   
 
 
