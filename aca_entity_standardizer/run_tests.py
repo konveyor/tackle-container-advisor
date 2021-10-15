@@ -245,87 +245,6 @@ def run_baselines(connection):
         get_topk_accuracy(data_to_ids, tf_eids, is_qid=False)
 
 
-
-
-def run_zero_shot():
-    zs_test_filename = os.path.join(config_obj['benchmark']['data_path'], 'zs_test.csv')        
-
-    if not os.path.isfile(zs_test_filename):
-        logging.error(f'{zs_test_filename} is not a file. Run "python benchmarks.py" to generate this test data file')
-        print(f'{zs_test_filename} is not a file. Run "python benchmarks.py" to generate this test data file')
-        exit()
-    else:
-        data_to_qid = {}
-        try:
-            zs_test_filename = os.path.join(config_obj['benchmark']['data_path'], 'zs_test.csv')        
-            with open(zs_test_filename, 'r') as zero_shot:            
-                test = [d.strip() for d in zero_shot.readlines()]
-                for row in test:
-                    (data, qid) = tuple(row.split('\t'))
-                    data_to_qid[data] = qid
-        except OSError as exception:
-            logging.error(exception)
-            exit()
-        
-        print("---------------------------------------------")
-        print("Testing zero shot algorithms on %d mentions." % len(data_to_qid))
-        print("---------------------------------------------")
-            
-        wd_start= time()
-        wd_qids = run_wikidata_autocomplete(data_to_qid)
-        wd_end  = time()
-        print(f'WD api with no ctx took {(wd_end-wd_start):.2f} seconds: ', end='')
-        get_topk_accuracy(data_to_qid, wd_qids)
-                
-
-def run_few_shot(connection):
-    fs_test_filename = os.path.join(config_obj['benchmark']['data_path'], 'fs_test.csv')
-    
-    if not os.path.isfile(fs_test_filename):
-        logging.error(f'{fs_test_filename} is not a file. Run "python benchmarks.py" to generate this test data file')
-        print(f'{fs_test_filename} is not a file. Run "python benchmarks.py" to generate this test data file')
-        exit()
-    else:
-        entity_cursor = connection.cursor()
-
-    entity_cursor.execute("SELECT * FROM entities")
-    entity_to_eid  = {}
-    for entity_tuple in entity_cursor.fetchall():
-        entity_id, entity, entity_type_id, external_link = entity_tuple
-        entity_to_eid[entity] = entity_id
-
-    data_to_eid = {}
-    try:
-        with open(fs_test_filename, 'r') as few_shot:            
-            test = [d.strip() for d in few_shot.readlines()]
-            for row in test:
-                (data, eid) = tuple(row.split('\t'))
-                data_to_eid[data] = eid
-    except OSError as exception:
-        logging.error(exception)
-        exit()
-
-    mentions  = data_to_eid.keys()
-    test_data = ",".join(mentions)
-
-    model_path = config_obj["model"]["model_path"]         
-    sim_app    = sim_applier(model_path)
-    start      = time()
-    tech_sim_scores=sim_app.tech_stack_standardization(test_data)    
-    end        = time()
-    num_correct=0
-    for mention, entity in zip(mentions, tech_sim_scores):
-        correct_eid   = data_to_eid.get(mention, None)     
-        predicted_eid = entity_to_eid.get(entity[0], None)
-        if not correct_eid:
-            logging.error(f"Mention {mention} not found in data_to_eid.")
-        if correct_eid != predicted_eid:
-            num_correct += 1
-    print(f"---------------------------------------------")
-    print(f"Testing few shot algorithms with {len(mentions)} mentions.")
-    print(f"---------------------------------------------")
-    print(f"tf-idf took {(end-start):.2f} seconds: accuracy = {(num_correct/len(mentions)):.2f}")
-
 config_obj = configparser.ConfigParser()
 config_obj.read("./config.ini")
 
@@ -354,5 +273,3 @@ if __name__ == '__main__':
     else:
         connection = create_db_connection(db_path)
         run_baselines(connection)
-        # run_few_shot(connection)
-        # run_zero_shot()
