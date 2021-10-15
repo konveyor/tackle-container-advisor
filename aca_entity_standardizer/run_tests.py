@@ -113,43 +113,80 @@ def get_wikidata_qids(data):
     wd_qids[data] = qids
     return wd_qids
 
-def run_wikidata_autocomplete(data_to_qid):
+def run_wikidata_autocomplete(data_to_ids):
     """
-    Runs wikidata autocomplete on zero shot test set
+    Runs wikidata autocomplete on test set
 
-    :param data_to_qid: Dictionary containing mapping of test mention to Wikidata qid
+    :param data_to_ids: Dictionary containing mapping of test mention to tuple of (entity id, Wikidata qid)
     :type data_to_qid: <class 'dict'> 
 
-    :returns: Returns a dictionary of test mention to predicted Wikidata qid
+    :returns: Returns a dictionary of test mention to list of predicted Wikidata qids
     """
     pool             = multiprocessing.Pool(2*os.cpu_count())
-    wd_results       = pool.map(get_wikidata_qids, data_to_qid.keys())
+    wd_results       = pool.map(get_wikidata_qids, data_to_ids.keys())
     pool.close()
 
     wd_qids = {k:v for item in wd_results for k,v in item.items()}
     return wd_qids
 
-def get_topk_accuracy(data_to_qid, alg_qids):
+def run_tfidf(data_to_ids, connection):
+    """
+    Runs tfidf model on test set
+
+    :param data_to_ids: Dictionary containing mapping of test mention to tuple of (entity id, Wikidata qid)
+    :type data_to_qid: <class 'dict'> 
+
+    :returns: Returns a dictionary of test mention to list of predicted entity ids
+    """ 
+    entity_cursor = connection.cursor()   
+    entity_cursor.execute("SELECT * FROM entities")
+    entity_to_eid  = {}
+    for entity_tuple in entity_cursor.fetchall():
+        entity_id, entity, entity_type_id, external_link = entity_tuple
+        entity_to_eid[entity] = entity_id
+
+
+    mentions  = data_to_ids.keys()
+    test_data = ",".join(mentions)
+
+    model_path = config_obj["model"]["model_path"]         
+    sim_app    = sim_applier(model_path)
+        
+    start      = time()
+    tech_sim_scores=sim_app.tech_stack_standardization(test_data)    
+    end        = time()
+    
+    tf_eids = {}
+    for mention, entity in zip(mentions, tech_sim_scores):
+        predicted_eid = entity_to_eid.get(entity[0], None)
+        tf_eids[mention] = [predicted_eid]
+
+    return tf_eids
+
+
+def get_topk_accuracy(data_to_ids, alg_ids, is_qid=True):
     """
     Print top-1, top-3, top-5, top-10, top-inf accuracy 
 
-    :param data_to_qid: Dictionary containing mapping of test mention to correct Wikidata qid
-    :type data_to_qid: <class 'dict'>
-    :param alg_qids: Dictionary containing mapping of test mention to list of predicted Wikidata qids    
-    :type alg_qids: <class 'dict'>
+    :param data_to_qid: Dictionary containing mapping of test mention to tuple of (entity id, Wikidata qid)
+    :type data_to_ids: <class 'dict'>
+    :param alg_ids: Dictionary containing mapping of test mention to list of predicted Wikidata qids or list of predicted entity ids   
+    :type alg_ids: <class 'dict'>
+    :param is_qid: Specifies if alg_ids contains predicted qids or predicted entity ids  
+    :type is_qid: Boolean
 
     :returns: Prints top-1, top-3, top-5, top-10, top-inf accuracy
     """
 
-    total_mentions = len(data_to_qid)
+    total_mentions = len(data_to_ids)
     topk  = (0, 0, 0, 0, 0) # Top-1, top-3, top-5, top-10, top-inf
-    for mention in data_to_qid:
-        correct_qid = data_to_qid[mention]
-        qids = alg_qids.get(mention, None)
-        if not qids:
+    for mention in data_to_ids:
+        (entity_id, wiki_id) = data_to_ids[mention]
+        ids = alg_ids.get(mention, None)
+        if not ids:
             continue
-        for i, qid in enumerate(qids):
-            if qid == correct_qid: 
+        for i, eid in enumerate(ids):
+            if (not is_qid and eid == entity_id) or (is_qid and eid == wiki_id): 
                 topk = (topk[0],topk[1],topk[2],topk[3],topk[4]+1)
                 if i <= 0:
                     topk = (topk[0]+1,topk[1],topk[2],topk[3],topk[4]) 
@@ -162,6 +199,53 @@ def get_topk_accuracy(data_to_qid, alg_qids):
                 break
 
     print(f"Top-1 = {topk[0]/total_mentions:.2f}, top-3 = {topk[1]/total_mentions:.2f}, top-5 = {topk[2]/total_mentions:.2f}, top-10= {topk[3]/total_mentions:.2f}, top-inf = {topk[4]/total_mentions:.2f}({topk[4]})")
+
+def run_baselines(connection):
+    """
+    Run baseline techniques
+
+    :param connection: A connection to mysql
+    :type  connection:  <class 'sqlite3.Connection'>
+
+    :returns: Prints top-k accuracy for tf-idf and wiki autocomplete api approaches 
+    """
+    test_filename = os.path.join(config_obj['benchmark']['data_path'], 'test.csv')        
+
+    if not os.path.isfile(test_filename):
+        logging.error(f'{test_filename} is not a file. Run "python benchmarks.py" to generate this test data file')
+        print(f'{test_filename} is not a file. Run "python benchmarks.py" to generate this test data file')
+        exit()
+    else:
+        data_to_ids = {}
+        try:
+            test_filename = os.path.join(config_obj['benchmark']['data_path'], 'test.csv')        
+            with open(test_filename, 'r') as test_file:            
+                test = [d.strip() for d in test_file.readlines()]
+                for row in test:
+                    (mention, eid, qid) = tuple(row.split('\t'))
+                    data_to_ids[mention] = (int(eid), qid)
+        except OSError as exception:
+            logging.error(exception)
+            exit()
+        
+        print("---------------------------------------------")
+        print("Running baselines on %d mentions." % len(data_to_ids))
+        print("---------------------------------------------")
+        
+        wd_start= time()
+        wd_qids = run_wikidata_autocomplete(data_to_ids)
+        wd_end  = time()
+        print(f'WD api with no ctx took {(wd_end-wd_start):.2f} seconds: ', end='')
+        get_topk_accuracy(data_to_ids, wd_qids)
+
+        tf_start= time()
+        tf_eids = run_tfidf(data_to_ids, connection)
+        tf_end  = time()
+        print(f'TFIDF model took {(tf_end-tf_start):.2f} seconds: ', end='')
+        get_topk_accuracy(data_to_ids, tf_eids, is_qid=False)
+
+
+
 
 def run_zero_shot():
     zs_test_filename = os.path.join(config_obj['benchmark']['data_path'], 'zs_test.csv')        
@@ -269,5 +353,6 @@ if __name__ == '__main__':
         exit()
     else:
         connection = create_db_connection(db_path)
-        run_few_shot(connection)
-        run_zero_shot()
+        run_baselines(connection)
+        # run_few_shot(connection)
+        # run_zero_shot()
