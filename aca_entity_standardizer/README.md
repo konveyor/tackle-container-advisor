@@ -57,10 +57,11 @@ Python scripts to generate entity standardization model
 ### History of Basline runs
 <details>
   <summary>List of baseline runs after PR merges</summary>
+  
   ## PR [#68](https://github.com/konveyor/tackle-container-advisor/pull/68)
-  <!-- Entities: 447 entities have qids. -->
-  <!-- Mentions: 6285 collected, 163 no external link, 384 no qid, 0 empty, 634 duplicates, 629 conflicts. -->
-  <!-- Samples:  4110 train, 2175 test. -->
+  1. Entities: 447 entities have qids.
+  2. Mentions: 6285 collected, 163 no external link, 384 no qid, 0 empty, 634 duplicates, 629 conflicts.
+  3. Samples:  4110 train, 2175 test.
   <p>	
 	<table>
     <thead>
