@@ -1,0 +1,41 @@
+name: Run benchmarks
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'benchmarks.py'
+      - 'run_tests.py'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'benchmarks.py'
+      - 'run_tests.py'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        cd aca_kg_utils
+        pip install -r requirements.txt
+    - name: Cleanup
+      run: |
+        bash clean.sh
+    - name: Setup Containerization Advisor
+      run: |
+        bash setup.sh
+    - name: Setup benchmarks
+      run: |
+        cd aca_entity_standardizer
+        python benchmarks.py
+	python run_tests.py
