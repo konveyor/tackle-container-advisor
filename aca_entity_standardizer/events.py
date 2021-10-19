@@ -12,4 +12,4 @@ if __name__ == '__main__':
     print("----------- COPY MESSAGE BELOW AND PASTE INTO README -------------")
     print("")
     print("")
-    print(f"### {date} [[View diff]]({url})")
+    print(f"### {date} ([View diff]({url}))")
