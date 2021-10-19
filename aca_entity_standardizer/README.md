@@ -58,7 +58,7 @@ Python scripts to generate entity standardization model
 <details>
   <summary>List of baseline runs after PR merges</summary>
   
-  ### 2021-10-19 [[View diff]](https://github.com/mihirc-github/tackle-container-advisor/commit/a118577fe434de1070a3ab25d49176b78510a052)
+  ### 2021-10-19 ([View diff](https://github.com/mihirc-github/tackle-container-advisor/commit/170578d3bf9b4bd52ead51ca2daa552e0fda94c0))
   1. Entities: 447 entities have qids.
   2. Mentions: 6285 collected, 163 no external link, 384 no qid, 0 empty, 634 duplicates, 629 conflicts.
   3. Samples:  4110 train, 2175 test.
