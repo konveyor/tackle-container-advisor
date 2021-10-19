@@ -13,6 +13,7 @@ import configparser
 import logging
 import sqlite3
 import os
+import pickle
 import json
 import urllib.parse as uparse
 import multiprocessing
@@ -20,7 +21,9 @@ from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
 from pathlib import Path
 from db import create_db_connection
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sim_applier import sim_applier
+from sim_utils import sim_utils
 import requests
 from time import time
 
@@ -127,7 +130,8 @@ def run_wikidata_autocomplete(data_to_ids):
     pool.close()
 
     wd_qids = {k:v for item in wd_results for k,v in item.items()}
-    return wd_qids
+    return wd_qids        
+
 
 def run_tfidf(data_to_ids, connection):
     """
@@ -138,6 +142,50 @@ def run_tfidf(data_to_ids, connection):
 
     :returns: Returns a dictionary of test mention to list of predicted entity ids
     """ 
+
+    vectorizer_name      ="standardization_vectorizer.pickle"
+    standardization_model="standardization_model.pickle"
+    instances_name       ="standardization_dict.pickle"
+
+    entity_names = sim_utils.load_entity_names(connection) 
+    all_instances= []
+    train_filename = os.path.join(config_obj['benchmark']['data_path'], 'train.csv')
+    if not os.path.isfile(train_filename):
+        logging.error(f'{train_filename} is not a file. Run "python benchmarks.py" to generate this train data file')
+        print(f'{train_filename} is not a file. Run "python benchmarks.py" to generate this train data file')
+        exit()
+    else:
+        data_to_eid = {}
+        try:
+            train_filename = os.path.join(config_obj['benchmark']['data_path'], 'train.csv')        
+            with open(train_filename, 'r') as train_file:            
+                train = [d.strip() for d in train_file.readlines()]
+                for row in train:
+                    (mention, eid) = tuple(row.split('\t'))
+                    data_to_eid[mention] = eid
+        except OSError as exception:
+            logging.error(exception)
+            exit()
+        
+        for mention in data_to_eid:
+            eid    = data_to_eid[mention]
+            entity = entity_names[eid]
+
+            if [entity, mention, mention] in all_instances:
+                print("duplicate:",[entity, mention])
+                continue
+
+            all_instances.append([entity, mention , mention])
+  
+    all_targets     =  sim_utils.text_collection_kg_without_tokenization4vector(all_instances)
+    tfidf           =  TfidfVectorizer(token_pattern=r"(?u)\b\w+\b").fit(all_targets)    
+    tfs             =  tfidf.fit_transform(all_targets)
+
+    model_path = config_obj["model"]["model_path"]
+    pickle.dump(tfs, open(model_path+vectorizer_name, "wb"))
+    pickle.dump(tfidf, open(model_path+standardization_model,"wb"))
+    pickle.dump(all_instances, open(model_path+instances_name,"wb"))
+
     entity_cursor = connection.cursor()   
     entity_cursor.execute("SELECT * FROM entities")
     entity_to_eid  = {}
@@ -146,9 +194,7 @@ def run_tfidf(data_to_ids, connection):
         entity_to_eid[entity] = entity_id
 
 
-    mentions   = list(data_to_ids.keys())
-
-    model_path = config_obj["model"]["model_path"]         
+    mentions   = list(data_to_ids.keys())        
     sim_app    = sim_applier(model_path)
         
     start      = time()
@@ -245,10 +291,10 @@ def run_baselines(connection):
         total_mentions = len(data_to_ids)                                
         
         wd_start= time()
-        wd_qids = run_wikidata_autocomplete(data_to_ids)
+        # wd_qids = run_wikidata_autocomplete(data_to_ids)
         wd_end  = time()
-        wd_topk = get_topk_accuracy(data_to_ids, wd_qids)        
-        # wd_topk = (0, 0, 0, 0, 0)
+        # wd_topk = get_topk_accuracy(data_to_ids, wd_qids)        
+        wd_topk = (0, 0, 0, 0, 0)
         
         tf_start= time()
         tf_eids = run_tfidf(data_to_ids, connection)
