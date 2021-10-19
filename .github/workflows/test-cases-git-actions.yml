@@ -27,6 +27,6 @@ jobs:
       - name: Test baselines
         run: |
           cd aca_entity_standardizer
+          python events.py ${{toJSON(github.event)}}
           python benchmarks.py
           python run_tests.py
-          echo "${{toJSON(github.event)}}"
