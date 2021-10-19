@@ -7,4 +7,6 @@ if __name__ == '__main__':
     except Exception as e:
         print("Exception = ", e, sys.argv[1])
    
-    print(events["head_commit"]["timestamp"], events["head_commit"]["url"])
+    date = events["head_commit"]["timestamp"].split('T')[0]
+    url  = events["head_commit"]["url"]
+    print(f"### {date}, [changes]({url})")
