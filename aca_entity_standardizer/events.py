@@ -10,4 +10,6 @@ if __name__ == '__main__':
     date = events["head_commit"]["timestamp"].split('T')[0]
     url  = events["head_commit"]["url"]
     print("----------- COPY MESSAGE BELOW AND PASTE INTO README -------------")
-    print(f"### {date}, [changes]({url})")
+    print("")
+    print("")
+    print(f"### {date} [[View diff]]({url})")
