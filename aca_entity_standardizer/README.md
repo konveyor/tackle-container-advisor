@@ -56,21 +56,21 @@ Python scripts to generate entity standardization model
 
 ### History of Basline runs
 <details>
-  <summary>List of baseline runs after PR merges</summary>
+<summary>List of baseline runs after PR merges</summary>
   
-  ### 2021-10-19 ([View diff](https://github.com/mihirc-github/tackle-container-advisor/commit/170578d3bf9b4bd52ead51ca2daa552e0fda94c0))
-  1. Entities: 447 entities have qids.
-  2. Mentions: 6285 collected, 163 no external link, 384 no qid, 0 empty, 634 duplicates, 629 conflicts.
-  3. Samples:  4110 train, 2175 test.
-  <p>	
-	<table>
-    <thead>
-    <tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th></tr>
-    </thead>
-    <tbody>
-    <tr><td>WD api</td><td>0.39</td><td>0.53</td><td>0.59</td><td>0.61</td><td>0.68 (1470)</td></tr>	     
-    <tr><td>TFIDF</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0.00 (1)</td></tr>	     
-    </tbody>
-    </table>
-  </p>	
+### 2021-10-19 ([View diff](https://github.com/konveyor/tackle-container-advisor/commit/c51e6bf4e0fbf27acb6a8f4998274b48549dfc41))
+1. Entities: 447 entities have qids.
+2. Mentions: 6285 collected, 163 no external link, 384 no qid, 0 empty, 634 duplicates, 629 conflicts.
+3. Samples:  4110 train, 2175 test.
+WD api with no ctx took 1870.15 seconds.
+TFIDF model took 40.27 seconds.
+<p><table>
+<thead>
+<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th></tr>
+</thead>
+<tbody>
+<tr><td>WD api</td><td>0.39</td><td>0.53</td><td>0.59</td><td>0.61</td><td>0.68 (1470)</td></tr>
+<tr><td>TFIDF</td><td>0.71</td><td>0.71</td><td>0.71</td><td>0.71</td><td>0.71 (1550)</td></tr>
+</tbody>
+</table></p>		
 </details>	
