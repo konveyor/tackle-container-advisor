@@ -291,10 +291,10 @@ def run_baselines(connection):
         total_mentions = len(data_to_ids)                                
         
         wd_start= time()
-        # wd_qids = run_wikidata_autocomplete(data_to_ids)
+        wd_qids = run_wikidata_autocomplete(data_to_ids)
         wd_end  = time()
-        # wd_topk = get_topk_accuracy(data_to_ids, wd_qids)        
-        wd_topk = (0, 0, 0, 0, 0)
+        wd_topk = get_topk_accuracy(data_to_ids, wd_qids)        
+        # wd_topk = (0, 0, 0, 0, 0)
         
         tf_start= time()
         tf_eids = run_tfidf(data_to_ids, connection)
