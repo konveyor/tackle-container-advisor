@@ -13,6 +13,7 @@ import configparser
 import logging
 import sqlite3
 import os
+import pickle
 import json
 import urllib.parse as uparse
 import multiprocessing
@@ -21,6 +22,9 @@ from sqlite3.dbapi2 import Cursor, complete_statement
 from pathlib import Path
 from db import create_db_connection
 from sim_applier import sim_applier
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sim_applier import sim_applier
+from sim_utils import sim_utils
 import requests
 from time import time
 
@@ -127,7 +131,8 @@ def run_wikidata_autocomplete(data_to_ids):
     pool.close()
 
     wd_qids = {k:v for item in wd_results for k,v in item.items()}
-    return wd_qids
+
+    return wd_qids        
 
 def run_tfidf(data_to_ids, connection):
     """
@@ -138,6 +143,50 @@ def run_tfidf(data_to_ids, connection):
 
     :returns: Returns a dictionary of test mention to list of predicted entity ids
     """ 
+
+    vectorizer_name      ="standardization_vectorizer.pickle"
+    standardization_model="standardization_model.pickle"
+    instances_name       ="standardization_dict.pickle"
+
+    entity_names = sim_utils.load_entity_names(connection) 
+    all_instances= []
+    train_filename = os.path.join(config_obj['benchmark']['data_path'], 'train.csv')
+    if not os.path.isfile(train_filename):
+        logging.error(f'{train_filename} is not a file. Run "python benchmarks.py" to generate this train data file')
+        print(f'{train_filename} is not a file. Run "python benchmarks.py" to generate this train data file')
+        exit()
+    else:
+        data_to_eid = {}
+        try:
+            train_filename = os.path.join(config_obj['benchmark']['data_path'], 'train.csv')        
+            with open(train_filename, 'r') as train_file:            
+                train = [d.strip() for d in train_file.readlines()]
+                for row in train:
+                    (mention, eid) = tuple(row.split('\t'))
+                    data_to_eid[mention] = eid
+        except OSError as exception:
+            logging.error(exception)
+            exit()
+        
+        for mention in data_to_eid:
+            eid    = data_to_eid[mention]
+            entity = entity_names[eid]
+
+            if [entity, mention, mention] in all_instances:
+                print("duplicate:",[entity, mention])
+                continue
+
+            all_instances.append([entity, mention , mention])
+  
+    all_targets     =  sim_utils.text_collection_kg_without_tokenization4vector(all_instances)
+    tfidf           =  TfidfVectorizer(token_pattern=r"(?u)\b\w+\b").fit(all_targets)    
+    tfs             =  tfidf.fit_transform(all_targets)
+
+    model_path = config_obj["model"]["model_path"]
+    pickle.dump(tfs, open(model_path+vectorizer_name, "wb"))
+    pickle.dump(tfidf, open(model_path+standardization_model,"wb"))
+    pickle.dump(all_instances, open(model_path+instances_name,"wb"))
+
     entity_cursor = connection.cursor()   
     entity_cursor.execute("SELECT * FROM entities")
     entity_to_eid  = {}
@@ -146,21 +195,20 @@ def run_tfidf(data_to_ids, connection):
         entity_to_eid[entity] = entity_id
 
 
-    mentions  = data_to_ids.keys()
-    test_data = ",".join(mentions)
-
-    model_path = config_obj["model"]["model_path"]         
-    sim_app    = sim_applier(model_path)
-        
+    mentions   = list(data_to_ids.keys())        
+    sim_app    = sim_applier(model_path)      
     start      = time()
-    tech_sim_scores=sim_app.tech_stack_standardization(test_data)    
+    tf_eids    = {}
+    for mention in mentions:
+        tech_sim_scores=sim_app.tech_stack_standardization(mention)
+        if tech_sim_scores:
+            entity  = tech_sim_scores[0][0]
+            score   = tech_sim_scores[0][1]
+            predicted_eid    = entity_to_eid.get(entity, None)
+            tf_eids[mention] = [predicted_eid]
+        else:
+            tf_eids[mention] = []
     end        = time()
-    
-    tf_eids = {}
-    for mention, entity in zip(mentions, tech_sim_scores):
-        predicted_eid = entity_to_eid.get(entity[0], None)
-        tf_eids[mention] = [predicted_eid]
-
     return tf_eids
 
 
@@ -198,7 +246,18 @@ def get_topk_accuracy(data_to_ids, alg_ids, is_qid=True):
                     topk = (topk[0],topk[1],topk[2],topk[3]+1,topk[4])
                 break
 
-    print(f"Top-1 = {topk[0]/total_mentions:.2f}, top-3 = {topk[1]/total_mentions:.2f}, top-5 = {topk[2]/total_mentions:.2f}, top-10= {topk[3]/total_mentions:.2f}, top-inf = {topk[4]/total_mentions:.2f}({topk[4]})")
+    return topk
+
+def print_gh_markdown(wd_topk, tf_topk, total_mentions):
+    print("<p><table>")
+    print("<thead>")
+    print("<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th></tr>")
+    print("</thead>")
+    print("<tbody>")
+    print(f"<tr><td>WD api</td><td>{wd_topk[0]/total_mentions:.2f}</td><td>{wd_topk[1]/total_mentions:.2f}</td><td>{wd_topk[2]/total_mentions:.2f}</td><td>{wd_topk[3]/total_mentions:.2f}</td><td>{wd_topk[4]/total_mentions:.2f} ({wd_topk[4]})</td></tr>")
+    print(f"<tr><td>TFIDF</td><td>{tf_topk[0]/total_mentions:.2f}</td><td>{tf_topk[1]/total_mentions:.2f}</td><td>{tf_topk[2]/total_mentions:.2f}</td><td>{tf_topk[3]/total_mentions:.2f}</td><td>{tf_topk[4]/total_mentions:.2f} ({tf_topk[4]})</td></tr>")
+    print("</tbody>")
+    print("</table></p>")
 
 def run_baselines(connection):
     """
@@ -228,22 +287,22 @@ def run_baselines(connection):
             logging.error(exception)
             exit()
         
-        print("---------------------------------------------")
-        print("Running baselines on %d mentions." % len(data_to_ids))
-        print("---------------------------------------------")
+        total_mentions = len(data_to_ids)                                
         
         wd_start= time()
         wd_qids = run_wikidata_autocomplete(data_to_ids)
         wd_end  = time()
-        print(f'WD api with no ctx took {(wd_end-wd_start):.2f} seconds: ', end='')
-        get_topk_accuracy(data_to_ids, wd_qids)
-
+        wd_topk = get_topk_accuracy(data_to_ids, wd_qids)        
+        # wd_topk = (0, 0, 0, 0, 0)
+        
         tf_start= time()
         tf_eids = run_tfidf(data_to_ids, connection)
         tf_end  = time()
-        print(f'TFIDF model took {(tf_end-tf_start):.2f} seconds: ', end='')
-        get_topk_accuracy(data_to_ids, tf_eids, is_qid=False)
+        tf_topk = get_topk_accuracy(data_to_ids, tf_eids, is_qid=False)
 
+        print(f'WD api with no ctx took {(wd_end-wd_start):.2f} seconds.')
+        print(f'TFIDF model took {(tf_end-tf_start):.2f} seconds.')
+        print_gh_markdown(wd_topk, tf_topk, total_mentions)
 
 config_obj = configparser.ConfigParser()
 config_obj.read("./config.ini")
