@@ -146,21 +146,24 @@ def run_tfidf(data_to_ids, connection):
         entity_to_eid[entity] = entity_id
 
 
-    mentions  = data_to_ids.keys()
-    test_data = ",".join(mentions)
+    mentions   = list(data_to_ids.keys())
 
     model_path = config_obj["model"]["model_path"]         
     sim_app    = sim_applier(model_path)
         
     start      = time()
-    tech_sim_scores=sim_app.tech_stack_standardization(test_data)    
+    tf_eids    = {}
+    for mention in mentions:
+        tech_sim_scores=sim_app.tech_stack_standardization(mention)
+        if tech_sim_scores:
+            entity  = tech_sim_scores[0][0]
+            score   = tech_sim_scores[0][1]
+            predicted_eid    = entity_to_eid.get(entity, None)
+            tf_eids[mention] = [predicted_eid]
+        else:
+            tf_eids[mention] = []
     end        = time()
     
-    tf_eids = {}
-    for mention, entity in zip(mentions, tech_sim_scores):
-        predicted_eid = entity_to_eid.get(entity[0], None)
-        tf_eids[mention] = [predicted_eid]
-
     return tf_eids
 
 
@@ -199,6 +202,18 @@ def get_topk_accuracy(data_to_ids, alg_ids, is_qid=True):
 
     return topk
 
+def print_gh_markdown(wd_topk, tf_topk, total_mentions):
+    print("<p><table>")
+    print("<thead>")
+    print("<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th></tr>")
+    print("</thead>")
+    print("<tbody>")
+    print(f"<tr><td>WD api</td><td>{wd_topk[0]/total_mentions:.2f}</td><td>{wd_topk[1]/total_mentions:.2f}</td><td>{wd_topk[2]/total_mentions:.2f}</td><td>{wd_topk[3]/total_mentions:.2f}</td><td>{wd_topk[4]/total_mentions:.2f} ({wd_topk[4]})</td></tr>")
+    print(f"<tr><td>TFIDF</td><td>{tf_topk[0]/total_mentions:.2f}</td><td>{tf_topk[1]/total_mentions:.2f}</td><td>{tf_topk[2]/total_mentions:.2f}</td><td>{tf_topk[3]/total_mentions:.2f}</td><td>{tf_topk[4]/total_mentions:.2f} ({tf_topk[4]})</td></tr>")
+    print("</tbody>")
+    print("</table></p>")
+
+
 def run_baselines(connection):
     """
     Run baseline techniques
@@ -227,27 +242,22 @@ def run_baselines(connection):
             logging.error(exception)
             exit()
         
-        total_mentions = len(data_to_ids)                        
-        '''
+        total_mentions = len(data_to_ids)                                
+        
         wd_start= time()
         wd_qids = run_wikidata_autocomplete(data_to_ids)
         wd_end  = time()
-        print(f'WD api with no ctx took {(wd_end-wd_start):.2f} seconds: ', end='')
         wd_topk = get_topk_accuracy(data_to_ids, wd_qids)        
-        print(f"Top-1 = {wd_topk[0]/total_mentions:.2f}, top-3 = {wd_topk[1]/total_mentions:.2f}, top-5 = {wd_topk[2]/total_mentions:.2f}, top-10= {wd_topk[3]/total_mentions:.2f}, top-inf = {wd_topk[4]/total_mentions:.2f}({wd_topk[4]})")
-        '''
-        wd_topk = (0, 0, 0, 0, 0)
-
+        # wd_topk = (0, 0, 0, 0, 0)
+        
         tf_start= time()
         tf_eids = run_tfidf(data_to_ids, connection)
         tf_end  = time()
-        print(f'TFIDF model took {(tf_end-tf_start):.2f} seconds: ', end='')
         tf_topk = get_topk_accuracy(data_to_ids, tf_eids, is_qid=False)
-        print(f"Top-1 = {tf_topk[0]/total_mentions:.2f}, top-3 = {tf_topk[1]/total_mentions:.2f}, top-5 = {tf_topk[2]/total_mentions:.2f}, top-10= {tf_topk[3]/total_mentions:.2f}, top-inf = {tf_topk[4]/total_mentions:.2f}({tf_topk[4]})")
-        print(f"|Method|top-1|top-3|top-5|top-10|top-inf(count)|")
-        print(f"|------|-----|-----|-----|------|--------------|")
-        print(f"|WD api|{wd_topk[0]/total_mentions:.2f}|{wd_topk[1]/total_mentions:.2f}|{wd_topk[2]/total_mentions:.2f}|{wd_topk[3]/total_mentions:.2f}|{wd_topk[4]/total_mentions:.2f}({wd_topk[4]})|")
-        print(f"|TFIDF |{tf_topk[0]/total_mentions:.2f}|{tf_topk[1]/total_mentions:.2f}|{tf_topk[2]/total_mentions:.2f}|{tf_topk[3]/total_mentions:.2f}|{tf_topk[4]/total_mentions:.2f}({tf_topk[4]})|")
+
+        print(f'WD api with no ctx took {(wd_end-wd_start):.2f} seconds.')
+        print(f'TFIDF model took {(tf_end-tf_start):.2f} seconds.')
+        print_gh_markdown(wd_topk, tf_topk, total_mentions)
 
 config_obj = configparser.ConfigParser()
 config_obj.read("./config.ini")
