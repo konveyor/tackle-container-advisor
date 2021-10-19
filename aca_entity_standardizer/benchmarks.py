@@ -155,6 +155,7 @@ def create_train_test_sets(connection):
     except OSError as exception:
         logging.error(exception)
         exit()
+
     print(f"1. Entities: {len(eid_to_qid)} entities have qids.")
     print(f"2. Mentions: {len(data_to_ids)} collected, {no_external} no external link, {no_qid} no qid, {no_mention} empty, {duplicates} duplicates, {conflicts} conflicts.")    
     print(f"3. Samples:  {num_train} train, {num_test} test.")

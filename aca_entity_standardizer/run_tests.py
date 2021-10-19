@@ -21,6 +21,7 @@ from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
 from pathlib import Path
 from db import create_db_connection
+from sim_applier import sim_applier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sim_applier import sim_applier
 from sim_utils import sim_utils
@@ -130,8 +131,8 @@ def run_wikidata_autocomplete(data_to_ids):
     pool.close()
 
     wd_qids = {k:v for item in wd_results for k,v in item.items()}
-    return wd_qids        
 
+    return wd_qids        
 
 def run_tfidf(data_to_ids, connection):
     """
@@ -195,8 +196,7 @@ def run_tfidf(data_to_ids, connection):
 
 
     mentions   = list(data_to_ids.keys())        
-    sim_app    = sim_applier(model_path)
-        
+    sim_app    = sim_applier(model_path)      
     start      = time()
     tf_eids    = {}
     for mention in mentions:
@@ -209,7 +209,6 @@ def run_tfidf(data_to_ids, connection):
         else:
             tf_eids[mention] = []
     end        = time()
-    
     return tf_eids
 
 
@@ -227,6 +226,7 @@ def get_topk_accuracy(data_to_ids, alg_ids, is_qid=True):
     :returns: Prints top-1, top-3, top-5, top-10, top-inf accuracy
     """
 
+    total_mentions = len(data_to_ids)
     topk  = (0, 0, 0, 0, 0) # Top-1, top-3, top-5, top-10, top-inf
     for mention in data_to_ids:
         (entity_id, wiki_id) = data_to_ids[mention]
@@ -258,7 +258,6 @@ def print_gh_markdown(wd_topk, tf_topk, total_mentions):
     print(f"<tr><td>TFIDF</td><td>{tf_topk[0]/total_mentions:.2f}</td><td>{tf_topk[1]/total_mentions:.2f}</td><td>{tf_topk[2]/total_mentions:.2f}</td><td>{tf_topk[3]/total_mentions:.2f}</td><td>{tf_topk[4]/total_mentions:.2f} ({tf_topk[4]})</td></tr>")
     print("</tbody>")
     print("</table></p>")
-
 
 def run_baselines(connection):
     """

@@ -73,8 +73,4 @@ Python scripts to generate entity standardization model
     </tbody>
     </table>
   </p>	
-</details>
-  
-
-
-	
+</details>	
