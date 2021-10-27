@@ -9735,8 +9735,9 @@ CREATE TABLE docker_environment_variables(
                                         id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                                         Environment_Variables text,
                                         Container_Name text,
-                                        Required  text,
-                                        Default_Values text
+                                        Required  text,                                        
+                                        Default_Values text,
+                                        FOREIGN KEY (Container_Name) REFERENCES docker_images (id)                                
                                     );
 INSERT INTO docker_environment_variables VALUES(1,'DB2INSTANCE','db2','Y','');
 INSERT INTO docker_environment_variables VALUES(2,'DB2INST1_PASSWORD','db2','Y','');
