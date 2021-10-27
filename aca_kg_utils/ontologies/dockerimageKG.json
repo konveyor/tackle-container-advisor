@@ -1,5 +1,5 @@
 {
-  "KG Version": "1.0.1",
+  "KG Version": "1.0.2",
   "Container Images": {
     "Oracle Middleware (including Oracle Forms & Reports and Oracle Traffic Director)": {
       "OS": [
