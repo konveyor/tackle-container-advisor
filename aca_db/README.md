@@ -143,7 +143,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 
 
-### A new entry can be added as
+##### A new entry can be added as
 	INSERT  INTO docker_environment_variables(Environment_Variables, Container_Name, Required, Default_Values) VALUES(?,?,?,?)
 	
 
