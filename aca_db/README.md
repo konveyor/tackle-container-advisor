@@ -19,12 +19,12 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 ##### Generate the .db file from the .sql file.
 
 	1. cd aca_db/
-	2. cat aca_kg_ce_1.0.1.sql | sqlite3 aca_kg_ce_1.0.1.db``
+	2. cat aca_kg_ce_1.0.2.sql | sqlite3 aca_kg_ce_1.0.2.db``
 
 ##### Copy the db file to aca_entity_standardizer/aca_db and aca_kg_utils/aca_db for generating utility files and models respectively
 
-	1. cp aca_kg_ce_1.0.1.db ./aca_entity_standardizer/aca_db/.
-	2. cp aca_kg_ce_1.0.1.db aca_kg_utils/aca_db/.
+	1. cp aca_kg_ce_1.0.2.db ./aca_entity_standardizer/aca_db/.
+	2. cp aca_kg_ce_1.0.2.db aca_kg_utils/aca_db/.
 	
 ##### Download DBeaver Community tool from the link below
 
@@ -32,7 +32,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 	
 ##### Set the .db file path to DBeaver to view tables and data. To set right click on Database Navigator to choose *create* -> *connection* -> *SQLite*. Then set the path as follows by providing the absolute path of the .db file
 
-	Path: /<path>/aca_kg_ce_1.0.1.db
+	Path: /<path>/aca_kg_ce_1.0.2.db
 
 ### Table Details
 
@@ -128,6 +128,8 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 ##### A new entry can be added as
 
 	INSERT INTO openshift_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Docker_URL, Notes, CertOfImageAndPublisher) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+	
+
               
 
 
