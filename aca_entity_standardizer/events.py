@@ -5,8 +5,8 @@ from datetime import datetime
 if __name__ == '__main__':
     try:
         events = json.loads(sys.argv[1])
-        date   = events["head_commit"]["timestamp"].split('T')[0]
-        url    = events["head_commit"]["url"]
+        date   = events["pushed_at"].split('T')[0]
+        url    = events["diff_url"]
     except Exception as e:
         date   = datetime.today().strftime('%Y-%m-%d')
         url    = ""
