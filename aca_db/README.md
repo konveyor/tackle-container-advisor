@@ -149,7 +149,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 
 **11. operator images**
-##### This contains operators for 
+##### This contains operator specific images. For example, Postgresql along with its mapping a operator image
 
 
 ##### A new entry can be added as 
