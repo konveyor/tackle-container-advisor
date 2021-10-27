@@ -129,6 +129,39 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 	INSERT INTO openshift_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Docker_URL, Notes, CertOfImageAndPublisher) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
 	
+**9. entity versions**
+##### This contains versions and licensing costs for all entities.
+
+
+
+##### A new entry can be added as
+        INSERT INTO entity_versions (id, entity_id, version, release_date, end_date, cost)  VALUES (?,?,?,?,?,?)
+	
+
+**10. docker environment variable**
+##### This contains environment variables for all docker images.
+
+
+
+### A new entry can be added as
+	INSERT  INTO docker_environment_variables(Environment_Variables, Container_Name, Required, Default_Values) VALUES(?,?,?,?)
+	
+
+
+**11. operator images**
+##### This contains operators for 
+
+
+##### A new entry can be added as 
+	INSERT INTO operator_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Operator_Correspondent_Image_URL, Operator_Repository, Other_Operators) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+
+
+
+
+
+
+
+	
 
               
 
