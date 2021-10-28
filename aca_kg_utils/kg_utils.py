@@ -18,12 +18,11 @@ import os
 from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
 from pathlib import Path
-
-
+from typing import Container
 
 config_obj = configparser.ConfigParser()
-config_obj.read("./config.ini")
 
+config_obj.read("./config.ini")
 os.chdir('..')
 
 def cleanStrValue(value):
@@ -43,6 +42,52 @@ def cleanStrValue(value):
     return value
 
 
+
+def explore_db(conn):
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = []
+
+    for col in cursor.fetchall():
+        tables.append(col[0])
+    print("Tables: {}".format(tables))
+   
+    for table in tables:
+        print(table)
+        print("===============================")
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM  {}".format(table))
+
+        #view Column names
+        col_name_list = [tuple[0] for tuple in cur.description]
+        print(col_name_list)
+        #view first two rows
+        for row in cur.fetchmany(5):
+            print(row)
+        print("\n")
+
+
+def load_docker_openshift_urls(connect):
+
+    doc_cursor = connect.cursor()
+    doc_cursor.execute("SELECT * FROM docker_images")
+
+    open_cursor = connect.cursor()
+    open_cursor.execute("SELECT * FROM openshift_images")
+
+    
+    docker_urls  = {}
+    openshift_urls = {}
+    for img in doc_cursor.fetchall():
+        container_name  , docker_url = img[1] , img [10]
+        docker_urls[container_name] = docker_url
+
+    for open_imag in open_cursor.fetchall():
+        openshift_container_name , open_url = img[1] , img [10]
+        openshift_urls[openshift_container_name] = open_url
+
+    print(json.dumps(docker_urls , indent= 4))
 
 
 def type_mapper(db_connection):
@@ -193,10 +238,6 @@ def create_inverted_compatibility_kg(db_connection):
     save_json(inverted_compatibilty_kg,"inverted_compatibilityKG")
 
 
-
-
-
-
 def create_compatibilty_kg(db_connection):
     """
     Create compatibility KG.
@@ -223,8 +264,6 @@ def create_compatibilty_kg(db_connection):
     relation_cursor = db_connection.cursor()
     relation_cursor.execute("SELECT * FROM entity_relations")
 
-
-    
     for ids in relation_cursor.fetchall():
         parent_type_id , parent_id , child_type_id , child_id = ids[1:5]
 
@@ -235,7 +274,6 @@ def create_compatibilty_kg(db_connection):
     CompatibilityKG["Compatibility List"] =  compatibility_list
 
     save_json(CompatibilityKG,"compatibilityKG")
-
 
 
 def create_base_os_kg(db_connection):
@@ -315,7 +353,6 @@ def create_openshift_base_os_kg(db_connection):
         
     save_json(base_os, "openshiftbaseOSKG")
 
-    
 
 def create_inverted_openshift_base_os_kg(db_connection):
     """
@@ -476,8 +513,6 @@ def create_compatibility_os_kg(db_connection):
                 compatibilty_os_kg[child].append(parent_os)
 
     save_json(compatibilty_os_kg,"compatibilityOSKG")
-    
-
 
 
 def create_docker_image_kg(db_connect):
@@ -527,30 +562,17 @@ def create_docker_image_kg(db_connect):
 
 
         if plugin_id == None: docker_image_kg["Container Images"][container_name]["Plugin"] = []
-        else: docker_image_kg["Container Images"][container_name]["Plugin"] =  [{"Class":entities[str(plugin_id)], "Variants": '' ,'Versions': '' , 'Type':"Plugin",'Subtype':''}]
-
-
-
-               
+        else: docker_image_kg["Container Images"][container_name]["Plugin"] =  [{"Class":entities[str(plugin_id)], "Variants": '' ,'Versions': '' , 'Type':"Plugin",'Subtype':''}]               
         if runlib_id == None: docker_image_kg["Container Images"][container_name]["Runlib"] = []
         else: docker_image_kg["Container Images"][container_name]["Runlib"] =  [{"Class":entities[str(runlib_id)], "Variants": '' ,'Versions': '' , 'Type':"Runlib",'Subtype':''}]
-
-
-
-        
+    
         if runtime_id == None: docker_image_kg["Container Images"][container_name]["Runtime"] = []
         else: docker_image_kg["Container Images"][container_name]["Runtime"] =  [{"Class":entities[str(runtime_id)], "Variants": '' ,'Versions': '' , 'Type':"Runtime",'Subtype':''}]
-
-
-
-
         docker_image_kg["Container Images"][container_name]["Docker_URL"] = Docker_URL
         docker_image_kg["Container Images"][container_name]["Note"] = Notes
         docker_image_kg["Container Images"][container_name]["CertOfImageAndPublisher"] = CertOfImageAndPublisher
     
     save_json(docker_image_kg,"dockerimageKG")
-    
-
 
 
 def create_openshift_image_kg(db_connect):
@@ -663,9 +685,6 @@ def create_inverted_docker_image_kg(database_connect):
         if runtim_id == None: pass
         else:inverted_docker_images_kg[entities[str(runtim_id)]] = []
 
-
-    
-
     for image in inverted_cur.fetchall():
         _,container_name, os_entity_id, lang_id , lib_id, app_id, app_server_id, plugin_id , runlib_id , runtime_id,_, _,_ = image[:]
 
@@ -700,8 +719,6 @@ def create_inverted_docker_image_kg(database_connect):
         else: inverted_docker_images_kg[entities[str(runtime_id)]].append(container_name)
 
     save_json(inverted_docker_images_kg, "inverted_dockerimageKG")
-    
-
 
 
 def create_inverted_openshifht_image_kg(db_connection):
@@ -784,7 +801,37 @@ def create_inverted_openshifht_image_kg(db_connection):
         else: inverted_openshift_images_kg[entities[str(runtime_id)]].append(container_name)
     
     save_json(inverted_openshift_images_kg, "inverted_openshiftimageKG")
-  
+
+
+def create_env_var_kg(connection):
+
+    """
+    Create  environment variable  KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves environment variables  KG to the ontology folder.
+    :rtype: JSON file 
+    """
+
+    cur = connection.cursor()
+    cur.execute("SELECT * FROM  docker_environment_variables")  
+    env_kg = {}
+    env_kg['Version'] =  config_obj["db"]["version"]
+
+
+    for env in cur.fetchall():    
+
+        env_var ,container_name  = env[1:3]
+
+        if container_name not in env_kg.keys():
+            env_kg[container_name] =  []
+        else:
+            env_kg[container_name].append(env_var)
+
+    save_json(env_kg, "environment_variablesKG")
+
 
 def create_cot_kg(db_connection):
 
@@ -810,13 +857,145 @@ def create_cot_kg(db_connection):
     for entity in cur.fetchall():
 
         entity_name  = entity[1]
-
         cots.append(entity_name)
     
     cot_kg["COTS"] = cots
 
     save_json(cot_kg , "cot_kg")
 
+
+def create_operator_image_kg(db_connect):
+    """
+    Create operator image KG.
+
+    :param db_connect:  A connection to mysql
+    :type db_connect:  <class 'sqlite3.Connection'>
+
+    :returns: Saves operator image KG to the ontology folder.
+    :rtype: JSON file
+
+    """
+    operator_cursor = db_connect.cursor()
+    operator_cursor.execute("SELECT * FROM operator_images")
+    entities = entity_mapper(db_connect)
+
+    operator_image_kg = {}
+
+    operator_image_kg["KG Version"] = config_obj["db"]["version"]
+
+
+    operator_image_kg["Container Images"] = {}
+    for image in operator_cursor.fetchall():
+        container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id , runlib_id , runtime_id, operator_URL, operator_repository, other_operators = image[1:]
+
+        operator_image_kg["Container Images"][container_name] = {}
+        operator_image_kg["Container Images"][container_name]["OS"] = [{"Class": entities[str(os_entity_id)], "Variants": "" ,"Versions": "" , "Type": "OS", "Subtype":""}]
+
+
+        if lang_id == None: operator_image_kg["Container Images"][container_name]["Lang"] = []
+        else: operator_image_kg["Container Images"][container_name]["Lang"] = [{"Class": entities[str(lang_id)], "Variants": "" ,"Versions": "" , "Type": "Lang", "Subtype":""}]
+
+        if lib_id == None:operator_image_kg["Container Images"][container_name]["Lib"] = []
+        else: operator_image_kg["Container Images"][container_name]["Lib"] = [{"Class": entities[str(lib_id)], "Variants": "" ,"Versions": "" , "Type": "Lib", "Subtype":""}]
+
+        if app_id == None: operator_image_kg["Container Images"][container_name]["App"] = []
+        else: operator_image_kg["Container Images"][container_name]["App"] =  [{"Class":entities[str(app_id)], "Variants": '' ,'Versions': '' , 'Type':"App",'Subtype':''}]
+
+        if app_server_id == None: operator_image_kg["Container Images"][container_name]["App Server"] = []
+        else: operator_image_kg["Container Images"][container_name]["App Server"] = [{"Class":entities[str(app_server_id)], "Variants": '' ,'Versions': '' , 'Type':"App Server",'Subtype':''}]
+
+        if plugin_id == None: operator_image_kg["Container Images"][container_name]["Plugin"] = []
+        else: operator_image_kg["Container Images"][container_name]["Plugin"] = [{"Class":entities[str(plugin_id)], "Variants": '' ,'Versions': '' , 'Type':"Plugin",'Subtype':''}]
+
+        if runlib_id == None: operator_image_kg["Container Images"][container_name]["Runlib"] = []
+        else: operator_image_kg["Container Images"][container_name]["Runlib"] = [{"Class":entities[str(runlib_id)], "Variants": '' ,'Versions': '' , 'Type':"Runlib",'Subtype':''}]
+
+        if runtime_id == None: operator_image_kg["Container Images"][container_name]["Runtime"] = []
+        else: operator_image_kg["Container Images"][container_name]["Runtime"] = [{"Class":entities[str(runtime_id)], "Variants": '' ,'Versions': '' , 'Type':"Runtime",'Subtype':''}]
+
+        operator_image_kg["Container Images"][container_name]["Operator_URL"] = operator_URL
+        operator_image_kg["Container Images"][container_name]["OperatorRepository"] = operator_repository
+        operator_image_kg["Container Images"][container_name]["OtherOperators"] = other_operators
+
+    save_json(operator_image_kg, "operatorimageKG")
+
+
+def create_inverted_operator_image_kg(database_connect):
+    """
+    Create inverted operator image KG.
+
+    :param database_connect:  A connection to mysql
+    :type database_connect:  <class 'sqlite3.Connection'>
+
+    :returns: Saves  inverted operator image KG to the ontology folder.
+    :rtype: JSON file
+
+    """
+
+    inverted_cur = database_connect.cursor()
+    inverted_cur.execute("SELECT * FROM operator_images")
+    entities = entity_mapper(database_connect)
+    inverted_operator_images_kg = {}
+    inverted_operator_images_kg['Version'] = config_obj["db"]["version"]
+    cur = database_connect.cursor()
+    cur.execute("SELECT * FROM operator_images")
+
+    for img in cur.fetchall():
+        _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id , runtim_id, _, _, _ = img[1:]
+
+        if os_id == None: pass
+        else: inverted_operator_images_kg[entities[str(os_id)]] = []
+
+        if lan_id == None: pass
+        else:inverted_operator_images_kg[entities[str(lan_id)]] = []
+
+        if libr_id == None: pass
+        else: inverted_operator_images_kg[entities[str(libr_id)]] = []
+
+        if appl_id == None: pass
+        else:inverted_operator_images_kg[entities[str(appl_id)]] = []
+
+        if appl_server_id == None: pass
+        else:inverted_operator_images_kg[entities[str(appl_server_id)]] = []
+
+        if plug_id == None: pass
+        else: inverted_operator_images_kg[entities[str(plug_id)]] = []
+
+        if runlibr_id == None: pass
+        else: inverted_operator_images_kg[entities[str(runlibr_id)]] = []
+
+        if runtim_id == None: pass
+        else:inverted_operator_images_kg[entities[str(runtim_id)]] = []
+
+
+    for image in inverted_cur.fetchall():
+        _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _, _, _ = image[:]
+
+        if os_entity_id == None: pass
+        else: inverted_operator_images_kg[entities[str(os_entity_id)]].append(container_name)
+
+        if lang_id == None: pass
+        else: inverted_operator_images_kg[entities[str(lang_id)]].append(container_name)
+
+        if lib_id == None: pass
+        else: inverted_operator_images_kg[entities[str(lib_id)]].append(container_name)
+
+        if app_id == None: pass
+        else: inverted_operator_images_kg[entities[str(app_id)]].append(container_name)
+
+        if app_server_id == None: pass
+        else: inverted_operator_images_kg[entities[str(app_server_id)]].append(container_name)
+
+        if plugin_id == None: pass
+        else: inverted_operator_images_kg[entities[str(plugin_id)]].append(container_name)
+
+        if runlib_id == None: pass
+        else: inverted_operator_images_kg[entities[str(runlib_id)]].append(container_name)
+
+        if runtime_id == None: pass
+        else: inverted_operator_images_kg[entities[str(runtime_id)]].append(container_name)
+
+    save_json(inverted_operator_images_kg, "inverted_operatorimageKG")
 
 
 def create_db_connection(db_file):
@@ -841,8 +1020,6 @@ def create_db_connection(db_file):
         print(e)
     return connection
 
-
-
 if __name__== '__main__':
 
 
@@ -864,7 +1041,6 @@ if __name__== '__main__':
         print(f'{k} is not a key in your config.ini file.')
         exit()
 
-
     if not os.path.isfile(db_path):
         logging.error(f'{db_path} is not a valid file. Check your config.ini file for valid file under "db_path" key  ')
         print("{} is not a valid file. Check your config.ini file for valid file under 'db_path' key ".format(db_path))
@@ -872,7 +1048,11 @@ if __name__== '__main__':
 
     else:
 
-        connection = create_db_connection(db_path)  
+        connection = create_db_connection(db_path)
+
+        explore_db(connection)
+        load_docker_openshift_urls(connection)
+        create_env_var_kg(connection)
         create_inverted_compatibility_kg(connection)
         create_class_type_mapper(connection)
         create_openshift_image_kg(connection)
@@ -886,11 +1066,10 @@ if __name__== '__main__':
         create_inverted_base_os_kg(connection)
         create_openshift_base_os_kg(connection)
         create_cot_kg(connection)
+        create_operator_image_kg(connection)
+        create_inverted_operator_image_kg(connection)
     
     
-
-
-
     
 
 

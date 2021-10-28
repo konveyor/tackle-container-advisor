@@ -1,5 +1,5 @@
 {
-  "kg_version": "1.0.1",
+  "kg_version": "1.0.2",
   "mappings": {
     ".NET Framework": "Runtime",
     ".NET Framework|Common Runtime Library": "Runlib",

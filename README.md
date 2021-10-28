@@ -111,7 +111,7 @@ Please perform the following steps.
     
 ##### Modify the *clean.sh* script to reflect the sql and db file accordingly
 
-	1. aca_db_file="aca_kg_ce_1.0.1.db"
+	1. aca_db_file="aca_kg_ce_1.0.2.db"
 
 ### Creating a New Version of the Knowledge Base
 
