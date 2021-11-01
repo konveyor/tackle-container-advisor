@@ -130,7 +130,7 @@ class ContainerizationAssessment(Resource):
 
 
 @api.route('/containerization-planning', strict_slashes=False)
-@api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub or openshift', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift']}})
+@api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift or operator', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift', 'operator']}})
 
 class ContainerizationPlanning(Resource):
     """
@@ -157,7 +157,7 @@ class ContainerizationPlanning(Resource):
         if not catalog:
             catalog = 'dockerhub'
         catalog = catalog.lower()
-        if catalog not in ['dockerhub', 'openshift']:
+        if catalog not in ['dockerhub', 'openshift', 'operator']:
             catalog = 'dockerhub'
 
         return planner.do_plan(auth_url,dict(request.headers),auth_headers,api.payload,catalog)
