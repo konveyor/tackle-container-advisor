@@ -65,15 +65,15 @@ class TestPlan(unittest.TestCase):
         appL = [{'application_name': 'App Name 0114', 'application_description': 'App Desc 0114', 'component_name': 'Comp 1', 'OS': {'RHEL': {'Linux|Red Hat Enterprise Linux': ''}}, 'Lang': {'Java': {'Java': ''}, 'angularJs': {'JavaScript': ''}}, 'App Server': {'WebSphere Application Server': {'Websphere Application Server (WAS)': ''}}, 'App': {'db2 10.0': {'DB2': '10.0'}, 'Redis': {'Redis': ''}, 'jenkins': {'Jenkins': ''}}, 'Runtime': {}, 'Lib': {'angularJs': {'JavaScript|AngularJS': ''}, 'express.js': {'JavaScript|Express.js': ''}}, 'assessment_reason': '', 'KG Version': '1.0.1', 'valid_assessment': True, 'VM': {}, 'Runlib': {}, 'Plugin': {}, 'Technology': {}, 'HW': {}, 'Storage': {}, 'Inferred': {'Lang': ['JavaScript'], 'App': [], 'App Server': [], 'Runtime': [], 'OS': []}, 'Recommended OS': 'Linux', 'Linux': {'Lang': ['Java', 'JavaScript'], 'App': ['DB2', 'Redis', 'Jenkins'], 'App Server': ['Websphere Application Server (WAS)'], 'Runtime': []}, 'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'], 'valid_planning': True, 'planning_reason': '', 'scope_images': {'websphere-traditional': {'Docker_URL': 'https://hub.docker.com/r/ibmcom/websphere-traditional/', 'Status': ''}, 'db2': {'Docker_URL': 'https://hub.docker.com/r/ibmcom/db2', 'Status': ''}, 'redis_Linux': {'Docker_URL': 'https://hub.docker.com/_/redis/', 'Status': 'Official Image'}, 'jenkins': {'Docker_URL': 'https://hub.docker.com/_/jenkins/', 'Status': 'Official Image'}}, 'scope_images_confidence': {'mapping': {'Websphere Application Server (WAS)': 'websphere-traditional', 'DB2': 'db2', 'Redis': 'redis_Linux', 'Jenkins': 'jenkins'}, 'image_confidence': 0.929, 'images_score': 130, 'cum_scores': 140, 'custom_installations_needed': ['JavaScript'], 'custom_images_needed': []}}]
 
         expected = {
-      'Name': 'App Name 0114',
-      'Desc': 'App Desc 0114',
-      'Cmpt': 'Comp 1',
-      'Valid': True,
-      'Ref Dockers': "1. {'websphere-traditional': 'https://hub.docker.com/r/ibmcom/websphere-traditional/'}\n2. {'db2': 'https://hub.docker.com/r/ibmcom/db2'}\n3. {'redis_Linux(Official Image)': 'https://hub.docker.com/_/redis/'}\n4. {'jenkins(Official Image)': 'https://hub.docker.com/_/jenkins/'}",
-      'Confidence': 0.93,
-      'Reason': 'Additional Installations in container image 1,2,3,4: JavaScript',
-     'Recommend': 'Containerize',
-    }
+          'Name': 'App Name 0114',
+          'Desc': 'App Desc 0114',
+          'Cmpt': 'Comp 1',
+          'Valid': True,
+          'Ref Dockers': "1. {'websphere-traditional': 'https://hub.docker.com/r/ibmcom/websphere-traditional/'}\n2. {'db2': 'https://hub.docker.com/r/ibmcom/db2'}\n3. {'redis_Linux(Official Image)': 'https://hub.docker.com/_/redis/'}\n4. {'jenkins(Official Image)': 'https://hub.docker.com/_/jenkins/'}",
+          'Confidence': 0.93,
+          'Reason': 'Additional Installations in container image 1,2,3,4: JavaScript',
+         'Recommend': 'Containerize',
+        }
 
         expected = OrderedDict(expected)
         expected = [expected]
@@ -91,15 +91,34 @@ class TestPlan(unittest.TestCase):
         plan = Plan()
         appL = [{'application_name': 'App Name 0114', 'application_description': 'App Desc 0114', 'component_name': 'Comp 1', 'OS': {'RHEL': {'Linux|Red Hat Enterprise Linux': ''}}, 'Lang': {'Java': {'Java': ''}, 'angularJs': {'JavaScript': ''}}, 'App Server': {'WebSphere Application Server': {'Websphere Application Server (WAS)': ''}}, 'App': {'db2 10.0': {'DB2': '10.0'}, 'Redis': {'Redis': ''}, 'jenkins': {'Jenkins': ''}}, 'Runtime': {}, 'Lib': {'angularJs': {'JavaScript|AngularJS': ''}, 'express.js': {'JavaScript|Express.js': ''}}, 'assessment_reason': '', 'KG Version': '1.0.1', 'valid_assessment': True, 'VM': {}, 'Runlib':{}, 'Plugin': {}, 'Technology': {}, 'HW': {}, 'Storage': {}, 'Inferred': {'Lang': ['JavaScript'], 'App': [], 'App Server': [], 'Runtime': [], 'OS': []}, 'Recommended OS': 'Linux', 'Linux': {'Lang': ['Java', 'JavaScript'], 'App': ['DB2', 'Redis', 'Jenkins'], 'App Server': ['Websphere Application Server (WAS)'], 'Runtime': []}, 'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'], 'valid_planning': True, 'planning_reason': '', 'scope_images': {'websphere-traditional': {'Docker_URL': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b', 'Status': ''}, 'db2': {'Docker_URL': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17?container-tabs=gti', 'Status': ''}, 'redis_Linux': {'Docker_URL': 'https://catalog.redhat.com/software/containers/rhscl/redis-5-rhel7/5c9922045a13464733ee0ecc', 'Status': ''}, 'jenkins': {'Docker_URL': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b?container-tabs=gti&gti-tabs=get-the-source', 'Status': ''}}, 'scope_images_confidence': {'mapping': {'Websphere Application Server (WAS)': 'websphere-traditional', 'DB2': 'db2', 'Redis': 'redis_Linux', 'Jenkins': 'jenkins'}, 'image_confidence': 0.929, 'images_score': 130, 'cum_scores': 140, 'custom_installations_needed': ['JavaScript'], 'custom_images_needed': []}}]
         expected = {
-      'Name': 'App Name 0114',
-      'Desc': 'App Desc 0114',
-      'Cmpt': 'Comp 1',
-      'Valid': True,
-      'Ref Dockers': "1. {'websphere-traditional': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b'}\n2. {'db2': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17?container-tabs=gti'}\n3. {'redis_Linux': 'https://catalog.redhat.com/software/containers/rhscl/redis-5-rhel7/5c9922045a13464733ee0ecc'}\n4. {'jenkins': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b?container-tabs=gti&gti-tabs=get-the-source'}",
-      'Confidence': 0.93,
-      'Reason': 'Additional Installations in container image 1,2,3,4: JavaScript',
-      'Recommend': 'Containerize'
-    }
+          'Name': 'App Name 0114',
+          'Desc': 'App Desc 0114',
+          'Cmpt': 'Comp 1',
+          'Valid': True,
+          'Ref Dockers': "1. {'websphere-traditional': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b'}\n2. {'db2': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17?container-tabs=gti'}\n3. {'redis_Linux': 'https://catalog.redhat.com/software/containers/rhscl/redis-5-rhel7/5c9922045a13464733ee0ecc'}\n4. {'jenkins': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b?container-tabs=gti&gti-tabs=get-the-source'}",
+          'Confidence': 0.93,
+          'Reason': 'Additional Installations in container image 1,2,3,4: JavaScript',
+          'Recommend': 'Containerize'
+        }
+
+        expected = OrderedDict(expected)
+        expected = [expected]
+        pAppL = plan.output_to_ui_planning(appL)
+        self.assertTrue(pAppL == expected)
+
+    def test_map_to_docker_operator(self):
+        plan = Plan()
+        appL = [{'application_name': 'app1', 'application_description': 'app1', 'component_name': '', 'OS': {'linux': {'Linux': ''}}, 'Lang': {}, 'App Server': {}, 'App': {'mongodb': {'MongoDB': ''}}, 'Runtime': {}, 'Lib': {}, 'assessment_reason': '', 'KG Version': '1.0.2', 'VM': {}, 'Runlib': {}, 'Technology': {}, 'Plugin': {}, 'HW': {}, 'Storage': {}, 'Inferred': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': [], 'OS': []}, 'Recommended OS': 'Linux, Unix, Windows, macOS', 'Linux': {'Lang': [], 'App': ['MongoDB'], 'App Server': [], 'Runtime': []}, 'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'], 'valid_assessment': True }]
+
+        expected = [{'application_name': 'app1', 'application_description': 'app1', 'component_name': '', 'OS': {'linux': {'Linux': ''}}, 'Lang': {}, 'App Server': {}, 'App': {'mongodb': {'MongoDB': ''}}, 'Runtime': {}, 'Lib': {}, 'assessment_reason': '', 'KG Version': '1.0.2', 'VM': {}, 'Runlib': {}, 'Technology': {}, 'Plugin': {}, 'HW': {}, 'Storage': {}, 'Inferred': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': [], 'OS': []}, 'Recommended OS': 'Linux, Unix, Windows, macOS', 'Linux': {'Lang': [], 'App': ['MongoDB'], 'App Server': [], 'Runtime': []}, 'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'], 'valid_assessment': True, 'valid_planning': True, 'planning_reason': '', 'scope_images': {'MongoDB Enterprise Operator': {'Docker_URL': 'quay.io/mongodb/mongodb-enterprise-operator:1.12.0', 'Status': None}}, 'scope_images_confidence': {'mapping': {'MongoDB': 'MongoDB Enterprise Operator'}, 'image_confidence': 1.0, 'images_score': 60, 'cum_scores': 60, 'custom_installations_needed': [], 'custom_images_needed': []}}]
+
+        appL = plan.map_to_docker(appL, 'operator')
+        self.assertTrue(appL == expected)
+
+    def test_output_to_ui_planning_operator(self):
+        plan = Plan()
+        appL = [{'application_name': 'app1', 'application_description': 'app1', 'component_name': '', 'OS': {'linux': {'Linux': ''}}, 'Lang': {}, 'App Server': {}, 'App': {'mongodb': {'MongoDB': ''}}, 'Runtime': {}, 'Lib': {}, 'assessment_reason': '', 'KG Version': '1.0.2', 'VM': {}, 'Runlib': {}, 'Technology': {}, 'Plugin': {}, 'HW': {}, 'Storage': {}, 'Inferred': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': [], 'OS': []}, 'Recommended OS': 'Linux, Unix, Windows, macOS', 'Linux': {'Lang': [], 'App': ['MongoDB'], 'App Server': [], 'Runtime': []}, 'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'], 'valid_assessment': True, 'valid_planning': True, 'planning_reason': '', 'scope_images': {'MongoDB Enterprise Operator': {'Docker_URL': 'quay.io/mongodb/mongodb-enterprise-operator:1.12.0', 'Status': None}}, 'scope_images_confidence': {'mapping': {'MongoDB': 'MongoDB Enterprise Operator'}, 'image_confidence': 1.0, 'images_score': 60, 'cum_scores': 60, 'custom_installations_needed': [], 'custom_images_needed': []}}]
+        expected = {'Name': 'app1', 'Desc': 'app1', 'Cmpt': '', 'Valid': True, 'Ref Dockers': "1. {'MongoDB Enterprise Operator': 'quay.io/mongodb/mongodb-enterprise-operator:1.12.0'}", 'Confidence': 1.0, 'Reason': 'No additonal installations required.', 'Recommend': 'Containerize'}
 
         expected = OrderedDict(expected)
         expected = [expected]
