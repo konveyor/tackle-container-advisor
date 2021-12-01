@@ -17,7 +17,6 @@ import pandas
 from pathlib import Path
 import logging
 import codecs
-import flask
 
 from service.utils import Utils
 from service.utils_nlp import utils
@@ -40,6 +39,8 @@ class EntityDetection:
         Also, sets the default values for category, version, high & low thresholds
         """
         logging.basicConfig(level=logging.INFO)
+
+        self.version_detector = version_detector()
 
         #self.cipher_obj = AESCipher()
         self.__class_type_mapper = {}
@@ -89,8 +90,9 @@ class EntityDetection:
 
                 entity_scores = self.__sim.tech_stack_standardization(s.lower())
                 version = version_detector.get_version_strings(s.lower())
-
-                entities.append([s, entity_scores, version])
+                std_version = self.version_detector.get_standardized_version(self.version_detector, entity_scores[0], version)
+                final_version = (version,std_version)
+                entities.append([s, entity_scores, final_version])
 
             return entities
 
