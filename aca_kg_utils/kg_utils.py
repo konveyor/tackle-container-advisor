@@ -19,6 +19,7 @@ from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
 from pathlib import Path
 from typing import Container
+from packaging import version as pv
 
 config_obj = configparser.ConfigParser()
 
