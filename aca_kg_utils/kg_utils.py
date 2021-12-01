@@ -863,6 +863,48 @@ def create_cot_kg(db_connection):
 
     save_json(cot_kg , "cot_kg")
 
+def create_version(db_connection):
+
+    """
+    Create  versions  KG.
+
+    :param db_connection:  A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: Saves versions along with release cost to the ontology folder.
+    :rtype: JSON file
+    """
+
+
+    cur = db_connection.cursor()
+    cur.execute("SELECT * FROM  entity_versions")
+    entities = entity_mapper(db_connection)
+    ver_kg = {}
+    ver_kg['Version'] =  config_obj["db"]["version"]
+
+
+    versions = {}
+    for ver in cur.fetchall():
+
+        entity_id, version ,release_date, end_date, cost  = ver[1:]
+
+        entity_name = entities[str(entity_id)]
+
+        if entity_name not in versions.keys():
+            versions[entity_name] = []
+        versions[entity_name].append([version ,release_date, end_date, cost])
+
+    for entity_name in versions.keys():
+        latest_version = ""
+        for entry in versions[entity_name]:
+            if latest_version == "" or pv.parse(latest_version) < pv.parse(entry[0]):
+                latest_version = entry[0]
+        for entry in versions[entity_name]:
+            entry.append(latest_version)
+
+    ver_kg["Entity"] = versions
+    save_json(ver_kg, "entity_versionsKG")
+
 
 def create_operator_image_kg(db_connect):
     """
@@ -1066,6 +1108,7 @@ if __name__== '__main__':
         create_inverted_base_os_kg(connection)
         create_openshift_base_os_kg(connection)
         create_cot_kg(connection)
+        create_version(connection)
         create_operator_image_kg(connection)
         create_inverted_operator_image_kg(connection)
     
