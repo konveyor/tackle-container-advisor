@@ -89,7 +89,7 @@ class EntityDetection:
                 s = s.strip()
 
                 entity_scores = self.__sim.tech_stack_standardization(s.lower())
-                version = version_detector.get_version_strings(s.lower())
+                version = self.version_detector.get_version_strings(s.lower())
                 std_version = self.version_detector.get_standardized_version(self.version_detector, entity_scores[0], version)
                 final_version = (version,std_version)
                 entities.append([s, entity_scores, final_version])
