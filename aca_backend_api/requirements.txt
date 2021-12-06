@@ -10,6 +10,7 @@ scipy==1.4.1
 scikit-multilearn==0.2.0
 pathlib==1.0.1
 requests==2.23.0
+packaging==21.0
 #pycryptodome==3.10.1
 
 # Runtime

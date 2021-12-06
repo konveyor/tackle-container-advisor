@@ -13,9 +13,32 @@
 import os
 import re
 import logging
+import json
+import configparser
+from pathlib import Path
+
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 
 class version_detector:
+
+    def __init__(self, logger=False):
+
+        logging.basicConfig(level=logging.INFO)
+
+        self.__class_version = {}
+
+        class_version_filepath = config['filepaths']['entity_versionsKG_filepath']
+        if Path(class_version_filepath).is_file():
+            with open(class_version_filepath, 'r') as f:
+                self.__class_version = json.load(f)
+
+        else:
+            self.__class_version = {}
+            logging.error(f'class_type_mapper[{class_version_filepath}] is empty or not exists')
+
+
     @staticmethod
     def mask_entity(text):
         """
@@ -94,5 +117,48 @@ class version_detector:
             return version_final.strip()
         except Exception as e:
             logging.error(str(e))
-    
-  
+
+
+    @staticmethod
+    def get_latest_version(self,text):
+        my_latest_version = "NA_VERSION"
+        if text[0] in self.__class_version["Entity"].keys():
+            my_latest_version = self.__class_version["Entity"][text[0]][0][4]
+        return my_latest_version
+
+    @staticmethod
+    def get_standardized_version(self,text,version):
+        my_std_version = "NA_VERSION"
+        if version == "NA_VERSION":
+            my_std_version = self.get_latest_version(self,text)
+        else:
+            my_std_version = version
+            my_std_version_sp = re.split('[.]',my_std_version) 
+            if my_std_version_sp[0].isnumeric():
+                if text[0] in self.__class_version["Entity"].keys():
+                    for db_entries in self.__class_version["Entity"][text[0]]:
+                        db_entry_version_sp = re.split('[.]',db_entries[0]) 
+                        if db_entry_version_sp[0].isnumeric() and db_entry_version_sp[0] == my_std_version_sp[0]:
+                            min_len = min(len(db_entry_version_sp),len(my_std_version_sp))
+                            update_with_version = False
+                            numMatches = 0
+                            for i in range(1,min_len):
+                                if db_entry_version_sp[i].isnumeric() and my_std_version_sp[i].isnumeric():
+                                    db_i = int(db_entry_version_sp[i])
+                                    version_i = int(my_std_version_sp[i])
+                                    if db_i > version_i:
+                                        update_with_version = True
+                                        break
+                                    elif db_i < version_i:    
+                                        break 
+                                    elif db_i == version_i:
+                                        numMatches = numMatches + 1            
+                                else:
+                                    if db_entry_version_sp[i] != my_std_version_sp[i]:
+                                        break
+                            if len(db_entry_version_sp) > len(my_std_version_sp) and numMatches == len(my_std_version_sp)-1:
+                                update_with_version = True
+                            if update_with_version:
+                                my_std_version = db_entries[0]
+                                my_std_version_sp = db_entry_version_sp
+        return my_std_version

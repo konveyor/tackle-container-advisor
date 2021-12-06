@@ -4,6 +4,7 @@ Oct 2021
 Added deployment script for redhat developer sandbox ocp.
 Added module for creating few shot and zero shot benchmarks.
 Added module for running baseline zero shot and few shot algorithms.
+Added new tables to the database(operator images, entity versions,and docker environment variables)
 
 ==========
 Sept 2021

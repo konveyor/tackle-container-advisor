@@ -25,7 +25,7 @@ config.read('config.ini')
 class Plan():
     def __init__(self, logger=False):
         '''
-        Loads the docker and openshift KG json file data
+        Loads the docker, openshift and operator KG json file data
         '''
 
         logging.basicConfig(level=logging.INFO)
@@ -37,7 +37,7 @@ class Plan():
         else:
             self.__dockerimage_KG = {}
             logging.error(f'dockerimageKG[{dockerimageKG_filepath}] is empty or not exists')
-        
+
         baseOSKG_filepath = config['filepaths']['baseOSKG_filepath']
         self.__osBaseImages = {}
         if Path(baseOSKG_filepath).is_file():
@@ -49,7 +49,7 @@ class Plan():
                 self.__dockerimage_KG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
         else:
             logging.error(f'baseOSKG[{baseOSKG_filepath}] is empty or not exists')
-        
+
         inverted_dockerimageKG_filepath = config['filepaths']['inverted_dockerimageKG_filepath']
         if Path(inverted_dockerimageKG_filepath).is_file():
             with open(inverted_dockerimageKG_filepath, 'r') as f:
@@ -66,7 +66,7 @@ class Plan():
         else:
             self.__openshiftimage_KG = {}
             logging.error(f'openshiftimageKG[{openshiftimageKG_filepath}] is empty or not exists')
-        
+
         openshiftbaseOSKG_filepath = config['filepaths']['openshiftbaseOSKG_filepath']
         self.__openshiftosBaseImages = {}
         if Path(openshiftbaseOSKG_filepath).is_file():
@@ -86,7 +86,34 @@ class Plan():
         else:
             self.__inverted_openshiftimageKG = {}
             logging.error(f'inverted_openshiftimageKG[{inverted_openshiftimageKG_filepath}] is empty or not exists')
-        
+
+        ##Operator images
+        operatorimageKG_filepath = config['filepaths']['operatorimageKG_filepath']
+        if Path(operatorimageKG_filepath).is_file():
+            with open(operatorimageKG_filepath, 'r') as f:
+                self.__operatorimage_KG = json.load(f)
+        else:
+            self.__operatorimage_KG = {}
+            logging.error(f'operatorimageKG[{operatorimageKG_filepath}] is empty or not exists')
+
+        if Path(baseOSKG_filepath).is_file():
+            with open(baseOSKG_filepath, 'r') as f:
+                baseOSKG = json.load(f)
+
+            for image_name in baseOSKG['Container Images']:
+                self.__operatorimage_KG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
+        else:
+            logging.error(f'baseOSKG[{baseOSKG_filepath}] is empty or not exists')
+
+        inverted_operatorimageKG_filepath = config['filepaths']['inverted_operatorimageKG_filepath']
+        if Path(inverted_operatorimageKG_filepath).is_file():
+            with open(inverted_operatorimageKG_filepath, 'r') as f:
+                self.__inverted_operatorimageKG = json.load(f)
+        else:
+            self.__inverted_operatorimageKG = {}
+            logging.error(f'inverted_operatorimageKG[{inverted_operatorimageKG_filepath}] is empty or not exists')
+
+
         COTSKG_filepath = config['filepaths']['COTSKG_filepath']
         if Path(COTSKG_filepath).is_file():
             with open(COTSKG_filepath, 'r') as f:
@@ -98,7 +125,7 @@ class Plan():
 
         if logger == True:
             self.logfile = codecs.open('logfile.txt','w',encoding='utf-8')
-        
+
         self.MAJOR_VERSION_NUMBER_REGEX = re.compile('([0-9]+)')
 
     def __compute_confidence(self, app, catalog = 'dockerhub'):
@@ -118,12 +145,17 @@ class Plan():
         app['scope_images_confidence'] = {}
         app['scope_images_confidence']['mapping'] = {}
         child_types = ["App Server", "App", "Runtime","Lang"]
-        
+
         inverted_containerimageKG = self.__inverted_dockerimageKG
         containerimageKG = self.__dockerimage_KG
+        imageurl = 'Docker_URL'
         if catalog == 'openshift':
             inverted_containerimageKG = self.__inverted_openshiftimageKG
             containerimageKG = self.__openshiftimage_KG
+        if catalog == 'operator':
+            inverted_containerimageKG = self.__inverted_operatorimageKG
+            containerimageKG = self.__operatorimage_KG
+            imageurl = 'Operator_URL'
 
         # Compute maximum value of confidence
         cum_scores = scores_dict['OS']
@@ -133,7 +165,7 @@ class Plan():
         for child_type in child_types:
             if app[child_type] != '':
                 cum_scores += len(app[child_type].split(', '))*scores_dict[child_type]
-        
+
         if not scope_images:
             app['scope_images_confidence']['images_score'] = 0
             app['scope_images_confidence']['cum_scores'] = cum_scores
@@ -163,14 +195,14 @@ class Plan():
                             #select best images using image status
                             best_image = candidated_images[0]
                             for scope_image in candidated_images:
-                                status = containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']
+                                status = containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')
                                 if status and len(status) > 0:
                                     best_image = scope_image
                                     break
                             scope_image = best_image
                             images_score += scores_dict[child_type]
                             print(str(scope_image))
-                            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']}
+                            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
                             app['scope_images_confidence']['mapping'][child] = scope_image
                             if child_type in app_appserver_child_types:
                                 has_images_for_app_appserver = True
@@ -190,7 +222,7 @@ class Plan():
                             custom_images_needed.append(child)
                         else:
                             custom_installations_needed.append(child)
-        
+
         if 'Windows' in app['OS'] and has_images_for_app_appserver:
             # remove Runtime to custom_installations_needed if needed
             child_type = 'Runtime'
@@ -209,7 +241,7 @@ class Plan():
                                 custom_installations_needed.append(child)
                                 ## todo: remove covered lang if needed
                                 break
-        
+
         if len(app['scope_images']) > 0:
             has_images_for_app_appserver = True
         for child in lang_needed:
@@ -227,24 +259,24 @@ class Plan():
                         #select best images using image status
                         best_image = candidated_images[0]
                         for scope_image in candidated_images:
-                            status = containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']
+                            status = containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')
                             if status and len(status) > 0:
                                 best_image = scope_image
                                 break
                         scope_image = best_image
                         images_score += scores_dict['Lang']
-                        app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']}
+                        app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
                         app['scope_images_confidence']['mapping'][child] = scope_image
                     else:
                         custom_installations_needed.append(child)
                 else:
                     custom_installations_needed.append(child)
-        
+
         if not app['scope_images'] and scope_images:
             # find best for OS
             scope_image = scope_images[0]
             print(scope_image)
-            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image]['CertOfImageAndPublisher']}
+            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
             # app['scope_images_confidence']['mapping'][child] = scope_image
 
 
@@ -256,7 +288,7 @@ class Plan():
 
         ## ToDo
         ## Update confidence according to version match
-        
+
         return app
 
 
@@ -280,6 +312,8 @@ class Plan():
         if catalog == 'openshift':
             osBaseImages = self.__openshiftosBaseImages
             inverted_containerimageKG = self.__inverted_openshiftimageKG
+        if catalog == 'operator':
+            inverted_containerimageKG = self.__inverted_operatorimageKG
 
         app['scope_images'] = []
         backup_images = []
@@ -296,7 +330,7 @@ class Plan():
             full_os_check_images = inverted_containerimageKG[app['OS']]
         if (app['OS'].split('|')[0] != app['OS']) and app['OS'].split('|')[0] in inverted_containerimageKG:
             parent_os_check_iamges = inverted_containerimageKG[app['OS'].split('|')[0]]
-        
+
         # parent_os_scope_images = []
         child_types = ["App Server", "App", "Runtime","Lang"]
         for child_type in child_types:
@@ -427,6 +461,10 @@ class Plan():
         if len(self.__openshiftimage_KG) == 0 or len(self.__openshiftosBaseImages) == 0 or len(self.__inverted_openshiftimageKG) == 0:
             logging.error('service/containerize_planning.py init failed')
             return appL
+        if len(self.__operatorimage_KG) == 0 or len(self.__inverted_operatorimageKG) == 0:
+            logging.error('service/containerize_planning.py init failed')
+            return appL
+
         containerL = []
         for app in appL:
             if app['valid_assessment']:
@@ -494,7 +532,7 @@ class Plan():
                             else:
                                 app['scope_images'] = subapp['scope_images']
                                 app['scope_images_confidence'] = subapp['scope_images_confidence']
-                    
+
                     if not app['scope_images']:
                         # No matching image found for the OS
                         app['valid_planning'] = False
@@ -551,9 +589,9 @@ class Plan():
                 counter_list = counter_list[:-1]
                 if app['scope_images_confidence'] and app['scope_images_confidence']['custom_installations_needed']:
                     pApp['Reason'] += 'Additional Installations in container image ' + counter_list + ': ' + ', '.join(filter(None, app['scope_images_confidence']['custom_installations_needed']))
-                
+
                 if app['scope_images_confidence']:
-                    pApp["Confidence"] = app['scope_images_confidence']['image_confidence'] 
+                    pApp["Confidence"] = app['scope_images_confidence']['image_confidence']
                 if 'scope_images_win' in app and app['scope_images_win']:
                     counter_list = ''
                     for image in app["scope_images_win"]:
@@ -568,7 +606,7 @@ class Plan():
                         if pApp['Reason']:
                             pApp['Reason'] += '\n '
                         pApp['Reason'] += 'Additional Installations in container image ' + counter_list + ':' + ', '.join(filter(None, app['scope_images_confidence_win']['custom_installations_needed']))
-                    
+
                     if 'scope_images_confidence_win' in app and app['scope_images_confidence_win']:
                         pApp["Confidence"] = round((app['scope_images_confidence']['images_score'] + app['scope_images_confidence_win']['images_score'])/(app['scope_images_confidence']['cum_scores'] + app['scope_images_confidence_win']['cum_scores']),3)
                 elif 'Windows' in app['RepackageOS']:
@@ -580,7 +618,7 @@ class Plan():
                     if win_not_supported:
                         if 'scope_images_confidence_win' in app and app['scope_images_confidence_win']:
                             pApp["Confidence"] = (app['scope_images_confidence']['images_score'] + app['scope_images_confidence_win']['images_score'])/(app['scope_images_confidence']['cum_scores'] + app['scope_images_confidence_win']['cum_scores'])
-                        
+
                         if pApp['Reason']:
                             pApp['Reason'] += '\n '
                         pApp['Reason'] += 'Reason 400: Not supported by any container image: ' + ', '.join(filter(None, win_not_supported))
@@ -599,7 +637,7 @@ class Plan():
                     custom_images_needed.extend(app['scope_images_confidence']['custom_images_needed'])
                 if 'scope_images_confidence_win' in app and app['scope_images_confidence_win'] and 'custom_images_needed' in app['scope_images_confidence_win'] and app['scope_images_confidence_win']['custom_images_needed']:
                     custom_images_needed.extend(app['scope_images_confidence_win']['custom_images_needed'])
-                
+
                 if custom_images_needed:
                     if pApp['Reason']:
                         pApp['Reason'] = pApp['Reason'] + '\n '
@@ -634,5 +672,3 @@ class Plan():
         return pAppL
 
     # MAJOR_VERSION_NUMBER_REGEX = re.compile('([0-9]+)')
-
-
