@@ -1,5 +1,5 @@
 {
-  "Version": "1.0.2",
+  "Version": "1.0.3",
   "db2": [
     "DB2INST1_PASSWORD",
     "DBNAME",
