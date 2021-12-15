@@ -1,5 +1,5 @@
 {
-  "Version": "1.0.2",
+  "Version": "1.0.3",
   "Linux": [
     "Apache Spark Operator",
     "Banzai Cloud Kafka Operator",
@@ -11,12 +11,65 @@
     "Postgresql Operator",
     "Redis Operator",
     "WildFly",
-    "MongoDB Enterprise Operator"
+    "MongoDB Enterprise Operator",
+    "Apache Spark Operator",
+    "Banzai Cloud Kafka Operator",
+    "Camel K Operator",
+    "GrdsCloud MySQL for Kubernetes",
+    "Hive for Red Hat OpenShift",
+    "IBM Spectrum Scale CSI Plugin Operator",
+    "Jenkins Operator",
+    "Postgresql Operator",
+    "Redis Operator",
+    "WildFly",
+    "MongoDB Enterprise Operator",
+    "Instana Agent Operator",
+    "credstash-operator",
+    "Snyk Operator",
+    "Akka Cluster Operator",
+    "Varnish Operator",
+    "Datadog Operator",
+    "Hazelcast Enterprise Operator",
+    "infinispan",
+    "Nuxeo Operator",
+    "ArangoDB",
+    "Eclipse Che",
+    "AWS S3 Operator",
+    "Altinity ClickHouse Operator",
+    "MinIO Operator",
+    "Elastic Cloud on Kubernetes",
+    "Percona XtraDB Cluster Operator",
+    "Keycloak Operator",
+    "Grafana Operator",
+    "Mattermost Operator",
+    "synapse-helm",
+    "IBM Cloud IAM Operator",
+    "Knative Operator",
+    "Cassandra",
+    "Kubeflow",
+    "Openshift Qiskit Operator",
+    "Azure Service Operator",
+    "Strimzi",
+    "Sematext Operator",
+    "Eclipse Hawkbit",
+    "Eclipse Ditto",
+    "Mariadb Operator",
+    "Zadara Operator",
+    "Istio",
+    "Vault Helm",
+    "druid-operator",
+    "etcd",
+    "Traefikee Operator",
+    "IBM Cloud Operator",
+    "Yugabyte Operator",
+    "CockroachDB",
+    "Community Jaeger Operator"
   ],
   "Java": [
     "Apache Spark Operator"
   ],
   "Spark": [
+    "Apache Spark Operator",
     "Apache Spark Operator"
   ],
   "Go": [
@@ -29,33 +82,166 @@
     "WildFly"
   ],
   "Apache Kafka": [
+    "Banzai Cloud Kafka Operator",
     "Banzai Cloud Kafka Operator"
   ],
   "Java|Apache Camel": [
+    "Camel K Operator",
     "Camel K Operator"
   ],
   "MySQL": [
+    "GrdsCloud MySQL for Kubernetes",
     "GrdsCloud MySQL for Kubernetes"
   ],
   "Apache Hive": [
+    "Hive for Red Hat OpenShift",
     "Hive for Red Hat OpenShift"
   ],
   "IBM Spectrum Scale": [
+    "IBM Spectrum Scale CSI Plugin Operator",
     "IBM Spectrum Scale CSI Plugin Operator"
   ],
   "Jenkins": [
+    "Jenkins Operator",
     "Jenkins Operator"
   ],
   "PostgreSQL": [
+    "Postgresql Operator",
     "Postgresql Operator"
   ],
   "Redis": [
+    "Redis Operator",
     "Redis Operator"
   ],
   "JBoss|Wildfly": [
+    "WildFly",
     "WildFly"
   ],
   "MongoDB": [
+    "MongoDB Enterprise Operator",
     "MongoDB Enterprise Operator"
+  ],
+  "instana": [
+    "Instana Agent Operator"
+  ],
+  "credstash": [
+    "credstash-operator"
+  ],
+  "Snyk": [
+    "Snyk Operator"
+  ],
+  "Akka": [
+    "Akka Cluster Operator"
+  ],
+  "Varnish": [
+    "Varnish Operator"
+  ],
+  "Datadog": [
+    "Datadog Operator"
+  ],
+  "Hazelcast": [
+    "Hazelcast Enterprise Operator"
+  ],
+  "Infinispan": [
+    "infinispan"
+  ],
+  "Nuxeo": [
+    "Nuxeo Operator"
+  ],
+  "ArangoDB": [
+    "ArangoDB"
+  ],
+  "Eclipse Che": [
+    "Eclipse Che"
+  ],
+  "Amazon S3": [
+    "AWS S3 Operator"
+  ],
+  "ClickHouse": [
+    "Altinity ClickHouse Operator"
+  ],
+  "MinIO": [
+    "MinIO Operator"
+  ],
+  "Elasticsearch": [
+    "Elastic Cloud on Kubernetes"
+  ],
+  "XtraDB": [
+    "Percona XtraDB Cluster Operator"
+  ],
+  "Keycloak": [
+    "Keycloak Operator"
+  ],
+  "Grafana": [
+    "Grafana Operator"
+  ],
+  "Mattermost": [
+    "Mattermost Operator"
+  ],
+  "Synapse": [
+    "synapse-helm"
+  ],
+  "Cloud IAM": [
+    "IBM Cloud IAM Operator"
+  ],
+  "Knative": [
+    "Knative Operator"
+  ],
+  "Apache Cassandra": [
+    "Cassandra"
+  ],
+  "Kubeflow": [
+    "Kubeflow"
+  ],
+  "Qiskit": [
+    "Openshift Qiskit Operator"
+  ],
+  "Microsoft Azure": [
+    "Azure Service Operator"
+  ],
+  "Strimzi": [
+    "Strimzi"
+  ],
+  "Sematext": [
+    "Sematext Operator"
+  ],
+  "Eclipse hawkBit": [
+    "Eclipse Hawkbit"
+  ],
+  "Eclipse Ditto": [
+    "Eclipse Ditto"
+  ],
+  "MariaDB": [
+    "Mariadb Operator"
+  ],
+  "Zadara": [
+    "Zadara Operator"
+  ],
+  "Istio": [
+    "Istio"
+  ],
+  "Vault": [
+    "Vault Helm"
+  ],
+  "Apache Druid": [
+    "druid-operator"
+  ],
+  "etcd": [
+    "etcd"
+  ],
+  "Traefik": [
+    "Traefikee Operator"
+  ],
+  "IBM Cloud": [
+    "IBM Cloud Operator"
+  ],
+  "YugabyteDB": [
+    "Yugabyte Operator"
+  ],
+  "CockroachDB": [
+    "CockroachDB"
+  ],
+  "Jaeger": [
+    "Community Jaeger Operator"
   ]
 }
