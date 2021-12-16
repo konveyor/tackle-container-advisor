@@ -1,5 +1,5 @@
 {
-  "KG Version": "1.0.2",
+  "KG Version": "1.0.3",
   ".NET Framework": [
     {
       "Parent Type": "OS",
@@ -3001,6 +3001,293 @@
       "Parent Type": "OS",
       "Parent Class": "Linux|*",
       "Child Type": "App"
+    }
+  ],
+  "instana": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "credstash": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Snyk": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Akka": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Varnish": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "Datadog": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "Hazelcast": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "Infinispan": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Nuxeo": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "ArangoDB": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Eclipse Che": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Amazon S3": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "ClickHouse": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "MinIO": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Elasticsearch": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "XtraDB": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Keycloak": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Grafana": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Mattermost": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "Synapse": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Cloud IAM": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Knative": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "Apache Cassandra": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Kubeflow": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "Qiskit": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Microsoft Azure": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Strimzi": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "Sematext": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
+    }
+  ],
+  "Eclipse hawkBit": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Eclipse Ditto": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "MariaDB": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Zadara": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Istio": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Vault": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Apache Druid": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "etcd": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Traefik": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App Server"
+    }
+  ],
+  "IBM Cloud": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "YugabyteDB": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "CockroachDB": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "App"
+    }
+  ],
+  "Jaeger": [
+    {
+      "Parent Type": "OS",
+      "Parent Class": "Linux|*",
+      "Child Type": "Runtime"
     }
   ]
 }

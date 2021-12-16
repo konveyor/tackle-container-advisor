@@ -1,18 +1,18 @@
 ## Tackle Container Advisor (TCA)
 ### Purpose
 
-TCA takes client applications as a natural language description and recommends whether client applications can be containerized. For example, a client can provide the application description as the following. 
+TCA takes client applications as a natural language description and recommends whether client applications can be containerized. For example, a client can provide the application description as the following.
 
 ```
 1. App1: rhel, db2, java, tomcat
 ```
 
 
-TCA takes the following steps to recommend the containerization. 
+TCA takes the following steps to recommend the containerization.
 
 1. **Assessment**: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the *aca_db* folder. For example, the inputs in *App1* get mapped as the following named entities.
 
-```	
+```
 1. App1: rhel: Linux|RedHat Linux, db2: DB2, java: Java, tomcat: Apache Tomcat
 ```
 
@@ -39,7 +39,7 @@ The pipeline ingests raw inputs from clients data and standardizes the data to g
 There are two options to run the backend API. One using a shell script.
 
 	1. sh run.sh
-	
+
 Two, you can directly run the docker as follows.
 
 	1. cd aca_backend_api/
@@ -48,7 +48,7 @@ Two, you can directly run the docker as follows.
 ### Deploying TCA's Backend API on RedHat developer sandbox OpenShift cluster
 
 	1. sh deploy.sh
-	
+
 ### Updating TCA's Knowledge Base
 
 If you want to make changes to TCA's Knowledge Base, please follow the instructions below.
@@ -57,7 +57,7 @@ If you want to make changes to TCA's Knowledge Base, please follow the instructi
 
 	1. https://www.sqlite.org/download.html
 
-##### Installing Anaconda3 
+##### Installing Anaconda3
 
 	 1. https://docs.anaconda.com/anaconda/install/
 
@@ -89,7 +89,7 @@ For updating the TCA's Knowledge Base, enter in the *aca_db* folder. Upload the 
 
 Please perform the following steps.
 
-##### Replace the existing .sql file with the new <new_db>.sql file in the aca_db folder 
+##### Replace the existing .sql file with the new <new_db>.sql file in the aca_db folder
 
 ##### Change the *config.ini* file in the aca_entity_standardizer folder as follows
 
@@ -108,10 +108,10 @@ Please perform the following steps.
 ##### Run the TCA's environment setup by running the following script
 
 	1. sh setup.sh
-    
+
 ##### Modify the *clean.sh* script to reflect the sql and db file accordingly
 
-	1. aca_db_file="aca_kg_ce_1.0.2.db"
+	1. aca_db_file="aca_kg_ce_1.0.3.db"
 
 ### Creating a New Version of the Knowledge Base
 

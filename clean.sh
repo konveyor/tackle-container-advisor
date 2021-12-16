@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aca_db_file="aca_kg_ce_1.0.1.db"
+aca_db_file="aca_kg_ce_1.0.3.db"
 echo "-----------Cleaning Files and Folders---------"
 
 ##remove files from backend api

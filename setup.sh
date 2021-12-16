@@ -1,19 +1,19 @@
 #!/bin/bash
 
 echo "-----------Setting up Tackle Containerzation Adviser---------"
-aca_sql_file="aca_kg_ce_1.0.2.sql"
-aca_db_file="aca_kg_ce_1.0.2.db"
+aca_sql_file="aca_kg_ce_1.0.3.sql"
+aca_db_file="aca_kg_ce_1.0.3.db"
 
 ##generate the DB file
 echo "-----------Generating DB file--------------------------------"
 cd aca_db
 if [[ -f $aca_sql_file ]]; then
-    
+
     ## if a file exist it will remove before generating a new file
     if [[ -f $aca_db_file ]]; then
         rm $aca_db_file
     fi
-        
+
     cat $aca_sql_file | sqlite3 $aca_db_file
 else
     echo "-----------File does not exist. Please check with Admins."
@@ -30,7 +30,7 @@ if [ ! -d "aca_entity_standardizer/aca_db/" ]; then
 
 elif [ -d "aca_entity_standardizer/aca_db/" ]; then
     echo "-----------Folder exists.--------------------------------"
-    
+
 else
     echo "---Folder cannot be created. Please check with Admins.---"
     exit 0
@@ -44,16 +44,16 @@ echo "-----------Copied DB file to Entity Standardization Module-----"
 echo "-----------Copying DB file to The KG Utility-------------------"
 if [ ! -d "aca_kg_utils/aca_db/" ]; then
     mkdir aca_kg_utils/aca_db/
-    
+
 elif [ -d "aca_kg_utils/aca_db/" ]; then
     echo "-----------Folder exists.----------------------------------"
-    
+
 else
     echo "-----Folder cannot be created. Please check with Admins.---"
     exit 0
 fi
 cp aca_db/$aca_db_file aca_kg_utils/aca_db/.
-    
+
 echo "-----------Copied DB file to KG Utility------------------------"
 
 
@@ -62,10 +62,10 @@ echo "-----------Generating KG Utility Files ------------------------"
 if [ ! -d "aca_kg_utils/ontologies/" ]; then
     echo "creating ontologies dir"
     mkdir aca_kg_utils/ontologies/
-    
+
 elif [ -d "aca_kg_utils/ontologies/" ]; then
     echo "-----------Folder exists.----------------------------------"
-    
+
 else
     echo "-----------Folder cannot be created. Please check with Admins.---"
     exit 0
@@ -112,7 +112,7 @@ else
     cd ..
     echo "-----------Generated Entity Standardizer Models ------------------------"
 fi
-    
+
 echo "-----------Copying Entity Standardizer Models to Backend API------------------------"
 if [ ! -d  "aca_backend_api/model_objects/" ]; then
     mkdir aca_backend_api/model_objects/
