@@ -78,13 +78,13 @@ class sim_applier:
         sims=[]
 
         try :
-           matrixValue = cosine_similarity(tfs_text, self.tfs)
+           matrixValue = np.round(cosine_similarity(tfs_text, self.tfs),3)
 
            id = 0
            for each in matrixValue[0]:
                # if each>0:
                #    print ("each:",id,each)
-               sims.append(np.round(each,3))
+               sims.append(each)
                id += 1
 
            sims_sorted = sorted(enumerate(sims), key=lambda item: -item[1])

@@ -192,12 +192,10 @@ multiprocessing_enabled=NO
 
 - Serial vs Parallel
 
-| #Records | Time (serial) | Time (parallel, 2cpus) | Time (parallel, 4cpus) |
+| #Records| Time (serial) | Time (parallel, 2cpus) | Time (parallel, 4cpus) |
 |---------|---------------|------------------------|------------------------|
-| 1       | 0.20s         | 0.24s                  | 0.26s                  |
-| 10      | 1.83s         | 1.84s                  | 1.95s                  |
-| 100     | 17.9s         | 11.27s                 | 6.19s                  |
-| 200     | 35.9s         | 18.46s                 | 12.48s                 |
-| 1000    | 178.54s       | 94.51s                 | 51.8s                  |
-
-
+| 1       | 0.14s         | 0.21s                  | 0.23s                  |
+| 10      | 0.86s         | 1.13s                  | 1.04s                  |
+| 100     | 4.37s         | 5.29s                  | 3.87s                  |
+| 200     | 7.29s         | 7.47s                  | 5.58s                  |
+| 1000    | 36.28s        | 35.99s                 | 19.71s                 |

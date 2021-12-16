@@ -1,4 +1,10 @@
 ==========
+Nov 2021
+==========
+We added operator image catalog in addition to DockerHub and Openshift image catalog
+Added version standardizer module for normalizing input versions
+
+==========
 Oct 2021
 ==========
 Added deployment script for redhat developer sandbox ocp.
