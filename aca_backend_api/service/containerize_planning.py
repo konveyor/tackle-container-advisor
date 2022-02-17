@@ -155,7 +155,6 @@ class Plan():
         if catalog == 'operator':
             inverted_containerimageKG = self.__inverted_operatorimageKG
             containerimageKG = self.__operatorimage_KG
-            imageurl = 'Operator_URL'
 
         # Compute maximum value of confidence
         cum_scores = scores_dict['OS']
