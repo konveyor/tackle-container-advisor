@@ -36,14 +36,32 @@ The pipeline ingests raw inputs from clients data and standardizes the data to g
 
 ### Running TCA's Backend API
 
-There are two options to run the backend API. One using a shell script.
+**STEP 1 - SETUP**
 
-	1. sh run.sh
+In order to setup the environment and generate the resources needed by the backend API, run the bash script ``setup.sh``
+
+```
+bash setup.sh
+```
+
+**STEP 2 - CHECK SUCCESSFUL SETUP**
+
+Do not proceed to the next step if the final output of the ``setup.sh`` bash script is not the following one:
+   
+```
+-----------Set up for Tackle Containerzation Adviser Completed !!!---------
+```
+
+**STEP 3 - RUN THE BACKEND API**
+
+There are two options to run the backend API. One using a bash script.
+
+	1. bash run.sh
 
 Two, you can directly run the docker as follows.
 
 	1. cd aca_backend_api/
-	2. docker-compose  -f 'docker-compose-api.yml' --env-file ./config.ini up -d --build
+	2. docker-compose  -f 'docker-compose-api.yml' up -d --build
 
 ### Deploying TCA's Backend API on RedHat developer sandbox OpenShift cluster
 
