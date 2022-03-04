@@ -6,16 +6,17 @@
 	conda create --name <env-name> python=3.8
 	conda activate <env-name>
 ### Clone Tackle Containerization Adviser 
-	git clone git@github.ibm.com:tackle/tackle-advise-containerization.git
+	git clone it clone git@github.com:konveyor/tackle-container-advisor.git
 
-### ACA entity standardizer
+### TCA entity standardizer
 
 Python scripts to generate entity standardization model
 
 ### How to use
 
-- ``cd tackle-advise-containerization/aca_entity_standardizer``
+- ``cd tackle-container-advisor``
 - ``pip3 install -r requirements.txt``
+- ``cd aca_entity_standardizer``
 
 
 ### Input data from
@@ -26,7 +27,7 @@ Python scripts to generate entity standardization model
 ### Run the following to build the model
  ``python model_builder.py``
 ### Output saved in 
-  ``model``
+  ``../aca_backend_api/model``
 
 ### Generate documentation:
 - mkdir  ``docs`` && cd  ``docs``

@@ -19,7 +19,7 @@ import urllib.parse as uparse
 import multiprocessing
 from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
-from pathlib import Path
+# from pathlib import Path
 from db import create_db_connection
 from sim_applier import sim_applier
 from sklearn.feature_extraction.text import TfidfVectorizer
