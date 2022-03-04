@@ -25,8 +25,3 @@ jobs:
         run: |
           cd aca_backend_api
           python -m unittest discover -v -s test -p test_*.py
-      - name: Test baselines
-        run: |
-          cd aca_entity_standardizer
-          python events.py '${{toJSON(github.event)}}'
-          python benchmarks.py
