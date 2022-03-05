@@ -9,16 +9,17 @@ Python scripts to generate JSON from Database
 	# Requires python 3.8
 	conda create --name <env-name> python=3.8
 	conda activate <env-name>
-### Clone ACA 
-	git clone git@github.ibm.com:tackle/tackle-advise-containerization.git or git@github.com:konveyor/tackle-container-advisor.git
+### Clone TCA 
+	git clone git@github.com:konveyor/tackle-container-advisor.git
 
 ### How to use
-- ``cd tackle-advise-containerization/aca_kg_utils``
+- ``cd tackle-container-advisor``
 - ``pip3 install -r requirements.txt``
+- ``cd aca_kg_utils`` 
 - ``aca_db`` provides the input data
 - Run ``python kg_utils.py``
-- Outputs json are saved in: ``aca_backend_api/ontologies`` and in ``aca_kg_utils/ontologies``
-- Latest excel KG is in: ``<https://ibm.ent.box.com/folder/112880079567>``
+- Outputs json are saved in: ``aca_backend_api/ontologies`` 
+
 
 ### Generate documentation:
 - mkdir  ``docs`` && cd  ``docs``

@@ -38,6 +38,16 @@ fi
 echo "-----------------Dependency Checks PASSED------------------"
 
 ######################################################################
+## Install dependencies for 
+######################################################################
+if ! pip3 install -r requirements.txt
+then
+    echo "**** ERROR: Python dependency install failed. Cannot continue."
+fi
+echo "-----------------Requirements Installation PASSED------------------"
+
+
+######################################################################
 ## Generate the DB file
 ######################################################################
 echo "--------------------Generating DB file---------------------"
@@ -58,52 +68,18 @@ cd ..
 echo "--------------------Generated DB file----------------------"
 
 
-######################################################################
-## Copy DB file to the entity standardization module
-######################################################################
-echo "-----Copying DB file to Entity Standardization Module------"
-if [ ! -d "aca_entity_standardizer/aca_db/" ]; then
-    mkdir aca_entity_standardizer/aca_db/
 
-elif [ -d "aca_entity_standardizer/aca_db/" ]; then
-    echo "--------Folder exists.-------------------------------------"
-
-else
-    echo "**** ERROR: Folder cannot be created. Cannot continue."
-    exit 1
-fi
-
-cp aca_db/$aca_db_file aca_entity_standardizer/aca_db/.
-echo "------Copied DB file to Entity Standardization Module------"
-
-
-######################################################################
-## Copy the DB file to the KG util module
-######################################################################
-echo "-----------Copying DB file to The KG Utility---------------"
-if [ ! -d "aca_kg_utils/aca_db/" ]; then
-    mkdir aca_kg_utils/aca_db/
-
-elif [ -d "aca_kg_utils/aca_db/" ]; then
-    echo "--------Folder exists.-------------------------------------"
-
-else
-    echo "**** ERROR: Folder cannot be created. Cannot continue."
-    exit 1
-fi
-cp aca_db/$aca_db_file aca_kg_utils/aca_db/.
-echo "--------------Copied DB file to KG Utility-----------------"
 
 
 ######################################################################
 ## Generating KG Utility Files
 ######################################################################
 echo "--------------Generating KG Utility Files------------------"
-if [ ! -d "aca_kg_utils/ontologies/" ]; then
+if [ ! -d "aca_backend_api/ontologies/" ]; then
     echo "creating ontologies dir"
-    mkdir aca_kg_utils/ontologies/
+    mkdir aca_backend_api/ontologies/
 
-elif [ -d "aca_kg_utils/ontologies/" ]; then
+elif [ -d "aca_backend_api/ontologies/" ]; then
     echo "--------Folder exists.-------------------------------------"
 
 else
@@ -112,14 +88,10 @@ else
 fi
 
 ## make sure you check the config.ini file
-if [ -e aca_kg_utils/ontologies/class_type_mapper.json ]; then
+if [ -e aca_backend_api/ontologies/class_type_mapper.json ]; then
     echo "-------------Files exists.---------------------------------"
 else
     cd aca_kg_utils
-    if ! pip3 install -r requirements.txt; then
-        echo "**** ERROR: Python dependency install failed. Cannot continue."
-        exit 1
-    fi
     python kg_utils.py
     cd ..
     echo "----------------Generated KG Utility Files--------------------"
@@ -127,26 +99,13 @@ fi
 
 
 ######################################################################
-## Copying KG Utility Files to Backend API
-######################################################################
-echo "--------Copying KG Utility Files to Backend API------------"
-if [ -d "aca_backend_api/ontologies/" ]; then
-    cp aca_kg_utils/ontologies/*.json aca_backend_api/ontologies/.
-else
-    echo "**** ERROR: Folder cannot be created. Cannot continue."
-    exit 1
-fi
-echo "---------Copied KG Utility Files to Backend API------------"
-
-
-######################################################################
 ## Generating Entity Standardizer Models
 ######################################################################
 echo "--------Generating Entity Standardizer Models--------------"
-if [ ! -d "aca_entity_standardizer/model_objects/" ]; then
+if [ ! -d "aca_backend_api/model_objects/" ]; then
     echo "creating model objects dir"
-    mkdir aca_entity_standardizer/model_objects/
-elif [ -d "aca_entity_standardizer/model_objects/" ]; then
+    mkdir aca_backend_api/model_objects/
+elif [ -d "aca_backend_api/model_objects/" ]; then
     echo "--------Folder exists.-------------------------------------"
 else
     echo "**** ERROR: Folder cannot be created. Cannot continue."
@@ -154,34 +113,14 @@ else
 fi
 
 ## make sure you check the config.ini file
-if [ -e aca_entity_standardizer/model_objects/standardization_dict.pickle -a  -e aca_entity_standardizer/model_objects/standardization_model.pickle -a  -e aca_entity_standardizer/model_objects/standardization_vectorizer.pickle ]; then
+if [ -e aca_backend_api/model_objects/standardization_dict.pickle -a  -e aca_backend_api/model_objects/standardization_model.pickle -a  -e aca_backend_api/model_objects/standardization_vectorizer.pickle ]; then
     echo "-------------Files exists.---------------------------------"
 else
     cd aca_entity_standardizer
-    if ! pip3 install -r requirements.txt; then
-        echo "**** ERROR: Python dependency install failed. Cannot continue."
-        exit 1
-    fi
     python model_builder.py
     cd ..
     echo "---------Generated Entity Standardizer Models--------------"
 fi
-
-######################################################################
-## Copying Entity Standardizer Models to Backend API
-######################################################################
-echo "-----Copying Entity Standardizer Models to Backend API-----"
-if [ ! -d  "aca_backend_api/model_objects/" ]; then
-    mkdir aca_backend_api/model_objects/
-
-elif [ -d  "aca_backend_api/model_objects/" ]; then
-    echo "--------Folder exists.-------------------------------------"
-else
-    echo "**** ERROR: Folder cannot be created. Cannot continue."
-    exit 1
-fi
-cp aca_entity_standardizer/model_objects/*.pickle aca_backend_api/model_objects/.
-echo "-----Copied Entity Standardizer Models to Backend API------"
 
 echo "+---------------------------------------------------------+"
 echo "|-Set up for Tackle Containerzation Adviser Completed !!!-|"

@@ -13,27 +13,10 @@ if [ -d aca_backend_api/ontologies/ ]; then
     rm  -rf aca_backend_api/ontologies/
 fi
 
-## remove db file from DB, kg_utils, and entity_standardizer
+## remove db file from DB
 if [[ -f aca_db/$aca_db_file ]]; then
     rm aca_db/$aca_db_file
 fi
 
-if [ -d "aca_kg_utils/aca_db" ]; then
-    rm -rf aca_kg_utils/aca_db
-fi
-
-if [ -d "aca_entity_standardizer/aca_db" ]; then
-    rm -rf aca_entity_standardizer/aca_db
-fi
-
-## remove models
-if [ -d "aca_entity_standardizer/model_objects" ]; then
-    rm -rf aca_entity_standardizer/model_objects
-fi
-
-## remove kg utilities
-if [ -d "aca_kg_utils/ontologies" ]; then
-    rm -rf aca_kg_utils/ontologies
-fi
 
 echo "-----------Cleaning Completed---------"
