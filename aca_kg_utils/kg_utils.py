@@ -23,7 +23,6 @@ from packaging import version as pv
 config_obj = configparser.ConfigParser()
 
 config_obj.read("./config.ini")
-# os.chdir('..')
 
 def cleanStrValue(value):
     """
