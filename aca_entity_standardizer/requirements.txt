@@ -1,6 +1,0 @@
-pandas==1.2.4
-scikit-learn==0.24.2
-pathlib==1.0.1
-gensim==3.8.3
-sphinx==3.2.1
-sphinx_rtd_theme==0.5.2
