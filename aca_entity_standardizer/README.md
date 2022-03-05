@@ -27,7 +27,7 @@ Python scripts to generate entity standardization model
 ### Run the following to build the model
  ``python model_builder.py``
 ### Output saved in 
-  ``../aca_backend_api/model``
+  ``model_path`` from ``config.ini``
 
 ### Generate documentation:
 - mkdir  ``docs`` && cd  ``docs``
