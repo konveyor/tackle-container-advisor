@@ -40,8 +40,6 @@ class TestEntityDetection(unittest.TestCase):
         ]
         expected = [{'application_id': 'App ID 0114', 'application_name': 'App Name 0114', 'application_description': 'App Desc 0114', 'component_name': 'Comp 1', 'operating_system': 'Oracle Linux 4.5', 'programming_languages': 'PHP', 'middleware': 'Oracle WebLogic Server 14c', 'database': 'PostgreSQL', 'integration_services_and_additional_softwares': 'Redis', 'technology_summary': 'HTTP Client', 'versioning_tool_type': '1', 'application_inbound_interfaces': 5, 'application_outbound_interfaces': 1, 'devops_maturity_level': 'Moderate', 'devops_tooling': 'Jenkins, Git, JIRA', 'test_automation_%': '50%', 'performance_testing_enabled': 'No', 'KG Version': '1.0.3', 'Plugin': {}, 'Storage': {}, 'Lib': {}, 'Runtime': {}, 'App': {'PostgreSQL': {'PostgreSQL': ('NA_VERSION', '14')}, 'Redis': {'Redis': ('NA_VERSION', '6.2.4')}}, 'VM': {}, 'Technology': {'HTTP Client': {'HTTP client': ('NA_VERSION', 'NA_VERSION')}}, 'App Server': {'Oracle WebLogic Server 14c': {'Oracle WebLogic Server': ('14c', '14c')}}, 'OS': {'Oracle Linux 4.5': {'Linux': ('4.5', '4.5')}}, 'Runlib': {}, 'Lang': {'PHP': {'PHP': ('NA_VERSION', '8')}}, 'HW': {}}]
         app_data = entity_detection.compose_app(app_data)
-
-        print(app_data)
         self.assertTrue(app_data == expected)
 
     def test_compose_app1(self):
