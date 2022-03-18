@@ -1,6 +1,9 @@
 # Mac OS Metadata
 .DS_Store
 
+# Vagrant metadata
+.vagrant/
+
 # Generated files from TCA
 model_objects/
 ontologies/

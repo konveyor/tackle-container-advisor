@@ -25,7 +25,7 @@ import logging
 config_obj = configparser.ConfigParser()
 config_obj.read("config.ini")
 
-os.chdir('..')
+# os.chdir('..')
     
 def buildModel(model_path, connection):
 
@@ -123,7 +123,6 @@ if __name__ == "__main__":
 
 
     model_path = config_obj[model_ky][model_pth]
-    model_path = fr'aca_entity_standardizer/{model_path}'
 
 
     if not os.path.isdir(model_path):

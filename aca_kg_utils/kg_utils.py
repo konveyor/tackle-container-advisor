@@ -17,14 +17,12 @@ import sqlite3
 import os
 from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
-from pathlib import Path
 from typing import Container
 from packaging import version as pv
 
 config_obj = configparser.ConfigParser()
 
 config_obj.read("./config.ini")
-os.chdir('..')
 
 def cleanStrValue(value):
     """
@@ -146,16 +144,12 @@ def save_json(json_file , file_name):
 
     """
 
-    path =  fr'aca_kg_utils/{config_obj["kg"]["ontologies"]}'
-    dst_pth = fr'aca_backend_api/{config_obj["kg"]["ontologies"]}'
-
-    if not os.path.isdir(path):
-        os.mkdir(path)
+    dst_pth = config_obj["kg"]["ontologies"]
 
     if not os.path.isdir(dst_pth) :
         os.mkdir(dst_pth)
 
-    with open(path + config_obj["kg"][file_name] , encoding="utf-8", mode="w") as comp_file:
+    with open(dst_pth + config_obj["kg"][file_name] , encoding="utf-8", mode="w") as comp_file:
         comp_file.write(json.dumps(json_file, indent=2))
 
 

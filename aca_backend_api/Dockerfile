@@ -11,27 +11,27 @@
 
 FROM registry.access.redhat.com/ubi8/python-38
 
+# Need to be root to install dependencies
 USER 0
+
+# Install dependencies before the code
 WORKDIR /app
-
-ADD ./service /app/service
-ADD ./config.py /app/config.py
-ADD ./planner.py /app/planner.py
-ADD ./multiprocessing_mapreduce.py /app/multiprocessing_mapreduce.py
-ADD ./model_objects /app/model_objects
-ADD ./ontologies /app/ontologies
-ADD ./config.ini /app/config.ini
-ADD ./requirements.txt .
-RUN chown -R 1001:0 ./
-USER 1001
-
-#RUN pip install -r ./requirements.txt
-RUN pip install -U "pip>=19.3.1" && \
+COPY ./requirements.txt .
+RUN python -m pip install --upgrade pip wheel && \
     pip install -r requirements.txt
 
-# Unit Test
-#RUN python -m unittest discover -v -s './service/test' -p 'test_*.py'
+# COPY the code to the working directory
+COPY ./service /app/service
+COPY ./config.py /app/config.py
+COPY ./planner.py /app/planner.py
+COPY ./multiprocessing_mapreduce.py /app/multiprocessing_mapreduce.py
+COPY ./model_objects /app/model_objects
+COPY ./ontologies /app/ontologies
+COPY ./config.ini /app/config.ini
+RUN chown -R 1001:0 ./
 
+# Become a non-root user again
+USER 1001
 
 # Expose any ports the app is expecting in the environment
 ENV PORT 8000
