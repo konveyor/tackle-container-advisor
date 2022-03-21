@@ -200,7 +200,7 @@ class Plan():
                                     break
                             scope_image = best_image
                             images_score += scores_dict[child_type]
-                            print(str(scope_image))
+                            # print(str(scope_image))
                             app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
                             app['scope_images_confidence']['mapping'][child] = scope_image
                             if child_type in app_appserver_child_types:
@@ -274,7 +274,7 @@ class Plan():
         if not app['scope_images'] and scope_images:
             # find best for OS
             scope_image = scope_images[0]
-            print(scope_image)
+            # print(scope_image)
             app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
             # app['scope_images_confidence']['mapping'][child] = scope_image
 

@@ -12,7 +12,6 @@
 
 
 import unittest
-# from service.sim_applier import sim_applier
 from service.utils_nlp import utils
 from service.standardizer import entity_standardizer
 
@@ -27,8 +26,5 @@ class TestApplySIM(unittest.TestCase):
         for mention in mentions:
             entity_list = entities.get(mention, [])
             extracted.append(entity_list[0])        
-        # print("Extracted = ", extracted)
-        # extracted_old = sim.tech_stack_standardization(tech_stack)
-        # print("Extracted old = ", extracted_old)
-        expected = [['COBOL', 1.0], ['Java', 1.0], ['JavaScript', 1.0], ['Unix', 1.0], ['mainframe', 1.0], ['DB2', 1.0]]
+        expected = [['COBOL|*', 1.0], ['Java|*', 1.0], ['JavaScript', 1.0], ['Unix|*', 1.0], ['mainframe', 1.0], ['DB2', 1.0]]
         self.assertTrue(extracted == expected)
