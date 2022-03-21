@@ -9,19 +9,18 @@
 # limitations under the License.
 # *****************************************************************
 
-
-
-import sys
 import json
+import sys
 import pandas
 from pathlib import Path
 import logging
 import codecs
 
+
 from service.utils import Utils
 from service.utils_nlp import utils
-from service.sim_applier import sim_applier
-from service.version_detector import version_detector
+# from service.sim_applier import sim_applier
+from service.standardizer import standardizer
 
 import configparser
 
@@ -40,7 +39,7 @@ class EntityDetection:
         """
         logging.basicConfig(level=logging.INFO)
 
-        self.version_detector = version_detector()
+        # self.version_detector = version_detector()
 
         #self.cipher_obj = AESCipher()
         self.__class_type_mapper = {}
@@ -66,7 +65,7 @@ class EntityDetection:
             self.__class_type_mapper = {}
             logging.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
         
-        self.__sim = sim_applier()
+        # self.__sim = sim_applier()
 
         self.NA_CATEGORY=config['NA_VALUES']['NA_CATEGORY']
         self.NA_VERSION = config['NA_VALUES']['NA_VERSION']
@@ -80,6 +79,7 @@ class EntityDetection:
         entity_detector methods takes the input entity, preprocess it and detects its standardized form and version with
         confidence score
         """
+        '''
         try:
             strs = utils.preprocess(tech_stack)  # utils.split_subtext(tech_stack)
             id_ = 0
@@ -94,13 +94,15 @@ class EntityDetection:
                 final_version = (version,std_version)
                 entities.append([s, entity_scores, final_version])
 
-            return entities
-
+            print("Original entities = ", entities)
+            # return entities        
         except Exception as e:
             logging.error(str(e))
-
-
-
+        '''
+        mentions = utils.preprocess(tech_stack)        
+        entities = standardizer(mentions)
+        
+        return entities
 
     def compose_app(self,app_data):
         """
@@ -114,9 +116,9 @@ class EntityDetection:
             logging.error('ontologies init failed')
             return app_data
         
-        if (not self.__sim.all_instances) or len(self.__sim.all_instances) == 0:
-            logging.error('apply_sim init failed')
-            return app_data
+        # if (not self.__sim.all_instances) or len(self.__sim.all_instances) == 0:
+        # logging.error('apply_sim init failed')
+        # return app_data
 
         if (not app_data)  or len(app_data) == 0:
             return app_data

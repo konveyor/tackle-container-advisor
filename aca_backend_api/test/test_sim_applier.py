@@ -12,13 +12,23 @@
 
 
 import unittest
-from service.sim_applier import sim_applier
+# from service.sim_applier import sim_applier
+from service.utils_nlp import utils
+from service.standardizer import entity_standardizer
 
 class TestApplySIM(unittest.TestCase):
 
     def test_sim_tech_stack_standardization(self):
-        sim = sim_applier()
+        # sim = sim_applier()
         tech_stack="cobol    java    javascript:  : , , unix/mainframe, unix/mainframe: unknown , db2    "
-        extracted = sim.tech_stack_standardization(tech_stack)
+        mentions  = utils.preprocess(tech_stack)        
+        entities  = entity_standardizer(mentions)
+        extracted = []
+        for mention in mentions:
+            entity_list = entities.get(mention, [])
+            extracted.append(entity_list[0])        
+        # print("Extracted = ", extracted)
+        # extracted_old = sim.tech_stack_standardization(tech_stack)
+        # print("Extracted old = ", extracted_old)
         expected = [['COBOL', 1.0], ['Java', 1.0], ['JavaScript', 1.0], ['Unix', 1.0], ['mainframe', 1.0], ['DB2', 1.0]]
         self.assertTrue(extracted == expected)
