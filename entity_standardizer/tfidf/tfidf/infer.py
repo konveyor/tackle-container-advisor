@@ -55,7 +55,7 @@ def predict(config, json_data):
             run_train = False
             break            
     if run_train:
-        logging.info(f"TFIDF model not found in {mode_path}. Will run training to generate model.")
+        logging.info(f"TFIDF model not found in {model_path}. Will run training to generate model.")
         print(f"TFIDF model not found in {model_path}. Will run training to generate model.")
         train(config)
     
