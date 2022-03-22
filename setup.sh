@@ -81,6 +81,7 @@ echo "----------------Generated KG Utility Files--------------------"
 ######################################################################
 echo "--------------Generating Entity Standardizer Models------------------"
 python benchmarks/generate_data.py
+ls models/tca
 python benchmarks/run_models.py
 echo "---------Generated Entity Standardizer Models--------------"
 
