@@ -20,11 +20,9 @@ jobs:
           cd entity_standardizer/wdapi
           python setup.py bdist_wheel 
           cd -
-          pwd
-          ls
-          pip install entity_standardizer/dist/tfidf-1.0-py3-none-any.whl          
-          pip install entity_standardizer/dist/gnn-1.0-py3-none-any.whl          
-          pip install entity_standardizer/dist/wdapi-1.0-py3-none-any.whl
+          pip install entity_standardizer/tfidf/dist/tfidf-1.0-py3-none-any.whl          
+          pip install entity_standardizer/gnn/dist/gnn-1.0-py3-none-any.whl          
+          pip install entity_standardizer/wdapi/dist/wdapi-1.0-py3-none-any.whl
       - name: Cleanup
         run: |
           bash clean.sh
