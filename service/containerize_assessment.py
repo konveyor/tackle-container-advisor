@@ -9,6 +9,7 @@
 # limitations under the License.
 # *****************************************************************
 
+import os
 import json
 from collections import OrderedDict
 import logging
@@ -19,8 +20,9 @@ from service.utils import Utils
 import configparser
 
 config = configparser.ConfigParser()
-config.read('config.ini')
-print('config',config.sections())
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
 
 class Assessment():
     """
@@ -34,7 +36,7 @@ class Assessment():
          """
         logging.basicConfig(level=logging.INFO)
         if logger == True:
-            self.logfile = codecs.open('logfile.txt','w',encoding='utf-8')
+            self.logfile = codecs.open('assessment.log','w',encoding='utf-8')
 
 
     def app_validation(self, appL):

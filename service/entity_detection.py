@@ -9,6 +9,7 @@
 # limitations under the License.
 # *****************************************************************
 
+import os
 import json
 import sys
 import pandas
@@ -25,7 +26,9 @@ from service.standardizer import standardizer
 import configparser
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
 
 class EntityDetection:
 
@@ -56,7 +59,7 @@ class EntityDetection:
                                     "technology_summary": "tech_stack"
                                 }
         
-        class_type_mapper_filepath = config['filepaths']['class_type_mapper_filepath']
+        class_type_mapper_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['class_type_mapper'])
         if Path(class_type_mapper_filepath).is_file():
             with open(class_type_mapper_filepath, 'r') as f:
                 self.__class_type_mapper = json.load(f)

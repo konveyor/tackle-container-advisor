@@ -9,6 +9,7 @@
 # limitations under the License.
 # *****************************************************************
 
+import os
 import json
 from collections import OrderedDict
 from pathlib import Path
@@ -20,7 +21,10 @@ import re
 import configparser
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
+
 
 class Plan():
     def __init__(self, logger=False):
@@ -30,7 +34,7 @@ class Plan():
 
         logging.basicConfig(level=logging.INFO)
 
-        dockerimageKG_filepath = config['filepaths']['dockerimageKG_filepath']
+        dockerimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['dockerimageKG'])
         if Path(dockerimageKG_filepath).is_file():
             with open(dockerimageKG_filepath, 'r') as f:
                 self.__dockerimage_KG = json.load(f)
@@ -38,7 +42,7 @@ class Plan():
             self.__dockerimage_KG = {}
             logging.error(f'dockerimageKG[{dockerimageKG_filepath}] is empty or not exists')
 
-        baseOSKG_filepath = config['filepaths']['baseOSKG_filepath']
+        baseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['baseOSKG'])
         self.__osBaseImages = {}
         if Path(baseOSKG_filepath).is_file():
             with open(baseOSKG_filepath, 'r') as f:
@@ -50,7 +54,7 @@ class Plan():
         else:
             logging.error(f'baseOSKG[{baseOSKG_filepath}] is empty or not exists')
 
-        inverted_dockerimageKG_filepath = config['filepaths']['inverted_dockerimageKG_filepath']
+        inverted_dockerimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['inverted_dockerimageKG'])
         if Path(inverted_dockerimageKG_filepath).is_file():
             with open(inverted_dockerimageKG_filepath, 'r') as f:
                 self.__inverted_dockerimageKG = json.load(f)
@@ -59,7 +63,7 @@ class Plan():
             logging.error(f'inverted_dockerimageKG[{inverted_dockerimageKG_filepath}] is empty or not exists')
 
         ##Openshift images
-        openshiftimageKG_filepath = config['filepaths']['openshiftimageKG_filepath']
+        openshiftimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['openshiftimageKG'])
         if Path(openshiftimageKG_filepath).is_file():
             with open(openshiftimageKG_filepath, 'r') as f:
                 self.__openshiftimage_KG = json.load(f)
@@ -67,7 +71,7 @@ class Plan():
             self.__openshiftimage_KG = {}
             logging.error(f'openshiftimageKG[{openshiftimageKG_filepath}] is empty or not exists')
 
-        openshiftbaseOSKG_filepath = config['filepaths']['openshiftbaseOSKG_filepath']
+        openshiftbaseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['openshiftbaseOSKG'])
         self.__openshiftosBaseImages = {}
         if Path(openshiftbaseOSKG_filepath).is_file():
             with open(openshiftbaseOSKG_filepath, 'r') as f:
@@ -79,7 +83,7 @@ class Plan():
         else:
             logging.error(f'openshiftbaseOSKG[{openshiftbaseOSKG_filepath}] is empty or not exists')
 
-        inverted_openshiftimageKG_filepath = config['filepaths']['inverted_openshiftimageKG_filepath']
+        inverted_openshiftimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['inverted_openshiftimageKG'])
         if Path(inverted_openshiftimageKG_filepath).is_file():
             with open(inverted_openshiftimageKG_filepath, 'r') as f:
                 self.__inverted_openshiftimageKG = json.load(f)
@@ -88,7 +92,7 @@ class Plan():
             logging.error(f'inverted_openshiftimageKG[{inverted_openshiftimageKG_filepath}] is empty or not exists')
 
         ##Operator images
-        operatorimageKG_filepath = config['filepaths']['operatorimageKG_filepath']
+        operatorimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['operatorimageKG'])
         if Path(operatorimageKG_filepath).is_file():
             with open(operatorimageKG_filepath, 'r') as f:
                 self.__operatorimage_KG = json.load(f)
@@ -105,7 +109,7 @@ class Plan():
         else:
             logging.error(f'baseOSKG[{baseOSKG_filepath}] is empty or not exists')
 
-        inverted_operatorimageKG_filepath = config['filepaths']['inverted_operatorimageKG_filepath']
+        inverted_operatorimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['inverted_operatorimageKG'])
         if Path(inverted_operatorimageKG_filepath).is_file():
             with open(inverted_operatorimageKG_filepath, 'r') as f:
                 self.__inverted_operatorimageKG = json.load(f)
@@ -114,7 +118,7 @@ class Plan():
             logging.error(f'inverted_operatorimageKG[{inverted_operatorimageKG_filepath}] is empty or not exists')
 
 
-        COTSKG_filepath = config['filepaths']['COTSKG_filepath']
+        COTSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['COTSKG'])
         if Path(COTSKG_filepath).is_file():
             with open(COTSKG_filepath, 'r') as f:
                 self.__COTSKG = json.load(f)

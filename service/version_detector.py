@@ -18,8 +18,9 @@ import configparser
 from pathlib import Path
 
 config = configparser.ConfigParser()
-config.read('config.ini')
-
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
 
 class version_detector:
 
@@ -29,7 +30,7 @@ class version_detector:
 
         self.__class_version = {}
 
-        class_version_filepath = config['filepaths']['entity_versionsKG_filepath']
+        class_version_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['entity_versionsKG'])
         if Path(class_version_filepath).is_file():
             with open(class_version_filepath, 'r') as f:
                 self.__class_version = json.load(f)

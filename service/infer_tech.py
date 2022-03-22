@@ -9,7 +9,7 @@
 # limitations under the License.
 # *****************************************************************
 
-
+import os
 import json
 from pathlib import Path
 import logging
@@ -19,7 +19,10 @@ from service.utils import Utils
 import configparser
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
+
 
 class InferTech:
     def __init__(self, logger=False):
@@ -29,7 +32,7 @@ class InferTech:
 
         logging.basicConfig(level=logging.INFO)
 
-        class_type_mapper_filepath = config['filepaths']['class_type_mapper_filepath']
+        class_type_mapper_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['class_type_mapper'])
 
         if Path(class_type_mapper_filepath).is_file():
             with open(class_type_mapper_filepath, 'r') as f:
@@ -38,7 +41,7 @@ class InferTech:
             self.__class_type_mapper = {}
             logging.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
         
-        compatibilityOSKG_filepath = config['filepaths']['compatibilityOSKG_filepath']
+        compatibilityOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['compatibilityOSKG'])
 
         if Path(compatibilityOSKG_filepath).is_file():
             with open(compatibilityOSKG_filepath, 'r') as f:

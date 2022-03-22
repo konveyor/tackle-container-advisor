@@ -9,6 +9,7 @@
 # limitations under the License.
 # *****************************************************************
 
+import os
 import json
 import sys
 import shutil
@@ -27,7 +28,9 @@ from multiprocessing_mapreduce import SimpleMapReduce
 
 
 config = configparser.ConfigParser()
-config.read('./config.ini')
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
 
 controller = None
 

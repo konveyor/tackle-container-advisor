@@ -16,9 +16,11 @@ import multiprocessing
 import json
 import configparser
 
-config = configparser.ConfigParser()
-config.read('./config.ini')
 
+config = configparser.ConfigParser()
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
 
 class SimpleMapReduce(object):
     

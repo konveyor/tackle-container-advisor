@@ -22,7 +22,8 @@ import planner
 import configparser
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+common = os.path.join("config", "common.ini")
+config.read(common)
 print('config',config.sections())
 
 authorizations = {
