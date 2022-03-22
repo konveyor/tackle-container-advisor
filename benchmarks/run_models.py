@@ -113,7 +113,8 @@ if __name__ == "__main__":
     table_data["tfidf"]["fpr"]  = tfidf_topk["fpr"]
     table_data["tfidf"]["unks"] = tfidf_topk["unks"]
     table_data["tfidf"]["time"] = tfidf_time
-        
+
+    '''        
     print("----------- GNN -------------")
     from gnn import GNN
     gnn              = GNN("tca")
@@ -129,7 +130,7 @@ if __name__ == "__main__":
     table_data["gnn"]["fpr"]  = gnn_topk["fpr"]
     table_data["gnn"]["unks"] = gnn_topk["unks"]
     table_data["gnn"]["time"] = gnn_time
-    '''
+
     print("----------- WIKIDATA API -------------")
     from wdapi import WDAPI 
     wdapi            = WDAPI("wikidata")

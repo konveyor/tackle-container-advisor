@@ -21,7 +21,6 @@ jobs:
           python setup.py bdist_wheel 
           cd -
           pip install entity_standardizer/tfidf/dist/tfidf-1.0-py3-none-any.whl          
-          pip install entity_standardizer/gnn/dist/gnn-1.0-py3-none-any.whl          
           pip install entity_standardizer/wdapi/dist/wdapi-1.0-py3-none-any.whl
       - name: Cleanup
         run: |
