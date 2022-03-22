@@ -5,3 +5,7 @@ sphinx_rtd_theme==0.5.2
 pandas==1.2.4
 scikit-learn==1.0.2
 gensim==3.8.3
+networkx==2.6.3
+numpy>=1.21
+torch==1.9.0
+tqdm==4.62.3
