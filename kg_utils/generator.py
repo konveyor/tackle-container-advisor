@@ -16,7 +16,6 @@ import sqlite3
 import time
 from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
-from SPARQLWrapper import SPARQLWrapper, JSON
 
 class KG():
     def __init__(self, app_name):
@@ -139,94 +138,11 @@ class KG():
         with open(mentions_file_name, 'w', encoding='utf-8') as mentions_file:
             json.dump(mentions, mentions_file, indent=4)
 
-    def create_query(self, qid_type):
-        query = """SELECT ?qid ?label WHERE
-        {
-        ?qid wdt:P31 wd:"""+qid_type+""".
-        ?qid rdfs:label ?label
-        FILTER(langMatches(lang(?label), \"EN\"))
-        } LIMIT 100000"""
-        
-        return query
-
-            
-    def get_results(self, query):
-        try:
-            query_url       = self.config["wikidata"]["query_url"]
-        except KeyError as k:
-            logging.error(f'{k} is not a key in your kg.ini file.')
-            print(f'{k} is not a key in your kg.ini file.')
-            exit()
-
-        # get_wikidata_types()
-        user_agent = "External techstack data/%s.%s" % (sys.version_info[0], sys.version_info[1])
-        # TODO adjust user agent; see https://w.wiki/CX6
-        sparql = SPARQLWrapper(query_url, agent=user_agent)
-        sparql.setQuery(query)
-        sparql.setReturnFormat(JSON)
-        return sparql.query().convert()
-
-            
-    def generate_wikidata(self):
-        try:
-            kg_dir          = self.config["general"]["kg_dir"]
-            allow_file_name = self.config["wikidata"]["allowed_types"]
-            block_file_name = self.config["wikidata"]["blocked_types"]
-            base_url        = self.config["wikidata"]["base_url"]
-            query_url       = self.config["wikidata"]["query_url"]
-            ent_name        = self.config["wikidata"]["entities"]
-            men_name        = self.config["wikidata"]["mentions"]            
-        except KeyError as k:
-            logging.error(f'{k} is not a key in your kg.ini file.')
-            print(f'{k} is not a key in your kg.ini file.')
-            exit()
-
-        kg_dir = os.path.join(self.app_name, self.config["general"]["kg_dir"])
-        os.makedirs(kg_dir, exist_ok=True)        
-
-        # Read allowed and blocked type files
-        try:
-            with open(allow_file_name, 'r') as allow:
-                allowed_types = json.load(allow)
-            with open(block_file_name, 'r') as block:
-                blocked_types = json.load(block)
-        except Exception as e:
-            logging.error("Error reading allowed/blocked types:", e)
-            print("Error reading allowed/blocked types:", e)
-            
-        qid_to_entity = {}
-        # types = dict(allowed_types, **blocked_types);
-        types = dict(allowed_types)
-        for qid_type in types:
-            print("Getting entities for", qid_type)
-            query = self.create_query(qid_type)
-            results = self.get_results(query)
-            time.sleep(3)
-            for result in results['results']['bindings']:
-                qid   = result['qid']['value'].replace(base_url, "")
-                label = result['label']['value'] 
-                if qid in qid_to_entity:
-                    label = qid_to_entity.get(qid, None)
-                labels.append(label)
-                qid_to_entity[qid] = labels            
-                
-        entities_file_name = os.path.join(kg_dir, ent_name)
-        with open(entities_file_name, 'w', encoding='utf-8') as entities_file:
-            json.dump(entities, entities_file, indent=4)
-        '''
-        mentions_file_name = os.path.join(kg_dir, men_name)
-        with open(mentions_file_name, 'w', encoding='utf-8') as mentions_file:
-            json.dump(mentions, mentions_file, indent=4)
-        '''
         
     def generate(self, task_name):
         if task_name == "tca":
             self.generate_tca()
-        elif task_name == "wikidata":
-            self.generate_wikidata()
-                    
                 
 if __name__ == "__main__":
     kg = KG("entity_standardizer")
     kg.generate("tca")
-    # kg.generate("wikidata")
