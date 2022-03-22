@@ -72,9 +72,8 @@ Vagrant.configure(2) do |config|
       pip install -U pip wheel setuptools==59.8.0 && \
       cd /vagrant && \
       pip install docker-compose && \
-      pip install -r ./aca_backend_api/requirements.txt && \
-      pip install -r ./aca_entity_standardizer/requirements.txt && \
-      pip install -r ./aca_kg_utils/requirements.txt'
+      pip install -r ./requirements.txt && \
+      pip install -r ./service.requirements.txt
   SHELL
 
   ######################################################################
