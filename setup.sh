@@ -45,6 +45,11 @@ then
     echo "**** ERROR: Python dependency install failed. Cannot continue."
 fi
 echo "-----------------Requirements Installation PASSED------------------"
+if ! pip3 install --no-index --find-links file://`pwd`/aca_backend_api/dist/ --no-deps tfidf-tca-team
+then
+    echo "**** ERROR: Could not install tfidf package."
+fi
+echo "-----------------Requirements Installation PASSED------------------"
 
 
 ######################################################################
