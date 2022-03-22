@@ -9,20 +9,22 @@
 # limitations under the License.
 # *****************************************************************
 
+import os
 import json
 import re
 import configparser
 import logging
 import sqlite3
-import os
 from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
 from typing import Container
 from packaging import version as pv
 
-config_obj = configparser.ConfigParser()
+config = configparser.ConfigParser()
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
 
-config_obj.read("./config.ini")
 
 def cleanStrValue(value):
     """
@@ -144,12 +146,12 @@ def save_json(json_file , file_name):
 
     """
 
-    dst_pth = config_obj["kg"]["ontologies"]
+    dst_pth = config["general"]["kg_dir"]
 
     if not os.path.isdir(dst_pth) :
         os.mkdir(dst_pth)
 
-    with open(dst_pth + config_obj["kg"][file_name] , encoding="utf-8", mode="w") as comp_file:
+    with open(os.path.join(dst_pth, config["filenames"][file_name]), encoding="utf-8", mode="w") as comp_file:
         comp_file.write(json.dumps(json_file, indent=2))
 
 
@@ -165,12 +167,12 @@ def create_class_type_mapper(db_connection):
     :type db_connection:  <class 'sqlite3.Connection'>
 
 
-    :returns: Saves entity_mentions  in config_obj["kg"]["class_type_mapper_raw"]
+    :returns: Saves entity_mentions  in config["kg"]["class_type_mapper_raw"]
     :retype: None
     """
 
     entity_mentions = {}
-    entity_mentions["kg_version"] = config_obj["db"]["version"]
+    entity_mentions["kg_version"] = config["general"]["version"]
     entity_mentions["mappings"] = {}
 
     types_ = type_mapper(db_connection)
@@ -215,7 +217,7 @@ def create_inverted_compatibility_kg(db_connection):
     entity_ids = entity_mapper(db_connection)
     type_ids = type_mapper(db_connection)
 
-    inverted_compatibilty_kg["KG Version"] =  config_obj["db"]["version"]
+    inverted_compatibilty_kg["KG Version"] =  config["general"]["version"]
 
     for inverted_ids in inverted_cursor.fetchall():
 
@@ -249,7 +251,7 @@ def create_compatibilty_kg(db_connection):
     CompatibilityKG= {}
     compatibility_list = []
 
-    CompatibilityKG["KG Version"] =  config_obj["db"]["version"]
+    CompatibilityKG["KG Version"] =  config["general"]["version"]
 
 
     type_ids = type_mapper(db_connection)
@@ -289,7 +291,7 @@ def create_base_os_kg(db_connection):
     mapped_os = entity_mapper(db_connection)
 
     base_os = {}
-    base_os["KG Version"] =  config_obj["db"]["version"]
+    base_os["KG Version"] =  config["general"]["version"]
     base_os["Container Images"] = {}
 
     for  docker_baseos_image in base_cursor.fetchall():
@@ -328,7 +330,7 @@ def create_openshift_base_os_kg(db_connection):
     mapped_os = entity_mapper(db_connection)
 
     base_os = {}
-    base_os["KG Version"] =  config_obj["db"]["version"]
+    base_os["KG Version"] =  config["general"]["version"]
     base_os["Container Images"] = {}
 
     for  docker_baseos_image in base_cursor.fetchall():
@@ -367,7 +369,7 @@ def create_inverted_openshift_base_os_kg(db_connection):
     mapped_os = entity_mapper(db_connection)
 
     inverted_openshift_kg = {}
-    inverted_openshift_kg["KG Version"] =  config_obj["db"]["version"]
+    inverted_openshift_kg["KG Version"] =  config["general"]["version"]
 
     for base_image in base_cursor.fetchall():
         os , os_id = base_image[1],  base_image[2]
@@ -395,7 +397,7 @@ def create_inverted_base_os_kg(db_connection):
     mapped_os = entity_mapper(db_connection)
 
     inverted_os_kg = {}
-    inverted_os_kg["KG Version"] =  config_obj["db"]["version"]
+    inverted_os_kg["KG Version"] =  config["general"]["version"]
 
     for base_image in base_cursor.fetchall():
         os , os_id = base_image[1],  base_image[2]
@@ -471,7 +473,7 @@ def create_compatibility_os_kg(db_connection):
     cursor1.execute("SELECT * FROM  entity_relations")
     cursor2.execute("SELECT * FROM  entity_relations")
     compatibilty_os_kg = {}
-    compatibilty_os_kg["KG Version"] =  config_obj["db"]["version"]
+    compatibilty_os_kg["KG Version"] =  config["general"]["version"]
 
     os_variant = get_os_variants(db_connection)
 
@@ -528,7 +530,7 @@ def create_docker_image_kg(db_connect):
 
     docker_image_kg = {}
 
-    docker_image_kg["KG Version"] =  config_obj["db"]["version"]
+    docker_image_kg["KG Version"] =  config["general"]["version"]
 
 
     docker_image_kg["Container Images"]  = {}
@@ -587,7 +589,7 @@ def create_openshift_image_kg(db_connect):
 
     openshift_image_kg = {}
 
-    openshift_image_kg["KG Version"] =    config_obj["db"]["version"]
+    openshift_image_kg["KG Version"] =    config["general"]["version"]
 
 
     openshift_image_kg["Container Images"] = {}
@@ -652,7 +654,7 @@ def create_inverted_docker_image_kg(database_connect):
     inverted_cur.execute("SELECT * FROM docker_images")
     entities = entity_mapper(database_connect)
     inverted_docker_images_kg = {}
-    inverted_docker_images_kg['Version'] = config_obj["db"]["version"]
+    inverted_docker_images_kg['Version'] = config["general"]["version"]
     cur = database_connect.cursor()
     cur.execute("SELECT * FROM docker_images")
 
@@ -733,7 +735,7 @@ def create_inverted_openshifht_image_kg(db_connection):
     inverted_cur.execute("SELECT * FROM openshift_images")  #
     entities = entity_mapper(db_connection)
     inverted_openshift_images_kg = {}
-    inverted_openshift_images_kg['Version'] =  config_obj["db"]["version"]
+    inverted_openshift_images_kg['Version'] =  config["general"]["version"]
 
     cur = db_connection.cursor()
     cur.execute("SELECT * FROM openshift_images")
@@ -813,7 +815,7 @@ def create_env_var_kg(connection):
     cur = connection.cursor()
     cur.execute("SELECT * FROM  docker_environment_variables")
     env_kg = {}
-    env_kg['Version'] =  config_obj["db"]["version"]
+    env_kg['Version'] =  config["general"]["version"]
 
 
     for env in cur.fetchall():
@@ -846,7 +848,7 @@ def create_cot_kg(db_connection):
     cur.execute("SELECT * FROM  entities")
     entities = entity_mapper(db_connection)
     cot_kg = {}
-    cot_kg['Version'] =  config_obj["db"]["version"]
+    cot_kg['Version'] =  config["general"]["version"]
 
     cots = []
     for entity in cur.fetchall():
@@ -856,7 +858,7 @@ def create_cot_kg(db_connection):
 
     cot_kg["COTS"] = cots
 
-    save_json(cot_kg , "cot_kg")
+    save_json(cot_kg , "COTSKG")
 
 def create_version(db_connection):
 
@@ -875,7 +877,7 @@ def create_version(db_connection):
     cur.execute("SELECT * FROM  entity_versions")
     entities = entity_mapper(db_connection)
     ver_kg = {}
-    ver_kg['Version'] =  config_obj["db"]["version"]
+    ver_kg['Version'] =  config["general"]["version"]
 
 
     versions = {}
@@ -918,7 +920,7 @@ def create_operator_image_kg(db_connect):
 
     operator_image_kg = {}
 
-    operator_image_kg["KG Version"] = config_obj["db"]["version"]
+    operator_image_kg["KG Version"] = config["general"]["version"]
 
 
     operator_image_kg["Container Images"] = {}
@@ -973,7 +975,7 @@ def create_inverted_operator_image_kg(database_connect):
     inverted_cur.execute("SELECT * FROM operator_images")
     entities = entity_mapper(database_connect)
     inverted_operator_images_kg = {}
-    inverted_operator_images_kg['Version'] = config_obj["db"]["version"]
+    inverted_operator_images_kg['Version'] = config["general"]["version"]
     cur = database_connect.cursor()
     cur.execute("SELECT * FROM operator_images")
 
@@ -1062,26 +1064,19 @@ if __name__== '__main__':
 
     logging.basicConfig(filename='logging.log',level=logging.ERROR, filemode='w')
 
-
-    db_path = config_obj["db"]["db_path"]
+    try:
+        version= config["general"]["version"]
+        db_dir = config["general"]["db_dir"]
+    except KeyError as k:
+        logging.error(f'{k}  is not a key in your config file(s).')
+        print(f'{k} is not a key in your config file(s).')
+        exit()
+    
+    db_path = os.path.join(db_dir, version+".db")
     if not os.path.isfile(db_path):
         logging.error(f'{db_path} is not a file. Run "sh setup" from /tackle-advise-containerizeation folder to generate db files')
         print(f'{db_path} is not a file. Run "sh setup.sh" from /tackle-advise-containerizeation folder to generate db files')
         exit()
-
-    try:
-        db_path = config_obj["db"]["db_path"]
-
-
-    except KeyError as k:
-        logging.error(f'{k}  is not a key in your config.ini file.')
-        print(f'{k} is not a key in your config.ini file.')
-        exit()
-
-    if not os.path.isfile(db_path):
-        logging.error(f'{db_path} is not a valid file. Check your config.ini file for valid file under "db_path" key  ')
-        print("{} is not a valid file. Check your config.ini file for valid file under 'db_path' key ".format(db_path))
-
 
     else:
 

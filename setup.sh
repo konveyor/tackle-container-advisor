@@ -9,8 +9,9 @@
 echo "+---------------------------------------------------------+"
 echo "|---------Setting up Tackle Containerzation Adviser-------|"
 echo "+---------------------------------------------------------+"
-aca_sql_file="aca_kg_ce_1.0.3.sql"
-aca_db_file="aca_kg_ce_1.0.3.db"
+version="1.0.3"
+sql_file="$version.sql"
+db_file="$version.db"
 
 echo "------------------Checking Dependencies--------------------"
 # Check to make sure sqlite3 is installed
@@ -45,87 +46,43 @@ then
     echo "**** ERROR: Python dependency install failed. Cannot continue."
 fi
 echo "-----------------Requirements Installation PASSED------------------"
-if ! pip3 install --no-index --find-links file://`pwd`/aca_backend_api/dist/ --no-deps tfidf-tca-team
-then
-    echo "**** ERROR: Could not install tfidf package."
-fi
-echo "-----------------Requirements Installation PASSED------------------"
 
 
 ######################################################################
 ## Generate the DB file
 ######################################################################
 echo "--------------------Generating DB file---------------------"
-cd aca_db
-if [[ -f $aca_sql_file ]]; then
+cd db
+if [[ -f $sql_file ]]; then
 
     ## if a file exist it will remove before generating a new file
-    if [[ -f $aca_db_file ]]; then
-        rm $aca_db_file
+    if [[ -f $db_file ]]; then
+        rm $db_file
     fi
 
-    cat $aca_sql_file | sqlite3 $aca_db_file
+    cat $sql_file | sqlite3 $db_file
 else
-    echo "**** ERROR: aca_db/$aca_sql_file file does not exist. Cannot continue."
+    echo "**** ERROR: db/$sql_file file does not exist. Cannot continue."
     exit 1
 fi
 cd ..
 echo "--------------------Generated DB file----------------------"
 
-
-
-
-
 ######################################################################
 ## Generating KG Utility Files
 ######################################################################
 echo "--------------Generating KG Utility Files------------------"
-if [ ! -d "aca_backend_api/ontologies/" ]; then
-    echo "creating ontologies dir"
-    mkdir aca_backend_api/ontologies/
-
-elif [ -d "aca_backend_api/ontologies/" ]; then
-    echo "--------Folder exists.-------------------------------------"
-
-else
-    echo "**** ERROR: Folder cannot be created. Cannot continue."
-    exit 1
-fi
-
-## make sure you check the config.ini file
-if [ -e aca_backend_api/ontologies/class_type_mapper.json ]; then
-    echo "-------------Files exists.---------------------------------"
-else
-    cd aca_kg_utils
-    python kg_utils.py
-    cd ..
-    echo "----------------Generated KG Utility Files--------------------"
-fi
-
+python kg_utils/generator.py
+python kg_utils/kg_utils.py
+echo "----------------Generated KG Utility Files--------------------"
 
 ######################################################################
 ## Generating Entity Standardizer Models
 ######################################################################
-echo "--------Generating Entity Standardizer Models--------------"
-if [ ! -d "aca_backend_api/model_objects/" ]; then
-    echo "creating model objects dir"
-    mkdir aca_backend_api/model_objects/
-elif [ -d "aca_backend_api/model_objects/" ]; then
-    echo "--------Folder exists.-------------------------------------"
-else
-    echo "**** ERROR: Folder cannot be created. Cannot continue."
-    exit 1
-fi
-
-## make sure you check the config.ini file
-if [ -e aca_backend_api/model_objects/standardization_dict.pickle -a  -e aca_backend_api/model_objects/standardization_model.pickle -a  -e aca_backend_api/model_objects/standardization_vectorizer.pickle ]; then
-    echo "-------------Files exists.---------------------------------"
-else
-    cd aca_entity_standardizer
-    python model_builder.py
-    cd ..
-    echo "---------Generated Entity Standardizer Models--------------"
-fi
+echo "--------------Generating Entity Standardizer Models------------------"
+python benchmarks/generate_data.py
+python benchmarks/run_models.py
+echo "---------Generated Entity Standardizer Models--------------"
 
 echo "+---------------------------------------------------------+"
 echo "|-Set up for Tackle Containerzation Adviser Completed !!!-|"
