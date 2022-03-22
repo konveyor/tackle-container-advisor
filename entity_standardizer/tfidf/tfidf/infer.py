@@ -17,9 +17,11 @@ def predict(config, json_data):
     from .sim_applier import sim_applier
     
     try:
-        kg_dir = config["general"]["kg_dir"]
+        kg_dir        = config["general"]["kg_dir"]
         entities_json = config["tca"]["entities"]
         mentions_json = config["tca"]["mentions"]
+        model_dir     = config["general"]["model_dir"]
+        name          = config["task"]["name"]
     except KeyError as k:
         logging.error(f'{k} is not a key in your common.ini file.')
         print(f'{k} is not a key in your common.ini file.')
@@ -45,8 +47,6 @@ def predict(config, json_data):
         mention = json_data["data"][idx]["mention"]
         mentions[mention] = idx
         
-    model_dir  = config["general"]["model_dir"]
-    name       = config["task"]["name"]
     model_path = os.path.join(model_dir, name)
     os.makedirs(model_path, exist_ok=True)
     run_train  = True
@@ -55,8 +55,8 @@ def predict(config, json_data):
             run_train = False
             break            
     if run_train:
-        logging.info(f"TFIDF model not found in {config['general']['model_dir']}. Will run training to generate model.")
-        print(f"TFIDF model not found in {config['general']['model_dir']}. Will run training to generate model.")
+        logging.info(f"TFIDF model not found in {mode_path}. Will run training to generate model.")
+        print(f"TFIDF model not found in {model_path}. Will run training to generate model.")
         train(config)
     
     sim_app    = sim_applier(config)
