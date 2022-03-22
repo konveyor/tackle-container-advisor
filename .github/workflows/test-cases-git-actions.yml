@@ -13,8 +13,16 @@ jobs:
         run: |
           python -m pip install --upgrade pip wheel
           pip install setuptools==59.6.0
-          # cd aca_backend_api
-          # pip install -r requirements.txt
+          pip install -r service.requirements.txt
+          cd entity_standardizer/tfidf
+          python setup.py bdist_wheel
+          cd -
+          cd entity_standardizer/wdapi
+          python setup.py bdist_wheel 
+	  cd -
+          pip install entity_standardizer/dist/tfidf-1.0-py3-none-any.whl          
+          pip install entity_standardizer/dist/gnn-1.0-py3-none-any.whl          
+          pip install entity_standardizer/dist/wdapi-1.0-py3-none-any.whl
       - name: Cleanup
         run: |
           bash clean.sh
