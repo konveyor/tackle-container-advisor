@@ -41,7 +41,7 @@ echo "-----------------Dependency Checks PASSED------------------"
 ######################################################################
 ## Install dependencies for 
 ######################################################################
-dependencies=`pip3 install -r requirements.txt
+dependencies=`pip3 install -r requirements.txt; \
               pip3 install -r service.requirements.txt; \
               cd entity_standardizer/tfidf; \
               python setup.py bdist_wheel; \
