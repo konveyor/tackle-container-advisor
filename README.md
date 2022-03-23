@@ -87,13 +87,6 @@ gunicorn --workers=2 --threads=500 --timeout 300 service:app
 bash deploy.sh
 ```
 
-
-### Deploying TCA's Backend API on RedHat developer sandbox OpenShift cluster
-
-```bash
-bash deploy.sh
-```
-
 <!-- ## Updating TCA's Knowledge Base -->
 <!-- If you want to make changes to TCA's Knowledge Base, make sure that you have created a proper development environment by following the setup procedure in the [Developer's Guide](docs/development.md) and then  please follow the instructions below. -->
 <!-- ### Setup TCA's environment by running the following -->
