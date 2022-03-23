@@ -60,17 +60,33 @@ Do not proceed to the next step if the final output of the ``setup.sh`` bash scr
 
 **STEP 3 - RUN THE BACKEND API**
 
-There are two options to run the backend API. One using a bash script.
+There are 4 options to run the backend API. 
+
+1. Using a bash script. The script uses docker-compose to create a container for the service.
 
 ```bash
 bash run.sh
 ```
 
-Two, you can directly run the docker as follows.
+2. Directly run docker-compose to create a container as follows.
 
 ```bash
 docker-compose  -f 'docker-compose-api.yml' up -d --build
 ```
+
+3. Install the service requirements and start the service from command line.
+
+```bash
+python install -r service.requirements.txt
+gunicorn --workers=2 --threads=500 --timeout 300 service:app
+```
+
+4. Deploy the container on Redhat Openshift Container Platform.
+
+```
+bash deploy.sh
+```
+
 
 ### Deploying TCA's Backend API on RedHat developer sandbox OpenShift cluster
 
@@ -84,7 +100,7 @@ If you want to make changes to TCA's Knowledge Base, make sure that you have cre
 
 ### Setup TCA's environment by running the following
 
-```bash
+```
 bash setup.sh
 ```
 
@@ -94,12 +110,12 @@ For updating the TCA's Knowledge Base, enter in the *db* folder. Upload the DB f
 
 ### Clean up TCA's environment by running the following and then rerun the setup.
 
-```bash
+```
 bash clean.sh
 bash setup.sh
 ```
 
-### Running TCA with a new Knowledge Base or a new version of Knowledge Base
+## Running TCA with a new Knowledge Base or a new version of Knowledge Base
 
 Please perform the following steps.
 
@@ -122,7 +138,7 @@ bash setup.sh
 
 #### Modify the *clean.sh* script to reflect the version accordingly
 
-	version="1.0.3"
+version="1.0.3"
 
 ## References
 
