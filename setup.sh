@@ -41,8 +41,19 @@ echo "-----------------Dependency Checks PASSED------------------"
 ######################################################################
 ## Install dependencies for 
 ######################################################################
-if ! pip3 install -r requirements.txt
+dependencies=`pip3 install -r requirements.txt
+              pip3 install -r service.requirements.txt; \
+              cd entity_standardizer/tfidf; \
+              python setup.py bdist_wheel; \
+              cd -; \
+              cd entity_standardizer/wdapi; \
+              python setup.py bdist_wheel; \
+              cd -; \
+              pip3 install entity_standardizer/tfidf/dist/tfidf-1.0-py3-none-any.whl; \
+              pip3 install entity_standardizer/wdapi/dist/wdapi-1.0-py3-none-any.whl`
+if [ $? -ne 0 ]
 then
+    echo $dependencies 
     echo "**** ERROR: Python dependency install failed. Cannot continue."
 fi
 echo "-----------------Requirements Installation PASSED------------------"

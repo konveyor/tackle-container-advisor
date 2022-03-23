@@ -71,9 +71,7 @@ Vagrant.configure(2) do |config|
     sudo -H -u vagrant sh -c '. ~/venv/bin/activate && \
       pip install -U pip wheel setuptools==59.8.0 && \
       cd /vagrant && \
-      pip install docker-compose && \
-      pip install -r ./requirements.txt && \
-      pip install -r ./service.requirements.txt
+      pip install docker-compose'
   SHELL
 
   ######################################################################

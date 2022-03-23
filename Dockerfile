@@ -17,19 +17,16 @@ USER 0
 # Install dependencies before the code
 WORKDIR /app
 COPY ./service.requirements.txt .
-COPY ./aca_entity_standardizer/tfidf/dist/tfidf-1.0-py3-none-any.whl .
-COPY ./aca_entity_standardizer/gnn/dist/gnn-1.0-py3-none-any.whl .
+COPY ./entity_standardizer/tfidf/dist/tfidf-1.0-py3-none-any.whl .
 RUN python -m pip install --upgrade pip wheel && \
     pip install -r service.requirements.txt
     pip install tfidf-1.0-py3-none-any.whl
-    pip install gnn-1.0-py3-none-any.whl
 
 # COPY the code to the working directory
 COPY ./service /app/service
 COPY ./config.py /app/config.py
 COPY ./planner.py /app/planner.py
 COPY ./multiprocessing_mapreduce.py /app/multiprocessing_mapreduce.py
-COPY ./models /app/models
 COPY ./kg /app/kg
 COPY ./config /app/config
 RUN chown -R 1001:0 ./
