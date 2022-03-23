@@ -1,5 +1,0 @@
-networkx==2.6.3
-numpy>=1.21
-scikit_learn>=1.0.2
-torch==1.9.0
-tqdm==4.62.3
