@@ -82,6 +82,7 @@ def train(config):
     from sklearn.feature_extraction.text import TfidfVectorizer
     from .sim_utils import sim_utils
 
+    start = time()
     try:
         kg_dir        = config["general"]["kg_dir"]
         entities_json = config["tca"]["entities"]
