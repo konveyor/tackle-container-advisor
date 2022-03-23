@@ -81,8 +81,6 @@ echo "----------------Generated KG Utility Files--------------------"
 ######################################################################
 echo "--------------Generating Entity Standardizer Models------------------"
 python benchmarks/generate_data.py
-echo `pwd`
-ls
 python benchmarks/run_models.py
 echo "---------Generated Entity Standardizer Models--------------"
 
