@@ -81,7 +81,8 @@ def train(config):
     # from .db import create_db_connection
     from sklearn.feature_extraction.text import TfidfVectorizer
     from .sim_utils import sim_utils
-    
+
+    start = time()
     try:
         kg_dir = config["general"]["kg_dir"]
         entities_json = config["tca"]["entities"]
@@ -148,4 +149,6 @@ def train(config):
     pickle.dump(tfs, open(os.path.join(model_path,vectorizer_name), "wb"))
     pickle.dump(tfidf, open(os.path.join(model_path,standardization_model),"wb"))
     pickle.dump(all_instances, open(os.path.join(model_path,instances_name),"wb"))
-
+    end = time()
+    print(f"TFIDF training took {end-start:.2f} seconds.")
+    logging.info(f"TFIDF training took {end-start:.2f} seconds.")
