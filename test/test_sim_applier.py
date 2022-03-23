@@ -12,7 +12,8 @@
 
 
 import unittest
-from service.utils_nlp import utils
+# from service.utils_nlp import utils
+from tfidf import utils
 from service.standardizer import entity_standardizer
 
 class TestApplySIM(unittest.TestCase):
