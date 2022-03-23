@@ -13,8 +13,8 @@ Each folder contains a different approach to perform entity standardization.
 ### Models saved in 
   ``models/tca/``
 
-### To generate training and inference data (run from top level folder). Training data
-will be stored inside ``data/tca/train.json`` and inference data for evaluation will 
+### To generate training and inference data (run from top level folder). 
+Training data will be stored inside ``data/tca/train.json`` and inference data for evaluation will 
 be stored at ``data/tca/infer.json``
 
 ```
