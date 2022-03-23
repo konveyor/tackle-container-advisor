@@ -94,26 +94,20 @@ bash deploy.sh
 bash deploy.sh
 ```
 
-## Updating TCA's Knowledge Base
+<!-- ## Updating TCA's Knowledge Base -->
+<!-- If you want to make changes to TCA's Knowledge Base, make sure that you have created a proper development environment by following the setup procedure in the [Developer's Guide](docs/development.md) and then  please follow the instructions below. -->
+<!-- ### Setup TCA's environment by running the following -->
+<!-- ``` -->
+<!-- bash setup.sh -->
+<!-- ``` -->
+<!-- ### Update TCA's Knowledge Base --> 
+<!-- For updating the TCA's Knowledge Base, enter in the *db* folder. Upload the DB file in a tool such DBeaver. Once you have completed making changes, generate a new .sql file and update the existing .sql file with the new file. -->
+<!-- ### Clean up TCA's environment by running the following and then rerun the setup. --> 
+<!-- ``` -->
+<!-- bash clean.sh -->
+<!-- bash setup.sh -->
+<!-- ``` -->
 
-If you want to make changes to TCA's Knowledge Base, make sure that you have created a proper development environment by following the setup procedure in the [Developer's Guide](docs/development.md) and then  please follow the instructions below.
-
-### Setup TCA's environment by running the following
-
-```
-bash setup.sh
-```
-
-### Update TCA's Knowledge Base
-
-For updating the TCA's Knowledge Base, enter in the *db* folder. Upload the DB file in a tool such DBeaver. Once you have completed making changes, generate a new .sql file and update the existing .sql file with the new file.
-
-### Clean up TCA's environment by running the following and then rerun the setup.
-
-```
-bash clean.sh
-bash setup.sh
-```
 
 ## Running TCA with a new Knowledge Base or a new version of Knowledge Base
 
@@ -125,20 +119,12 @@ Please perform the following steps.
 
     version = <new_db>
 
-3. Modify the *setup.sh* script to reflect the version accordingly.
+3. Modify the *setup.sh* and *clean.sh* scripts to reflect the version accordingly.
     
     version=<new_db>
 
+4. Re-run *setup.sh* and then deploy the service.
 
-#### Run the TCA's environment setup by running the following script
-
-```bash
-bash setup.sh
-```
-
-#### Modify the *clean.sh* script to reflect the version accordingly
-
-version="1.0.3"
 
 ## References
 
