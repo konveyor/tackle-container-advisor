@@ -109,7 +109,7 @@ bash deploy.sh
 <!-- ``` -->
 
 
-## Running TCA with a new Knowledge Base or a new version of Knowledge Base
+## Running TCA with a new version of Knowledge Base
 
 Please perform the following steps.
 
