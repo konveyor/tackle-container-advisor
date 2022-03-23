@@ -15,10 +15,10 @@ Python scripts to generate JSON from Database
 ### How to use
 - ``cd tackle-container-advisor``
 - ``pip3 install -r requirements.txt``
-- ``cd aca_kg_utils`` 
-- ``aca_db`` provides the input data
-- Run ``python kg_utils.py``
-- Outputs json are saved in: ``aca_backend_api/ontologies`` 
+- ``cd kg_utils`` 
+- ``db`` provides the input data
+- From top level folder run ``python kg_utils/kg_utils.py`` and ``python kg_utils/generator.py``
+- Outputs json are saved in: ``kg/`` 
 
 
 ### Generate documentation:
