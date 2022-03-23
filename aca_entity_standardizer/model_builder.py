@@ -20,7 +20,8 @@ import configparser
 import sqlite3
 from sqlite3 import Error
 import logging
- 
+from time import time
+
  
 config_obj = configparser.ConfigParser()
 config_obj.read("config.ini")
@@ -128,5 +129,8 @@ if __name__ == "__main__":
     if not os.path.isdir(model_path):
         os.mkdir(model_path)
 
+    start = time()
     buildModel(model_path, connect)
-    
+    end   = time()
+    print(f"TFIDF training took {end-start:.2f} seconds.")
+    logging.info(f"TFIDF training took {end-start:.2f} seconds.")
