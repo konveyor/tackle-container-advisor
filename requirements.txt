@@ -3,6 +3,5 @@ pycryptodome==3.10.1
 sphinx==3.2.1
 sphinx_rtd_theme==0.5.2
 pandas==1.2.4
-scikit-learn==0.24.2
+scikit-learn==1.0.2
 gensim==3.8.3
-

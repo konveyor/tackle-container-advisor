@@ -11,7 +11,7 @@ TCA takes client applications as a natural language description and recommends w
 
 TCA takes the following steps to recommend the containerization.
 
-1. **Assessment**: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the *aca_db* folder. For example, the inputs in *App1* get mapped as the following named entities.
+1. **Assessment**: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the *db* folder. For example, the inputs in *App1* get mapped as the following named entities.
 
 ```
 1. App1: rhel: Linux|RedHat Linux, db2: DB2, java: Java, tomcat: Apache Tomcat
@@ -38,6 +38,7 @@ The pipeline ingests raw inputs from clients data and standardizes the data to g
 ## Setting up your environment
 
 You cannot run this code without having a proper Python 3.8 environment first. Even the setup requires Python 3. We recommend that you follow the instructions in the [Developer's Guide](docs/development.md) before proceeding further.
+Run ``vagrant up`` to setup the Python 3 virtual environment.
 
 ## Running the TCA Backend API
 
@@ -59,87 +60,64 @@ Do not proceed to the next step if the final output of the ``setup.sh`` bash scr
 
 **STEP 3 - RUN THE BACKEND API**
 
-There are two options to run the backend API. One using a bash script.
+There are 4 options to run the backend API. 
+
+1. Using a bash script. The script uses docker-compose to create a container for the service.
 
 ```bash
 bash run.sh
 ```
 
-Two, you can directly run the docker as follows.
+2. Directly run docker-compose to create a container as follows.
 
 ```bash
-cd aca_backend_api/
 docker-compose  -f 'docker-compose-api.yml' up -d --build
 ```
 
-### Deploying TCA's Backend API on RedHat developer sandbox OpenShift cluster
+3. Install the service requirements and start the service from command line.
 
 ```bash
+python install -r service.requirements.txt
+gunicorn --workers=2 --threads=500 --timeout 300 service:app
+```
+
+4. Deploy the container on Redhat Openshift Container Platform.
+
+```
 bash deploy.sh
 ```
 
-## Updating TCA's Knowledge Base
+<!-- ## Updating TCA's Knowledge Base -->
+<!-- If you want to make changes to TCA's Knowledge Base, make sure that you have created a proper development environment by following the setup procedure in the [Developer's Guide](docs/development.md) and then  please follow the instructions below. -->
+<!-- ### Setup TCA's environment by running the following -->
+<!-- ``` -->
+<!-- bash setup.sh -->
+<!-- ``` -->
+<!-- ### Update TCA's Knowledge Base --> 
+<!-- For updating the TCA's Knowledge Base, enter in the *db* folder. Upload the DB file in a tool such DBeaver. Once you have completed making changes, generate a new .sql file and update the existing .sql file with the new file. -->
+<!-- ### Clean up TCA's environment by running the following and then rerun the setup. --> 
+<!-- ``` -->
+<!-- bash clean.sh -->
+<!-- bash setup.sh -->
+<!-- ``` -->
 
-If you want to make changes to TCA's Knowledge Base, make sure that you have created a proper development environment by following the setup procedure in the [Developer's Guide](docs/development.md) and then  please follow the instructions below.
 
-### Setup TCA's environment by running the following
-
-```bash
-bash setup.sh
-```
-
-### Update TCA's Knowledge Base
-
-For updating the TCA's Knowledge Base, enter in the *aca_db* folder. Upload the DB file in a tool such DBeaver. Once you have completed making changes, generate a new .sql file and update the existing .sql file with the new file.
-
-### Clean up TCA's environment by running the following and then rerun the setup.
-
-```bash
-bash clean.sh
-bash setup.sh
-```
-
-### Running TCA with a new Knowledge Base
+## Running TCA with a new version of Knowledge Base
 
 Please perform the following steps.
 
-1. Replace the existing .sql file with the new <new_db>.sql file in the aca_db folder
+1. Replace the existing .sql file with the new <new_db>.sql file in the db folder
 
-1. Change the *config.ini* file in the aca_entity_standardizer folder as follows
+2. Change the *common.ini* file in the config folder as follows
 
-    db_path = aca_db/<new_db>.db
+    version = <new_db>
 
-1. Change the *config.ini*  in the aca_kg_utils folder as follows
+3. Modify the *setup.sh* and *clean.sh* scripts to reflect the version accordingly.
+    
+    version=<new_db>
 
-    db_path = aca_db/<new_db>.db
+4. Re-run *setup.sh* and then deploy the service.
 
-1. Modify the *setup.sh* script to reflect the sql and db file accordingly.
-
-	aca_sql_file="<new_db>.sql"
-	aca_db_file="<new_db>.db"
-
-
-#### Run the TCA's environment setup by running the following script
-
-```bash
-bash setup.sh
-```
-
-#### Modify the *clean.sh* script to reflect the sql and db file accordingly
-
-	aca_db_file="aca_kg_ce_1.0.3.db"
-
-### Creating a New Version of the Knowledge Base
-
-Please perform the following changes when you create a new version
-
-1. Update all the tests and README file with the new version information in aca_backend_api
-
-1. Change the *config.ini*  in the `aca_kg_utils` and `aca_entity_standardizer to reflect the new version
-
-1. Change the README file in aca_db with new version information
-
-1. Change all the scripts (clean.sh and setup.sh) to reflect the latest version of the knowledge base
 
 ## References
 
