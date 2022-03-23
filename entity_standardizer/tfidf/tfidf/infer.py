@@ -85,9 +85,9 @@ def train(config):
     try:
         kg_dir        = config["general"]["kg_dir"]
         entities_json = config["tca"]["entities"]
-        model_name    = config["tca"]["model_name"]
-        tfidf_name    = config["tca"]["tfidf_name"]
-        instances_name= config["tca"]["instances_name"]        
+        model_name    = config["train"]["model_name"]
+        tfidf_name    = config["train"]["tfidf_name"]
+        instances_name= config["train"]["instances_name"]        
     except KeyError as k:
         logging.error(f'{k} is not a key in your common.ini file.')
         print(f'{k} is not a key in your common.ini file.')
