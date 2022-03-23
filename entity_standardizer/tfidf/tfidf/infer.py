@@ -82,10 +82,12 @@ def train(config):
     from sklearn.feature_extraction.text import TfidfVectorizer
     from .sim_utils import sim_utils
 
-    start = time()
     try:
-        kg_dir = config["general"]["kg_dir"]
+        kg_dir        = config["general"]["kg_dir"]
         entities_json = config["tca"]["entities"]
+        model_name    = config["tca"]["model_name"]
+        tfidf_name    = config["tca"]["tfidf_name"]
+        instances_name= config["tca"]["instances_name"]        
     except KeyError as k:
         logging.error(f'{k} is not a key in your common.ini file.')
         print(f'{k} is not a key in your common.ini file.')
@@ -100,26 +102,23 @@ def train(config):
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
         entities = json.load(entity_file)
 
+    # Gather entity_names to entity id mapping
     entity_names = {}
     for idx, entity_data in entities["data"].items():
         entity_name = entity_data["entity_name"] 
         tca_id      = entity_data["entity_id"]
         entity_names[str(tca_id)] = entity_name
-            
-    vectorizer_name      ="standardization_vectorizer.pickle"
-    standardization_model="standardization_model.pickle"
-    instances_name       ="standardization_dict.pickle"
 
+    # Gather training data
     data_dir     = config["general"]["data_dir"]
     model_dir    = config["general"]["model_dir"]
     name         = config["task"]["name"]    
-    all_instances= []
     train_file_name = os.path.join(data_dir, name, "train.json")
     if not os.path.isfile(train_file_name):
         logging.error(f'{train_file_name} is not a file. Run "benchmarks.py" to generate this training file')
         print(f'{train_file_name} is not a file. Run "benchmarks.py" to generate this train data file')
         exit()
-
+    
     data_to_eid = {}
     try:
         with open(train_file_name, 'r', encoding='utf-8') as train_file:
@@ -131,7 +130,9 @@ def train(config):
     except OSError as exception:
         logging.error(exception)
         exit()
-        
+
+    # Convert training data format
+    all_instances= []
     for mention in data_to_eid:
         eid    = data_to_eid[mention]
         entity = entity_names[str(eid)]
@@ -141,14 +142,19 @@ def train(config):
             continue
         
         all_instances.append([entity, mention, mention])
-        all_targets     =  sim_utils.text_collection_kg_without_tokenization4vector(all_instances)
-        tfidf           =  TfidfVectorizer(token_pattern=r"(?u)\b\w+\b").fit(all_targets)    
-        tfs             =  tfidf.fit_transform(all_targets)
+        
+        
+    all_targets     =  sim_utils.text_collection_kg_without_tokenization4vector(all_instances)
+    tfidf           =  TfidfVectorizer(token_pattern=r"(?u)\b\w+\b").fit(all_targets)    
+    tfs             =  tfidf.fit_transform(all_targets)
 
     model_path = os.path.join(model_dir, name)
-    pickle.dump(tfs, open(os.path.join(model_path,vectorizer_name), "wb"))
-    pickle.dump(tfidf, open(os.path.join(model_path,standardization_model),"wb"))
-    pickle.dump(all_instances, open(os.path.join(model_path,instances_name),"wb"))
+    with open(os.path.join(model_path,model_name), "wb") as model_file:
+        pickle.dump(tfs, model_file)
+    with open(os.path.join(model_path,tfidf_name),"wb") as tfidf_file:
+        pickle.dump(tfidf, tfidf_file)
+    with open(os.path.join(model_path,instances_name),"wb") as instances_file:
+        pickle.dump(all_instances, instances_file)
     end = time()
     print(f"TFIDF training took {end-start:.2f} seconds.")
     logging.info(f"TFIDF training took {end-start:.2f} seconds.")
