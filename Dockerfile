@@ -19,7 +19,7 @@ WORKDIR /app
 COPY ./service.requirements.txt .
 COPY ./entity_standardizer/tfidf/dist/tfidf-1.0-py3-none-any.whl .
 RUN python -m pip install --upgrade pip wheel && \
-    pip install -r service.requirements.txt
+    pip install -r service.requirements.txt && \
     pip install tfidf-1.0-py3-none-any.whl
 
 # COPY the code to the working directory
