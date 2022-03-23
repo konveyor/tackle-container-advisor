@@ -13,15 +13,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip wheel
           pip install setuptools==59.6.0
-          pip install -r service.requirements.txt
-          cd entity_standardizer/tfidf
-          python setup.py bdist_wheel
-          cd -
-          cd entity_standardizer/wdapi
-          python setup.py bdist_wheel 
-          cd -
-          pip install entity_standardizer/tfidf/dist/tfidf-1.0-py3-none-any.whl          
-          pip install entity_standardizer/wdapi/dist/wdapi-1.0-py3-none-any.whl
       - name: Cleanup
         run: |
           bash clean.sh
@@ -30,5 +21,4 @@ jobs:
           bash setup.sh
       - name: Test with pytest
         run: |
-          # cd aca_backend_api
           python -m unittest discover -v -s test -p test_*.py
