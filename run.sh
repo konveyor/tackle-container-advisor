@@ -2,8 +2,6 @@
 
 echo "-----------Running the Backend API---------"
 
-cd aca_backend_api
-
 if [ "$( docker container inspect -f '{{.State.Status}}' aca_backend_api )" == "running" ]; then
     docker stop aca_backend_api
     docker rm aca_backend_api

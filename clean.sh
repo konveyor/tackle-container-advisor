@@ -1,6 +1,7 @@
 #!/bin/bash
 
-db_file="1.0.3.db"
+version="1.0.3"
+db_file="$version.db"
 echo "-----------Cleaning Files and Folders---------"
 
 ##remove files from backend api

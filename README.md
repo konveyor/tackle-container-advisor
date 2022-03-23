@@ -11,7 +11,7 @@ TCA takes client applications as a natural language description and recommends w
 
 TCA takes the following steps to recommend the containerization.
 
-1. **Assessment**: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the *aca_db* folder. For example, the inputs in *App1* get mapped as the following named entities.
+1. **Assessment**: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the *db* folder. For example, the inputs in *App1* get mapped as the following named entities.
 
 ```
 1. App1: rhel: Linux|RedHat Linux, db2: DB2, java: Java, tomcat: Apache Tomcat
@@ -68,7 +68,6 @@ bash run.sh
 Two, you can directly run the docker as follows.
 
 ```bash
-cd aca_backend_api/
 docker-compose  -f 'docker-compose-api.yml' up -d --build
 ```
 
@@ -90,7 +89,7 @@ bash setup.sh
 
 ### Update TCA's Knowledge Base
 
-For updating the TCA's Knowledge Base, enter in the *aca_db* folder. Upload the DB file in a tool such DBeaver. Once you have completed making changes, generate a new .sql file and update the existing .sql file with the new file.
+For updating the TCA's Knowledge Base, enter in the *db* folder. Upload the DB file in a tool such DBeaver. Once you have completed making changes, generate a new .sql file and update the existing .sql file with the new file.
 
 ### Clean up TCA's environment by running the following and then rerun the setup.
 
@@ -99,24 +98,19 @@ bash clean.sh
 bash setup.sh
 ```
 
-### Running TCA with a new Knowledge Base
+### Running TCA with a new Knowledge Base or a new version of Knowledge Base
 
 Please perform the following steps.
 
-1. Replace the existing .sql file with the new <new_db>.sql file in the aca_db folder
+1. Replace the existing .sql file with the new <new_db>.sql file in the db folder
 
-1. Change the *config.ini* file in the aca_entity_standardizer folder as follows
+2. Change the *common.ini* file in the config folder as follows
 
-    db_path = aca_db/<new_db>.db
+    version = <new_db>
 
-1. Change the *config.ini*  in the aca_kg_utils folder as follows
-
-    db_path = aca_db/<new_db>.db
-
-1. Modify the *setup.sh* script to reflect the sql and db file accordingly.
-
-	aca_sql_file="<new_db>.sql"
-	aca_db_file="<new_db>.db"
+3. Modify the *setup.sh* script to reflect the version accordingly.
+    
+    version=<new_db>
 
 
 #### Run the TCA's environment setup by running the following script
@@ -125,21 +119,9 @@ Please perform the following steps.
 bash setup.sh
 ```
 
-#### Modify the *clean.sh* script to reflect the sql and db file accordingly
+#### Modify the *clean.sh* script to reflect the version accordingly
 
-	aca_db_file="aca_kg_ce_1.0.3.db"
-
-### Creating a New Version of the Knowledge Base
-
-Please perform the following changes when you create a new version
-
-1. Update all the tests and README file with the new version information in aca_backend_api
-
-1. Change the *config.ini*  in the `aca_kg_utils` and `aca_entity_standardizer to reflect the new version
-
-1. Change the README file in aca_db with new version information
-
-1. Change all the scripts (clean.sh and setup.sh) to reflect the latest version of the knowledge base
+	version="1.0.3"
 
 ## References
 
