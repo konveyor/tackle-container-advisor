@@ -12,354 +12,203 @@
 
 from collections import defaultdict
 import re
-
+import logging
 
 class utils:
 
 
-  
-    @staticmethod
-    def remove_non_asciichar(tech_stack):
-        """
-        Remove non-ascii characters
-
-        :param tech_stack: input charaters
-        :type tech_stack: string
-
-        :returns: tech_stack , string  containing non-ascci characters
-        :rtype: string
-
-        """
-        tech_stack = re.sub(r'[^\x00-\x7F]+', " ", " " + str(tech_stack) + " ").strip()
-        return tech_stack
-
-     
     @staticmethod
     def remove_duplicate(old_list):
-
-        """
-        Remove duplicate 
-
-        :param old_list: A list of Technlogy stack and may include  OS ,APPS , APP SERVERS ,LIBS , LANG or RUNTIMES
-        :type old_list: list 
-
-    
-        :returns: A single list with no duplicate
-        :rtype: list
-        """
-      
+        """Removes the duplicate elements present in the input list"""
         list1 = []
-        for element in old_list:
+
+        try:
+            for element in old_list:
+                if element.strip() and (element.strip() not in list1):
+                    list1.append(element.strip())
+            return list1
+        except Exception as e:
+            logging.error(str(e))
         
-            if element=="" or element==" " or element=="  ":
-                continue
-                
-            if (element not in list1):
-                list1.append(element)
-        return list1
-        
-    
     @staticmethod
     def remove_duplicate_tuple(old_list):
-        """
-        Remove duplicate tuple
-        :param old_list:
-        :type old_list: list 
-        :returns: list1
-        :rtype: list
-        """
+        """ Removes the duplicate elements which belongs to same category in the input list"""
         list1 = []
-        category_list=[]    
-        for  element in old_list: 
-             category, sim=element
-             if (category not in category_list):
-                        list1.append(element)
-                        category_list.append(category)
-        
-        return list1
+        category_list=[]
+         
+        try:
+            for element in old_list:
+                category, sim = element
+                if (category not in category_list):
+                    list1.append(element)
+                    category_list.append(category)
+
+            return list1
+        except Exception as e:
+            logging.error(str(e))
     
-    
+     
     @staticmethod
     def split_subtext(text):
-
         """
-        Clean input technology (OS ,APPS , APP SERVERS ,LIBS , LANG or RUNTIMES)
-
-        :param text: String input representing a particular technology
-        :type text: string
-
-        :returns: 
-        :rtype: list
-
+        Formats the input text based on predefined split_list, keep_list values
         """
+        try:
+            split_list = (
+            "other -  ", ":", "        ", "~", "ibm - ibm", ";", "....", "    ", " and ", "\t", "\n", "\r", " / ",
+            "   ", "  ", "/", "&")  # ,#," - ", ) tomcat 3/4/5/6/7,cobol/c/c++/vb/java/c#
+            keep_list = ("/os", "os/", "PL/", "I/O", "n/a", "pi/po", "amd/emt")
+            pattern = (r'(/[0-9])+')
+            stop_word_list = ("of", "for", "on", "in")
 
+            text = text.replace("c#", "  c#  ")
 
+            text = text.replace("jquery", "  jquery")
 
-        split_list = ("other -  ",":", "        ","~","ibm - ibm",";","....","    "," and ", "\t","\n","\r"," / ","   ","  ","/", "&") #,#," - ", ) tomcat 3/4/5/6/7,cobol/c/c++/vb/java/c#
-        keep_list=("/os","os/","PL/","I/O","n/a","pi/po","amd/emt")
-        pattern=(r'(/[0-9])+')
-        stop_word_list=("of","for","on","in")
-        
-        text=text.replace("c#","  c#  ")
-        
-        text=text.replace("jquery","  jquery")
-        text=text.strip()
-        text=text.strip("\(")
-        text=text.strip("\)")
-        text=text.strip("\"")
-        
-            
-        for r in split_list:
-             replaced=True
-            
-                 
-             if r=="/" and text.strip().lower().find(r)>=0:
-                if re.search(pattern, text)!=None: #3/4/5/6/7  not replace
-                  
-                    replaced=False
-                
-                for each in keep_list:
-                      
-                     if text.strip().lower().find(each.strip().lower())>=0:
-                    
-                         replaced=False
-                         break
-                 
-                
-                 
-             if replaced:            
-                 text = text.replace(r, ",")
-              
-        
-        tech_list=text.split(",")
-        return tech_list
+            # print("subtext input:",text)
+            text = text.strip()
+            text = text.strip("\(")
+            text = text.strip("\)")
+            text = text.strip("\"")
+
+            for r in split_list:
+                replaced = True
+
+                if r == "/" and text.strip().lower().find(r) >= 0:
+                    if re.search(pattern, text) != None:  # 3/4/5/6/7  not replace
+                        # print("not split subtext:",text)
+                        replaced = False
+
+                    for each in keep_list:
+
+                        if text.strip().lower().find(each.strip().lower()) >= 0:
+                            # print("not split subtext:",text, each)
+                            replaced = False
+                            break
+
+                if replaced:
+                    text = text.replace(r, ",")
+                # print("split subtext /:",text)
+
+            tech_list = text.split(",")
+            return tech_list
+
+        except Exception as e:
+            logging.error(str(e))
         
     @staticmethod
     def remove_noise_snippet(text):
-        """
-        Check if  a single technology input string contains noise. 
+        """ Check if any of the values in remove_list or exact_remove_list are present in the input text"""
+        try:
+            remove_list = (":no", "unknown", "none", "value updated as per rule id", "string")  #
 
-        :param text: Technology input( OS ,APPS , APP SERVERS ,LIBS , LANG or RUNTIMES).
-        :type text: string
-
-        :returns: A boolean True or False signaling if the input text contains noise or not.
-        :rtype: bool
-
-        """
-      
-    
-        remove_list=(":no","unknown","none", "value updated as per rule id",)#
-        
-        exact_remove_list=("n/a","yes","tbd", "etc","custom","none")#,"other-"),"n",
-        temp=text
-        if text=="" or text==" " or text=="  " or text=="(" or text==")" or text=="\"":
-             return True
-        
-        
-        for each in remove_list:
-            if text.lower().find (each.lower())>0:
-                 return True
-                 
-        text0=text.replace(" ","")
-        for each in exact_remove_list:
-            if text0.lower()==each.lower():
+            exact_remove_list = ("n/a", "yes", "tbd", "etc", "custom", "none")  # ,"other-"),"n",
+            temp = text
+            if text == "" or text == " " or text == "  " or text == "(" or text == ")" or text == "\"":
                 return True
-        return False
+            for each in remove_list:
+                if text.lower().find(each.lower()) > -1:
+                    return True
+            text0 = text.replace(" ", "")
+            for each in exact_remove_list:
+                if text0.lower() == each.lower():
+                    # print("remove:",text)
+                    return True
+            return False
+        except Exception as e:
+            logging.error(str(e))
         
-
-    
-    
     @staticmethod
     def my_tokenization0(text):
+        """Remove the stop list words in the input text """
 
-         """
-         Tokenize String
+        try:
+            # stop_flag = ['x', 'c', 'u','d', 'p', 't', 'uj', 'm', 'f', 'r']
 
-         :param text:
-         :type text: input technology
+            stop_list = ("on", "of", "for", "version", "edition")
 
-         :returns: list of tokens
-         :rtype: list 
+            result = []
 
-         """
-        
-        # stop_flag = ['x', 'c', 'u','d', 'p', 't', 'uj', 'm', 'f', 'r'] 
-         stop_list=("on","of","for","version","edition")
-             
-         result = []
-            
-         words = text.split()    
-         for word in words:
-                is_stop_word=False
-                word.replace(" ","")
-                if len(word)==0:
-                     continue;
-                     
+            words = text.split()
+
+            for word in words:
+                is_stop_word = False
+                word.replace(" ", "")
+                if len(word) == 0:
+                    continue;
+
                 for each in stop_list:
-                     if word.strip().lower()==each:
-                            is_stop_word=True
-                            break
-                if is_stop_word: 
+                    if word.strip().lower() == each:
+                        is_stop_word = True
+                        break
+                if is_stop_word:
                     continue
-                
+
                 result.append(word)
-         return result
+            # print("words:", result)
+            return result
 
-   
-    @staticmethod
-    def my_tokenization0_str(text):
-
-         """
-         Removes stop words from texts. i.e : ("on","of","for","version","edition")
-
-         :param text: keywords
-         :type text: string 
-         
-         :returns: text
-         :rtype: string
-         """
-
-       
-        # stop_flag = ['x', 'c', 'u','d', 'p', 't', 'uj', 'm', 'f', 'r'] 
-         stop_list=("on","of","for","version","edition")
-             
-         result = []
-         result_str=""
-            
-         words = text.split()    
-         
-         for word in words:
-                is_stop_word=False
-                word.replace(" ","")
-                if len(word)==0:
-                     continue;
-                     
-                for each in stop_list:
-                     if word.strip().lower()==each:
-                            is_stop_word=True
-                            break
-                if is_stop_word: 
-                    continue
-                
-                result.append(word)
-                if result_str=="":
-                    result_str=word
-                else:
-                    result_str+=" "+word
-         return result_str
+        except Exception as e:
+            logging.error(str(e))
 
 
-    
-    @staticmethod
-    def remove_low_frequency_token(texts,freq_threshold):
-        
-        """
-        Remove words that appear only once
 
-        :param texts: List of keywords 
-        :type  texts: list
-
-        :param freq_threshold:
-        :type freq_threshold: int 
-
-        :returns: text
-        :rtype: list
-
-        
-        """
-        frequency = defaultdict(int)
-        for text in texts:
-            for token in text:
-                frequency[token] += 1
-
-        texts = [
-            [token for token in text if frequency[token] > freq_threshold]
-            for text in texts
-        ]
-        return texts
-        
-    
-    
-   
     @staticmethod
     def replace_special_character(text):
-        """
-        Replace c# to c-sharp, c++ to c-plus-plus
+        """ Replace special characters such as c# to c-sharp, c++ to c-plus-plus """
+        try:
+            text = text.lower().replace("c#", "c-sharp")
+            text = text.lower().replace("c++", "c-plus-plus")
+            return text
 
-        :param text: Raw text input
-        :type  text: string
-
-        :returns: A clean text containing no special characteres
-        :rtype: string
-
-        """
-        
-        text=text.lower().replace("c#","c-sharp")
-        text=text.lower().replace("c++","c-plus-plus")
-         
-        return text
-        
+        except Exception as e:
+            logging.error(str(e))
     
-   
     @staticmethod
     def input_preprocess(text):
+        """ Preprocess the input text by replacing the special characters"""
 
-     """
-     Preprocess input Strings
+        try:
+            text = utils.replace_special_character(text)
 
-     :param text: Raw input text
-     :type text: string
+            words = text.split(" ")
+            text0 = ""
 
-     :returns: Preprocessed string input
-     :rtype: string
-     """
+            for each in words:
 
-        
-     text=utils.replace_special_character(text) 
-     
-     words=text.split(" ")
-     text0=""      
-     for each in words:
-        
-        if not (each.isalpha() or each.isdigit()):
-             if "." in each:    #remove version
-                    each=re.sub("\d+", "", each, count=0)
-                    each.replace(".","")
-        text0=text0+" "+each
-        
-     return text0
-     
+                if not (each.isalpha() or each.isdigit()):
+                    if "." in each:  # remove version
+                        each = re.sub("\d+", "", each, count=0)
+                        each.replace(".", "")
+                text0 = text0 + " " + each
 
-    
+            return text0
+
+        except Exception as e:
+            logging.error(str(e))
+
     @staticmethod
-    def preprocess (tech_stack):
+    def preprocess(tech_stack):
+        """Split the text with comma delimiter and remove if any stop words to be removed in the subtext and remove
+        duplicates"""
+        try:
+            text0 = tech_stack
 
-        """
-        Preprocess input tech_stack
-        
-        
-        :param tech_stack: input technology names
-        :type tech_stack: list
+            tech_list0 = text0.split(",")
 
-        :returns: preproccessed tech strings
-        :rtype: list
+            tech_list = []
+            for each in tech_list0:
+                if utils.remove_noise_snippet(each):
+                    continue
 
-        """
-           
-        text0 = tech_stack          
-        tech_list0=text0.split(",")
-             
-        tech_list=[]
-        for each in tech_list0:
-           
-            if utils.remove_noise_snippet(each):
-              
-                continue
-            
-                
-            sublist=utils.split_subtext(each)
-            for sub_each in sublist:
-                tech_list.append(sub_each)
-                    
-        tech_list=utils.remove_duplicate(tech_list)   
-        return  tech_list
+                sublist = utils.split_subtext(each)
+
+                for sub_each in sublist:
+                    tech_list.append(sub_each)
+
+            tech_list = utils.remove_duplicate(tech_list)
+
+            return tech_list
+
+        except Exception as e:
+            logging.error(str(e))
