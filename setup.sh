@@ -41,16 +41,30 @@ echo "-----------------Dependency Checks PASSED------------------"
 ######################################################################
 ## Install dependencies for 
 ######################################################################
-dependencies=`pip3 install -r entity_standardizer/requirements.txt; \
-              cd entity_standardizer; \
-              cd ..; \
-              pip3 install entity_standardizer/dist/entity_standardizer_tca-1.0-py3-none-any.whl; \
-	      pip3 install -r service.requirements.txt;`
-if [ $? -ne 0 ]
-then
-    echo $dependencies 
-    echo "**** ERROR: Python dependency install failed. Cannot continue."
+echo "------------------Installing requirements--------------------"
+pip3 install -r entity_standardizer/requirements.txt
+if [ $? -ne 0 ]; then
+    echo "**** ERROR: Failed to install entity_standardizer dependencies. Cannot continue."
 fi
+
+cd entity_standardizer
+python -m build
+if [ $? -ne 0 ]; then
+    echo "**** ERROR: Failed to build entity_standardizer package. Cannot continue."
+fi
+
+pip3 install dist/entity_standardizer_tca-1.0-py3-none-any.whl
+if [ $? -ne 0 ]; then
+    echo "**** ERROR: Failed to install entity_standardizer package. Cannot continue."
+else
+    cd ..
+fi
+
+pip3 install -r service/requirements.txt
+if [ $? -ne 0 ]; then
+    echo "**** ERROR: Failed to install service dependencies. Cannot continue."
+fi
+
 echo "-----------------Requirements Installation PASSED------------------"
 
 
