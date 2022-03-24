@@ -1,0 +1,4 @@
+backoff_utils==1.0.1
+requests==2.27.1
+gensim>=3.8.3
+scikit_learn>=1.0.2
