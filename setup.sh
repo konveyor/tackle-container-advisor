@@ -51,11 +51,13 @@ cd entity_standardizer
 python -m build
 if [ $? -ne 0 ]; then
     echo "**** ERROR: Failed to build entity_standardizer package. Cannot continue."
+    exit 1
 fi
 
 pip3 install dist/entity_standardizer_tca-1.0-py3-none-any.whl
 if [ $? -ne 0 ]; then
     echo "**** ERROR: Failed to install entity_standardizer package. Cannot continue."
+    exit 1
 else
     cd ..
 fi
@@ -63,6 +65,7 @@ fi
 pip3 install -r service/requirements.txt
 if [ $? -ne 0 ]; then
     echo "**** ERROR: Failed to install service dependencies. Cannot continue."
+    exit 1
 fi
 
 echo "-----------------Requirements Installation PASSED------------------"
