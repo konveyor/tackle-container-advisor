@@ -18,8 +18,8 @@ USER 0
 WORKDIR /app
 COPY ./entity_standardizer /app/entity_standardizer
 RUN python -m pip install --upgrade pip wheel && \
-    pip install -r entity_standardizer/requirements.txt
-    pip install entity_standardizer/dist/entity_standardizer_tca-1.0-py3-none-any.whl && \
+    pip install -r entity_standardizer/requirements.txt && \
+    pip install entity_standardizer/dist/entity_standardizer_tca-1.0-py3-none-any.whl
 
 COPY ./service /app/service
 RUN  pip install -r service/requirements.txt
