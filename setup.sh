@@ -64,6 +64,12 @@ else
     cd ..
 fi
 
+pip3 install -r requirements.txt
+if [ $? -ne 0 ]; then
+    echo "**** ERROR: Failed to install dependencies. Cannot continue."
+    exit 1
+fi
+
 pip3 install -r service/requirements.txt
 if [ $? -ne 0 ]; then
     echo "**** ERROR: Failed to install service dependencies. Cannot continue."
