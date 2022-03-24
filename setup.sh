@@ -41,16 +41,11 @@ echo "-----------------Dependency Checks PASSED------------------"
 ######################################################################
 ## Install dependencies for 
 ######################################################################
-dependencies=`pip3 install -r requirements.txt; \
-              pip3 install -r service.requirements.txt; \
-              cd entity_standardizer/tfidf; \
-              python setup.py bdist_wheel; \
-              cd -; \
-              cd entity_standardizer/wdapi; \
-              python setup.py bdist_wheel; \
-              cd -; \
-              pip3 install entity_standardizer/tfidf/dist/tfidf-1.0-py3-none-any.whl; \
-              pip3 install entity_standardizer/wdapi/dist/wdapi-1.0-py3-none-any.whl`
+dependencies=`pip3 install -r entity_standardizer/requirements.txt; \
+              cd entity_standardizer; \
+              cd ..; \
+              pip3 install entity_standardizer/dist/entity_standardizer_tca-1.0-py3-none-any.whl; \
+	      pip3 install -r service.requirements.txt;`
 if [ $? -ne 0 ]
 then
     echo $dependencies 

@@ -99,7 +99,7 @@ if __name__ == "__main__":
         wikidata_infer_data = json.load(wikidata_infer_file)
 
     print("----------- TFIDF -------------")
-    from tfidf import TFIDF 
+    from entity_standardizer.tfidf import TFIDF 
     tfidf            = TFIDF("tca")
     tfidf_start      = time.time()
     tfidf_infer      = copy.deepcopy(tca_infer_data)
@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
     '''        
     print("----------- GNN -------------")
-    from gnn import GNN
+    from entity_standardizer.gnn import GNN
     gnn              = GNN("tca")
     gnn_start        = time.time()
     gnn_infer        = copy.deepcopy(tca_infer_data)
@@ -132,7 +132,7 @@ if __name__ == "__main__":
     table_data["gnn"]["time"] = gnn_time
 
     print("----------- WIKIDATA API -------------")
-    from wdapi import WDAPI 
+    from entity_standardizer.wdapi import WDAPI 
     wdapi            = WDAPI("wikidata")
     wdapi_start      = time.time()
     wdapi_infer      = copy.deepcopy(wikidata_infer_data)
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     
     '''
     print("----------- ENTITY LINKING API -------------")
-    from entlnk import ENTLNK 
+    from entity_standardizer.entlnk import ENTLNK 
     entlnk           = ENTLNK("wikidata")
     entlnk_start     = time.time()
     entlnk_infer     = copy.deepcopy(wikidata_infer_data)

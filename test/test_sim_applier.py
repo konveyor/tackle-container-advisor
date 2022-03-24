@@ -12,14 +12,12 @@
 
 
 import unittest
-# from service.utils_nlp import utils
-from tfidf import utils
+from entity_standardizer.tfidf import utils
 from service.standardizer import entity_standardizer
 
 class TestApplySIM(unittest.TestCase):
 
     def test_sim_tech_stack_standardization(self):
-        # sim = sim_applier()
         tech_stack="cobol    java    javascript:  : , , unix/mainframe, unix/mainframe: unknown , db2    "
         mentions  = utils.preprocess(tech_stack)        
         entities  = entity_standardizer(mentions)

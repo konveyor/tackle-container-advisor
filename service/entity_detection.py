@@ -19,9 +19,7 @@ import codecs
 
 
 from service.utils import Utils
-from tfidf         import utils
-# from service.utils_nlp import utils
-# from service.sim_applier import sim_applier
+from entity_standardizer.tfidf import utils
 from service.standardizer import standardizer
 
 import configparser

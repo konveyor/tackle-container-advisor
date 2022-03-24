@@ -3,7 +3,7 @@ import json
 import time
 import configparser
 import logging
-from tfidf import TFIDF
+from entity_standardizer.tfidf import TFIDF
 from service.version_detector import version_detector
 
 

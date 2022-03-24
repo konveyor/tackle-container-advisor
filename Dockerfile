@@ -16,14 +16,14 @@ USER 0
 
 # Install dependencies before the code
 WORKDIR /app
-COPY ./service.requirements.txt .
-COPY ./entity_standardizer/tfidf/dist/tfidf-1.0-py3-none-any.whl .
+COPY ./entity_standardizer /app/entity_standardizer
 RUN python -m pip install --upgrade pip wheel && \
-    pip install -r service.requirements.txt && \
-    pip install tfidf-1.0-py3-none-any.whl
+    pip install -r entity_standardizer/requirements.txt
+    pip install entity_standardizer/dist/entity_standardizer_tca-1.0-py3-none-any.whl && \
 
-# COPY the code to the working directory
 COPY ./service /app/service
+RUN  pip install -r service/requirements.txt
+
 COPY ./config.py /app/config.py
 COPY ./planner.py /app/planner.py
 COPY ./multiprocessing_mapreduce.py /app/multiprocessing_mapreduce.py
