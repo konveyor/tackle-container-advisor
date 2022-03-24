@@ -27,7 +27,7 @@ then
     echo "**** ERROR: python command could not be found. Cannot continue."
     exit 1
 else
-    python -m pip install --upgrade pip wheel
+    python -m pip install --upgrade pip wheel build
 fi
 
 # Check to make sure pip3 is installed
@@ -35,6 +35,8 @@ if ! command -v pip3 &> /dev/null
 then
     echo "**** ERROR: pip3 command could not be found. Cannot continue."
     exit 1
+else
+    pip3 install setuptools==59.6.0
 fi
 echo "-----------------Dependency Checks PASSED------------------"
 
