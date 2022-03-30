@@ -64,23 +64,31 @@ Do not proceed to the next step if the final output of the ``setup.sh`` bash scr
 
 There are 4 options to run the backend API. 
 
-1. Using a bash script. The script uses docker-compose to create a container for the service.
+1. Install the service requirements and start the service from command line.
 
-```bash
-bash run.sh
+```
+python install -r service/requirements.txt
+gunicorn --workers=2 --threads=500 --timeout 300 service:app
 ```
 
-2. Directly run docker-compose to create a container as follows.
+2. Running the service as a container. 
 
-```bash
+Using a bash script. 
+```
+bash run.sh
+```
+Using command line.
+```
 docker-compose  -f 'docker-compose-api.yml' up -d --build
 ```
 
-3. Install the service requirements and start the service from command line.
-
-```bash
-python install -r service.requirements.txt
-gunicorn --workers=2 --threads=500 --timeout 300 service:app
+3. Running the service in a virtual machine using vagrant.
+```
+vagrant up
+vagrant ssh
+cd /vagrant
+bash setup.sh
+bash run.sh
 ```
 
 4. Deploy the container on Redhat Openshift Container Platform.
