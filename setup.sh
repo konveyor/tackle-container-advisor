@@ -27,7 +27,7 @@ then
     echo "**** ERROR: python command could not be found. Cannot continue."
     exit 1
 else
-    python -m pip install --upgrade pip wheel build
+    python -m pip install --upgrade pip wheel build setuptools
 fi
 
 # Check to make sure pip3 is installed

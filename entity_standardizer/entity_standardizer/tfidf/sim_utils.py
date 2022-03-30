@@ -14,7 +14,6 @@
 
 
 from collections import defaultdict
-from gensim import corpora
 import os
 import csv
 import re

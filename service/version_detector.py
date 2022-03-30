@@ -15,7 +15,6 @@ import re
 import logging
 import json
 import configparser
-from pathlib import Path
 
 config = configparser.ConfigParser()
 common = os.path.join("config", "common.ini")
@@ -31,7 +30,7 @@ class version_detector:
         self.__class_version = {}
 
         class_version_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['entity_versionsKG'])
-        if Path(class_version_filepath).is_file():
+        if os.path.exists(class_version_filepath):
             with open(class_version_filepath, 'r') as f:
                 self.__class_version = json.load(f)
 

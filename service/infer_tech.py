@@ -11,7 +11,6 @@
 
 import os
 import json
-from pathlib import Path
 import logging
 import codecs
 from service.utils import Utils
@@ -34,7 +33,7 @@ class InferTech:
 
         class_type_mapper_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['class_type_mapper'])
 
-        if Path(class_type_mapper_filepath).is_file():
+        if os.path.exists(class_type_mapper_filepath):
             with open(class_type_mapper_filepath, 'r') as f:
                 self.__class_type_mapper = json.load(f)
         else:
@@ -43,7 +42,7 @@ class InferTech:
         
         compatibilityOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['compatibilityOSKG'])
 
-        if Path(compatibilityOSKG_filepath).is_file():
+        if os.path.exists(compatibilityOSKG_filepath):
             with open(compatibilityOSKG_filepath, 'r') as f:
                 self.__compatibilityOSKG = json.load(f)
         else:

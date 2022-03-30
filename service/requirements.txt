@@ -4,12 +4,10 @@ Flask==1.1.1
 Flask-API==1.1
 flask-restplus==0.13.0
 Werkzeug==0.16.1
-pandas==1.2.4
 scikit-learn==1.0.2
 joblib==0.15.1
 scipy==1.8.0
 scikit-multilearn==0.2.0
-pathlib==1.0.1
 requests==2.27.1
 packaging==21.0
 Jinja2==2.11.3

@@ -12,8 +12,6 @@
 import os
 import json
 import sys
-import pandas
-from pathlib import Path
 import logging
 import codecs
 
@@ -59,7 +57,7 @@ class EntityDetection:
                                 }
         
         class_type_mapper_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['class_type_mapper'])
-        if Path(class_type_mapper_filepath).is_file():
+        if os.path.exists(class_type_mapper_filepath):
             with open(class_type_mapper_filepath, 'r') as f:
                 self.__class_type_mapper = json.load(f)
             
