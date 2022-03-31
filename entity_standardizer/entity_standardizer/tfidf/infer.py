@@ -63,9 +63,6 @@ def predict(config, json_data):
     tf_eids    = {}
 
     for mention, idx in mentions.items():
-        #preprocessed = utils.preprocess(mention)
-        #if not preprocessed:
-        # preprocessed.append("")
         tech_sim_scores=sim_app.tech_stack_standardization(mention.lower())
         json_data["data"][idx]["predictions"] = json_data["data"][idx].get("predictions", [])
         if tech_sim_scores:
@@ -78,7 +75,6 @@ def predict(config, json_data):
     return tf_eids
 
 def train(config):
-    # from .db import create_db_connection
     from sklearn.feature_extraction.text import TfidfVectorizer
     from .sim_utils import sim_utils
 
