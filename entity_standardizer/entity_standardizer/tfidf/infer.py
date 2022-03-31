@@ -55,8 +55,8 @@ def predict(config, json_data):
             run_train = False
             break            
     if run_train:
-        logging.info(f"TFIDF model not found in {model_path}. Will run training to generate model.")
-        print(f"TFIDF model not found in {model_path}. Will run training to generate model.")
+        # logging.info(f"TFIDF model not found in {model_path}. Will run training to generate model.")
+        # print(f"TFIDF model not found in {model_path}. Will run training to generate model.")
         train(config)
     
     sim_app    = sim_applier(config)
@@ -153,5 +153,5 @@ def train(config):
     with open(os.path.join(model_path,instances_name),"wb") as instances_file:
         pickle.dump(all_instances, instances_file)
     end = time()
-    print(f"TFIDF training took {end-start:.2f} seconds.")
-    logging.info(f"TFIDF training took {end-start:.2f} seconds.")
+    # print(f"TFIDF training took {end-start:.2f} seconds.")
+    # logging.info(f"TFIDF training took {end-start:.2f} seconds.")
