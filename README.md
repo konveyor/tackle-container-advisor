@@ -37,10 +37,9 @@ The pipeline ingests raw inputs from clients data and standardizes the data to g
 
 ## Setting up your environment
 
-Requires Python >= 3.6 and C++ >= 14 environments. You cannot run this code without having a proper 
-Python environment first. Even the setup requires Python 3. We recommend that you follow the instructions 
+Requires Python >= 3.6 environment. You cannot run this code without having a proper 
+Python environment first. We recommend that you follow the instructions 
 in the [Developer's Guide](docs/development.md) before proceeding further.
-Run ``vagrant up`` to setup the Python 3 virtual environment.
 
 ## Running the TCA Backend API
 
