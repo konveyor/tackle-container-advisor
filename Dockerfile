@@ -21,9 +21,13 @@ COPY ./service /app/service
 COPY ./config.py /app/config.py
 COPY ./planner.py /app/planner.py
 COPY ./multiprocessing_mapreduce.py /app/multiprocessing_mapreduce.py
+COPY ./kg /app/kg
 COPY ./config /app/config
-RUN chown -R 1001:0 ./ && \
-    sh setup.sh
+COPY ./entity_standardizer/dist /app/entity_standardizer/dist
+COPY ./entity_standardizer/requirements.txt /app/entity_standardizer/requirements.txt
+RUN  pip install -r entity_standardizer/requirements.txt && \
+     pip install -r service/requirements.txt
+RUN chown -R 1001:0
 
 # Become a non-root user again
 USER 1001
