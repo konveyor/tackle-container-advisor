@@ -17,7 +17,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 import os
 from . import app
-import planner
+import service.planner
 
 import configparser
 

@@ -24,7 +24,7 @@ from service.containerize_assessment import Assessment
 from service.infer_tech import InferTech
 from service.containerize_planning import Plan
 import configparser
-from multiprocessing_mapreduce import SimpleMapReduce
+from service.multiprocessing_mapreduce import SimpleMapReduce
 
 
 config = configparser.ConfigParser()

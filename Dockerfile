@@ -20,8 +20,6 @@ WORKDIR /app
 COPY ./benchmarks /app/benchmarks
 COPY ./service /app/service
 COPY ./config.py /app/config.py
-COPY ./planner.py /app/planner.py
-COPY ./multiprocessing_mapreduce.py /app/multiprocessing_mapreduce.py
 COPY ./kg /app/kg
 COPY ./config /app/config
 COPY ./entity_standardizer /app/entity_standardizer
