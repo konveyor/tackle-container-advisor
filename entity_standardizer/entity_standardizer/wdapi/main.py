@@ -19,12 +19,13 @@ class WDAPI():
             print(f"Max. workers (= {self.config['infer']['max_workers']}) should be > 0.")
             self.config['infer']['max_workers']  = "8"
             print(f"Resetting to {self.config['graphs']['num_workers']}")
-
+        '''
         log  = logging.getLogger()
         for hdlr in log.handlers[:]:  # remove all old handlers
             hdlr.close()
             log.removeHandler(hdlr)
-        logging.basicConfig(filename='wdapi.log',level=logging.DEBUG, \
+        '''
+        logging.basicConfig(filename='entity_standardizer.log',level=logging.DEBUG, \
                             format="[%(levelname)s:%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s", filemode='w')
         
     def infer(self, infer_data):
