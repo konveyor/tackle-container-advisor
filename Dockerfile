@@ -24,9 +24,9 @@ COPY ./planner.py /app/planner.py
 COPY ./multiprocessing_mapreduce.py /app/multiprocessing_mapreduce.py
 COPY ./kg /app/kg
 COPY ./config /app/config
-COPY ./entity_standardizer/dist /app/entity_standardizer/dist
-COPY ./entity_standardizer/requirements.txt /app/entity_standardizer/requirements.txt
-RUN  pip install -r entity_standardizer/requirements.txt; \
+COPY ./entity_standardizer /app/entity_standardizer
+RUN  python -m pip install --upgrade pip wheel build setuptools; \
+     pip install -r entity_standardizer/requirements.txt; \
      cd entity_standardizer; python -m build; pip install dist/entity_standardizer_tca-1.0-py3-none-any.whl; cd ..; \
      pip install -r service/requirements.txt; \
      python benchmarks/generate_data.py; \
