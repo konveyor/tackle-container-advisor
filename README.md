@@ -64,7 +64,7 @@ There are 4 options for deploying the backend API as a service.
 
 Requires *gunicorn* standalone installation on your system.
 ```
-python install -r service/requirements.txt
+bash setup.sh
 gunicorn --workers=2 --threads=500 --timeout 300 service:app
 ```
 
