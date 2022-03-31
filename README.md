@@ -41,7 +41,7 @@ Requires Python >= 3.6 environment. You cannot run this code without having a pr
 Python environment first. We recommend that you follow the instructions 
 in the [Developer's Guide](docs/development.md) before proceeding further.
 
-## Running the TCA Backend API
+## Running TCA as a service
 
 <!-- **STEP 1 - SETUP** -->
 
@@ -56,9 +56,7 @@ in the [Developer's Guide](docs/development.md) before proceeding further.
 <!-- -----------Set up for Tackle Containerzation Adviser Completed !!!--------- -->
 <!-- ``` -->
 
-**DEPLOYING BACKEND API AS A SERVICE**
-
-There are 4 options for deploying the backend API as a service. 
+There are 4 options for deploying TCA as a service. 
 
 1. Install the service requirements and start the service from command line.
 
