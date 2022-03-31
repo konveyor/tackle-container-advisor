@@ -21,9 +21,9 @@ class TFIDF():
         for hdlr in log.handlers[:]:  # remove all old handlers
             hdlr.close()
             log.removeHandler(hdlr)
-        logging.basicConfig(filename='tfidf.log',level=logging.DEBUG, \
-                            format="[%(levelname)s:%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s", filemode='w')
         '''
+        logging.basicConfig(filename='entity_standardizer.log',level=logging.DEBUG, \
+                            format="[%(levelname)s:%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s", filemode='w')
 
     def infer(self, infer_data):
         from .infer import predict
