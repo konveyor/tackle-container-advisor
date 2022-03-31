@@ -17,6 +17,7 @@ USER 0
 # Install dependencies before the code
 WORKDIR /app
 
+COPY ./benchmarks /app/benchmarks
 COPY ./service /app/service
 COPY ./config.py /app/config.py
 COPY ./planner.py /app/planner.py
@@ -27,7 +28,10 @@ COPY ./entity_standardizer/dist /app/entity_standardizer/dist
 COPY ./entity_standardizer/requirements.txt /app/entity_standardizer/requirements.txt
 RUN  pip install -r entity_standardizer/requirements.txt; \
      cd entity_standardizer; python -m build; pip install dist/entity_standardizer_tca-1.0-py3-none-any.whl; cd ..; \
-     pip install -r service/requirements.txt
+     pip install -r service/requirements.txt; \
+     python benchmarks/generate_data.py; \
+     python benchmarks/run_models.py;
+     
 RUN chown -R 1001:0 ./
 
 # Become a non-root user again
