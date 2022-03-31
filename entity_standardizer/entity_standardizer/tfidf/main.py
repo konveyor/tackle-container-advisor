@@ -16,13 +16,15 @@ class TFIDF():
         self.config["task"] = {}
         self.config["task"]["name"] = self.task_name
 
+        '''
         log    = logging.getLogger()
         for hdlr in log.handlers[:]:  # remove all old handlers
             hdlr.close()
             log.removeHandler(hdlr)
         logging.basicConfig(filename='tfidf.log',level=logging.DEBUG, \
                             format="[%(levelname)s:%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s", filemode='w')
-        
+        '''
+
     def infer(self, infer_data):
         from .infer import predict
         predict(self.config, infer_data)        
