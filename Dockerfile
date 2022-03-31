@@ -25,8 +25,8 @@ COPY ./kg /app/kg
 COPY ./config /app/config
 COPY ./entity_standardizer/dist /app/entity_standardizer/dist
 COPY ./entity_standardizer/requirements.txt /app/entity_standardizer/requirements.txt
-RUN  pip install -r entity_standardizer/requirements.txt; && \
-     cd entity_standardizer; python -m build; pip install dist/entity_standardizer_tca-1.0-py3-none-any.whl; cd ..; && \
+RUN  pip install -r entity_standardizer/requirements.txt; \
+     cd entity_standardizer; python -m build; pip install dist/entity_standardizer_tca-1.0-py3-none-any.whl; cd ..; \
      pip install -r service/requirements.txt
 RUN chown -R 1001:0 ./
 
