@@ -19,7 +19,6 @@ WORKDIR /app
 
 COPY ./benchmarks /app/benchmarks
 COPY ./service /app/service
-COPY ./config.py /app/config.py
 COPY ./kg /app/kg
 COPY ./config /app/config
 COPY ./entity_standardizer /app/entity_standardizer
