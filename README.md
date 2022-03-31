@@ -44,25 +44,22 @@ Run ``vagrant up`` to setup the Python 3 virtual environment.
 
 ## Running the TCA Backend API
 
-**STEP 1 - SETUP**
+<!-- **STEP 1 - SETUP** -->
 
-In order to setup the environment and generate the resources needed by the backend API, run the bash script ``setup.sh``
+<!-- In order to setup the environment and generate the resources needed by the backend API, run the bash script ``setup.sh`` -->
+<!-- ```bash -->
+<!-- bash setup.sh -->
+<!-- ``` -->
 
-```bash
-bash setup.sh
-```
+<!-- **STEP 2 - CHECK SUCCESSFUL SETUP** -->
+<!-- Do not proceed to the next step if the final output of the ``setup.sh`` bash script is not the following one: -->
+<!-- ```bash -->
+<!-- -----------Set up for Tackle Containerzation Adviser Completed !!!--------- -->
+<!-- ``` -->
 
-**STEP 2 - CHECK SUCCESSFUL SETUP**
+**DEPLOYING BACKEND API AS A SERVICE**
 
-Do not proceed to the next step if the final output of the ``setup.sh`` bash script is not the following one:
-   
-```bash
------------Set up for Tackle Containerzation Adviser Completed !!!---------
-```
-
-**STEP 3 - RUN THE BACKEND API**
-
-There are 4 options to run the backend API. 
+There are 4 options for deploying the backend API as a service. 
 
 1. Install the service requirements and start the service from command line.
 
@@ -87,7 +84,6 @@ docker-compose  -f 'docker-compose-api.yml' up -d --build
 vagrant up
 vagrant ssh
 cd /vagrant
-bash setup.sh
 bash run.sh
 ```
 
