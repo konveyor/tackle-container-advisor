@@ -16,20 +16,14 @@ USER 0
 
 # Install dependencies before the code
 WORKDIR /app
-COPY ./entity_standardizer /app/entity_standardizer
-RUN python -m pip install --upgrade pip wheel && \
-    pip install -r entity_standardizer/requirements.txt && \
-    pip install entity_standardizer/dist/entity_standardizer_tca-1.0-py3-none-any.whl
 
 COPY ./service /app/service
-RUN  pip install -r service/requirements.txt
-
 COPY ./config.py /app/config.py
 COPY ./planner.py /app/planner.py
 COPY ./multiprocessing_mapreduce.py /app/multiprocessing_mapreduce.py
-COPY ./kg /app/kg
 COPY ./config /app/config
-RUN chown -R 1001:0 ./
+RUN chown -R 1001:0 ./ && \
+    sh setup.sh
 
 # Become a non-root user again
 USER 1001
