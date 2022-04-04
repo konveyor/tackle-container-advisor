@@ -15,4 +15,5 @@ MarkupSafe==2.0.1
 deepdiff==5.7.0
 #pycryptodome==3.10.1
 # Runtime
-gunicorn==20.0
+gunicorn==20.0.0
+waitress==2.1.1

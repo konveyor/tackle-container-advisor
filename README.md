@@ -64,6 +64,8 @@ Requires *gunicorn* standalone installation on your system.
 ```
 bash setup.sh
 gunicorn --workers=2 --threads=500 --timeout 300 service:app
+OR
+waitress-serve --listen=*:8000 service:app 
 ```
 
 2. Running the service as a container. 
