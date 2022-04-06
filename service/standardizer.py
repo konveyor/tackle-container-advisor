@@ -50,7 +50,7 @@ def entity_standardizer(mentions):
         mention_data[idx] = {}
         mention_data[idx]["mention"] = mention.strip()
     infer_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": mention_data}
-    tfidf            = TFIDF("tca")
+    tfidf            = TFIDF("deploy")
     tfidf_start      = time.time()
     infer_data       = tfidf.infer(infer_data)
     tfidf_end        = time.time()

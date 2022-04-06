@@ -100,11 +100,10 @@ if __name__ == "__main__":
 
     print("----------- TFIDF -------------")
     from entity_standardizer.tfidf import TFIDF 
-    tfidf            = TFIDF("tca")
+    tfidf            = TFIDF("deploy")
     tfidf_start      = time.time()
     tfidf_infer      = copy.deepcopy(tca_infer_data)
     tfidf_infer      = tfidf.infer(tfidf_infer)
-    tfidf_end        = time.time()
     tfidf_time       = (tfidf_end-tfidf_start)
     tfidf_topk       = topk(tfidf_infer)    
     table_data["tfidf"]= {}

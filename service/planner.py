@@ -128,8 +128,6 @@ class Planner:
                     print("MULTIPROCESSING ENABLED==NO")
                     appl = self.entity_detection.compose_app(appl)
                 
-                print("appl = ", appl)
-                print("appL = ", appL)
                 appL.extend(appl)
             
             return appL

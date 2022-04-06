@@ -11,14 +11,9 @@
 
 import configparser
 import logging
-import sqlite3
 import os
 import json
 import numpy as np
-from sqlite3 import Error
-from sqlite3.dbapi2 import Cursor, complete_statement
-from pathlib import Path
-from sklearn.model_selection import train_test_split
 
 def clean(mention):
     """
@@ -69,10 +64,11 @@ def is_ascii(s):
 
     return all(ord(c) < 128 for c in s)
 
-def get_benchmark_data(config):
+def get_benchmark_data(config, all_train=False):
     """
     Create train and inference data using entities and mentions json files from KG
-    Inference data uses mentions from 'others' source and 
+    If all_train is True - All mentions used for training
+    else Inference data uses mentions from 'others' source and 
     train data uses mentions from rest of the sources
 
     :returns: Returns dictionary containing train and inference data
@@ -106,16 +102,22 @@ def get_benchmark_data(config):
     inf_data   = {}
     inf_idx    = 0
     for idx, mentions_data in mentions["data"].items():
-        train_data[idx] = {}            
+        train_data[idx] = {}
         entity_id = mentions_data["entity_id"]        
         mentions  = mentions_data["mentions"]
         for source, mention_list in mentions.items():
             if source == "others":
-                for mention in mention_list:
-                    inf_data[inf_idx] = {}
-                    inf_data[inf_idx]["mention"] = clean(mention)
-                    inf_data[inf_idx]["label"]  = entity_id
-                    inf_idx += 1
+                if all_train:
+                    for mention in mention_list:
+                        train_data[idx]["mentions"] = train_data[idx].get("mentions", [])
+                        train_data[idx]["mentions"] += [clean(mention) for mention in mention_list]
+                    train_data[idx]["label"] = entity_id
+                else:
+                    for mention in mention_list:
+                        inf_data[inf_idx] = {}
+                        inf_data[inf_idx]["mention"] = clean(mention)
+                        inf_data[inf_idx]["label"]  = entity_id
+                        inf_idx += 1
             else:
                 train_data[idx]["mentions"] = train_data[idx].get("mentions", [])
                 if source == "standardized":
@@ -128,6 +130,27 @@ def get_benchmark_data(config):
                 train_data[idx]["label"] = entity_id
 
     return train_data, inf_data
+
+def create_deploy_benchmark(config, train_data, inf_data):
+    """
+    Create benckmark train and infer json files with entity id as label
+    
+    :returns: Creates train.json and infer.json inside config["data_dir"]/tca
+    """
+    try:
+        data_dir = config["general"]["data_dir"]
+    except KeyError as k:
+        logging.error(f'{k}  is not a key in your common.ini file.')
+        print(f'{k} is not a key in your common.ini file.')
+        exit()
+        
+    data_dir = config["general"]["data_dir"]
+    name     = "deploy"
+    os.makedirs(os.path.join(data_dir, name), exist_ok=True)
+    json_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": train_data}
+    with open(os.path.join(data_dir, name, 'train.json'), 'w', encoding='utf-8') as json_file:
+        json.dump(json_data, json_file, indent=4)
+
 
 def create_tca_benchmark(config, train_data, inf_data):
     """
@@ -219,6 +242,8 @@ if __name__ == '__main__':
     config.read([common, kg])
     logging.basicConfig(filename='benchmarks.log',level=logging.DEBUG, \
                         format="[%(levelname)s:%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s", filemode='w')
-    train_data, inf_data = get_benchmark_data(config)
+    train_data, inf_data = get_benchmark_data(config, all_train=False)
     create_tca_benchmark(config, train_data, inf_data)
     create_wikidata_benchmark(config, train_data, inf_data)
+    train_data, inf_data = get_benchmark_data(config, all_train=True)
+    create_deploy_benchmark(config, train_data, inf_data)

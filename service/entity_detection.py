@@ -138,9 +138,7 @@ class EntityDetection:
                 if not tech_stack:
                     continue
                 tech_stack = Utils.preprocess_tech_stack_for_sim(tech_stack)
-                print("Tech stack = ", tech_stack)
                 entities = self.entity_detector(tech_stack)
-                print("Entities = ", entities)
                 if not entities or len(entities) == 0:
                     continue
 
