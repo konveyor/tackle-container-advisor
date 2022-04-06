@@ -115,7 +115,7 @@ class ContainerizationAssessment(Resource):
     """
     @api.doc('create_containerization_assessment')
     @api.response(201, 'Assessment Completed successfully!')
-    @api.response(400, 'Input data format doesn\'t match the format expected by ACA')
+    @api.response(400, 'Input data format doesn\'t match the format expected by TCA')
     @api.response(401, 'Unauthorized, missing or invalid access token')
     @api.response(500, 'Internal Server Error, missing or wrong config of RBAC access token validation url')
     @api.expect([input_model])
@@ -140,7 +140,7 @@ class ContainerizationPlanning(Resource):
     """
     @api.doc('create_containerization_planning')
     @api.response(201, 'Container recommendation generated!')
-    @api.response(400, 'Input data format doesn\'t match the format expected by ACA')
+    @api.response(400, 'Input data format doesn\'t match the format expected by TCA')
     @api.response(401, 'Unauthorized, missing or invalid access token')
     @api.response(500, 'Internal Server Error, missing or wrong config of RBAC access token validation url')
     @api.expect([assessment_model])

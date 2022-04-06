@@ -1,9 +1,9 @@
 version: '2.2'
 services:
-  aca_backend:
+  tca_service:
     build: .
-    image: aca_backend_api
-    container_name: aca_backend_api
+    image: tca_service_api
+    container_name: tca_service_api
     #cpus: "2"
     #mem_limit: 4g
     ports:

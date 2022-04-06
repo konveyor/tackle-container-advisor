@@ -4,7 +4,7 @@ version="1.0.3"
 db_file="$version.db"
 echo "-----------Cleaning Files and Folders---------"
 
-##remove files from backend api
+##remove files from entity standardization models
 if [ -d models/ ]; then
     rm -rf models/
 fi

@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Tackle Containerization Advisory ACA KG Utils'
+project = 'Tackle Containerization Advisory TCA KG Utils'
 copyright = '2021, Auto Document Generation by Sphinx'
 author = 'Auto Document Generation by Sphinx'
 

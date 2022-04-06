@@ -1,8 +1,8 @@
 version: '2.1'
 services:
-  aca_backend:
-    image: aca_backend_api
-    container_name: aca_backend_api
+  tca_service:
+    image: tca_service_api
+    container_name: tca_service_api
     ports:
       - 8000:8000
     restart: always

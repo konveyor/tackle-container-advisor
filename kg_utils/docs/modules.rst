@@ -1,4 +1,4 @@
-aca_kg_utils
+kg_utils
 ============
 
 .. toctree::

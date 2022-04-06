@@ -1,5 +1,5 @@
 # *****************************************************************
-# Copyright IBM Corporation 2021
+# Copyright IBM Corporation 2022
 # Licensed under the Eclipse Public License 2.0, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # Unless required by applicable law or agreed to in writing, software
@@ -33,7 +33,7 @@ class EntityDetection:
     def __init__(self, logger=False):
         """
         Init method for EntityDetection class.
-        Initializes the aca_input_mapper with predefined set of key and values and loads class_type_mapper by reading
+        Initializes the tca_input_mapper with predefined set of key and values and loads class_type_mapper by reading
         class_type_mapper.json in ontologies folder.
         Also, sets the default values for category, version, high & low thresholds
         """
@@ -44,7 +44,7 @@ class EntityDetection:
         #self.cipher_obj = AESCipher()
         self.__class_type_mapper = {}
 
-        self.__aca_input_mapper = {
+        self.__tca_input_mapper = {
                                     "application_name": "application_name",
                                     "application_description": "application_description",
                                     "component_name": "component_name",
@@ -112,7 +112,7 @@ class EntityDetection:
         general and unknown technologies are added separately in assessment data.
 
         """
-        if len(self.__aca_input_mapper) == 0 or len(self.__class_type_mapper) == 0:
+        if len(self.__tca_input_mapper) == 0 or len(self.__class_type_mapper) == 0:
             logging.error('ontologies init failed')
             return app_data
         
@@ -129,7 +129,7 @@ class EntityDetection:
             for app in app_data:
                 tech_stack = ''
                 for header in app:
-                    if self.__aca_input_mapper.get(header, 'NA') == 'tech_stack' and app[header] and str(
+                    if self.__tca_input_mapper.get(header, 'NA') == 'tech_stack' and app[header] and str(
                             app[header]).lower() not in ['na', 'null', 'string', 'none']:
                         if tech_stack:
                             tech_stack = tech_stack + ', ' + str(app[header])
@@ -209,9 +209,9 @@ class EntityDetection:
             logging.error(str(e))
 
 
-    def get_aca_input_mapper(self):
-        """ Fetches the aca_input_mapper predefined values which act as sample input"""
-        return self.__aca_input_mapper                    
+    def get_tca_input_mapper(self):
+        """ Fetches the tca_input_mapper predefined values which act as sample input"""
+        return self.__tca_input_mapper
 
 
 

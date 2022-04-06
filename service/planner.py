@@ -1,5 +1,5 @@
 # *****************************************************************
-# Copyright IBM Corporation 2021
+# Copyright IBM Corporation 2022
 # Licensed under the Eclipse Public License 2.0, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # Unless required by applicable law or agreed to in writing, software
@@ -73,7 +73,7 @@ class Planner:
                 return dict(status = 401, message = 'Unauthorized, missing or invalid access token'), 401, is_valid
             req_headers = auth_headers.copy()
             req_headers['accesstoken'] = accesstoken
-            if self.is_enable_default_token and (self.is_enable_default_token.lower() == 'yes' or self.is_enable_default_token.lower() == 'true') and self.aca_default_token and accesstoken.lower() == self.aca_default_token.lower():
+            if self.is_enable_default_token and (self.is_enable_default_token.lower() == 'yes' or self.is_enable_default_token.lower() == 'true') and self.tca_default_token and accesstoken.lower() == self.tca_default_token.lower():
                 is_valid = True
         if not is_valid:
             try:
@@ -164,7 +164,7 @@ class Planner:
             logging.error(str(e))
             track = traceback.format_exc()
             print(track)
-            return dict(status = 400,message = 'Input data format doesn\'t match the format expected by ACA'), 400
+            return dict(status = 400,message = 'Input data format doesn\'t match the format expected by TCA'), 400
 
     def containerization_plan(self, auth_url, headers, auth_headers, assessment_data,catalog):
         """
@@ -193,7 +193,7 @@ class Planner:
             logging.error(str(e))
             track = traceback.format_exc()
             print(track)
-            return dict(status=400, message='Input data format doesn\'t match the format expected by ACA'), 400
+            return dict(status=400, message='Input data format doesn\'t match the format expected by TCA'), 400
 
 
     def map_apps(self, app_data):
@@ -255,9 +255,9 @@ def do_plan(auth_url,headers,auth_headers,assessment_data,catalog):
 
 def get_supported_metamodels():
     """
-        Creates the instance for Planner Class and get the keys for aca_input_mapper in entity_detection class
+        Creates the instance for Planner Class and get the keys for tca_input_mapper in entity_detection class
     """
     global controller
     if not controller:
         controller = Planner()
-    return controller.entity_detection.get_aca_input_mapper().keys()
+    return controller.entity_detection.get_tca_input_mapper().keys()
