@@ -69,6 +69,8 @@ def predict(config, json_data):
             for item in tech_sim_scores:
                 entity  = item[0]
                 score   = item[1]
+                if entity == 'NA_CATEGORY':
+                    continue
                 predicted_eid    = entity_to_eid.get(entity, None)
                 json_data["data"][idx]["predictions"].append((predicted_eid, score))
     
