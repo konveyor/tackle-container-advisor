@@ -104,6 +104,7 @@ if __name__ == "__main__":
     tfidf_start      = time.time()
     tfidf_infer      = copy.deepcopy(tca_infer_data)
     tfidf_infer      = tfidf.infer(tfidf_infer)
+    tfidf_end        = time.time()
     tfidf_time       = (tfidf_end-tfidf_start)
     tfidf_topk       = topk(tfidf_infer)    
     table_data["tfidf"]= {}
