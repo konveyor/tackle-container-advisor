@@ -79,26 +79,6 @@ class EntityDetection:
         entity_detector methods takes the input entity, preprocess it and detects its standardized form and version with
         confidence score
         """
-        '''
-        try:
-            strs = utils.preprocess(tech_stack)  # utils.split_subtext(tech_stack)
-            id_ = 0
-            # Return all unique matches
-            entities = []  # set()
-            for s in strs:
-                s = s.strip()
-
-                entity_scores = self.__sim.tech_stack_standardization(s.lower())
-                version = self.version_detector.get_version_strings(s.lower())
-                std_version = self.version_detector.get_standardized_version(self.version_detector, entity_scores[0], version)
-                final_version = (version,std_version)
-                entities.append([s, entity_scores, final_version])
-
-            print("Original entities = ", entities)
-            # return entities        
-        except Exception as e:
-            logging.error(str(e))
-        '''
         mentions = utils.preprocess(tech_stack)        
         entities = standardizer(mentions)
         

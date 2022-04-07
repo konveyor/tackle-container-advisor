@@ -70,8 +70,9 @@ def predict(config, json_data):
                 entity  = item[0]
                 score   = item[1]
                 if entity == 'NA_CATEGORY':
-                    continue
-                predicted_eid    = entity_to_eid.get(entity, None)
+                    predicted_eid = 0
+                else:
+                    predicted_eid    = entity_to_eid.get(entity, None)
                 json_data["data"][idx]["predictions"].append((predicted_eid, score))
     
     return tf_eids

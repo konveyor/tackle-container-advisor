@@ -39,6 +39,7 @@ def entity_standardizer(mentions):
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
         entities = json.load(entity_file)
     entity_names = {}
+    entity_names[0] = 'NA_CATEGORY'
     for idx, entity_data in entities["data"].items():
         entity_name = entity_data["entity_name"] 
         tca_id      = entity_data["entity_id"]
@@ -61,11 +62,10 @@ def entity_standardizer(mentions):
         mention     = entry.get("mention", None)
         predictions = entry.get("predictions", [])
         predictions = [[entity_names[p[0]], p[1]] for p in predictions]
-        if not predictions:
+        if not predictions:            
             print(f"No predictions for {mention}")
             logging.error(f"No predictions for {mention}")
             continue
-
         entities[mention] = predictions        
     logging.info(f"TFIDF took {tfidf_end - tfidf_start} seconds.")
 

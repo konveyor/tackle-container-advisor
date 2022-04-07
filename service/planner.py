@@ -149,10 +149,8 @@ class Planner:
             
             appL = self.compose_app(app_data)
             appL = self.assess.app_validation(appL)
-
             # Generate output for UI
             assessment = self.assess.output_to_ui_assessment(appL)
-
             logging.warn(f'{str(datetime.now())} output assessment num: {str(len(assessment))} ')
             return dict(status=201, message="Assessment completed successfully!", assessment=assessment), 201
 

@@ -67,6 +67,7 @@ class Assessment():
             return appL
 
         except Exception as e:
+            print("Error in app validation", e)
             logging.error(str(e))
 
 
