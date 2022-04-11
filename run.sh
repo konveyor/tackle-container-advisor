@@ -2,14 +2,10 @@
 
 echo "-----------Running the Backend API---------"
 
-cd aca_backend_api
-
-if [ "$( docker container inspect -f '{{.State.Status}}' aca_backend_api )" == "running" ]; then
-    docker stop aca_backend_api
-    docker rm aca_backend_api
-    docker rmi aca_backend_api
+if [ "$( docker container inspect -f '{{.State.Status}}' tca_service_api )" == "running" ]; then
+    docker stop tca_service_api
+    docker rm tca_service_api
+    docker rmi tca_service_api
 fi
 
 docker-compose  -f 'docker-compose-api.yml' up -d --build
-
-cd ..

@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+  tca_service:
+    image: tca_service_api
+    container_name: tca_service_api
+    ports:
+      - 8000:8000
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:8000"]
+      interval: 20s
+      timeout: 10s
+      retries: 3
+    networks:
+      - overlay
+
+networks:
+  overlay:
