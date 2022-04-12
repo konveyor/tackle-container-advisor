@@ -20,8 +20,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from .utils_nlp import  utils
 from .sim_utils import sim_utils
 
-# config_obj = configparser.ConfigParser()
-# config_obj.read("./config.ini")
 
 class sim_applier:
 
@@ -39,6 +37,9 @@ class sim_applier:
         self.load_model()
         self.ent_scores_sim=[]
         
+        self.logger = logging.getLogger('tfidf')
+        self.logger.setLevel(logging.INFO)
+    
     def load_model(self):
         try:
             model_dir     = self.config["general"]["model_dir"]
@@ -47,8 +48,7 @@ class sim_applier:
             tfidf_name    = self.config["train"]["tfidf_name"]            
             instances_name= self.config["train"]["instances_name"]
         except KeyError as k:
-            logging.error(f'{k} is not a key in your config files.')
-            print(f'{k} is not a key in your config files.')
+            self.logger.error(f'{k} is not a key in your config files.')
             exit()
 
         with open(os.path.join(model_dir, task_name, model_name), "rb") as model_file:

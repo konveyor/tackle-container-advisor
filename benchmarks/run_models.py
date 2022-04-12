@@ -14,8 +14,6 @@ import json
 import time
 import copy
 import configparser
-<<<<<<< HEAD
-=======
 import argparse
 
 def parser():
@@ -23,7 +21,6 @@ def parser():
     parser.add_argument("-model_type", type=str, default="tf_idf", help="tf_idf (default) | gnn | wiki_data_api | all")
     parser.add_argument("-mode", type=str, default="deploy", help="deploy (default) | tca")
     return parser.parse_args()
->>>>>>> 853bc4732a572c656329fa5d6373116f05185c08
 
 def print_gh_markdown(table_data):
     """

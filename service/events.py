@@ -10,7 +10,6 @@ if __name__ == '__main__':
     except Exception as e:
         date   = datetime.today().strftime('%Y-%m-%d')
         url    = ""
-        print("Exception = ", e)
 
     print("----------- COPY MESSAGE BELOW AND PASTE INTO README -------------")
     print("")

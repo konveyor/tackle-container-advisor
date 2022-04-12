@@ -43,11 +43,13 @@ class Planner:
         Create instances for EntityDetection & Assessment classes
         Set default values for token based variables
         """
+        self.logger = logging.getLogger('planner')
+        self.logger.setLevel(logging.INFO)
+
         self.entity_detection = EntityDetection()
         self.inferTech = InferTech()
         self.assess = Assessment()
         self.plan = Plan()
-        # logging.warn(f'auth_url: {auth_url}')
 
         self.is_disable_access_token = None
         if 'is_disable_access_token' in config['RBAC']:
@@ -105,13 +107,13 @@ class Planner:
             threhold = 20000
             num = round(len(app_data)/threhold + 0.5)
             if num > 1:
-                logging.warn(f'{str(datetime.now())} input app num: {str(len(app_data))} and split into {str(num)}')
+                self.logger.info(f'{str(datetime.now())} input app num: {str(len(app_data))} and split into {str(num)}')
             else:
-                logging.warn(f'{str(datetime.now())} input app num: {str(len(app_data))}')
+                self.logger.info(f'{str(datetime.now())} input app num: {str(len(app_data))}')
             appL = []
             for x in range(1, num+1):
                 if num > 1:
-                    logging.warn(f'split round: {str(x)}')
+                    self.logger.warn(f'split round: {str(x)}')
                 begin = threhold * (x-1)
                 end = threhold * x
                 if end > len(app_data):
@@ -119,13 +121,13 @@ class Planner:
 
                 appl = app_data[slice(begin, end)]
                 if config['Performance']['multiprocessing_enabled'] == "YES":
-                    print("MULTIPROCESSING ENABLED==YES")
+                    self.logger.info("MULTIPROCESSING ENABLED==YES")
                     mapper = SimpleMapReduce(self.map_apps, self.reduce_apps)
                     appl = mapper(appl)
                     appl = self.multiprocessing_to_single_app_data(appl)
 
                 else:
-                    print("MULTIPROCESSING ENABLED==NO")
+                    self.logger.info("MULTIPROCESSING ENABLED==NO")
                     appl = self.entity_detection.compose_app(appl)
                 
                 appL.extend(appl)
@@ -151,15 +153,13 @@ class Planner:
             appL = self.assess.app_validation(appL)
             # Generate output for UI
             assessment = self.assess.output_to_ui_assessment(appL)
-            logging.warn(f'{str(datetime.now())} output assessment num: {str(len(assessment))} ')
+            self.logger.info(f'{str(datetime.now())} output assessment num: {str(len(assessment))} ')
             return dict(status=201, message="Assessment completed successfully!", assessment=assessment), 201
 
 
         except Exception as e:
-            # print(e)
-            logging.error(str(e))
+            self.logger.error(str(e))
             track = traceback.format_exc()
-            print(track)
             return dict(status = 400,message = 'Input data format doesn\'t match the format expected by TCA'), 400
 
     def containerization_plan(self, auth_url, headers, auth_headers, assessment_data,catalog):
@@ -175,20 +175,17 @@ class Planner:
 
 
             appL = self.plan.ui_to_input_assessment(assessment_data)
-            print(str(appL))
             appL = self.inferTech.infer_missing_tech(appL)
-            print(str(appL))
             appL = self.plan.validate_app(appL)
             containerL = self.plan.map_to_docker(appL, catalog)
             planning = self.plan.output_to_ui_planning(containerL)
 
-            logging.warn(f'{str(datetime.now())} output planning num: {str(len(planning))}')
+            self.logger.info(f'{str(datetime.now())} output planning num: {str(len(planning))}')
             return dict(status=201, message="Container recommendation generated!", containerization=planning), 201
 
         except Exception as e:
-            logging.error(str(e))
+            self.logger.error(str(e))
             track = traceback.format_exc()
-            print(track)
             return dict(status=400, message='Input data format doesn\'t match the format expected by TCA'), 400
 
 
@@ -211,7 +208,6 @@ class Planner:
         """
         key, total = apps
         return (key, sum(total))
-        #return apps
             
     def multiprocessing_to_single_app_data(self, app_data):
         """

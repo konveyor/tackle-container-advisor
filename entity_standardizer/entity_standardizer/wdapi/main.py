@@ -14,19 +14,13 @@ class WDAPI():
         self.config.read([common, wdapi])
         self.config["task"] = {}
         self.config["task"]["name"] = self.task_name
-        
+        self.logger = logging.getLogger('planner')
+        self.logger.setLevel(logging.INFO)
+
         if self.config['infer']['max_workers'] == '0':
-            print(f"Max. workers (= {self.config['infer']['max_workers']}) should be > 0.")
+            self.logger.info(f"Max. workers (= {self.config['infer']['max_workers']}) should be > 0.")
             self.config['infer']['max_workers']  = "8"
-            print(f"Resetting to {self.config['graphs']['num_workers']}")
-        '''
-        log  = logging.getLogger()
-        for hdlr in log.handlers[:]:  # remove all old handlers
-            hdlr.close()
-            log.removeHandler(hdlr)
-        '''
-        logging.basicConfig(filename='entity_standardizer.log',level=logging.DEBUG, \
-                            format="[%(levelname)s:%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s", filemode='w')
+            self.logger.info(f"Resetting to {self.config['graphs']['num_workers']}")
         
     def infer(self, infer_data):
         from .infer import predict

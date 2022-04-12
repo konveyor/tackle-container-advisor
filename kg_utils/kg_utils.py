@@ -24,7 +24,8 @@ config = configparser.ConfigParser()
 common = os.path.join("config", "common.ini")
 kg     = os.path.join("config", "kg.ini")
 config.read([common, kg])
-
+logger = logging.getLogger('planner')
+logger.setLevel(logging.INFO)
 
 def cleanStrValue(value):
     """
@@ -1055,31 +1056,22 @@ def create_db_connection(db_file):
     try:
         connection = sqlite3.connect(db_file)
     except Error as e:
-        logging.error(f'{e}: Issue connecting to db. Please check whether the .db file exists.')
-        print(e)
+        logger.error(f'{e}: Issue connecting to db. Please check whether the .db file exists.')
     return connection
 
 if __name__== '__main__':
-
-
-    logging.basicConfig(filename='logging.log',level=logging.ERROR, filemode='w')
-
     try:
         version= config["general"]["version"]
         db_dir = config["general"]["db_dir"]
     except KeyError as k:
-        logging.error(f'{k}  is not a key in your config file(s).')
-        print(f'{k} is not a key in your config file(s).')
+        logger.error(f'{k}  is not a key in your config file(s).')
         exit()
     
     db_path = os.path.join(db_dir, version+".db")
     if not os.path.isfile(db_path):
-        logging.error(f'{db_path} is not a file. Run "sh setup" from /tackle-advise-containerizeation folder to generate db files')
-        print(f'{db_path} is not a file. Run "sh setup.sh" from /tackle-advise-containerizeation folder to generate db files')
+        logger.error(f'{db_path} is not a file. Run "sh setup" from /tackle-advise-containerizeation folder to generate db files')
         exit()
-
     else:
-
         connection = create_db_connection(db_path)
 
         explore_db(connection)

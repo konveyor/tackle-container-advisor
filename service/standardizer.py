@@ -16,6 +16,8 @@ def version_standardizer(mention, top_entity_prediction):
     
     
 def entity_standardizer(mentions):
+    logger = logging.getLogger('planner')
+    logger.setLevel(logging.INFO)
     config    = configparser.ConfigParser()
     common    = os.path.join("config", "common.ini")
     kg        = os.path.join("config", "kg.ini")
@@ -24,15 +26,13 @@ def entity_standardizer(mentions):
         kg_dir = config["general"]["kg_dir"]
         entities_json = config["tca"]["entities"]
     except KeyError as k:
-        logging.error(f'{k} is not a key in your common.ini file.')
-        print(f'{k} is not a key in your common.ini file.')
+        logger.error(f'{k} is not a key in your common.ini file.')
         exit()
 
     # Check that kg contains entities file
     entity_file_name = os.path.join(kg_dir, entities_json)
     if not os.path.isfile(entity_file_name):
-        logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
-        print(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+        logger.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
         exit()
 
     # Get mapping of entity id to entity names
@@ -64,10 +64,10 @@ def entity_standardizer(mentions):
         predictions = [[entity_names[p[0]], p[1]] for p in predictions]
         if not predictions:            
             print(f"No predictions for {mention}")
-            logging.error(f"No predictions for {mention}")
+            logger.error(f"No predictions for {mention}")
             continue
         entities[mention] = predictions        
-    logging.info(f"TFIDF took {tfidf_end - tfidf_start} seconds.")
+    logger.info(f"TFIDF took {tfidf_end - tfidf_start} seconds.")
 
     return entities
 

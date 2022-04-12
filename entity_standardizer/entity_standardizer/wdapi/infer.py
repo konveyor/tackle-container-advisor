@@ -13,7 +13,9 @@ class Wikidata():
     def __init__(self, url):
         super().__init__()
         self.url = url
-        
+        self.logger = logging.getLogger('wdapi')
+        self.logger.setLevel(logging.INFO)
+
     def get_data_combinations(self, data):
         """
         Generate phrases from words in data
@@ -35,47 +37,6 @@ class Wikidata():
             combinations.append(' '.join(data[i:]))
         return combinations
 
-    '''
-    @apply_backoff(strategy = strategies.Fixed(minimum=2.0), max_tries = 3, max_delay = 7.0)
-    def invoke_wikidata_api(data):
-    """
-    Invokes wikidata autocomplete on data
-    
-    :param data: String to query Wikidata API for qids
-    :type data: string 
-
-    :returns: Returns a list of qids
-    """
-    S = requests.Session()
-    WD_URL = config_obj['url']['wd_url']
-
-    PARAMS = {
-        "action": "wbsearchentities",
-        "language": "en",
-        "format": "json",
-        "search": data,
-        "limit": 50
-    }
-
-    qids = []
-    R = S.get(url=WD_URL, params=PARAMS)
-    if R.status_code == HTTPStatus.TOO_MANY_REQUESTS:
-        invoke_wikidata_api.backoffs += 1
-        raise Exception
-    elif R.status_code != HTTPStatus.OK:
-        print(f"Data = {data}, Response code = {R.status_code}")
-    else:
-        DATA = R.json()
-        if 'success' not in DATA:
-            print(f"Wikidata query result for {data} -> {DATA}")
-        elif DATA['success'] != 1:
-	    print(f"Failed wikidata query for {data} -> {DATA}")
-        else:
-            for candidate in DATA['search']:
-                qids.append(candidate['id'])
-    return qids
-    '''
-
     @apply_backoff(strategy = strategies.Fixed(minimum=3.0), max_tries = 5, max_delay = 15.0)
     def invoke_wikidata_api(self, data):
         """
@@ -91,19 +52,16 @@ class Wikidata():
         # try:
         R = requests.get(self.url+uparse.quote(data), headers=headers)
         if R.status_code == HTTPStatus.TOO_MANY_REQUESTS:
-            # self.invoke_wikidata_api.backoffs += 1
             raise Exception
         elif R.status_code != HTTPStatus.OK:
             print(f"Data = {data}, Response code = {R.status_code}")
         else:
             candidates = R.json()            
             if candidates.get('success', 0) != 1:
-                logging.error(f"Failed wikidata query -> {candidates}")
+                self.logger.error(f"Failed wikidata query -> {candidates}")
             else:
                 for candidate in candidates['search']:
                     qids.append((candidate['id'], 1.0))
-        # except Exception as e:
-        # logging.error(f"Error querying wikidata url {self.url} : {e}")
 
         return qids
 
@@ -118,7 +76,6 @@ class Wikidata():
         :returns: Returns a dictionary of data to predicted qids
         """
         wd_qids = {}
-        # self.invoke_wikidata_api.backoffs = 0
         
         # Get qids for exact phrase
         qids  = []
@@ -151,10 +108,9 @@ class Wikidata():
             qids += self.invoke_wikidata_api(comb)
 
         if not qids:           
-            logging.info(f"No qids for {data}")                    
+            self.logger.info(f"No qids for {data}")                    
 
         wd_qids[data] = qids
-        # wd_qids[data] = (qids, self.invoke_wikidata_api.backoffs)    
         return wd_qids
 
 def predict(config, json_data):
@@ -178,9 +134,6 @@ def predict(config, json_data):
     wd_results       = pool.map(wd_obj.get_wikidata_qids, data_to_idx.keys())
     pool.close()
 
-    # total_backoffs = sum([v[1] for item in wd_results for k,v in item.items()])
-    # logging.info(f"Total wikidata backoffs = {total_backoffs}")
-    # wd_qids = {k:v[0] for item in wd_results for k,v in item.items()}
     wd_qids = {k:v for item in wd_results for k,v in item.items()}
     for mention,qids in wd_qids.items():
         idx = data_to_idx[mention]
