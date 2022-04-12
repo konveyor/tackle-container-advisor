@@ -61,6 +61,8 @@ class utils:
             pattern = (r'(/[0-9])+')
             stop_word_list = ("of", "for", "on", "in")
 
+            text = text.replace("_", " ")
+
             text = text.replace("c#", "  c#  ")
 
             text = text.replace("jquery", "  jquery")
