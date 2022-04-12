@@ -1,4 +1,4 @@
-TCA_GITHUB_REPO=https://github.com/mihirc-github/tackle-container-advisor
+TCA_GITHUB_REPO=https://github.com/konveyor/tackle-container-advisor
 TCA_GITHUB_BRANCH=main
 TCA_DEPLOY_NAME=tca
 OCP4_ACCESS_TOKEN=sha256~XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
