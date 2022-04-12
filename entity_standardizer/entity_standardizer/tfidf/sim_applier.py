@@ -36,10 +36,7 @@ class sim_applier:
 
         self.load_model()
         self.ent_scores_sim=[]
-        
-        self.logger = logging.getLogger('tfidf')
-        self.logger.setLevel(logging.INFO)
-    
+            
     def load_model(self):
         try:
             model_dir     = self.config["general"]["model_dir"]
