@@ -1,7 +1,7 @@
 TCA_GITHUB_REPO=https://github.com/mihirc-github/tackle-container-advisor
 TCA_GITHUB_BRANCH=main
 TCA_DEPLOY_NAME=tca
-OCP4_ACCESS_TOKEN=sha256~aUMNAk_CWaYm5ElgxbZEvN-st0d87KHqaM_ftRY2Gdg
+OCP4_ACCESS_TOKEN=sha256~XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 OCP4_API_SERVER=https://api.sandbox.x8i5.p1.openshiftapps.com:6443
 
 

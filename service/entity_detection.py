@@ -133,7 +133,7 @@ class EntityDetection:
                         obj = {}
                         for category, sim in entity_scores:
                             if category == self.NA_CATEGORY:
-                                logging.error(f'snippet category wrong:{s}')
+                                self.logger.error(f'snippet category wrong:{s}')
                                 continue
                             if self.__class_type_mapper['mappings'][category] == general_term_key:
                                 ## Technology
