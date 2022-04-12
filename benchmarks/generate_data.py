@@ -15,6 +15,9 @@ import os
 import json
 import numpy as np
 
+logger = logging.getLogger('generate_data')
+logger.setLevel(logging.INFO)
+
 def clean(mention):
     """
     Remove/Replace non-ascii characters 
@@ -78,19 +81,17 @@ def get_benchmark_data(config, all_train=False):
         ent_json = config["tca"]["entities"]
         men_json = config["tca"]["mentions"]
     except KeyError as k:
-        logging.error(f'{k}  is not a key in your common.ini file.')
-        print(f'{k} is not a key in your common.ini file.')
+        logger.error(f'{k}  is not a key in your common.ini file.')
         exit()
     
     entity_file_name = os.path.join(kg_dir, ent_json)
     if not os.path.exists(entity_file_name):
-        logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
-        print(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+        logger.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
         exit()
+
     mentions_file_name = os.path.join(kg_dir, men_json)
     if not os.path.exists(mentions_file_name):
-        logging.error(f"Mentions json file {mentions_file_name} does not exist. Run kg generator to create this file.")
-        print(f"Mentions json file {mentions_file_name} does not exist. Run kg generator to create this file.")
+        logger.error(f"Mentions json file {mentions_file_name} does not exist. Run kg generator to create this file.")
         exit()
         
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
@@ -140,8 +141,7 @@ def create_deploy_benchmark(config, train_data, inf_data):
     try:
         data_dir = config["general"]["data_dir"]
     except KeyError as k:
-        logging.error(f'{k}  is not a key in your common.ini file.')
-        print(f'{k} is not a key in your common.ini file.')
+        logger.error(f'{k}  is not a key in your common.ini file.')
         exit()
         
     data_dir = config["general"]["data_dir"]
@@ -161,8 +161,7 @@ def create_tca_benchmark(config, train_data, inf_data):
     try:
         data_dir = config["general"]["data_dir"]
     except KeyError as k:
-        logging.error(f'{k}  is not a key in your common.ini file.')
-        print(f'{k} is not a key in your common.ini file.')
+        logger.error(f'{k}  is not a key in your common.ini file.')
         exit()
         
     data_dir = config["general"]["data_dir"]
@@ -188,14 +187,12 @@ def create_wikidata_benchmark(config, train_data, inf_data):
         data_dir = config["general"]["data_dir"]
         ent_json = config["tca"]["entities"]
     except KeyError as k:
-        logging.error(f'{k}  is not a key in your common.ini file.')
-        print(f'{k} is not a key in your common.ini file.')
+        logger.error(f'{k}  is not a key in your common.ini file.')
         exit()
         
     entity_file_name = os.path.join(kg_dir, ent_json)
     if not os.path.exists(entity_file_name):
-        logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
-        print(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+        logger.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
         exit()    
 
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
@@ -240,8 +237,6 @@ if __name__ == '__main__':
     common   = os.path.join("config", "common.ini")
     kg       = os.path.join("config", "kg.ini")
     config.read([common, kg])
-    logging.basicConfig(filename='benchmarks.log',level=logging.DEBUG, \
-                        format="[%(levelname)s:%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s", filemode='w')
     train_data, inf_data = get_benchmark_data(config, all_train=False)
     create_tca_benchmark(config, train_data, inf_data)
     create_wikidata_benchmark(config, train_data, inf_data)

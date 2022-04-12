@@ -14,8 +14,10 @@ from collections import defaultdict
 import re
 import logging
 
-class utils:
+logger = logging.getLogger('tfidf')
+logger.setLevel(logging.INFO)
 
+class utils:
 
     @staticmethod
     def remove_duplicate(old_list):
@@ -28,7 +30,7 @@ class utils:
                     list1.append(element.strip())
             return list1
         except Exception as e:
-            logging.error(str(e))
+            logger.error(str(e))
         
     @staticmethod
     def remove_duplicate_tuple(old_list):
@@ -45,7 +47,7 @@ class utils:
 
             return list1
         except Exception as e:
-            logging.error(str(e))
+            logger.error(str(e))
     
      
     @staticmethod
@@ -96,7 +98,7 @@ class utils:
             return tech_list
 
         except Exception as e:
-            logging.error(str(e))
+            logger.error(str(e))
         
     @staticmethod
     def remove_noise_snippet(text):
@@ -118,7 +120,7 @@ class utils:
                     return True
             return False
         except Exception as e:
-            logging.error(str(e))
+            logger.error(str(e))
         
     @staticmethod
     def my_tokenization0(text):
@@ -151,7 +153,7 @@ class utils:
             return result
 
         except Exception as e:
-            logging.error(str(e))
+            logger.error(str(e))
 
 
 
@@ -164,7 +166,7 @@ class utils:
             return text
 
         except Exception as e:
-            logging.error(str(e))
+            logger.error(str(e))
     
     @staticmethod
     def input_preprocess(text):
@@ -187,7 +189,7 @@ class utils:
             return text0
 
         except Exception as e:
-            logging.error(str(e))
+            logger.error(str(e))
 
     @staticmethod
     def preprocess(tech_stack):
@@ -213,4 +215,4 @@ class utils:
             return tech_list
 
         except Exception as e:
-            logging.error(str(e))
+            logger.error(str(e))

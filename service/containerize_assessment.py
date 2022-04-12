@@ -13,7 +13,6 @@ import os
 import json
 from collections import OrderedDict
 import logging
-import codecs
 from service.utils import Utils
 
 
@@ -29,22 +28,19 @@ class Assessment():
     This class for containerize Assessment
     """
 
-    def __init__(self, logger=False):
+    def __init__(self):
         """
             Init method for Assessment Class
             Setting up the logging level as info and opens logfile in write mode to capture the logs in text file
          """
-        logging.basicConfig(level=logging.INFO)
-        if logger == True:
-            self.logfile = codecs.open('assessment.log','w',encoding='utf-8')
-
-
+        self.logger = logging.getLogger('containerize_assessment')
+        self.logger.setLevel(logging.INFO)
+        
     def app_validation(self, appL):
         """
         app_validation method takes assessed input data and check if any low/medium confidence entities or
         general technology or unknown technology entities are present. If it's present, it will be added in assessment reason.
         """
-
         try:
             for app in appL:
                 app['valid_assessment'] = True
@@ -67,8 +63,7 @@ class Assessment():
             return appL
 
         except Exception as e:
-            print("Error in app validation", e)
-            logging.error(str(e))
+            self.logger.error(str(e))
 
 
 
@@ -79,7 +74,6 @@ class Assessment():
 
         """
         pAppL = []
-
         try :
             for app in appL:
                 # Order dictionry to fix the order of columns in the output
@@ -116,5 +110,5 @@ class Assessment():
             return pAppL
 
         except Exception as e:
-            logging.error(str(e))
+            self.logger.error(str(e))
     
