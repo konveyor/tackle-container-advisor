@@ -37,11 +37,9 @@ class EntityDetection:
         class_type_mapper.json in ontologies folder.
         Also, sets the default values for category, version, high & low thresholds
         """
-        logging.basicConfig(level=logging.INFO)
+        self.logger = logging.getLogger('entity_detection')
+        self.logger.setLevel(logging.INFO)
 
-        # self.version_detector = version_detector()
-
-        #self.cipher_obj = AESCipher()
         self.__class_type_mapper = {}
 
         self.__tca_input_mapper = {
@@ -63,7 +61,7 @@ class EntityDetection:
             
         else:
             self.__class_type_mapper = {}
-            logging.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
+            self.logger.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
         
         # self.__sim = sim_applier()
 
@@ -93,13 +91,9 @@ class EntityDetection:
 
         """
         if len(self.__tca_input_mapper) == 0 or len(self.__class_type_mapper) == 0:
-            logging.error('ontologies init failed')
+            self.logger.error('ontologies init failed')
             return app_data
         
-        # if (not self.__sim.all_instances) or len(self.__sim.all_instances) == 0:
-        # logging.error('apply_sim init failed')
-        # return app_data
-
         if (not app_data)  or len(app_data) == 0:
             return app_data
         
@@ -139,7 +133,7 @@ class EntityDetection:
                         obj = {}
                         for category, sim in entity_scores:
                             if category == self.NA_CATEGORY:
-                                logging.error(f'snippet category wrong:{s}')
+                                self.logger.error(f'snippet category wrong:{s}')
                                 continue
                             if self.__class_type_mapper['mappings'][category] == general_term_key:
                                 ## Technology
@@ -184,12 +178,9 @@ class EntityDetection:
             return app_data
 
         except Exception as e:
-            logging.error(str(e))
+            self.logger.error(str(e))
 
 
     def get_tca_input_mapper(self):
         """ Fetches the tca_input_mapper predefined values which act as sample input"""
         return self.__tca_input_mapper
-
-
-

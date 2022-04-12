@@ -24,7 +24,6 @@ import configparser
 config = configparser.ConfigParser()
 common = os.path.join("config", "common.ini")
 config.read(common)
-print('config',config.sections())
 
 authorizations = {
     'apikey': {
@@ -38,7 +37,9 @@ auth_headers = {'Accept' : 'application/json', 'Content-Type' : 'application/jso
 auth_url = None
 if 'RBAC_auth_url' in config['RBAC']:
     auth_url = '{}/api/v2/access?client=api&action_name=rpt%3Aview-analytics'.format(config['RBAC']['RBAC_auth_url'])
-logging.warn(f'auth_url: {auth_url}')
+logger = logging.getLogger('routes')
+logger.setLevel(logging.INFO)
+logger.warn(f'auth_url: {auth_url}')
 
 
 app.wsgi_app = ProxyFix(app.wsgi_app)

@@ -4,6 +4,9 @@ import logging
 import pickle
 from time import time
 
+logger = logging.getLogger('tfidf')
+logger.setLevel(logging.INFO)
+
 def predict(config, json_data):
     """
     Runs tfidf model on test set
@@ -13,7 +16,6 @@ def predict(config, json_data):
 
     :returns: Returns a dictionary of test mention to list of predicted entity ids
     """ 
-    # from .db import create_db_connection
     from .sim_applier import sim_applier
     
     try:
@@ -23,14 +25,12 @@ def predict(config, json_data):
         model_dir     = config["general"]["model_dir"]
         name          = config["task"]["name"]
     except KeyError as k:
-        logging.error(f'{k} is not a key in your common.ini file.')
-        print(f'{k} is not a key in your common.ini file.')
+        logger.error(f'{k} is not a key in your common.ini file.')
         exit()
     
     entity_file_name = os.path.join(kg_dir, entities_json)
     if not os.path.isfile(entity_file_name):
-        logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
-        print(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+        logger.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
         exit()
 
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
@@ -55,8 +55,6 @@ def predict(config, json_data):
             run_train = False
             break            
     if run_train:
-        # logging.info(f"TFIDF model not found in {model_path}. Will run training to generate model.")
-        # print(f"TFIDF model not found in {model_path}. Will run training to generate model.")
         train(config)
     
     sim_app    = sim_applier(config)
@@ -89,14 +87,12 @@ def train(config):
         tfidf_name    = config["train"]["tfidf_name"]
         instances_name= config["train"]["instances_name"]        
     except KeyError as k:
-        logging.error(f'{k} is not a key in your common.ini file.')
-        print(f'{k} is not a key in your common.ini file.')
+        logger.error(f'{k} is not a key in your common.ini file.')
         exit()
 
     entity_file_name = os.path.join(kg_dir, entities_json)
     if not os.path.isfile(entity_file_name):
-        logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
-        print(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+        logger.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
         exit()
             
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
@@ -115,8 +111,7 @@ def train(config):
     name         = config["task"]["name"]    
     train_file_name = os.path.join(data_dir, name, "train.json")
     if not os.path.isfile(train_file_name):
-        logging.error(f'{train_file_name} is not a file. Run "benchmarks.py" to generate this training file')
-        print(f'{train_file_name} is not a file. Run "benchmarks.py" to generate this train data file')
+        logger.error(f'{train_file_name} is not a file. Run "benchmarks.py" to generate this training file')
         exit()
     
     data_to_eid = {}
@@ -128,7 +123,7 @@ def train(config):
                 for mention in item["mentions"]:
                     data_to_eid[mention] = item["label"]
     except OSError as exception:
-        logging.error(exception)
+        logger.error(exception)
         exit()
 
     # Convert training data format
@@ -156,5 +151,3 @@ def train(config):
     with open(os.path.join(model_path,instances_name),"wb") as instances_file:
         pickle.dump(all_instances, instances_file)
     end = time()
-    # print(f"TFIDF training took {end-start:.2f} seconds.")
-    # logging.info(f"TFIDF training took {end-start:.2f} seconds.")

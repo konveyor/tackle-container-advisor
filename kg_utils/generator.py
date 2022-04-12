@@ -27,9 +27,9 @@ class KG():
         kg             = os.path.join("config", "kg.ini")
         self.config.read([common, kg])
         self.connection= None 
-        logging.basicConfig(filename=self.app_name+".log",level=logging.DEBUG, \
-                        format="[%(levelname)s:%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s", filemode='w')
-
+        self.logger = logging.getLogger('kg_utils')
+        self.logger.setLevel(logging.INFO)
+ 
     def get_db(self, db_path):
         """
         Create a connection  to Mysqlite3 databade
@@ -43,15 +43,13 @@ class KG():
 
         """
         if not os.path.isfile(db_path):
-            logging.error(f'{db_path} is not a file. Run "sh setup.sh" to generate db files')
-            print(f'{db_path} is not a file. Run "sh setup.sh" to generate db files')
+            self.logger.error(f'{db_path} is not a file. Run "sh setup.sh" to generate db files')
             exit()
         else:
             try:
                 self.connection = sqlite3.connect(db_path)
             except Error as e:
-                logging.error(f'{e} cannot create connection to db. Check that the {db_path} is the correct file ')
-                print(e)
+                self.logger.error(f'{e} cannot create connection to db. Check that the {db_path} is the correct file ')
                 exit()
 
     def get_entities(self):
@@ -121,8 +119,7 @@ class KG():
             ent_name= self.config["tca"]["entities"]
             men_name= self.config["tca"]["mentions"]            
         except KeyError as k:
-            logging.error(f'{k} is not a key in your kg.ini file.')
-            print(f'{k} is not a key in your kg.ini file.')
+            self.logger.error(f'{k} is not a key in your kg.ini file.')
             exit()
 
         db_path = os.path.join(db_dir, version+".db")

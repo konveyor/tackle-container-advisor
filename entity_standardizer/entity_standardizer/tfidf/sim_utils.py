@@ -9,10 +9,6 @@
 # limitations under the License.
 # *****************************************************************
 
-
-
-
-
 from collections import defaultdict
 import os
 import csv
