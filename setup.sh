@@ -110,5 +110,5 @@ python benchmarks/run_models.py
 echo "---------Generated Entity Standardizer Models--------------"
 
 echo "+---------------------------------------------------------+"
-echo "|-Set up for Tackle Containerzation Adviser Completed !!!-|"
+echo "|-Set up for Tackle Containerization Adviser Completed !!!-|"
 echo "+---------------------------------------------------------+"
