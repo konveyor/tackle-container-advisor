@@ -21,10 +21,17 @@ be stored at ``data/tca/infer.json``
 python benchmarks/generate_data.py
 ```
 
+<<<<<<< HEAD
 ### Run entity standardization models (from top level folder)
 
 ```
 python benchmarks/run_models.py
+=======
+### Evaluate entity standardization models (from top level folder)
+
+```
+python benchmarks/run_models.py -mode tca
+>>>>>>> 853bc4732a572c656329fa5d6373116f05185c08
 ```
 
 ### Model comparison (03/23/2022)
