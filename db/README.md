@@ -19,7 +19,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 ##### Generate the .db file from the .sql file.
 
 	1. cd db/
-	2. cat 1.0.3.sql | sqlite3 1.0.3.db``
+	2. cat 1.0.4.sql | sqlite3 1.0.4.db``
 
 ##### Download DBeaver Community tool from the link below
 
@@ -27,7 +27,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 ##### Set the .db file path to DBeaver to view tables and data. To set right click on Database Navigator to choose *create* -> *connection* -> *SQLite*. Then set the path as follows by providing the absolute path of the .db file
 
-	Path: /<path>/1.0.3.db
+	Path: /<path>/1.0.4.db
 
 ### Table Details
 
