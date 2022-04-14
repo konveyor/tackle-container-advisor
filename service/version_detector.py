@@ -123,7 +123,7 @@ class version_detector:
     def get_latest_version(self, text):
         my_latest_version = "NA_VERSION"
         if text[0] in self.__class_version["Entity"].keys():
-            my_latest_version = self.__class_version["Entity"][text[0]][0][-1]  # michele changed 4 with -1
+            my_latest_version = self.__class_version["Entity"][text[0]][0][-1]
         return my_latest_version
 
     @staticmethod
