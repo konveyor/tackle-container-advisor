@@ -16,7 +16,7 @@ def version_standardizer(mention, top_entity_prediction):
     
     
 def entity_standardizer(mentions):
-    logger = logging.getLogger('planner')
+    logger = logging.getLogger('standardizer')
     logger.setLevel(logging.INFO)
     config    = configparser.ConfigParser()
     common    = os.path.join("config", "common.ini")
@@ -66,8 +66,7 @@ def entity_standardizer(mentions):
             print(f"No predictions for {mention}")
             logger.error(f"No predictions for {mention}")
             continue
-        entities[mention] = predictions        
-    logger.info(f"TFIDF took {tfidf_end - tfidf_start} seconds.")
+        entities[mention] = predictions    
 
     return entities
 

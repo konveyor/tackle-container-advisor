@@ -63,8 +63,6 @@ class EntityDetection:
             self.__class_type_mapper = {}
             self.logger.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
         
-        # self.__sim = sim_applier()
-
         self.NA_CATEGORY=config['NA_VALUES']['NA_CATEGORY']
         self.NA_VERSION = config['NA_VALUES']['NA_VERSION']
 
