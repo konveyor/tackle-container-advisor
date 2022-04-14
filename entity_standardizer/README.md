@@ -8,7 +8,7 @@ Each folder contains a different approach to perform entity standardization.
  ``data/tca and data/wikidata``
  
 ### For configuration see 
- ``config/tca/tfidf.ini and config/wikidata/wdapi.ini``
+ `config/tca/tfidf.ini` and `config/wikidata/wdapi.ini`
 
 ### Models saved in 
   ``models/tca/``
@@ -21,23 +21,32 @@ be stored at ``data/tca/infer.json``
 python benchmarks/generate_data.py
 ```
 
-<<<<<<< HEAD
-### Run entity standardization models (from top level folder)
-
-```
-python benchmarks/run_models.py
-=======
 ### Evaluate entity standardization models (from top level folder)
 
 ```
 python benchmarks/run_models.py -mode tca
->>>>>>> 853bc4732a572c656329fa5d6373116f05185c08
+```
+Usage
+
+```
+usage: run_models.py [-h] [-model_type MODEL_TYPE] [-mode MODE]
+
+Train and evaluate TCA entity standardization models
+
+optional arguments:
+  -h, --help               show this help message and exit
+  -model_type MODEL_TYPE   tf_idf (default) | wiki_data_api | all
+  -mode MODE               deploy (default) | tca
+
 ```
 
-### Model comparison (03/23/2022)
+### Model comparison (04/14/2022)
 <p><table> <thead> 
-<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th><th>False positive rate</th><th>Runtime (on cpu)</th></tr> 
-</thead> <tbody> 
-<tr><td>tfidf</td><td>0.63</td><td>0.75</td><td>0.76</td><td>0.77</td><td>0.77 (2285/2973)</td><td>0.00(0/0)</td><td>58.49s</td></tr> 
-<tr><td>wdapi</td><td>0.44</td><td>0.58</td><td>0.63</td><td>0.65</td><td>0.71 (1830/2568)</td><td>0.87(354/405)</td><td>2483.35s</td></tr> 
-</tbody> </table></p>
+<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th><th>False positive rate</th><th>Runtime (on cpu)</th></tr>
+</thead>
+<tbody>
+<tr><td>tfidf</td><td>0.63</td><td>0.77</td><td>0.79</td><td>0.81</td><td>0.81 (2415/2976)</td><td>0.00(0/0)</td><td>70.63s</td></tr>
+<tr><td>wdapi</td><td>0.44</td><td>0.58</td><td>0.63</td><td>0.65</td><td>0.71 (1832/2566)</td><td>0.87(358/410)</td><td>2349.05s</td></tr>
+</tbody>
+</table></p>
+

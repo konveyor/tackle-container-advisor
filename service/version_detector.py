@@ -18,8 +18,9 @@ import configparser
 
 config = configparser.ConfigParser()
 common = os.path.join("config", "common.ini")
-kg     = os.path.join("config", "kg.ini")
+kg = os.path.join("config", "kg.ini")
 config.read([common, kg])
+
 
 class version_detector:
 
@@ -39,7 +40,6 @@ class version_detector:
             self.__class_version = {}
             self.logger.error(f'class_type_mapper[{class_version_filepath}] is empty or not exists')
 
-
     @staticmethod
     def mask_entity(text):
         """
@@ -48,8 +48,9 @@ class version_detector:
         """
         try:
             blacklist = (
-            "db2", "as/400", "j2ee", "neo4j", "log4j", "neo4", "log4net", "log4", "64-bit", "32-bit", "64bit", "32bit",
-            "os2")
+                "db2", "as/400", "j2ee", "neo4j", "log4j", "neo4", "log4net", "log4", "64-bit", "32-bit", "64bit",
+                "32bit",
+                "os2")
 
             for each in blacklist:
                 if text.strip().lower().find(each.strip().lower()) >= 0:
@@ -58,7 +59,7 @@ class version_detector:
             return text
         except Exception as e:
             self.logger.error(str(e))
-         
+
     @staticmethod
     def get_version_strings(text):
 
@@ -100,7 +101,6 @@ class version_detector:
 
             version_final = version_final.strip()
 
-
             # single version java8, 10g  need to keep
             if version_final.find(" ") < 0:
                 if version_final[0].isdigit() == False:
@@ -119,45 +119,45 @@ class version_detector:
         except Exception as e:
             self.logger.error(str(e))
 
-
     @staticmethod
-    def get_latest_version(self,text):
+    def get_latest_version(self, text):
         my_latest_version = "NA_VERSION"
         if text[0] in self.__class_version["Entity"].keys():
-            my_latest_version = self.__class_version["Entity"][text[0]][0][4]
+            my_latest_version = self.__class_version["Entity"][text[0]][0][-1]  # michele changed 4 with -1
         return my_latest_version
 
     @staticmethod
-    def get_standardized_version(self,text,version):
+    def get_standardized_version(self, text, version):
         my_std_version = "NA_VERSION"
         if version == "NA_VERSION":
-            my_std_version = self.get_latest_version(self,text)
+            my_std_version = self.get_latest_version(self, text)
         else:
             my_std_version = version
-            my_std_version_sp = re.split('[.]',my_std_version) 
+            my_std_version_sp = re.split('[.]', my_std_version)
             if my_std_version_sp[0].isnumeric():
                 if text[0] in self.__class_version["Entity"].keys():
                     for db_entries in self.__class_version["Entity"][text[0]]:
-                        db_entry_version_sp = re.split('[.]',db_entries[0]) 
+                        db_entry_version_sp = re.split('[.]', db_entries[0])
                         if db_entry_version_sp[0].isnumeric() and db_entry_version_sp[0] == my_std_version_sp[0]:
-                            min_len = min(len(db_entry_version_sp),len(my_std_version_sp))
+                            min_len = min(len(db_entry_version_sp), len(my_std_version_sp))
                             update_with_version = False
                             numMatches = 0
-                            for i in range(1,min_len):
+                            for i in range(1, min_len):
                                 if db_entry_version_sp[i].isnumeric() and my_std_version_sp[i].isnumeric():
                                     db_i = int(db_entry_version_sp[i])
                                     version_i = int(my_std_version_sp[i])
                                     if db_i > version_i:
                                         update_with_version = True
                                         break
-                                    elif db_i < version_i:    
-                                        break 
+                                    elif db_i < version_i:
+                                        break
                                     elif db_i == version_i:
-                                        numMatches = numMatches + 1            
+                                        numMatches = numMatches + 1
                                 else:
                                     if db_entry_version_sp[i] != my_std_version_sp[i]:
                                         break
-                            if len(db_entry_version_sp) > len(my_std_version_sp) and numMatches == len(my_std_version_sp)-1:
+                            if len(db_entry_version_sp) > len(my_std_version_sp) and numMatches == len(
+                                    my_std_version_sp) - 1:
                                 update_with_version = True
                             if update_with_version:
                                 my_std_version = db_entries[0]
