@@ -43,19 +43,6 @@ in the [Developer's Guide](docs/development.md) before proceeding further.
 
 ## Running TCA as a service
 
-<!-- **STEP 1 - SETUP** -->
-
-<!-- In order to setup the environment and generate the resources needed by the backend API, run the bash script ``setup.sh`` -->
-<!-- ```bash -->
-<!-- bash setup.sh -->
-<!-- ``` -->
-
-<!-- **STEP 2 - CHECK SUCCESSFUL SETUP** -->
-<!-- Do not proceed to the next step if the final output of the ``setup.sh`` bash script is not the following one: -->
-<!-- ```bash -->
-<!-- -----------Set up for Tackle Containerzation Adviser Completed !!!--------- -->
-<!-- ``` -->
-
 There are 4 options for deploying TCA as a service. 
 
 1. Install the service requirements and start the service from command line.
@@ -93,20 +80,15 @@ bash run.sh
 bash deploy.sh
 ```
 
-<!-- ## Updating TCA's Knowledge Base -->
-<!-- If you want to make changes to TCA's Knowledge Base, make sure that you have created a proper development environment by following the setup procedure in the [Developer's Guide](docs/development.md) and then  please follow the instructions below. -->
-<!-- ### Setup TCA's environment by running the following -->
-<!-- ``` -->
-<!-- bash setup.sh -->
-<!-- ``` -->
-<!-- ### Update TCA's Knowledge Base --> 
-<!-- For updating the TCA's Knowledge Base, enter in the *db* folder. Upload the DB file in a tool such DBeaver. Once you have completed making changes, generate a new .sql file and update the existing .sql file with the new file. -->
-<!-- ### Clean up TCA's environment by running the following and then rerun the setup. --> 
-<!-- ``` -->
-<!-- bash clean.sh -->
-<!-- bash setup.sh -->
-<!-- ``` -->
+## Run a performance test for TCA service
+A performance test measures the response time of TCA service under
+various load conditions. Before running 
+performance test, update *config/test.ini* with the hostname
+and port where TCA service has been deployed
 
+```
+python test/performance/run_payload.py <#users> <#applications/user>
+```
 
 ## Running TCA with a new version of Knowledge Base
 

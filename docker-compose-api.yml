@@ -16,6 +16,5 @@ services:
       retries: 3
     networks:
       - overlay
-
 networks:
   overlay:

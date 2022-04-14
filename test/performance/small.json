@@ -1,0 +1,79 @@
+[
+    {
+        "application_name": "sampleinvestmentTEST282_000568",
+        "application_description": "sampleinvestmentTEST282_000568",
+        "component_name": "samplereportsTEST9904_006591",
+        "operating_system": "Ubuntu",
+        "programming_languages": "",
+        "middleware": "Websphere Application Server",
+        "database": "SQL",
+        "integration_services_and_additional_softwares": "",
+        "technology_summary": ""
+    },
+    {
+        "application_name": "sampleinvestmentTEST282_000568",
+        "application_description": "sampleinvestmentTEST282_000568",
+        "component_name": "sampleCITTEST9868_002116",
+        "operating_system": "Linux",
+        "programming_languages": "",
+        "middleware": "Websphere Application Server",
+        "database": "SQL",
+        "integration_services_and_additional_softwares": "",
+        "technology_summary": ""
+    },
+    {
+        "application_name": "sampleinvestmentTEST282_000568",
+        "application_description": "sampleinvestmentTEST282_000568",
+        "component_name": "samplepaymenttransferTEST6652_003269",
+        "operating_system": "Ubuntu",
+        "programming_languages": "",
+        "middleware": "Websphere Application Server",
+        "database": "Oracle",
+        "integration_services_and_additional_softwares": "",
+        "technology_summary": ""
+    },
+    {
+        "application_name": "sampleinvestmentTEST282_000568",
+        "application_description": "sampleinvestmentTEST282_000568",
+        "component_name": "sampleinnovativetechTEST1468_004412",
+        "operating_system": "Linux",
+        "programming_languages": "",
+        "middleware": "Websphere Application Server",
+        "database": "Oracle",
+        "integration_services_and_additional_softwares": "",
+        "technology_summary": ""
+    },
+    {
+        "application_name": "sampleinvestmentTEST282_000568",
+        "application_description": "sampleinvestmentTEST282_000568",
+        "component_name": "samplemanufacturingTEST2156_000788",
+        "operating_system": "Ubuntu",
+        "programming_languages": "",
+        "middleware": "Websphere Application Server",
+        "database": "Oracle",
+        "integration_services_and_additional_softwares": "",
+        "technology_summary": ""
+    },
+    {
+        "application_name": "sampleinvestmentTEST282_000568",
+        "application_description": "sampleinvestmentTEST282_000568",
+        "component_name": "sampleresourceallocationTEST2815_002153",
+        "operating_system": "Ubuntu",
+        "programming_languages": "",
+        "middleware": "Websphere Application Server",
+        "database": "SQL",
+        "integration_services_and_additional_softwares": "",
+        "technology_summary": ""
+    },
+    {
+        "application_name": "sampleinvestmentTEST282_000568",
+        "application_description": "sampleinvestmentTEST282_000568",
+        "component_name": "sampleomsTEST3111_007544",
+        "operating_system": "Linux",
+        "programming_languages": "",
+        "middleware": "Websphere Application Server",
+        "database": "SQL",
+        "integration_services_and_additional_softwares": "",
+        "technology_summary": ""
+    }
+]
