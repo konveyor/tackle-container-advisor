@@ -56,7 +56,6 @@ def predict(config, json_data):
     
     sim_app    = sim_applier(config)
     tf_eids    = {}
-    logging.info(f"Number of tfidf mentions = {len(mentions)}")
     for idx, mention in mentions.items():
         tech_sim_scores=sim_app.tech_stack_standardization(mention.lower())
         json_data["data"][idx]["predictions"] = json_data["data"][idx].get("predictions", [])
