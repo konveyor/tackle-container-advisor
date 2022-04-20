@@ -4,7 +4,6 @@ import time
 import configparser
 import logging
 from entity_standardizer.tfidf import TFIDF
-from entity_standardizer.gnn import GNN
 from service.version_detector import version_detector
 
 
