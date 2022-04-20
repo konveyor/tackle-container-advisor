@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="1.0.3"
+version="1.0.4"
 db_file="$version.db"
 echo "-----------Cleaning Files and Folders---------"
 

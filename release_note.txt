@@ -1,4 +1,11 @@
 ==========
+April 2022
+==========
+Added new entities, relationships, versions, images and operators to the database
+Major refactoring of the code to have each component running as independent module and remove duplications
+Added development environment
+
+==========
 Nov 2021
 ==========
 We added operator image catalog in addition to DockerHub and Openshift image catalog
