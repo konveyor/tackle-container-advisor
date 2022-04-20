@@ -15,7 +15,7 @@ import time
 import copy
 import configparser
 import argparse
-
+import logging
 
 def parser():
     parser = argparse.ArgumentParser(description="Train and evaluate TCA entity standardization models")
@@ -32,21 +32,20 @@ def print_gh_markdown(table_data):
 
     :returns: Return cleaned string with non-ascii characters removed/replaced
     """
-    print(f"<p><table>")
-    print(f"<thead>")
-    print(
-        f"<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th><th>False positive rate</th><th>Runtime (on cpu)</th></tr>")
-    print(f"</thead>")
-    print(f"<tbody>")
+    logging.info(f"<p><table>")
+    logging.info(f"<thead>")
+    logging.info(f"<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th><th>False positive rate</th><th>Runtime (on cpu)</th></tr>")
+    logging.info(f"</thead>")
+    logging.info(f"<tbody>")
     for model, data in table_data.items():
         cpu_time = data["time"]
         top_k    = data["topk"]
         kns      = data["kns"]
         fpr      = data["fpr"]
         unks     = data["unks"]
-        print(f"<tr><td>{model}</td><td>{top_k[0]/max(1,kns):.2f}</td><td>{top_k[1]/max(1,kns):.2f}</td><td>{top_k[2]/max(1,kns):.2f}</td><td>{top_k[3]/max(1,kns):.2f}</td><td>{top_k[4]/max(1,kns):.2f} ({top_k[4]}/{kns})</td><td>{fpr/max(1,unks):.2f}({fpr}/{unks})</td><td>{cpu_time:.2f}s</td></tr>")
-    print(f"</tbody>")
-    print(f"</table></p>")
+        logging.info(f"<tr><td>{model}</td><td>{top_k[0]/max(1,kns):.2f}</td><td>{top_k[1]/max(1,kns):.2f}</td><td>{top_k[2]/max(1,kns):.2f}</td><td>{top_k[3]/max(1,kns):.2f}</td><td>{top_k[4]/max(1,kns):.2f} ({top_k[4]}/{kns})</td><td>{fpr/max(1,unks):.2f}({fpr}/{unks})</td><td>{cpu_time:.2f}s</td></tr>")
+    logging.info(f"</tbody>")
+    logging.info(f"</table></p>")
 
 
 def topk(json_data):
@@ -105,7 +104,7 @@ if __name__ == "__main__":
     try:
         data_dir = config['general']['data_dir']
     except KeyError as k:
-        print(f'{k} is not a key in your common.ini file.')
+        logging.error(f'{k} is not a key in your common.ini file.')
         exit()
     
     task = {'tca': 'tca', 'wikidata':'tca', 'deploy': 'tca'}
@@ -118,7 +117,7 @@ if __name__ == "__main__":
         wikidata_infer_data = json.load(wikidata_infer_file)
 
     if model_type == "tf_idf" or model_type == "all":
-        print("----------- TFIDF -------------")
+        logging.info("----------- TFIDF -------------")
         from entity_standardizer.tfidf import TFIDF
 
         if mode != 'deploy':
@@ -139,7 +138,7 @@ if __name__ == "__main__":
     
     '''
     if model_type == "wiki_data_api" or model_type == "all":
-        print("----------- WIKIDATA API -------------")
+        logging.info("----------- WIKIDATA API -------------")
         from entity_standardizer.wdapi import WDAPI
 
         if mode != 'deploy':
@@ -158,7 +157,7 @@ if __name__ == "__main__":
         table_data["wdapi"]["unks"] = wdapi_topk["unks"]
         table_data["wdapi"]["time"] = wdapi_time
     
-    print("----------- ENTITY LINKING API -------------")
+    logging.info("----------- ENTITY LINKING API -------------")
     from entity_standardizer.entlnk import ENTLNK 
     entlnk           = ENTLNK("wikidata")
     entlnk_start     = time.time()
