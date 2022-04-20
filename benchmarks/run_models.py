@@ -57,18 +57,11 @@ def topk(json_data):
 
     :returns: Return cleaned string with non-ascii characters removed/replaced
     """
-<<<<<<< HEAD
     label  = json_data.get("label", "label")
     top_k  = (0, 0, 0, 0, 0) # Top-1, top-3, top-5, top-10, top-inf
     unks   = 0
     fpr    = 0
     kns    = 0
-=======
-    top_k = (0, 0, 0, 0, 0)  # Top-1, top-3, top-5, top-10, top-inf
-    unks = 0
-    fpr = 0
-    kns = 0
->>>>>>> 95c956da158c4e0b03d50232733dd60203c10534
     for idx in json_data["data"]:
         correct = json_data["data"][idx].get(label, None)
         predictions = json_data["data"][idx].get("predictions", [])
@@ -81,13 +74,8 @@ def topk(json_data):
                 fpr += 1
                 continue
             for i, pred in enumerate(predictions):
-<<<<<<< HEAD
                 if (pred[0] == correct):
                     top_k = (top_k[0],top_k[1],top_k[2],top_k[3],top_k[4]+1)
-=======
-                if (pred[0] == label):
-                    top_k = (top_k[0], top_k[1], top_k[2], top_k[3], top_k[4] + 1)
->>>>>>> 95c956da158c4e0b03d50232733dd60203c10534
                     if i <= 0:
                         top_k = (top_k[0] + 1, top_k[1], top_k[2], top_k[3], top_k[4])
                     if i <= 2:
