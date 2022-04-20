@@ -19,7 +19,7 @@ import argparse
 def parser():
     parser = argparse.ArgumentParser(description="Train and evaluate TCA entity standardization models")
     parser.add_argument("-model_type", type=str, default="tf_idf", help="tf_idf (default) | gnn | wiki_data_api | all")
-    parser.add_argument("-mode", type=str, default="deploy", help="deploy (default) | tca")
+    parser.add_argument("-mode", type=str, default="deploy", help="deploy (default) | tca | wikidata")
     return parser.parse_args()
 
 def print_gh_markdown(table_data):
@@ -41,7 +41,7 @@ def print_gh_markdown(table_data):
         kns      = data["kns"]
         fpr      = data["fpr"]
         unks     = data["unks"]
-        print(f"<tr><td>{model}</td><td>{top_k[0]/kns:.2f}</td><td>{top_k[1]/kns:.2f}</td><td>{top_k[2]/kns:.2f}</td><td>{top_k[3]/kns:.2f}</td><td>{top_k[4]/kns:.2f} ({top_k[4]}/{kns})</td><td>{fpr/max(1,unks):.2f}({fpr}/{unks})</td><td>{cpu_time:.2f}s</td></tr>")
+        print(f"<tr><td>{model}</td><td>{top_k[0]/max(1,kns):.2f}</td><td>{top_k[1]/max(1,kns):.2f}</td><td>{top_k[2]/max(1,kns):.2f}</td><td>{top_k[3]/max(1,kns):.2f}</td><td>{top_k[4]/max(1,kns):.2f} ({top_k[4]}/{kns})</td><td>{fpr/max(1,unks):.2f}({fpr}/{unks})</td><td>{cpu_time:.2f}s</td></tr>")
     print(f"</tbody>")
     print(f"</table></p>")
 
@@ -53,23 +53,24 @@ def topk(json_data):
 
     :returns: Return cleaned string with non-ascii characters removed/replaced
     """
+    label  = json_data.get("label", "label")
     top_k  = (0, 0, 0, 0, 0) # Top-1, top-3, top-5, top-10, top-inf
     unks   = 0
     fpr    = 0
     kns    = 0
     for idx in json_data["data"]:
-        label = json_data["data"][idx].get("label", None)
+        correct = json_data["data"][idx].get(label, None)
         predictions = json_data["data"][idx].get("predictions", [])
-        if label is None:
+        if correct is None:
             unks += 1
         else:
             kns += 1
         if predictions:
-            if label is None:
+            if correct is None:
                 fpr += 1
                 continue
             for i, pred in enumerate(predictions):
-                if (pred[0] == label):
+                if (pred[0] == correct):
                     top_k = (top_k[0],top_k[1],top_k[2],top_k[3],top_k[4]+1)
                     if i <= 0:
                         top_k = (top_k[0]+1,top_k[1],top_k[2],top_k[3],top_k[4]) 
@@ -83,14 +84,13 @@ def topk(json_data):
             
     return {"topk": top_k, "kns": kns, "fpr": fpr, "unks": unks}
 
-
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s", filemode='w')
 
     args = parser()
 
     model_type = args.model_type
     mode = args.mode
-
 
     table_data       = {}
 
@@ -103,8 +103,9 @@ if __name__ == "__main__":
     except KeyError as k:
         print(f'{k} is not a key in your common.ini file.')
         exit()
-        
-    tca_infer_file_name = os.path.join(data_dir, "tca", "infer.json")
+    
+    task = {'tca': 'tca', 'wikidata':'tca', 'deploy': 'tca'}
+    tca_infer_file_name = os.path.join(data_dir, task[mode], "infer.json")
     with open(tca_infer_file_name, 'r', encoding='utf-8') as tca_infer_file:
         tca_infer_data = json.load(tca_infer_file)
 
@@ -128,26 +129,8 @@ if __name__ == "__main__":
         table_data["tfidf"]["fpr"]  = tfidf_topk["fpr"]
         table_data["tfidf"]["unks"] = tfidf_topk["unks"]
         table_data["tfidf"]["time"] = tfidf_time
-
+    
     '''
-    if model_type == "gnn" or model_type == "all":
-        print("----------- GNN -------------")
-        from entity_standardizer.gnn import GNN
-        gnn              = GNN(mode)
-        gnn_start        = time.time()
-        gnn_infer        = copy.deepcopy(tca_infer_data)
-        gnn_infer        = gnn.infer(gnn_infer)
-        gnn_end          = time.time()
-        gnn_time         = (gnn_end-gnn_start)
-        gnn_topk         = topk(gnn_infer)
-        table_data["gnn"]= {}
-        table_data["gnn"]["topk"] = gnn_topk["topk"]
-        table_data["gnn"]["kns"]  = gnn_topk["kns"]
-        table_data["gnn"]["fpr"]  = gnn_topk["fpr"]
-        table_data["gnn"]["unks"] = gnn_topk["unks"]
-        table_data["gnn"]["time"] = gnn_time
-    '''
-
     if model_type == "wiki_data_api" or model_type == "all":
         print("----------- WIKIDATA API -------------")
         from entity_standardizer.wdapi import WDAPI
@@ -165,7 +148,6 @@ if __name__ == "__main__":
         table_data["wdapi"]["unks"] = wdapi_topk["unks"]
         table_data["wdapi"]["time"] = wdapi_time
     
-    '''
     print("----------- ENTITY LINKING API -------------")
     from entity_standardizer.entlnk import ENTLNK 
     entlnk           = ENTLNK("wikidata")
@@ -183,5 +165,4 @@ if __name__ == "__main__":
     table_data["entlnk"]["time"] = entlnk_time
     table_data["entlnk"]["total"]= len(entlnk_infer_data["data"])    
     '''
-    
-    print_gh_markdown(table_data)     
+    print_gh_markdown(table_data)

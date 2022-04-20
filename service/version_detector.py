@@ -24,10 +24,6 @@ config.read([common, kg])
 class version_detector:
 
     def __init__(self, logger=False):
-
-        self.logger = logging.getLogger('version_detector')
-        self.logger.setLevel(logging.INFO)
-
         self.__class_version = {}
 
         class_version_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['entity_versionsKG'])
@@ -37,7 +33,7 @@ class version_detector:
 
         else:
             self.__class_version = {}
-            self.logger.error(f'class_type_mapper[{class_version_filepath}] is empty or not exists')
+            logging.error(f'class_type_mapper[{class_version_filepath}] is empty or not exists')
 
 
     @staticmethod
@@ -57,7 +53,7 @@ class version_detector:
                     text = text.strip().lower().replace(each, "ENTITY_MASK")
             return text
         except Exception as e:
-            self.logger.error(str(e))
+            logging.error(str(e))
          
     @staticmethod
     def get_version_strings(text):
@@ -117,7 +113,7 @@ class version_detector:
 
             return version_final.strip()
         except Exception as e:
-            self.logger.error(str(e))
+            logging.error(str(e))
 
 
     @staticmethod

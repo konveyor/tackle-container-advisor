@@ -26,10 +26,7 @@ class InferTech:
     def __init__(self):
         """
         Initialize and loads the class mapper and OS compatability KG json files
-        """
-        self.logger = logging.getLogger('infer_tech')
-        self.logger.setLevel(logging.INFO)
-        
+        """        
         class_type_mapper_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['class_type_mapper'])
 
         if os.path.exists(class_type_mapper_filepath):
@@ -37,7 +34,7 @@ class InferTech:
                 self.__class_type_mapper = json.load(f)
         else:
             self.__class_type_mapper = {}
-            self.logger.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
+            logging.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
         
         compatibilityOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['compatibilityOSKG'])
 
@@ -46,7 +43,7 @@ class InferTech:
                 self.__compatibilityOSKG = json.load(f)
         else:
             self.__compatibilityOSKG = {}
-            self.logger.error(f'compatibilityOSKG[{compatibilityOSKG_filepath}] is empty or not exists')    
+            logging.error(f'compatibilityOSKG[{compatibilityOSKG_filepath}] is empty or not exists')    
 
     def __identify_parent_OS(self, child):
         """
@@ -129,7 +126,7 @@ class InferTech:
         Infers the missing technology and checks OS compatibility
         """
         if len(self.__compatibilityOSKG) == 0 or len(self.__class_type_mapper) == 0:
-            self.logger.error('infer_tech init failed')
+            logging.error('infer_tech init failed')
             return appL
         if (not appL) or len(appL) == 0:
             return appL
@@ -220,7 +217,7 @@ class InferTech:
                         for child in Utils.getEntityString(app[child_type]).split(', '):
                             candidate_OS = self.__get_candidate_OS(child)
                             if not candidate_OS or len(candidate_OS) == 0:
-                                self.logger.error(f'[{child}] can not find any OS in the knowledge graph')
+                                logging.error(f'[{child}] can not find any OS in the knowledge graph')
                             else:
                                 reduced_candidate_OS = self.__reduce_to_base_OS(candidate_OS)
                                 if 'Linux' in reduced_candidate_OS:

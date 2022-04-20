@@ -34,7 +34,6 @@ class Plan():
         logging.basicConfig(level=logging.INFO)
 
         dockerimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['dockerimageKG'])
-        # if Path(dockerimageKG_filepath).is_file():
         if os.path.exists(dockerimageKG_filepath):   
             with open(dockerimageKG_filepath, 'r') as f:
                 self.__dockerimage_KG = json.load(f)
