@@ -52,6 +52,7 @@ def predict(config, json_data):
             run_train = False
             break            
     if run_train:
+        logging.info("TFIDF model does not exist - will re-run training")
         train(config)
     
     sim_app    = sim_applier(config)
