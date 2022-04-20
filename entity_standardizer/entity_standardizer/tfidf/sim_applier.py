@@ -33,7 +33,6 @@ class sim_applier:
                  
         self.NA_CATEGORY="NA_CATEGORY"
         self.NA_VARIANT="NA_VARIANT"
-
         self.load_model()
         self.ent_scores_sim=[]
             
@@ -45,7 +44,7 @@ class sim_applier:
             tfidf_name    = self.config["train"]["tfidf_name"]            
             instances_name= self.config["train"]["instances_name"]
         except KeyError as k:
-            self.logger.error(f'{k} is not a key in your config files.')
+            logging.error(f'{k} is not a key in your config files.')
             exit()
 
         with open(os.path.join(model_dir, task_name, model_name), "rb") as model_file:
@@ -201,7 +200,6 @@ class sim_applier:
                     id_,query_text,category,keywords,max_sim=each
                 
                     if category!=self.NA_CATEGORY:
-                             
                         tech_scores_sim.append([category,max_sim])
                                
             if len(tech_scores_sim)==0:
