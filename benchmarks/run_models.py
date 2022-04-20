@@ -156,22 +156,5 @@ if __name__ == "__main__":
         table_data["wdapi"]["fpr"] = wdapi_topk["fpr"]
         table_data["wdapi"]["unks"] = wdapi_topk["unks"]
         table_data["wdapi"]["time"] = wdapi_time
-    
-    logging.info("----------- ENTITY LINKING API -------------")
-    from entity_standardizer.entlnk import ENTLNK 
-    entlnk           = ENTLNK("wikidata")
-    entlnk_start     = time.time()
-    entlnk_infer     = copy.deepcopy(wikidata_infer_data)
-    entlnk_infer     = entlnk.infer(entlnk_infer)
-    entlnk_end       = time.time()
-    entlnk_time      = (entlnk_end-entlnk_start)
-    entlnk_topk      = topk(entlnk_infer)
-    table_data["entlnk"]= {}
-    table_data["entlnk"]["topk"] = entlnk_topk["topk"]
-    table_data["entlnk"]["kns"]  = entlnk_topk["kns"]
-    table_data["entlnk"]["fpr"]  = entlnk_topk["fpr"]
-    table_data["entlnk"]["unks"] = entlnk_topk["unks"]
-    table_data["entlnk"]["time"] = entlnk_time
-    table_data["entlnk"]["total"]= len(entlnk_infer_data["data"])    
     '''
     print_gh_markdown(table_data)
