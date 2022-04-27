@@ -37,9 +37,6 @@ class EntityDetection:
         class_type_mapper.json in ontologies folder.
         Also, sets the default values for category, version, high & low thresholds
         """
-        self.logger = logging.getLogger('entity_detection')
-        self.logger.setLevel(logging.INFO)
-
         self.__class_type_mapper = {}
 
         self.__tca_input_mapper = {
@@ -61,7 +58,7 @@ class EntityDetection:
             
         else:
             self.__class_type_mapper = {}
-            self.logger.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
+            logging.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
         
         self.NA_CATEGORY=config['NA_VALUES']['NA_CATEGORY']
         self.NA_VERSION = config['NA_VALUES']['NA_VERSION']
@@ -89,7 +86,7 @@ class EntityDetection:
 
         """
         if len(self.__tca_input_mapper) == 0 or len(self.__class_type_mapper) == 0:
-            self.logger.error('ontologies init failed')
+            logging.error('ontologies init failed')
             return app_data
         
         if (not app_data)  or len(app_data) == 0:
@@ -131,7 +128,7 @@ class EntityDetection:
                         obj = {}
                         for category, sim in entity_scores:
                             if category == self.NA_CATEGORY:
-                                self.logger.error(f'snippet category wrong:{s}')
+                                logging.error(f'snippet category wrong:{s}')
                                 continue
                             if self.__class_type_mapper['mappings'][category] == general_term_key:
                                 ## Technology
@@ -176,7 +173,7 @@ class EntityDetection:
             return app_data
 
         except Exception as e:
-            self.logger.error(str(e))
+            logging.error(str(e))
 
 
     def get_tca_input_mapper(self):

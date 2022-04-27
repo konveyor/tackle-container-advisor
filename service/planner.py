@@ -34,8 +34,6 @@ config.read([common, kg])
 
 controller = None
 
-
-
 class Planner:
     def __init__(self):
         """
@@ -43,9 +41,6 @@ class Planner:
         Create instances for EntityDetection & Assessment classes
         Set default values for token based variables
         """
-        self.logger = logging.getLogger('planner')
-        self.logger.setLevel(logging.INFO)
-
         self.entity_detection = EntityDetection()
         self.inferTech = InferTech()
         self.assess = Assessment()
@@ -54,6 +49,11 @@ class Planner:
         self.is_disable_access_token = None
         if 'is_disable_access_token' in config['RBAC']:
             self.is_disable_access_token = config['RBAC']['is_disable_access_token']
+
+        logger = logging.getLogger()
+        ch = logger.handlers[0]
+        formatter = logging.Formatter("[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s")
+        ch.setFormatter(formatter)
 
     def detect_access_token(self,auth_url,headers,auth_headers):
         """
@@ -106,14 +106,14 @@ class Planner:
         try:
             threhold = 20000
             num = round(len(app_data)/threhold + 0.5)
-            if num > 1:
-                self.logger.info(f'{str(datetime.now())} input app num: {str(len(app_data))} and split into {str(num)}')
+            if num > 1:                
+                logging.info(f"input app num: {str(len(app_data))} and split into {str(num)}")
             else:
-                self.logger.info(f'{str(datetime.now())} input app num: {str(len(app_data))}')
+                logging.info(f"input app num: {str(len(app_data))}")
             appL = []
             for x in range(1, num+1):
                 if num > 1:
-                    self.logger.warn(f'split round: {str(x)}')
+                    logging.warn(f'split round: {str(x)}')
                 begin = threhold * (x-1)
                 end = threhold * x
                 if end > len(app_data):
@@ -121,13 +121,13 @@ class Planner:
 
                 appl = app_data[slice(begin, end)]
                 if config['Performance']['multiprocessing_enabled'] == "YES":
-                    self.logger.info("MULTIPROCESSING ENABLED==YES")
+                    logging.info("MULTIPROCESSING ENABLED==YES")
                     mapper = SimpleMapReduce(self.map_apps, self.reduce_apps)
                     appl = mapper(appl)
                     appl = self.multiprocessing_to_single_app_data(appl)
 
                 else:
-                    self.logger.info("MULTIPROCESSING ENABLED==NO")
+                    logging.info("MULTIPROCESSING ENABLED==NO")
                     appl = self.entity_detection.compose_app(appl)
                 
                 appL.extend(appl)
@@ -153,12 +153,10 @@ class Planner:
             appL = self.assess.app_validation(appL)
             # Generate output for UI
             assessment = self.assess.output_to_ui_assessment(appL)
-            self.logger.info(f'{str(datetime.now())} output assessment num: {str(len(assessment))} ')
+            logging.info(f'{str(datetime.now())} output assessment num: {str(len(assessment))} ')
             return dict(status=201, message="Assessment completed successfully!", assessment=assessment), 201
-
-
         except Exception as e:
-            self.logger.error(str(e))
+            logging.error(str(e))
             track = traceback.format_exc()
             return dict(status = 400,message = 'Input data format doesn\'t match the format expected by TCA'), 400
 
@@ -173,18 +171,17 @@ class Planner:
             if not is_valid:
                 return resp, code
 
-
             appL = self.plan.ui_to_input_assessment(assessment_data)
             appL = self.inferTech.infer_missing_tech(appL)
             appL = self.plan.validate_app(appL)
             containerL = self.plan.map_to_docker(appL, catalog)
             planning = self.plan.output_to_ui_planning(containerL)
 
-            self.logger.info(f'{str(datetime.now())} output planning num: {str(len(planning))}')
+            logging.info(f"output planning num: {str(len(planning))}")
             return dict(status=201, message="Container recommendation generated!", containerization=planning), 201
 
         except Exception as e:
-            self.logger.error(str(e))
+            logging.error(str(e))
             track = traceback.format_exc()
             return dict(status=400, message='Input data format doesn\'t match the format expected by TCA'), 400
 

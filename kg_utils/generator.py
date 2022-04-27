@@ -26,9 +26,7 @@ class KG():
         common         = os.path.join("config", "common.ini")
         kg             = os.path.join("config", "kg.ini")
         self.config.read([common, kg])
-        self.connection= None 
-        self.logger = logging.getLogger('kg_utils')
-        self.logger.setLevel(logging.INFO)
+        self.connection= None         
  
     def get_db(self, db_path):
         """
@@ -43,13 +41,13 @@ class KG():
 
         """
         if not os.path.isfile(db_path):
-            self.logger.error(f'{db_path} is not a file. Run "sh setup.sh" to generate db files')
+            logging.error(f'{db_path} is not a file. Run "sh setup.sh" to generate db files')
             exit()
         else:
             try:
                 self.connection = sqlite3.connect(db_path)
             except Error as e:
-                self.logger.error(f'{e} cannot create connection to db. Check that the {db_path} is the correct file ')
+                logging.error(f'{e} cannot create connection to db. Check that the {db_path} is the correct file ')
                 exit()
 
     def get_entities(self):
@@ -119,7 +117,7 @@ class KG():
             ent_name= self.config["tca"]["entities"]
             men_name= self.config["tca"]["mentions"]            
         except KeyError as k:
-            self.logger.error(f'{k} is not a key in your kg.ini file.')
+            logging.error(f'{k} is not a key in your kg.ini file.')
             exit()
 
         db_path = os.path.join(db_dir, version+".db")
@@ -141,5 +139,6 @@ class KG():
             self.generate_tca()
                 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s", filemode='w')
     kg = KG("entity_standardizer")
     kg.generate("tca")

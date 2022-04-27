@@ -14,7 +14,7 @@ class TFIDF():
         tfidf  = os.path.join("config", self.task_name, "tfidf.ini")
         self.config.read([common, kg, tfidf])
         self.config["task"] = {}
-        self.config["task"]["name"] = self.task_name
+        self.config["task"]["name"] = self.task_name        
 
     def infer(self, infer_data):
         from .infer import predict
