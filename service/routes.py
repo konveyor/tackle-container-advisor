@@ -56,6 +56,17 @@ api = Api(app,
           # prefix='/api'
          )
 
+std_input_model = api.model('Standardizer Input', {
+    "tech_mention": fields.String(required=True, description='Usage of technology component')
+})
+
+std_output_model = api.model('Standardizer Output', {
+    "tech_entity": fields.String(required=True, description='Standardized technology name')
+    "tech_entity_type": fields.String(required=True, description='Type of technology entity')
+})
+
+
+
 input_model = api.model('Input', {
     "application_name": fields.String(required=True, description='Name of the application'),
     "application_description": fields.String(required=False, description='Description of the application'),
@@ -106,6 +117,30 @@ output_model_planning = api.model('Planning Output', {
     "containerization": fields.List(fields.Nested(planning_model), required=True, description='An array of containerization assessment for application workload')
     })
 
+
+@api.route('/entity-standardizer', strict_slashes=False)
+class EntityStandardizer(Resource):
+    """
+    EntityStandardizer class creates the standardization in the form of std_output_model for the
+    tech_mentions given in the std_input_model
+    """
+    @api.doc('create_entity_standardization')
+    @api.response(201, 'Stadardization Completed successfully!')
+    @api.response(400, 'Input data format doesn\'t match the format expected by TCA')
+    @api.response(401, 'Unauthorized, missing or invalid access token')
+    @api.response(500, 'Internal Server Error, missing or wrong config of RBAC access token validation url')
+    @api.expect([std_input_model])
+    @api.marshal_with(std_output_model)
+    @api.doc(security='apikey')
+
+
+    def post(self):
+        """
+        Invoke do_standardization method in standardization class to initiate stadardization process
+        """
+        return planner.do_standardization(auth_url,dict(request.headers),auth_headers,api.payload)
+
+
 @api.route('/containerization-assessment', strict_slashes=False)
 class ContainerizationAssessment(Resource):
     """
@@ -131,7 +166,6 @@ class ContainerizationAssessment(Resource):
 
 @api.route('/containerization-planning', strict_slashes=False)
 @api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift or operator', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift', 'operator']}})
-
 class ContainerizationPlanning(Resource):
     """
     ContainerizationAssessment class creates the assessment in the form of assessment_model for the
