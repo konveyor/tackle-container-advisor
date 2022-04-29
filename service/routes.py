@@ -56,15 +56,28 @@ api = Api(app,
           # prefix='/api'
          )
 
+std_mention_model = api.model('Standardizer Mention', {
+    "mention_id": fields.Integer(required=True, description='Unique mention identifier'),
+    "mention": fields.String(required=True, description='Technology component mention')
+})
+
 std_input_model = api.model('Standardizer Input', {
-    "tech_mention": fields.String(required=True, description='Usage of technology component')
+    "mentions": fields.List(fields.Nested(std_mention_model), required=True, description='A list of mentions to standardize.')
+})
+
+std_entity_model = api.model('Standardizer Entity', {
+    "mention_id": fields.Integer(required=True, description='Unique mention identifier'),
+    "mention": fields.String(required=True, description='Technology mention name'),
+    "entity_names": fields.List(fields.String(required=True, description='Standardized technology entity name')),
+    "entity_types": fields.List(fields.String(required=True, description='Standardized technology entity type')),
+    "confidence" : fields.List(fields.Float(required=True, description='Standardization confidence score'))    
 })
 
 std_output_model = api.model('Standardizer Output', {
-    "tech_entity": fields.String(required=True, description='Standardized technology name')
-    "tech_entity_type": fields.String(required=True, description='Type of technology entity')
+    "status": fields.Integer(required=True, description='Status of the call'),
+    "message": fields.String(required=True, description='Status message'),
+    "result": fields.List(fields.Nested(std_entity_model), required=True, description='A list of standardized entities for input mentions.')
 })
-
 
 
 input_model = api.model('Input', {
@@ -108,7 +121,7 @@ planning_model = api.model('Planning', {
 output_model_assessment = api.model('Assessment Output', {
     "status": fields.Integer(required=True, description='Status of the call'),
     "message": fields.String(required=True, description='Status message'),
-    'assessment': fields.List(fields.Nested(assessment_model), required=True, description='An array of containerization assessment for application workload')
+    "assessment": fields.List(fields.Nested(assessment_model), required=True, description='An array of containerization assessment for application workload')
     })
 
 output_model_planning = api.model('Planning Output', {
@@ -136,7 +149,7 @@ class EntityStandardizer(Resource):
 
     def post(self):
         """
-        Invoke do_standardization method in standardization class to initiate stadardization process
+        Returns standardized entities and their types for a list of mentions
         """
         return planner.do_standardization(auth_url,dict(request.headers),auth_headers,api.payload)
 

@@ -16,6 +16,7 @@ import shutil
 import logging
 import requests
 import flask
+import time
 from datetime import datetime
 import traceback
 
@@ -25,11 +26,11 @@ from service.infer_tech import InferTech
 from service.containerize_planning import Plan
 import configparser
 from service.multiprocessing_mapreduce import SimpleMapReduce
+from entity_standardizer.tfidf import TFIDF
 
-
-config = configparser.ConfigParser()
-common = os.path.join("config", "common.ini")
-kg     = os.path.join("config", "kg.ini")
+config    = configparser.ConfigParser()
+common    = os.path.join("config", "common.ini")
+kg        = os.path.join("config", "kg.ini")
 config.read([common, kg])
 
 controller = None
@@ -137,6 +138,94 @@ class Planner:
             logging.error(str(e))
             raise e
 
+    def entity_standardizer(self,auth_url,headers,auth_headers,app_data):
+        """
+        Invokes detect_access_token for accesstoken validation and if it's valid, it will call
+        entity_standardizer to get standardized name and type.
+        """
+        try:
+            resp, code, is_valid = self.detect_access_token(auth_url,headers,auth_headers)
+            if not is_valid:
+                return resp, code
+            mentions = {}
+            menhash  = {}
+            uniques  = {}
+            mention_data =  app_data[0].get("mentions", [])
+            for mention in mention_data:            
+                mention_id = mention.get("mention_id", None)
+                mention_name = mention.get("mention", "")
+                if mention_name.lower() not in ['na', 'null', 'string', 'none']:
+                    if mention_name in menhash:
+                        mentions[str(mention_id)] = uniques[menhash[mention_name]]
+                    else:
+                        ulen                  = len(uniques)
+                        menhash[mention_name] = ulen                        
+                        uniques[ulen] = {"mention": mention_name}
+                        mentions[str(mention_id)] = uniques[ulen]
+
+        except Exception as e:
+            logging.error(str(e))
+            track = traceback.format_exc()
+            return dict(status = 400,message = 'Input data format doesn\'t match the format expected by TCA'), 400
+
+        if not uniques:
+            dict(status=201, message="Entity standardization completed successfully!", result=list(mentions.values())), 201
+
+        try:
+            kg_dir = config["general"]["kg_dir"]
+            entities_json = config["tca"]["entities"]
+            high_threshold= float(config["Thresholds"]["HIGH_THRESHOLD"])
+            medium_threshold= float(config["Thresholds"]["MEDIUM_THRESHOLD"])
+        except KeyError as k:
+            logging.error(f'{k} is not a key in your common.ini file.')
+            return dict(status = 500,message = 'TCA application error'), 500
+
+        # Check that kg contains entities file
+        entity_file_name = os.path.join(kg_dir, entities_json)
+        if not os.path.isfile(entity_file_name):
+            logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+            return dict(status = 500,message = 'TCA application error'), 500
+
+        # Get mapping of entity id to entity names
+        with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
+            entities = json.load(entity_file)
+        entity_data = {}
+        entity_data[0] = ("NA_CATEGORY", "NA_CATEGORY")
+        for idx, entity in entities["data"].items():
+            entity_name = entity["entity_name"] 
+            tca_id      = entity["entity_id"]
+            entity_type_name = entity["entity_type_name"]
+            entity_data[tca_id] = (entity_name, entity_type_name)
+
+        infer_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": uniques}
+        tfidf            = TFIDF("deploy")
+        tfidf_start      = time.time()
+        tfidf_data       = tfidf.infer(infer_data)
+        tfidf_end        = time.time()
+        tfidf_time       = (tfidf_end-tfidf_start)
+    
+        entities         = {}
+        mention_data     = tfidf_data.get("data", {})
+
+        for idx, mention in mention_data.items():
+            predictions = mention.get("predictions", [])
+            if not predictions:            
+                logging.info(f"No predictions for {mention}")
+                continue
+            entity_names= [entity_data[p[0]][0] for p in predictions if p[1] > high_threshold]
+            entity_types= [entity_data[p[0]][1] for p in predictions if p[1] > high_threshold]
+            conf_scores = [round(p[1],2) for p in predictions if p[1] > high_threshold]
+            mention["entity_names"] = entity_names
+            mention["entity_types"] = entity_types
+            mention["confidence"]   = conf_scores
+            del mention["predictions"]
+        
+        import copy
+        for idx in mentions:
+            mentions[idx] = copy.deepcopy(mentions[idx])
+            mentions[idx]["mention_id"] = idx
+        return dict(status=201, message="Entity standardization completed successfully!", result=list(mentions.values())), 201
+
     def containerization_assessment(self,auth_url,headers,auth_headers,app_data):
         """
         Invokes detect_access_token for accesstoken validation and if it's valid, it will call
@@ -217,6 +306,16 @@ class Planner:
         
         return apps
 
+def do_standardization(auth_url,headers,auth_headers,app_data):
+    """
+    Creates the instance for Planner Class and invoke containerization_plan method
+    """
+    global controller
+    if not controller:
+        controller = Planner()
+    resp, code = controller.entity_standardizer(auth_url,headers,auth_headers,app_data)
+
+    return resp, code
     
     
 def do_assessment(auth_url,headers,auth_headers,app_data):

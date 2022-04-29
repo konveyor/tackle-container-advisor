@@ -55,7 +55,7 @@ def entity_standardizer(mentions):
     tfidf_end        = time.time()
     tfidf_time       = (tfidf_end-tfidf_start)
     entities         = {}
-    mention_data = infer_data.get("data", {})    
+    mention_data = infer_data.get("data", {})
     for idx, entry in mention_data.items():
         mention     = entry.get("mention", None)
         predictions = entry.get("predictions", [])
