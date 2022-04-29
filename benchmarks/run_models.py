@@ -15,6 +15,7 @@ import time
 import copy
 import configparser
 import argparse
+import logging
 
 
 def parser():
@@ -32,22 +33,22 @@ def print_gh_markdown(table_data):
 
     :returns: Return cleaned string with non-ascii characters removed/replaced
     """
-    print(f"<p><table>")
-    print(f"<thead>")
-    print(
-        f"<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th><th>False positive rate</th><th>Runtime (on cpu)</th></tr>")
-    print(f"</thead>")
-    print(f"<tbody>")
+    
+    logging.info(f"<p><table>")
+    logging.info(f"<thead>")
+    logging.info(f"<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th><th>False positive rate</th><th>Runtime (on cpu)</th></tr>")
+    logging.info(f"</thead>")
+    logging.info(f"<tbody>")
     for model, data in table_data.items():
         cpu_time = data["time"]
-        top_k = data["topk"]
-        kns = data["kns"]
-        fpr = data["fpr"]
-        unks = data["unks"]
-        print(
-            f"<tr><td>{model}</td><td>{top_k[0] / kns:.2f}</td><td>{top_k[1] / kns:.2f}</td><td>{top_k[2] / kns:.2f}</td><td>{top_k[3] / kns:.2f}</td><td>{top_k[4] / kns:.2f} ({top_k[4]}/{kns})</td><td>{fpr / max(1, unks):.2f}({fpr}/{unks})</td><td>{cpu_time:.2f}s</td></tr>")
-    print(f"</tbody>")
-    print(f"</table></p>")
+        top_k    = data["topk"]
+        kns      = data["kns"]
+        fpr      = data["fpr"]
+        unks     = data["unks"]
+        logging.info(f"<tr><td>{model}</td><td>{top_k[0]/max(1,kns):.2f}</td><td>{top_k[1]/max(1,kns):.2f}</td><td>{top_k[2]/max(1,kns):.2f}</td><td>{top_k[3]/max(1,kns):.2f}</td><td>{top_k[4]/max(1,kns):.2f} ({top_k[4]}/{kns})</td><td>{fpr/max(1,unks):.2f}({fpr}/{unks})</td><td>{cpu_time:.2f}s</td></tr>")
+    logging.info(f"</tbody>")
+    logging.info(f"</table></p>")
+
 
 
 def topk(json_data):
@@ -58,24 +59,28 @@ def topk(json_data):
 
     :returns: Return cleaned string with non-ascii characters removed/replaced
     """
-    top_k = (0, 0, 0, 0, 0)  # Top-1, top-3, top-5, top-10, top-inf
-    unks = 0
-    fpr = 0
-    kns = 0
+
+    label  = json_data.get("label", "label")
+    top_k  = (0, 0, 0, 0, 0) # Top-1, top-3, top-5, top-10, top-inf
+    unks   = 0
+    fpr    = 0
+    kns    = 0
+
     for idx in json_data["data"]:
-        label = json_data["data"][idx].get("label", None)
+        correct = json_data["data"][idx].get(label, None)
         predictions = json_data["data"][idx].get("predictions", [])
-        if label is None:
+        if correct is None:
             unks += 1
         else:
             kns += 1
         if predictions:
-            if label is None:
+            if correct is None:
                 fpr += 1
                 continue
             for i, pred in enumerate(predictions):
-                if (pred[0] == label):
-                    top_k = (top_k[0], top_k[1], top_k[2], top_k[3], top_k[4] + 1)
+                if (pred[0] == correct):
+                    top_k = (top_k[0],top_k[1],top_k[2],top_k[3],top_k[4]+1)
+
                     if i <= 0:
                         top_k = (top_k[0] + 1, top_k[1], top_k[2], top_k[3], top_k[4])
                     if i <= 2:
@@ -90,25 +95,29 @@ def topk(json_data):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s", filemode='w')
 
     args = parser()
 
     model_type = args.model_type
     mode = args.mode
 
-    table_data = {}
+    table_data       = {}
 
-    config = configparser.ConfigParser()
+    config    = configparser.ConfigParser()
+
     common = os.path.join("config", "common.ini")
     config.read(common)
 
     try:
         data_dir = config['general']['data_dir']
     except KeyError as k:
-        print(f'{k} is not a key in your common.ini file.')
+        logging.error(f'{k} is not a key in your common.ini file.')
         exit()
 
-    tca_infer_file_name = os.path.join(data_dir, "tca", "infer.json")
+    task = {'tca': 'tca', 'wikidata':'tca', 'deploy': 'tca'}
+    tca_infer_file_name = os.path.join(data_dir, task[mode], "infer.json")
+
     with open(tca_infer_file_name, 'r', encoding='utf-8') as tca_infer_file:
         tca_infer_data = json.load(tca_infer_file)
 
@@ -117,7 +126,7 @@ if __name__ == "__main__":
         wikidata_infer_data = json.load(wikidata_infer_file)
 
     if model_type == "tf_idf" or model_type == "all":
-        print("----------- TFIDF -------------")
+        logging.info("----------- TFIDF -------------")
         from entity_standardizer.tfidf import TFIDF
 
         if mode != 'deploy':
@@ -135,9 +144,9 @@ if __name__ == "__main__":
         table_data["tfidf"]["fpr"] = tfidf_topk["fpr"]
         table_data["tfidf"]["unks"] = tfidf_topk["unks"]
         table_data["tfidf"]["time"] = tfidf_time
-
+    
     if model_type == "wiki_data_api" or model_type == "all":
-        print("----------- WIKIDATA API -------------")
+        logging.info("----------- WIKIDATA API -------------")
         from entity_standardizer.wdapi import WDAPI
 
         if mode != 'deploy':
@@ -155,5 +164,6 @@ if __name__ == "__main__":
         table_data["wdapi"]["fpr"] = wdapi_topk["fpr"]
         table_data["wdapi"]["unks"] = wdapi_topk["unks"]
         table_data["wdapi"]["time"] = wdapi_time
+
 
     print_gh_markdown(table_data)

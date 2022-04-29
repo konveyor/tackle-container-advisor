@@ -15,9 +15,6 @@ import os
 import json
 import numpy as np
 
-logger = logging.getLogger('generate_data')
-logger.setLevel(logging.INFO)
-
 def clean(mention):
     """
     Remove/Replace non-ascii characters 
@@ -81,17 +78,17 @@ def get_benchmark_data(config, all_train=False):
         ent_json = config["tca"]["entities"]
         men_json = config["tca"]["mentions"]
     except KeyError as k:
-        logger.error(f'{k}  is not a key in your common.ini file.')
+        logging.error(f'{k}  is not a key in your common.ini file.')
         exit()
     
     entity_file_name = os.path.join(kg_dir, ent_json)
     if not os.path.exists(entity_file_name):
-        logger.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+        logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
         exit()
 
     mentions_file_name = os.path.join(kg_dir, men_json)
     if not os.path.exists(mentions_file_name):
-        logger.error(f"Mentions json file {mentions_file_name} does not exist. Run kg generator to create this file.")
+        logging.error(f"Mentions json file {mentions_file_name} does not exist. Run kg generator to create this file.")
         exit()
         
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
@@ -112,12 +109,12 @@ def get_benchmark_data(config, all_train=False):
                     for mention in mention_list:
                         train_data[idx]["mentions"] = train_data[idx].get("mentions", [])
                         train_data[idx]["mentions"] += [clean(mention) for mention in mention_list]
-                    train_data[idx]["label"] = entity_id
+                    train_data[idx]["entity_id"] = entity_id
                 else:
                     for mention in mention_list:
                         inf_data[inf_idx] = {}
                         inf_data[inf_idx]["mention"] = clean(mention)
-                        inf_data[inf_idx]["label"]  = entity_id
+                        inf_data[inf_idx]["entity_id"]  = entity_id
                         inf_idx += 1
             else:
                 train_data[idx]["mentions"] = train_data[idx].get("mentions", [])
@@ -128,7 +125,7 @@ def get_benchmark_data(config, all_train=False):
                 else:
                     train_data[idx]["mentions"] += [clean(mention) for mention in mention_list]
                     
-                train_data[idx]["label"] = entity_id
+                train_data[idx]["entity_id"] = entity_id
 
     return train_data, inf_data
 
@@ -141,7 +138,7 @@ def create_deploy_benchmark(config, train_data, inf_data):
     try:
         data_dir = config["general"]["data_dir"]
     except KeyError as k:
-        logger.error(f'{k}  is not a key in your common.ini file.')
+        logging.error(f'{k}  is not a key in your common.ini file.')
         exit()
         
     data_dir = config["general"]["data_dir"]
@@ -161,7 +158,7 @@ def create_tca_benchmark(config, train_data, inf_data):
     try:
         data_dir = config["general"]["data_dir"]
     except KeyError as k:
-        logger.error(f'{k}  is not a key in your common.ini file.')
+        logging.error(f'{k}  is not a key in your common.ini file.')
         exit()
         
     data_dir = config["general"]["data_dir"]
@@ -187,12 +184,12 @@ def create_wikidata_benchmark(config, train_data, inf_data):
         data_dir = config["general"]["data_dir"]
         ent_json = config["tca"]["entities"]
     except KeyError as k:
-        logger.error(f'{k}  is not a key in your common.ini file.')
+        logging.error(f'{k}  is not a key in your common.ini file.')
         exit()
         
     entity_file_name = os.path.join(kg_dir, ent_json)
     if not os.path.exists(entity_file_name):
-        logger.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+        logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
         exit()    
 
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
@@ -212,13 +209,13 @@ def create_wikidata_benchmark(config, train_data, inf_data):
         eid_to_qid[tca_id] = wd_qid
 
     for idx, data in inf_data.items():
-        entity_id = data["label"]
+        entity_id = data["entity_id"]
         if entity_id in eid_to_qid:
             wd_qid = eid_to_qid[entity_id]
-            data["label"]  = wd_qid
+            data["qid"]  = wd_qid
         else:
             wd_qid = None
-            del data["label"]    
+        del data["entity_id"]    
         
     data_dir = config["general"]["data_dir"]
     name     = "wikidata"
@@ -233,6 +230,7 @@ def create_wikidata_benchmark(config, train_data, inf_data):
     '''
         
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s", filemode='w')
     config   = configparser.ConfigParser()
     common   = os.path.join("config", "common.ini")
     kg       = os.path.join("config", "kg.ini")

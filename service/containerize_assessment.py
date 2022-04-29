@@ -33,8 +33,6 @@ class Assessment():
             Init method for Assessment Class
             Setting up the logging level as info and opens logfile in write mode to capture the logs in text file
          """
-        self.logger = logging.getLogger('containerize_assessment')
-        self.logger.setLevel(logging.INFO)
         
     def app_validation(self, appL):
         """
@@ -63,7 +61,7 @@ class Assessment():
             return appL
 
         except Exception as e:
-            self.logger.error(str(e))
+            logging.error(str(e))
 
 
 
@@ -110,5 +108,4 @@ class Assessment():
             return pAppL
 
         except Exception as e:
-            self.logger.error(str(e))
-    
+            logging.error(str(e))

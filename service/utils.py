@@ -13,8 +13,6 @@
 import re
 import logging
 
-logger = logging.getLogger('utils')
-logger.setLevel(logging.INFO)
 class Utils:
 
     @staticmethod
@@ -29,7 +27,7 @@ class Utils:
             return tech_stack
 
         except Exception as e:
-            logger.error(str(e))
+            logging.error(str(e))
 
     @staticmethod
     def getEntityString(obj):
@@ -64,6 +62,6 @@ class Utils:
             return result
 
         except Exception as e:
-            logger.error(str(e))
+            logging.error(str(e))
         
 

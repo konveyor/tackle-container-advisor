@@ -7,9 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 import time
 
-logger = logging.getLogger('test')
-logger.setLevel(logging.INFO)
-
+logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s", filemode='w')
 config   = configparser.ConfigParser()
 test     = os.path.join("config", "test.ini")
 config.read(test)
@@ -17,7 +15,7 @@ try:
     host = config['performance']['host']
     port = config['performance']['port']
 except KeyError as k:
-    logger.error(f'{k}  is not a key in your test.ini file.')
+    logging.error(f'{k}  is not a key in your test.ini file.')
     exit()
 
 with open(os.path.join("test", "performance", "small.json")) as f:

@@ -13,8 +13,6 @@ class Wikidata():
     def __init__(self, url):
         super().__init__()
         self.url = url
-        self.logger = logging.getLogger('wdapi')
-        self.logger.setLevel(logging.INFO)
 
     def get_data_combinations(self, data):
         """
@@ -58,7 +56,7 @@ class Wikidata():
         else:
             candidates = R.json()            
             if candidates.get('success', 0) != 1:
-                self.logger.error(f"Failed wikidata query -> {candidates}")
+                logging.error(f"Failed wikidata query -> {candidates}")
             else:
                 for candidate in candidates['search']:
                     qids.append((candidate['id'], 1.0))
@@ -86,7 +84,7 @@ class Wikidata():
         data_to_qids = {}
         for i, frag in enumerate(fragments): 
             if frag is None or frag == "" or frag == " ":
-                print("Fragments = ", fragments)
+                logging.warning("Contains empty fragments = ", fragments)
             frqids = self.invoke_wikidata_api(frag)            
             if frqids:
                 data_to_qids[frag] = frqids           
@@ -104,11 +102,11 @@ class Wikidata():
         combinations = self.get_data_combinations(valid_data)
         for i, comb in enumerate(combinations):
             if comb is None or comb == "" or comb == " ":
-                print("Valid data = ", valid_data)
+                logging.warn("Contains empty combinations= ", valid_data)
             qids += self.invoke_wikidata_api(comb)
 
         if not qids:           
-            self.logger.info(f"No qids for {data}")                    
+            logging.info(f"No qids for {data}")                    
 
         wd_qids[data] = qids
         return wd_qids

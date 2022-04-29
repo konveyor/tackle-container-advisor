@@ -4,9 +4,6 @@ import logging
 import pickle
 from time import time
 
-logger = logging.getLogger('tfidf')
-logger.setLevel(logging.INFO)
-
 def predict(config, json_data):
     """
     Runs tfidf model on test set
@@ -25,12 +22,12 @@ def predict(config, json_data):
         model_dir     = config["general"]["model_dir"]
         name          = config["task"]["name"]
     except KeyError as k:
-        logger.error(f'{k} is not a key in your common.ini file.')
+        logging.error(f'{k} is not a key in your common.ini file.')
         exit()
     
     entity_file_name = os.path.join(kg_dir, entities_json)
     if not os.path.isfile(entity_file_name):
-        logger.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+        logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
         exit()
 
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
@@ -44,8 +41,8 @@ def predict(config, json_data):
 
     mentions   = {}
     for idx in json_data["data"]:
-        mention = json_data["data"][idx]["mention"]
-        mentions[mention] = idx
+        mention = json_data["data"][idx]["mention"]        
+        mentions[idx] = mention
         
     model_path = os.path.join(model_dir, name)
     os.makedirs(model_path, exist_ok=True)
@@ -55,12 +52,12 @@ def predict(config, json_data):
             run_train = False
             break            
     if run_train:
+        logging.info("TFIDF model does not exist - will re-run training")
         train(config)
     
     sim_app    = sim_applier(config)
     tf_eids    = {}
-
-    for mention, idx in mentions.items():
+    for idx, mention in mentions.items():
         tech_sim_scores=sim_app.tech_stack_standardization(mention.lower())
         json_data["data"][idx]["predictions"] = json_data["data"][idx].get("predictions", [])
         if tech_sim_scores:
@@ -87,12 +84,12 @@ def train(config):
         tfidf_name    = config["train"]["tfidf_name"]
         instances_name= config["train"]["instances_name"]        
     except KeyError as k:
-        logger.error(f'{k} is not a key in your common.ini file.')
+        logging.error(f'{k} is not a key in your common.ini file.')
         exit()
 
     entity_file_name = os.path.join(kg_dir, entities_json)
     if not os.path.isfile(entity_file_name):
-        logger.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
+        logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
         exit()
             
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
@@ -111,7 +108,7 @@ def train(config):
     name         = config["task"]["name"]    
     train_file_name = os.path.join(data_dir, name, "train.json")
     if not os.path.isfile(train_file_name):
-        logger.error(f'{train_file_name} is not a file. Run "benchmarks.py" to generate this training file')
+        logging.error(f'{train_file_name} is not a file. Run "benchmarks.py" to generate this training file')
         exit()
     
     data_to_eid = {}
@@ -119,11 +116,12 @@ def train(config):
         with open(train_file_name, 'r', encoding='utf-8') as train_file:
             json_data = json.load(train_file)
             data      = json_data["data"]
+            label       = json_data.get("label", "label")
             for idx, item in data.items():
                 for mention in item["mentions"]:
-                    data_to_eid[mention] = item["label"]
+                    data_to_eid[mention] = item[label]
     except OSError as exception:
-        logger.error(exception)
+        logging.error(exception)
         exit()
 
     # Convert training data format
@@ -133,7 +131,7 @@ def train(config):
         entity = entity_names[str(eid)]
         
         if [entity, mention, mention] in all_instances:
-            print("duplicate:",[entity, mention])
+            logging.warning("duplicate:",[entity, mention])
             continue
         
         all_instances.append([entity, mention, mention])
