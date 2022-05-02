@@ -34,7 +34,9 @@ class version_detector:
 
         else:
             self.__class_version = {}
+
             logging.error(f'class_type_mapper[{class_version_filepath}] is empty or not exists')
+
 
     @staticmethod
     def mask_entity(text):
@@ -54,8 +56,9 @@ class version_detector:
                     text = text.strip().lower().replace(each, "ENTITY_MASK")
             return text
         except Exception as e:
+
             logging.error(str(e))
-         
+
     @staticmethod
     def get_version_strings(text):
 
@@ -113,7 +116,9 @@ class version_detector:
 
             return version_final.strip()
         except Exception as e:
+
             logging.error(str(e))
+
 
     @staticmethod
     def get_latest_version(self, text):

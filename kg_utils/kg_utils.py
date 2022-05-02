@@ -26,6 +26,7 @@ kg = os.path.join("config", "kg.ini")
 config.read([common, kg])
 
 
+
 def cleanStrValue(value):
     """
     Clean input strings
@@ -1171,8 +1172,10 @@ def create_db_connection(db_file):
         logging.error(f'{e}: Issue connecting to db. Please check whether the .db file exists.')
     return connection
 
+
 if __name__== '__main__':
     logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s", filemode='w')
+
     try:
         version = config["general"]["version"]
         db_dir = config["general"]["db_dir"]
@@ -1184,6 +1187,7 @@ if __name__== '__main__':
     if not os.path.isfile(db_path):
         logging.error(f'{db_path} is not a file. Run "sh setup" from /tackle-advise-containerizeation folder to generate db files')
         exit()
+        
     else:
         connection = create_db_connection(db_path)
 
