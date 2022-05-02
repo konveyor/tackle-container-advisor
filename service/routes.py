@@ -56,13 +56,9 @@ api = Api(app,
           # prefix='/api'
          )
 
-std_mention_model = api.model('Standardizer Mention', {
+std_input_model = api.model('Standardizer Input', {
     "mention_id": fields.Integer(required=True, description='Unique mention identifier'),
     "mention": fields.String(required=True, description='Technology component mention')
-})
-
-std_input_model = api.model('Standardizer Input', {
-    "mentions": fields.List(fields.Nested(std_mention_model), required=True, description='A list of mentions to standardize.')
 })
 
 std_entity_model = api.model('Standardizer Entity', {

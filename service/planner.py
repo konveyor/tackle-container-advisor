@@ -150,10 +150,9 @@ class Planner:
             mentions = {}
             menhash  = {}
             uniques  = {}
-            mention_data =  app_data[0].get("mentions", [])
-            for mention in mention_data:            
-                mention_id = mention.get("mention_id", None)
-                mention_name = mention.get("mention", "")
+            for mention_data in app_data:            
+                mention_id = mention_data.get("mention_id", None)
+                mention_name = mention_data.get("mention", "")
                 if mention_name.lower() not in ['na', 'null', 'string', 'none']:
                     if mention_name in menhash:
                         mentions[str(mention_id)] = uniques[menhash[mention_name]]
