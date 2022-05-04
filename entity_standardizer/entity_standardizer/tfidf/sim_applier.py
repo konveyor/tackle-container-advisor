@@ -29,7 +29,7 @@ class sim_applier:
         self.config= config
         
         self.sim_threshold= float(config["infer"]["sim_threshold"])
-        self.top= float(config["train"]["top"])
+        self.topk= float(config["train"]["topk"])
                  
         self.NA_CATEGORY="NA_CATEGORY"
         self.NA_VARIANT="NA_VARIANT"
@@ -140,7 +140,7 @@ class sim_applier:
                 
                 sims1=self.remove_duplicate_category(sims)
                 
-                while i <self.top:
+                while i <self.topk:
                     sim_id_,similarity=sims1[i]
                 
                     if similarity<=self.sim_threshold:
