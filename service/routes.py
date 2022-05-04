@@ -57,16 +57,19 @@ api = Api(app,
          )
 
 std_input_model = api.model('Standardizer Input', {
+    "app_id": fields.Integer(required=False, description='Unique identifier of application containing mention'),
     "mention_id": fields.Integer(required=True, description='Unique mention identifier'),
     "mention": fields.String(required=True, description='Technology component mention')
 })
 
 std_entity_model = api.model('Standardizer Entity', {
+    "app_id": fields.Integer(required=False, description='Unique identifier of application containing mention'),
     "mention_id": fields.Integer(required=True, description='Unique mention identifier'),
     "mention": fields.String(required=True, description='Technology mention name'),
     "entity_names": fields.List(fields.String(required=True, description='Standardized technology entity name')),
     "entity_types": fields.List(fields.String(required=True, description='Standardized technology entity type')),
-    "confidence" : fields.List(fields.Float(required=True, description='Standardization confidence score'))    
+    "confidence" : fields.List(fields.Float(required=True, description='Standardization confidence score')),    
+    "versions": fields.List(fields.String(required=True, description='Standard versions for each entity'))
 })
 
 std_output_model = api.model('Standardizer Output', {
@@ -127,7 +130,7 @@ output_model_planning = api.model('Planning Output', {
     })
 
 
-@api.route('/entity-standardizer', strict_slashes=False)
+@api.route('/standardize', strict_slashes=False)
 class EntityStandardizer(Resource):
     """
     EntityStandardizer class creates the standardization in the form of std_output_model for the
@@ -150,10 +153,10 @@ class EntityStandardizer(Resource):
         return planner.do_standardization(auth_url,dict(request.headers),auth_headers,api.payload)
 
 
-@api.route('/containerization-assessment', strict_slashes=False)
-class ContainerizationAssessment(Resource):
+@api.route('/assess', strict_slashes=False)
+class Assessment(Resource):
     """
-    ContainerizationAssessment class creates the assessment in the form of assessment_model for the
+    Assessment class creates the assessment in the form of assessment_model for the
     application/component details given in the input_model
     """
     @api.doc('create_containerization_assessment')
@@ -173,11 +176,11 @@ class ContainerizationAssessment(Resource):
         return planner.do_assessment(auth_url,dict(request.headers),auth_headers,api.payload)
 
 
-@api.route('/containerization-planning', strict_slashes=False)
+@api.route('/plan', strict_slashes=False)
 @api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift or operator', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift', 'operator']}})
-class ContainerizationPlanning(Resource):
+class Planning(Resource):
     """
-    ContainerizationAssessment class creates the assessment in the form of assessment_model for the
+    Planning class creates the assessment in the form of assessment_model for the
     application/component details given in the input_model
     """
     @api.doc('create_containerization_planning')

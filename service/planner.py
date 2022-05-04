@@ -19,21 +19,13 @@ import flask
 import time
 from datetime import datetime
 import traceback
+import configparser
 
-from service.entity_detection import EntityDetection
 from service.containerize_assessment import Assessment
 from service.infer_tech import InferTech
 from service.containerize_planning import Plan
-import configparser
-from service.multiprocessing_mapreduce import SimpleMapReduce
 from entity_standardizer.tfidf import TFIDF
-
-config    = configparser.ConfigParser()
-common    = os.path.join("config", "common.ini")
-kg        = os.path.join("config", "kg.ini")
-config.read([common, kg])
-
-controller = None
+from service.version_detector import version_detector
 
 class Planner:
     def __init__(self):
@@ -42,15 +34,19 @@ class Planner:
         Create instances for EntityDetection & Assessment classes
         Set default values for token based variables
         """
-        self.entity_detection = EntityDetection()
         self.inferTech = InferTech()
         self.assess = Assessment()
         self.plan = Plan()
 
-        self.is_disable_access_token = None
-        if 'is_disable_access_token' in config['RBAC']:
-            self.is_disable_access_token = config['RBAC']['is_disable_access_token']
+        self.config  = configparser.ConfigParser()
+        common       = os.path.join("config", "common.ini")
+        kg           = os.path.join("config", "kg.ini")
+        self.config.read([common, kg])
 
+        self.is_disable_access_token = None
+        if 'is_disable_access_token' in self.config['RBAC']:
+            self.is_disable_access_token = self.config['RBAC']['is_disable_access_token']
+            
         logger = logging.getLogger()
         ch = logger.handlers[0]
         formatter = logging.Formatter("[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s")
@@ -98,45 +94,133 @@ class Planner:
         
         return dict(), 201, is_valid
 
+    def version_standardizer(self, mention, entity):
+        na_version = self.config['NA_VALUES']['NA_VERSION']
+        vd = version_detector()
+        version = vd.get_version_strings(mention.lower())
+        std_version = vd.get_standardized_version(vd, entity, version)
+        final_version = (version,std_version)
+        if std_version != na_version:
+            logging.info(f"Mention = {mention}, Entity = {entity}, Version = {version}, Std. version = {std_version}")
+        return final_version
 
-    def compose_app(self, app_data):
+    def app_standardizer(self, app_data):
         """
-        compose_app methods takes app_data as input and split into batch with batch size 20000 and invoke compose_app
-        method in entity_detection class to start the assessment process
+        compose_app methods takes app_data as input, extracts mentions for entity standardization and
+        version detection
         """
-        try:
-            threhold = 20000
-            num = round(len(app_data)/threhold + 0.5)
-            if num > 1:                
-                logging.info(f"input app num: {str(len(app_data))} and split into {str(num)}")
-            else:
-                logging.info(f"input app num: {str(len(app_data))}")
-            appL = []
-            for x in range(1, num+1):
-                if num > 1:
-                    logging.warn(f'split round: {str(x)}')
-                begin = threhold * (x-1)
-                end = threhold * x
-                if end > len(app_data):
-                    end = len(app_data)
+        __class_type_mapper = {}
 
-                appl = app_data[slice(begin, end)]
-                if config['Performance']['multiprocessing_enabled'] == "YES":
-                    logging.info("MULTIPROCESSING ENABLED==YES")
-                    mapper = SimpleMapReduce(self.map_apps, self.reduce_apps)
-                    appl = mapper(appl)
-                    appl = self.multiprocessing_to_single_app_data(appl)
+        __tca_input_mapper = {
+                                "application_name": "application_name",
+                                "application_description": "application_description",
+                                "component_name": "component_name",
+                                "operating_system": "tech_stack",
+                                "programming_languages": "tech_stack",
+                                "middleware": "tech_stack",
+                                "database": "tech_stack",
+                                "integration_services_and_additional_softwares": "tech_stack",
+                                "technology_summary": "tech_stack"
+                            }
+        
+        class_type_mapper_filepath = os.path.join(self.config['general']['kg_dir'], self.config['filenames']['class_type_mapper'])
+        if os.path.exists(class_type_mapper_filepath):
+            with open(class_type_mapper_filepath, 'r') as f:
+                __class_type_mapper = json.load(f)            
+        else:
+            __class_type_mapper = {}
+            logging.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
+        
+        HIGH_THRESHOLD=float(self.config['Thresholds']['HIGH_THRESHOLD'])
+        MEDIUM_THRESHOLD=float(self.config['Thresholds']['MEDIUM_THRESHOLD'])
 
-                else:
-                    logging.info("MULTIPROCESSING ENABLED==NO")
-                    appl = self.entity_detection.compose_app(appl)
-                
-                appL.extend(appl)
-            
-            return appL
-        except Exception as e:
-            logging.error(str(e))
-            raise e
+        if len(__tca_input_mapper) == 0 or len(__class_type_mapper) == 0:
+            logging.error('ontologies init failed')
+            return app_data
+        
+        if (not app_data)  or len(app_data) == 0:
+            return app_data
+        
+        general_term_key = 'Technology'
+
+        mentions  = []
+        id_to_app = {}
+        for idx, app in enumerate(app_data):
+            id_to_app[idx] = app
+            for header in app:
+                if __tca_input_mapper.get(header, 'NA') == 'tech_stack' and app[header] and str(app[header]).lower() not in ['na', 'null', 'string', 'none']:
+                    num_mentions = len(mentions)
+                    mentions.append({"app_id": idx, "mention_id": num_mentions, "mention": str(app[header])})
+
+            app["KG Version"] = __class_type_mapper['kg_version']
+            for x in set(__class_type_mapper['mappings'].values()):
+                app[x] = {}
+
+        headers = {'Accept': 'application/json', 'Content-Type': 'application/json'}
+        resp = requests.post("http://localhost:8000/entity-standardizer", data=json.dumps(mentions), headers=headers)
+        if resp.status_code != 201:
+            logging.error(f"Response code {resp.status_code} received from entity-standardizer.")
+        else:
+            mentions = resp.json()["result"]
+            for mention_data in mentions:
+                mention_id  = mention_data["mention_id"]
+                mention     = mention_data["mention"]
+                app_id      = mention_data["app_id"]
+                entity_names= mention_data["entity_names"]
+                entity_types= mention_data["entity_types"]
+                conf_scores = mention_data["confidence"]
+                versions    = mention_data["versions"]
+                app         = id_to_app[app_id]
+                low_medium_confidence = app.get('low_medium_confidence', {})
+                unknown               = app.get('unknown', [])
+
+                if len(entity_names) > 1:
+                    ##low medium confidence
+                    obj = {}
+                    for entity, version, score in zip(entity_names, versions, conf_scores):
+                        if __class_type_mapper['mappings'][entity] == general_term_key:
+                            ## Technology
+                            if mention not in app[general_term_key]:
+                                app[general_term_key][mention] = {}
+                            app[general_term_key][mention][entity] = version
+                        elif score >= HIGH_THRESHOLD:
+                            # logging.error(f'snippet confidence wrong:{s} category:{category} confidence:{str(sim)}')
+                            # continue
+                            # only keep first one
+                            if mention not in app[__class_type_mapper['mappings'][entity]]:
+                                app[__class_type_mapper['mappings'][entity]][mention] = {}
+                                app[__class_type_mapper['mappings'][entity]][mention][entity] = version
+                                break
+                        else:
+                            obj[entity] = version
+                    if obj:
+                        low_medium_confidence[mention] = obj
+                elif len(entity_names) == 1:
+                    entity = entity_names[0]
+                    score  = conf_scores[0]
+                    version= versions[0]
+                    if __class_type_mapper['mappings'][entity] == general_term_key:
+                        ## Technology
+                        if mention not in app[general_term_key]:
+                            app[general_term_key][mention] = {}
+                        app[general_term_key][mention][entity] = version
+                    else:
+                        if score >= HIGH_THRESHOLD:
+                            if mention not in app[__class_type_mapper['mappings'][entity]]:
+                                app[__class_type_mapper['mappings'][entity]][mention] = {}
+                            app[__class_type_mapper['mappings'][entity]][mention][entity] = version
+                        else:
+                            # low or medium confidence
+                            if mention not in low_medium_confidence:
+                                low_medium_confidence[mention] = {}
+                            low_medium_confidence[mention][entity] = version
+                elif len(entity_names) == 0:
+                    unknown.append(mention)
+                if low_medium_confidence:
+                    app['low_medium_confidence'] = low_medium_confidence
+                if unknown:
+                    app['unknown'] = unknown
+        return app_data
 
     def entity_standardizer(self,auth_url,headers,auth_headers,app_data):
         """
@@ -147,21 +231,23 @@ class Planner:
             resp, code, is_valid = self.detect_access_token(auth_url,headers,auth_headers)
             if not is_valid:
                 return resp, code
-            mentions = {}
-            menhash  = {}
-            uniques  = {}
-            for mention_data in app_data:            
+            mentions = {}  # Holds all mentions as pointers to unique mention
+            menhash  = {}  # Maps mention string to unique mention id
+            uniques  = {}  # Holds unique mentions
+            appid    = {}  # Holds mapping of mention_id -> app_id 
+            for mention_data in app_data:        
+                app_id     = mention_data.get("app_id", None)    
                 mention_id = mention_data.get("mention_id", None)
                 mention_name = mention_data.get("mention", "")
                 if mention_name.lower() not in ['na', 'null', 'string', 'none']:
+                    appid[mention_id] = app_id
                     if mention_name in menhash:
-                        mentions[str(mention_id)] = uniques[menhash[mention_name]]
+                        mentions[mention_id] = uniques[menhash[mention_name]]
                     else:
                         ulen                  = len(uniques)
                         menhash[mention_name] = ulen                        
                         uniques[ulen] = {"mention": mention_name}
-                        mentions[str(mention_id)] = uniques[ulen]
-
+                        mentions[mention_id] = uniques[ulen]
         except Exception as e:
             logging.error(str(e))
             track = traceback.format_exc()
@@ -171,10 +257,12 @@ class Planner:
             dict(status=201, message="Entity standardization completed successfully!", result=list(mentions.values())), 201
 
         try:
-            kg_dir = config["general"]["kg_dir"]
-            entities_json = config["tca"]["entities"]
-            high_threshold= float(config["Thresholds"]["HIGH_THRESHOLD"])
-            medium_threshold= float(config["Thresholds"]["MEDIUM_THRESHOLD"])
+            kg_dir = self.config["general"]["kg_dir"]
+            entities_json = self.config["tca"]["entities"]
+            high_threshold= float(self.config["Thresholds"]["HIGH_THRESHOLD"])
+            medium_threshold= float(self.config["Thresholds"]["MEDIUM_THRESHOLD"])
+            na_category=self.config['NA_VALUES']['NA_CATEGORY']
+            na_version = self.config['NA_VALUES']['NA_VERSION']
         except KeyError as k:
             logging.error(f'{k} is not a key in your common.ini file.')
             return dict(status = 500,message = 'TCA application error'), 500
@@ -189,7 +277,6 @@ class Planner:
         with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
             entities = json.load(entity_file)
         entity_data = {}
-        entity_data[0] = ("NA_CATEGORY", "NA_CATEGORY")
         for idx, entity in entities["data"].items():
             entity_name = entity["entity_name"] 
             tca_id      = entity["entity_id"]
@@ -197,32 +284,43 @@ class Planner:
             entity_data[tca_id] = (entity_name, entity_type_name)
 
         infer_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": uniques}
+        
         tfidf            = TFIDF("deploy")
         tfidf_start      = time.time()
         tfidf_data       = tfidf.infer(infer_data)
         tfidf_end        = time.time()
         tfidf_time       = (tfidf_end-tfidf_start)
-    
         entities         = {}
         mention_data     = tfidf_data.get("data", {})
 
         for idx, mention in mention_data.items():
+            mention_name= mention.get("mention", "")
             predictions = mention.get("predictions", [])
             if not predictions:            
                 logging.info(f"No predictions for {mention}")
                 continue
-            entity_names= [entity_data[p[0]][0] for p in predictions if p[1] > high_threshold]
-            entity_types= [entity_data[p[0]][1] for p in predictions if p[1] > high_threshold]
-            conf_scores = [round(p[1],2) for p in predictions if p[1] > high_threshold]
+            entity_names= [entity_data[p[0]][0] for p in predictions if p[1] > medium_threshold]
+            entity_types= [entity_data[p[0]][1] for p in predictions if p[1] > medium_threshold]
+            conf_scores = [round(p[1],2) for p in predictions if p[1] > medium_threshold]
             mention["entity_names"] = entity_names
+            versions    = []
+            for entity in entity_names:
+                version  = self.version_standardizer(mention_name, entity)
+                if version[1] == na_version:
+                    versions.append('')
+                else:
+                    versions.append(version[1])
             mention["entity_types"] = entity_types
             mention["confidence"]   = conf_scores
+            mention["versions"]     = versions
             del mention["predictions"]
         
         import copy
         for idx in mentions:
             mentions[idx] = copy.deepcopy(mentions[idx])
             mentions[idx]["mention_id"] = idx
+            if appid[idx] is not None:
+                mentions[idx]["app_id"] = appid[idx]
         return dict(status=201, message="Entity standardization completed successfully!", result=list(mentions.values())), 201
 
     def containerization_assessment(self,auth_url,headers,auth_headers,app_data):
@@ -235,9 +333,9 @@ class Planner:
             resp, code, is_valid = self.detect_access_token(auth_url,headers,auth_headers)
             if not is_valid:
                 return resp, code
-
             
-            appL = self.compose_app(app_data)
+            # appL = self.compose_app(app_data)
+            appL = self.app_standardizer(app_data)
             appL = self.assess.app_validation(appL)
             # Generate output for UI
             assessment = self.assess.output_to_ui_assessment(appL)
@@ -273,43 +371,12 @@ class Planner:
             track = traceback.format_exc()
             return dict(status=400, message='Input data format doesn\'t match the format expected by TCA'), 400
 
-
-    def map_apps(self, app_data):
-
-        """
-        Creates a mapper from the input app_data for multiprocessing. Processes the data and send it to the reducer.
-        """
-
-        apps = []
-        index = 0
-        app_data = self.entity_detection.compose_app([app_data])
-        apps.append((json.dumps(app_data),1))
-        index+=1
-        return apps
-    
-    def reduce_apps(self, apps):
-        """
-        Creates a reducer to merge all processed data together to generate one final output.
-        """
-        key, total = apps
-        return (key, sum(total))
-            
-    def multiprocessing_to_single_app_data(self, app_data):
-        """
-        Preprocess the data from the reducer to generate the data required for processing next steps in TCA.
-        """
-        apps = []
-        for app in app_data:
-            app_str=json.loads(app[0])
-            apps.append(app_str[0])
-        
-        return apps
-
 def do_standardization(auth_url,headers,auth_headers,app_data):
     """
     Creates the instance for Planner Class and invoke containerization_plan method
     """
-    global controller
+    # global controller
+    controller = None
     if not controller:
         controller = Planner()
     resp, code = controller.entity_standardizer(auth_url,headers,auth_headers,app_data)
@@ -321,7 +388,8 @@ def do_assessment(auth_url,headers,auth_headers,app_data):
     """
     Creates the instance for Planner Class and invoke containerization_plan method
     """
-    global controller
+    # global controller
+    controller = None
     if not controller:
         controller = Planner()
     resp, code = controller.containerization_assessment(auth_url,headers,auth_headers,app_data)
@@ -332,19 +400,10 @@ def do_plan(auth_url,headers,auth_headers,assessment_data,catalog):
     """
     Creates the instance for Planner Class and invoke containerization_plan method
     """
-    global controller
+    # global controller
+    controller = None
     if not controller:
         controller = Planner()
     resp, code = controller.containerization_plan(auth_url,headers,auth_headers,assessment_data,catalog)
 
     return resp, code
-
-
-def get_supported_metamodels():
-    """
-        Creates the instance for Planner Class and get the keys for tca_input_mapper in entity_detection class
-    """
-    global controller
-    if not controller:
-        controller = Planner()
-    return controller.entity_detection.get_tca_input_mapper().keys()
