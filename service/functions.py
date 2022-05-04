@@ -46,10 +46,14 @@ class Functions:
         if 'is_disable_access_token' in config['RBAC']:
             self.is_disable_access_token = config['RBAC']['is_disable_access_token']
             
+        USER_LEVEL = os.getenv('LOGGING_LEVEL', 'INFO')
+        level = logging.getLevelName(USER_LEVEL)
         logger = logging.getLogger()
+        logger.setLevel(level)
         ch = logger.handlers[0]
         formatter = logging.Formatter("[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s")
         ch.setFormatter(formatter)
+        print(f"Effective logging level is {logging.getLevelName(logger.getEffectiveLevel())}")
 
     def detect_access_token(self,auth_url,headers,auth_headers):
         """
