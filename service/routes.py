@@ -17,7 +17,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 import os
 from . import app
-import service.planner as planner
+import service.functions as functions
 
 import configparser
 
@@ -56,13 +56,13 @@ api = Api(app,
           # prefix='/api'
          )
 
-std_input_model = api.model('Standardizer Input', {
+std_input_model = api.model('Standardization Input', {
     "app_id": fields.Integer(required=False, description='Unique identifier of application containing mention'),
     "mention_id": fields.Integer(required=True, description='Unique mention identifier'),
     "mention": fields.String(required=True, description='Technology component mention')
 })
 
-std_entity_model = api.model('Standardizer Entity', {
+std_entity_model = api.model('Standardization Entity', {
     "app_id": fields.Integer(required=False, description='Unique identifier of application containing mention'),
     "mention_id": fields.Integer(required=True, description='Unique mention identifier'),
     "mention": fields.String(required=True, description='Technology mention name'),
@@ -72,10 +72,10 @@ std_entity_model = api.model('Standardizer Entity', {
     "versions": fields.List(fields.String(required=True, description='Standard versions for each entity'))
 })
 
-std_output_model = api.model('Standardizer Output', {
+std_output_model = api.model('Standardization Output', {
     "status": fields.Integer(required=True, description='Status of the call'),
     "message": fields.String(required=True, description='Status message'),
-    "result": fields.List(fields.Nested(std_entity_model), required=True, description='A list of standardized entities for input mentions.')
+    "standardization": fields.List(fields.Nested(std_entity_model), required=True, description='A list of standardized entities for input mentions.')
 })
 
 
@@ -126,18 +126,18 @@ output_model_assessment = api.model('Assessment Output', {
 output_model_planning = api.model('Planning Output', {
     "status": fields.Integer(required=True, description='Status of the call'),
     "message": fields.String(required=True, description='Status message'),
-    "containerization": fields.List(fields.Nested(planning_model), required=True, description='An array of containerization assessment for application workload')
+    "planning": fields.List(fields.Nested(planning_model), required=True, description='An array of containerization assessment for application workload')
     })
 
 
 @api.route('/standardize', strict_slashes=False)
-class EntityStandardizer(Resource):
+class Standardization(Resource):
     """
-    EntityStandardizer class creates the standardization in the form of std_output_model for the
+    Standardization class creates the standardization in the form of std_output_model for the
     tech_mentions given in the std_input_model
     """
     @api.doc('create_entity_standardization')
-    @api.response(201, 'Stadardization Completed successfully!')
+    @api.response(201, 'Standardization Completed successfully!')
     @api.response(400, 'Input data format doesn\'t match the format expected by TCA')
     @api.response(401, 'Unauthorized, missing or invalid access token')
     @api.response(500, 'Internal Server Error, missing or wrong config of RBAC access token validation url')
@@ -150,7 +150,7 @@ class EntityStandardizer(Resource):
         """
         Returns standardized entities and their types for a list of mentions
         """
-        return planner.do_standardization(auth_url,dict(request.headers),auth_headers,api.payload)
+        return functions.do_standardization(auth_url,dict(request.headers),auth_headers,api.payload)
 
 
 @api.route('/assess', strict_slashes=False)
@@ -173,7 +173,7 @@ class Assessment(Resource):
         """
         Invoke do_plan method in assessment class to initiate assessment process
         """
-        return planner.do_assessment(auth_url,dict(request.headers),auth_headers,api.payload)
+        return functions.do_assessment(auth_url,dict(request.headers),auth_headers,api.payload)
 
 
 @api.route('/plan', strict_slashes=False)
@@ -206,7 +206,7 @@ class Planning(Resource):
         if catalog not in ['dockerhub', 'openshift', 'operator']:
             catalog = 'dockerhub'
 
-        return planner.do_plan(auth_url,dict(request.headers),auth_headers,api.payload,catalog)
+        return functions.do_planning(auth_url,dict(request.headers),auth_headers,api.payload,catalog)
 
 @api.route('/health_check')
 @api.response(200, 'HTTP OK')

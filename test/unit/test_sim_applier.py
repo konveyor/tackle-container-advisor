@@ -13,17 +13,22 @@
 
 import unittest
 from entity_standardizer.tfidf import utils
-from service.standardizer import entity_standardizer
+from service.standardization import Standardization
 
 class TestApplySIM(unittest.TestCase):
 
     def test_sim_tech_stack_standardization(self):
         tech_stack="cobol    java    javascript:  : , , unix/mainframe, unix/mainframe: unknown , db2    "
-        mentions  = utils.preprocess(tech_stack)        
-        entities  = entity_standardizer(mentions)
+        mentions  = utils.preprocess(tech_stack)
+        mention_data = []
+        for idx, mention in enumerate(mentions):
+            mention_data.append({"mention_id": idx, "mention": mention})
+        standardizer = Standardization()   
+        std_mentions = standardizer.entity_standardizer(mention_data)
         extracted = []
-        for mention in mentions:
-            entity_list = entities.get(mention, [])
-            extracted.append(entity_list[0])        
+        for mention_data in std_mentions:
+            entity_names = mention_data.get("entity_names", [""])
+            conf_scores  = mention_data.get("confidence", [0.0])
+            extracted.append([entity_names[0], conf_scores[0]]) 
         expected = [['COBOL|*', 1.0], ['Java|*', 1.0], ['JavaScript', 1.0], ['Unix|*', 1.0], ['mainframe', 1.0], ['DB2', 1.0]]
         self.assertTrue(extracted == expected)
