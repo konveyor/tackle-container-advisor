@@ -11,7 +11,7 @@
 
 import unittest
 from collections import OrderedDict
-from service.containerize_planning import Plan
+from service.planning import Plan
 from service.infer_tech import InferTech
 
 class TestPlan(unittest.TestCase):
