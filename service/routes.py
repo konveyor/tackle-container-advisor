@@ -17,7 +17,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 import os
 from . import app
-import service.planner as planner
+import service.functions as functions
 
 import configparser
 
@@ -55,6 +55,29 @@ api = Api(app,
           authorizations=authorizations,
           # prefix='/api'
          )
+
+std_input_model = api.model('Standardization Input', {
+    "app_id": fields.Integer(required=False, description='Unique identifier of application containing mention'),
+    "mention_id": fields.Integer(required=True, description='Unique mention identifier'),
+    "mention": fields.String(required=True, description='Technology component mention')
+})
+
+std_entity_model = api.model('Standardization Entity', {
+    "app_id": fields.Integer(required=False, description='Unique identifier of application containing mention'),
+    "mention_id": fields.Integer(required=True, description='Unique mention identifier'),
+    "mention": fields.String(required=True, description='Technology mention name'),
+    "entity_names": fields.List(fields.String(required=True, description='Standardized technology entity name')),
+    "entity_types": fields.List(fields.String(required=True, description='Standardized technology entity type')),
+    "confidence" : fields.List(fields.Float(required=True, description='Standardization confidence score')),    
+    "versions": fields.List(fields.String(required=True, description='Standard versions for each entity'))
+})
+
+std_output_model = api.model('Standardization Output', {
+    "status": fields.Integer(required=True, description='Status of the call'),
+    "message": fields.String(required=True, description='Status message'),
+    "standardization": fields.List(fields.Nested(std_entity_model), required=True, description='A list of standardized entities for input mentions.')
+})
+
 
 input_model = api.model('Input', {
     "application_name": fields.String(required=True, description='Name of the application'),
@@ -97,19 +120,43 @@ planning_model = api.model('Planning', {
 output_model_assessment = api.model('Assessment Output', {
     "status": fields.Integer(required=True, description='Status of the call'),
     "message": fields.String(required=True, description='Status message'),
-    'assessment': fields.List(fields.Nested(assessment_model), required=True, description='An array of containerization assessment for application workload')
+    "assessment": fields.List(fields.Nested(assessment_model), required=True, description='An array of containerization assessment for application workload')
     })
 
 output_model_planning = api.model('Planning Output', {
     "status": fields.Integer(required=True, description='Status of the call'),
     "message": fields.String(required=True, description='Status message'),
-    "containerization": fields.List(fields.Nested(planning_model), required=True, description='An array of containerization assessment for application workload')
+    "planning": fields.List(fields.Nested(planning_model), required=True, description='An array of containerization assessment for application workload')
     })
 
-@api.route('/containerization-assessment', strict_slashes=False)
-class ContainerizationAssessment(Resource):
+
+@api.route('/standardize', strict_slashes=False)
+class Standardization(Resource):
     """
-    ContainerizationAssessment class creates the assessment in the form of assessment_model for the
+    Standardization class creates the standardization in the form of std_output_model for the
+    tech_mentions given in the std_input_model
+    """
+    @api.doc('create_entity_standardization')
+    @api.response(201, 'Standardization Completed successfully!')
+    @api.response(400, 'Input data format doesn\'t match the format expected by TCA')
+    @api.response(401, 'Unauthorized, missing or invalid access token')
+    @api.response(500, 'Internal Server Error, missing or wrong config of RBAC access token validation url')
+    @api.expect([std_input_model])
+    @api.marshal_with(std_output_model)
+    @api.doc(security='apikey')
+
+
+    def post(self):
+        """
+        Returns standardized entities and their types for a list of mentions
+        """
+        return functions.do_standardization(auth_url,dict(request.headers),auth_headers,api.payload)
+
+
+@api.route('/assess', strict_slashes=False)
+class Assessment(Resource):
+    """
+    Assessment class creates the assessment in the form of assessment_model for the
     application/component details given in the input_model
     """
     @api.doc('create_containerization_assessment')
@@ -126,15 +173,14 @@ class ContainerizationAssessment(Resource):
         """
         Invoke do_plan method in assessment class to initiate assessment process
         """
-        return planner.do_assessment(auth_url,dict(request.headers),auth_headers,api.payload)
+        return functions.do_assessment(auth_url,dict(request.headers),auth_headers,api.payload)
 
 
-@api.route('/containerization-planning', strict_slashes=False)
+@api.route('/plan', strict_slashes=False)
 @api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift or operator', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift', 'operator']}})
-
-class ContainerizationPlanning(Resource):
+class Planning(Resource):
     """
-    ContainerizationAssessment class creates the assessment in the form of assessment_model for the
+    Planning class creates the assessment in the form of assessment_model for the
     application/component details given in the input_model
     """
     @api.doc('create_containerization_planning')
@@ -160,7 +206,7 @@ class ContainerizationPlanning(Resource):
         if catalog not in ['dockerhub', 'openshift', 'operator']:
             catalog = 'dockerhub'
 
-        return planner.do_plan(auth_url,dict(request.headers),auth_headers,api.payload,catalog)
+        return functions.do_planning(auth_url,dict(request.headers),auth_headers,api.payload,catalog)
 
 @api.route('/health_check')
 @api.response(200, 'HTTP OK')

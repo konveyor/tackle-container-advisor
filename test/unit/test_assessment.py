@@ -13,7 +13,7 @@
 
 import unittest
 from collections import OrderedDict
-from service.containerize_assessment import Assessment
+from service.assessment import Assessment
 
 
 class TestAssessment(unittest.TestCase):

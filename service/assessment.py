@@ -13,7 +13,6 @@ import os
 import json
 from collections import OrderedDict
 import logging
-from service.utils import Utils
 
 
 import configparser
