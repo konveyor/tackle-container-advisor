@@ -1,13 +1,18 @@
-# *****************************************************************
-# Copyright IBM Corporation 2022
-# Licensed under the Eclipse Public License 2.0, Version 2.0 (the "License");
+################################################################################
+# Copyright IBM Corporation 2021, 2022
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# *****************************************************************
+################################################################################
 
 import os
 import json
@@ -16,44 +21,44 @@ import shutil
 import logging
 import requests
 import flask
+import time
 from datetime import datetime
 import traceback
-
-from service.entity_detection import EntityDetection
-from service.containerize_assessment import Assessment
-from service.infer_tech import InferTech
-from service.containerize_planning import Plan
 import configparser
-from service.multiprocessing_mapreduce import SimpleMapReduce
 
+from service.standardization import Standardization
+from service.assessment import Assessment
+from service.planning import Plan
+from service.infer_tech import InferTech
 
-config = configparser.ConfigParser()
-common = os.path.join("config", "common.ini")
-kg     = os.path.join("config", "kg.ini")
-config.read([common, kg])
-
-controller = None
-
-class Planner:
+class Functions:
     def __init__(self):
         """
         Init method for planner class
         Create instances for EntityDetection & Assessment classes
         Set default values for token based variables
         """
-        self.entity_detection = EntityDetection()
-        self.inferTech = InferTech()
-        self.assess = Assessment()
-        self.plan = Plan()
+        self.inferTech  = InferTech()
+        self.standardize= Standardization()
+        self.assess     = Assessment()
+        self.plan       = Plan()
+
+        config  = configparser.ConfigParser()
+        common       = os.path.join("config", "common.ini")
+        config.read(common)
 
         self.is_disable_access_token = None
         if 'is_disable_access_token' in config['RBAC']:
             self.is_disable_access_token = config['RBAC']['is_disable_access_token']
-
+            
+        USER_LEVEL = os.getenv('LOGGING_LEVEL', 'INFO')
+        level = logging.getLevelName(USER_LEVEL)
         logger = logging.getLogger()
+        logger.setLevel(level)
         ch = logger.handlers[0]
         formatter = logging.Formatter("[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s")
         ch.setFormatter(formatter)
+        print(f"Effective logging level is {logging.getLevelName(logger.getEffectiveLevel())}")
 
     def detect_access_token(self,auth_url,headers,auth_headers):
         """
@@ -97,47 +102,23 @@ class Planner:
         
         return dict(), 201, is_valid
 
-
-    def compose_app(self, app_data):
+    def standardization(self,auth_url,headers,auth_headers,app_data):
         """
-        compose_app methods takes app_data as input and split into batch with batch size 20000 and invoke compose_app
-        method in entity_detection class to start the assessment process
+        Invokes detect_access_token for accesstoken validation and if it's valid, it will call
+        entity_standardizer to get standardized name and type.
         """
         try:
-            threhold = 20000
-            num = round(len(app_data)/threhold + 0.5)
-            if num > 1:                
-                logging.info(f"input app num: {str(len(app_data))} and split into {str(num)}")
-            else:
-                logging.info(f"input app num: {str(len(app_data))}")
-            appL = []
-            for x in range(1, num+1):
-                if num > 1:
-                    logging.warn(f'split round: {str(x)}')
-                begin = threhold * (x-1)
-                end = threhold * x
-                if end > len(app_data):
-                    end = len(app_data)
-
-                appl = app_data[slice(begin, end)]
-                if config['Performance']['multiprocessing_enabled'] == "YES":
-                    logging.info("MULTIPROCESSING ENABLED==YES")
-                    mapper = SimpleMapReduce(self.map_apps, self.reduce_apps)
-                    appl = mapper(appl)
-                    appl = self.multiprocessing_to_single_app_data(appl)
-
-                else:
-                    logging.info("MULTIPROCESSING ENABLED==NO")
-                    appl = self.entity_detection.compose_app(appl)
-                
-                appL.extend(appl)
-            
-            return appL
+            resp, code, is_valid = self.detect_access_token(auth_url,headers,auth_headers)
+            if not is_valid:
+                return resp, code
+            output = self.standardize.entity_standarizer(app_data)
+            return dict(status=201, message="Standardization completed successfully!", standardization=output), 201
         except Exception as e:
             logging.error(str(e))
-            raise e
+            track = traceback.format_exc()
+            return dict(status = 400,message = 'Input data format doesn\'t match the format expected by TCA'), 400
 
-    def containerization_assessment(self,auth_url,headers,auth_headers,app_data):
+    def assessment(self,auth_url,headers,auth_headers,app_data):
         """
         Invokes detect_access_token for accesstoken validation and if it's valid, it will call
         compose_app for assessment and app_validation for validation the assessed application data
@@ -148,19 +129,18 @@ class Planner:
             if not is_valid:
                 return resp, code
 
-            
-            appL = self.compose_app(app_data)
+            appL = self.standardize.app_standardizer(app_data)
             appL = self.assess.app_validation(appL)
             # Generate output for UI
-            assessment = self.assess.output_to_ui_assessment(appL)
-            logging.info(f'{str(datetime.now())} output assessment num: {str(len(assessment))} ')
-            return dict(status=201, message="Assessment completed successfully!", assessment=assessment), 201
+            output = self.assess.output_to_ui_assessment(appL)
+            logging.info(f'{str(datetime.now())} output assessment num: {str(len(output))} ')
+            return dict(status=201, message="Assessment completed successfully!", assessment=output), 201
         except Exception as e:
             logging.error(str(e))
             track = traceback.format_exc()
             return dict(status = 400,message = 'Input data format doesn\'t match the format expected by TCA'), 400
 
-    def containerization_plan(self, auth_url, headers, auth_headers, assessment_data,catalog):
+    def planning(self, auth_url, headers, auth_headers, assessment_data,catalog):
         """
         Invokes detect_access_token for accesstoken validation and if it's valid, it will call
         compose_app for assessment and app_validation for validation the assessed application data
@@ -175,58 +155,36 @@ class Planner:
             appL = self.inferTech.infer_missing_tech(appL)
             appL = self.plan.validate_app(appL)
             containerL = self.plan.map_to_docker(appL, catalog)
-            planning = self.plan.output_to_ui_planning(containerL)
+            output = self.plan.output_to_ui_planning(containerL)
 
-            logging.info(f"output planning num: {str(len(planning))}")
-            return dict(status=201, message="Container recommendation generated!", containerization=planning), 201
+            logging.info(f"output planning num: {str(len(output))}")
+            return dict(status=201, message="Container recommendation generated!", planning=output), 201
 
         except Exception as e:
             logging.error(str(e))
             track = traceback.format_exc()
             return dict(status=400, message='Input data format doesn\'t match the format expected by TCA'), 400
 
+def do_standardization(auth_url,headers,auth_headers,app_data):
+    """
+    Creates the instance for Planner Class and invoke containerization_plan method
+    """
+    controller = None
+    if not controller:
+        controller = Functions()
+    resp, code = controller.standardization(auth_url,headers,auth_headers,app_data)
 
-    def map_apps(self, app_data):
-
-        """
-        Creates a mapper from the input app_data for multiprocessing. Processes the data and send it to the reducer.
-        """
-
-        apps = []
-        index = 0
-        app_data = self.entity_detection.compose_app([app_data])
-        apps.append((json.dumps(app_data),1))
-        index+=1
-        return apps
-    
-    def reduce_apps(self, apps):
-        """
-        Creates a reducer to merge all processed data together to generate one final output.
-        """
-        key, total = apps
-        return (key, sum(total))
-            
-    def multiprocessing_to_single_app_data(self, app_data):
-        """
-        Preprocess the data from the reducer to generate the data required for processing next steps in TCA.
-        """
-        apps = []
-        for app in app_data:
-            app_str=json.loads(app[0])
-            apps.append(app_str[0])
-        
-        return apps
-
+    return resp, code
     
     
 def do_assessment(auth_url,headers,auth_headers,app_data):
     """
     Creates the instance for Planner Class and invoke containerization_plan method
     """
-    global controller
+    controller = None
     if not controller:
-        controller = Planner()
-    resp, code = controller.containerization_assessment(auth_url,headers,auth_headers,app_data)
+        controller = Functions()
+    resp, code = controller.assessment(auth_url,headers,auth_headers,app_data)
 
     return resp, code
 
@@ -234,19 +192,9 @@ def do_plan(auth_url,headers,auth_headers,assessment_data,catalog):
     """
     Creates the instance for Planner Class and invoke containerization_plan method
     """
-    global controller
+    controller = None
     if not controller:
-        controller = Planner()
-    resp, code = controller.containerization_plan(auth_url,headers,auth_headers,assessment_data,catalog)
+        controller = Functions()
+    resp, code = controller.planning(auth_url,headers,auth_headers,assessment_data,catalog)
 
     return resp, code
-
-
-def get_supported_metamodels():
-    """
-        Creates the instance for Planner Class and get the keys for tca_input_mapper in entity_detection class
-    """
-    global controller
-    if not controller:
-        controller = Planner()
-    return controller.entity_detection.get_tca_input_mapper().keys()

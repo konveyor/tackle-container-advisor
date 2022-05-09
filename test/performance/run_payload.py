@@ -12,8 +12,8 @@ config   = configparser.ConfigParser()
 test     = os.path.join("config", "test.ini")
 config.read(test)
 try:
-    host = config['performance']['host']
-    port = config['performance']['port']
+    host = config['test']['host']
+    port = config['test']['port']
 except KeyError as k:
     logging.error(f'{k}  is not a key in your test.ini file.')
     exit()
@@ -27,7 +27,7 @@ try:
     required_data = int(sys.argv[2])
 except IndexError:
     required_data = 1000
-  
+
 quo = required_data // actual_len
 rem = required_data % actual_len
 data = quo * data + data[:rem]
@@ -40,7 +40,7 @@ except IndexError:
   
 print('No of concurrent user : ',n_user)
   
-urls = [host+':'+port+'/containerization-assessment']*n_user  
+urls = [host+':'+port+'/entity-standardizer']*n_user  
 
 def call_tca(url):
     start = time.time()
