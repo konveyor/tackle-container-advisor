@@ -97,6 +97,7 @@ echo "--------------------Generated DB file----------------------"
 ## Generating KG Utility Files
 ######################################################################
 echo "--------------Generating KG Utility Files------------------"
+ls kg
 python kg_utils/generator.py
 python kg_utils/kg_utils.py
 echo "----------------Generated KG Utility Files--------------------"
