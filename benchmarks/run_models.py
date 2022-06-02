@@ -176,11 +176,6 @@ if __name__ == "__main__":
         table_data["tfidf"]["unks"] = tfidf_topk["unks"]
         table_data["tfidf"]["time"] = tfidf_time
 
-    plt.xlabel("False positive rate")
-    plt.ylabel("Top-1 accuracy")
-    plt.legend()
-    plt.savefig('top1.png')
-
     if model_type == "wiki_data_api" or model_type == "all":
         logging.info("----------- WIKIDATA API -------------")
         from entity_standardizer.wdapi import WDAPI
@@ -192,13 +187,26 @@ if __name__ == "__main__":
         wdapi_infer = copy.deepcopy(wikidata_infer_data)
         wdapi_infer = wdapi.infer(wdapi_infer)
         wdapi_end = time.time()
-        wdapi_time = (wdapi_end - wdapi_start)
-        wdapi_topk = topk(wdapi_infer)
+        wdapi_time = (wdapi_end - wdapi_start)    
+        wdapi_x_data = []
+        wdapi_topk_data = [[] for k in range(3)]
+        for thr in np.arange(0.0,1.0,0.05):                    
+            wdapi_topk = topk(wdapi_infer, thr)
+            wdapi_x_data.append(wdapi_topk['fpr']/tfidf_topk['unks'])
+            for k in range(3):
+                wdapi_topk_data[k].append(wdapi_topk['topk'][k]/wdapi_topk['kns'])
+        plot(wdapli_x_data, wdapi_topk_data, '-', 'g', 'wdapi')
+        wdapi_topk = topk(wdapi_infer, threshold)
         table_data["wdapi"] = {}
         table_data["wdapi"]["topk"] = wdapi_topk["topk"]
         table_data["wdapi"]["kns"] = wdapi_topk["kns"]
         table_data["wdapi"]["fpr"] = wdapi_topk["fpr"]
         table_data["wdapi"]["unks"] = wdapi_topk["unks"]
         table_data["wdapi"]["time"] = wdapi_time
+    
+    plt.xlabel("False positive rate")
+    plt.ylabel("Top-1 accuracy")
+    plt.legend()
+    plt.savefig('top1.png')
 
     print_gh_markdown(table_data)
