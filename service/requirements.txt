@@ -17,3 +17,4 @@ deepdiff==5.7.0
 # Runtime
 gunicorn==20.0.0
 waitress==2.1.1
+matplotlib==3.5.2

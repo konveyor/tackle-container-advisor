@@ -11,7 +11,8 @@ fi
 
 #remove files from ontologies
 if [ -d kg/ ]; then
-    rm  -rf kg/
+    echo "Skipping kg removal for infer_negative.json"
+    # rm  -rf kg/
 fi
 
 ## remove db file from DB
