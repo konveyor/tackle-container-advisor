@@ -188,7 +188,7 @@ def do_assessment(auth_url,headers,auth_headers,app_data):
 
     return resp, code
 
-def do_plan(auth_url,headers,auth_headers,assessment_data,catalog):
+def do_planning(auth_url,headers,auth_headers,assessment_data,catalog):
     """
     Creates the instance for Planner Class and invoke containerization_plan method
     """
