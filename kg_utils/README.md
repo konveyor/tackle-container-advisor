@@ -2,23 +2,23 @@
 
 Python scripts to generate JSON from Database
 
-### Install Anaconda3 
-- Follow instructions to download and install Anaconda3 
+### Install Anaconda3
+- Follow instructions to download and install Anaconda3
 
 ### Create conda virtual environment
 	# Requires python 3.8
 	conda create --name <env-name> python=3.8
 	conda activate <env-name>
-### Clone TCA 
+### Clone TCA
 	git clone git@github.com:konveyor/tackle-container-advisor.git
 
 ### How to use
 - ``cd tackle-container-advisor``
 - ``pip3 install -r requirements.txt``
-- ``cd kg_utils`` 
+- ``cd kg_utils``
 - ``db`` provides the input data
 - From top level folder run ``python kg_utils/kg_utils.py`` and ``python kg_utils/generator.py``
-- Outputs json are saved in: ``kg/`` 
+- Outputs json are saved in: ``kg/``
 
 
 ### Generate documentation:
@@ -28,9 +28,9 @@ Python scripts to generate JSON from Database
 - Setting up conf.py:
 	* Uncomment ``import os`` and  ``import sys``
 	* Uncomment and Change path: ``sys.path.insert(0, os.path.abspath('..'))``
-    
+
     * In the ``# -- General configuration ---`` field, add ``extensions = ['sphinx.ext.autodoc']``
-    
+
     * In the ``# -- Options for HTML output ---`` field,  add ``html_theme = 'sphinx_rtd_theme'``
  - Setting up index.rst:
  	Add ``modules``  after line 11
@@ -38,6 +38,69 @@ Python scripts to generate JSON from Database
 - Run  ``make html``
 - Documentation is located in ``/docs/_build/html/index.html``
 
+## TCA_image_search
+
+Allows users to search relevant or exact container images from  DockerHub ,Quai.io , and Artifacthub.io(Community Operators OLM) registries.
+
+## Search urls:  
+
+  - Dockerhub
+    Dockerhub repository: [Dockerhub images](https://hub.docker.com/).
+
+   - RedHat OpenShift: [RedHat Quay](https://quay.io/search),
+
+   - Redhat OperatorHub: [Artifact.io](https://artifacthub.io/)
+  
+## Getting started
+
+#### Prerequisite
+  
+  - Use [TCA_KG_Aumentation](https://github.ibm.com/tca-team/TCA_KG_Augmentation) repos to augmment new entities to the database by following the instructions from the README file. You can add a single entity or a batch of entities from a csv file to the entities table.
+  - Make sure you have [docker](https://docs.docker.com/engine/install/) installed locally.
+ 
+  - git clone ```git@github.ibm.com:tca-team/tackle_image_search_apis.git```
+
+  - Move the newly augmented db the this path ```kb\{db_version}.db``` 
+ 
+  - The path "kb\{db_version}.db", where "db_version" is the latest TCA database version and contains all entities to search(see "entity_name" table) for images.
+  
+  -  In VSCODE,  Open the folder in a container,  which will install all dependencies needed to run the script.
+
+#### Input data to the search engine.
+    
+    Data are loaded from the entities table from the database. you can load a single entity or all entities  from the database. 
+ 
+   Sample entities table 
+    
+   ![This is an image](https://github.ibm.com/tca-team/tackle_image_search_apis/blob/master/resources/entity_names.png)
+    
+#### Running the script
+    
+ ```python src/search_images.py   -e <entity_name(s)> -db kb\{db_version}.db``` This loads entity(ies) from the entity_name table and searches images across all catalogues.
+ 
+```
+python src/search_images.py -h
+
+usage: Search container images  from dockerhub , Quay.io , and Artifacthub.io
+
+optional arguments:
+
+  -h, --help            show this help message and exit
+  
+  -e ENTITY, --entity ENTITY  Enter entity name(s) from the database. i.e :-e nginx,tomcat,ubuntu or -e all ( to search all entities). Also enclose entities with                        
+  
+             double words in  a quote. For example: -e 'ibm i',db2,'Apache Kafka'
+             
+  -db DATABASE_PATH, --database_path  DATABASE_PATH    Path containing the latest tackle containerization advisor database.
+  
+Try $python    -e <entity_names>    -db <database_path"> or type $python  src/search_images.py --help
+
+```
+
+Results are saved into the following files:  ```kb\images.json``` , ```kb\operator_images.csv``` ,```kb\openshift_images.csv``` ,and ```kb\docker_images.csv``` 
+ 
+
+   
 ### KG Augmentation
 
 ##### TCA KG Augmentation script allows a semi-automatic way of ingesting data into the TCA Knowledge Base
@@ -55,8 +118,8 @@ The id field for all the tables is auto generated so the user does not have to s
 ### Running the script
 ##### To run the script you can use one of the following commands based:
 
-1. Interactive mode: python kg_aug.py -m interactive -d aca_kg_ce_1.0.4.db
-2. Batch mode: python kg_aug.py -m batch -b input.csv -d aca_kg_ce_1.0.4.db
+1. Interactive mode: python kg_aug.py -m interactive -d 1.0.4.db
+2. Batch mode: python kg_aug.py -m batch -b input.csv -d 1.0.4.db
 
 ##### The -m indicated the mode (interactive or batch), -b points to the csv file for batch processing and -d specifies the database file.
 
