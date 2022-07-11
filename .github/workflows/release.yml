@@ -19,7 +19,6 @@ jobs:
           release_name: v0.1.0
           body: |
             Changes in this Release
-            - First Change
-            - Second Change
+            - Initial release 
           draft: false
           prerelease: false
