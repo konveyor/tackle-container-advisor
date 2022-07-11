@@ -135,7 +135,7 @@ class TestEntityDetection(unittest.TestCase):
                      'App Server': {'Oracle WebLogic Server 14c': {'Oracle WebLogic Server|*': ('14c', '14c')}}, \
                      'Runlib': {}, \
                      'Lang': {'Java 1.2': {'Java|*': ('1.2', '1.2')}}, \
-                     'OS': {'Linux|Amazon Linux 2013.09.1': {'Linux|Amazon Linux': ('2013.09.0', '2013.09.2')}}                            
+                     'OS': {'Linux|Amazon Linux 2013.09.1': {'Linux|Amazon Linux': ('2013.09.1', '2013.09.2')}}                            
                     }]
         standardizer = Standardization()
         app_data = standardizer.app_standardizer(app_data)
