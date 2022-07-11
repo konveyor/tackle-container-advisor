@@ -25,6 +25,8 @@ jobs:
     name: Release project
     needs: [run-unit-tests]
     runs-on: ubuntu-latest
+    env:
+      SEMVER: v0.1.0
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
@@ -33,10 +35,9 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-          SEMVER: v0.1.0
         with:
-          tag_name: ${env.SEMVER}
-          release_name: ${env.SEMVER}
+          tag_name: ${{ env.SEMVER }}
+          release_name: ${{ env.SEMVER }}
           body: |
             Changes in this Release
             - Initial release 
