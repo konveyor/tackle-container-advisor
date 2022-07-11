@@ -20,26 +20,3 @@ jobs:
         id: run-unit-tests
         run: |
           python -m unittest discover -v -s test -p test_*.py
-
-  release-project:
-    name: Release project
-    needs: [run-unit-tests]
-    runs-on: ubuntu-latest
-    env:
-      SEMVER: v0.1.1
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ env.SEMVER }}
-          release_name: ${{ env.SEMVER }}
-          body: |
-            Changes in this Release
-            - ${{ github.event.head_commit.message }}
-          draft: false
-          prerelease: false
