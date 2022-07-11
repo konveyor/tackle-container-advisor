@@ -2,6 +2,7 @@ name: test-cases-git-actions
 on: [push,pull_request]
 jobs:
   run-test-cases:
+    name: Run unit test cases
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,5 +18,4 @@ jobs:
           bash setup.sh
       - name: Test with pytest
         run: |
-          echo ${{ toJson(github) }}
           python -m unittest discover -v -s test -p test_*.py
