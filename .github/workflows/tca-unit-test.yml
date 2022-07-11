@@ -1,4 +1,4 @@
-name: test-and-release
+name: Unit test cases for TCA
 on: [push,pull_request]
 jobs:
   run-unit-tests:

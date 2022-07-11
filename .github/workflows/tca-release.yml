@@ -1,4 +1,4 @@
-name: Create and Publish a Release
+name: Create and Publish a TCA release
 
 on:
   push:
