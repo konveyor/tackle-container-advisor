@@ -17,4 +17,5 @@ jobs:
           bash setup.sh
       - name: Test with pytest
         run: |
+          echo ${{ toJson(github) }}
           python -m unittest discover -v -s test -p test_*.py
