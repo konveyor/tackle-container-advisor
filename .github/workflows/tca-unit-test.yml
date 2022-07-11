@@ -26,7 +26,7 @@ jobs:
     needs: [run-unit-tests]
     runs-on: ubuntu-latest
     env:
-      SEMVER: v0.1.0
+      SEMVER: v0.1.1
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
