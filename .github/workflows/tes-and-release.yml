@@ -33,9 +33,10 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          SEMVER: v0.1.0
         with:
-          tag_name: v0.1.0
-          release_name: v0.1.0
+          tag_name: ${SEMVER}
+          release_name: ${SEMVER}
           body: |
             Changes in this Release
             - Initial release 
