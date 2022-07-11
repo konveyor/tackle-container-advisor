@@ -20,7 +20,7 @@ jobs:
         id: run-unit-tests
         run: |
           python -m unittest discover -v -s test -p test_*.py
-          echo "Unit test return value = $?"
+
   release-project:
     name: Release project
     needs: [run-unit-tests]
@@ -34,12 +34,12 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.SEMVER }}
           release_name: ${{ env.SEMVER }}
           body: |
             Changes in this Release
-            - Initial release 
+            - ${{ github.event.head_commit.message }}
           draft: false
           prerelease: false
