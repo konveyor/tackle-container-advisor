@@ -1,4 +1,4 @@
-name: test-cases-git-actions
+name: test-and-release
 on: [push,pull_request]
 jobs:
   run-unit-tests:
