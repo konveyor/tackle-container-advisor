@@ -1,0 +1,30 @@
+name: Create and Publish a TCA release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  tagged-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Get release tag
+        id: get_release_tag
+        run: echo ::set-output name=tag_name::${GITHUB_REF#refs/tags/}
+      - name: Build Changelog
+        id: gen_changelog
+        uses: mikepenz/release-changelog-builder-action@v1
+        with:
+          failOnError: "true"
+          configuration: .github/workflows/release_config.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{ steps.gen_changelog.outputs.changelog }}
