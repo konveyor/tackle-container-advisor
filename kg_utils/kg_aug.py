@@ -265,12 +265,12 @@ def insert_into_table(table_name, userColVals, cur):
     myId = answer.fetchall()[0][0] + 1
     sqlquery = "INSERT INTO " + table_name + " values (" + str(myId) + ","
     for colVal in userColVals:
-        if colVal.isdigit():
-            sqlquery += (colVal + ",")
-        elif count < list_len:
-            sqlquery += ("'" + colVal + "',")
+        if colVal.isdigit() or colVal == "NULL":
+            sqlquery += colVal
         else:
             sqlquery += ("'" + colVal + "'")
+        if count < list_len:
+            sqlquery += ","
         count += 1
     sqlquery += ")"
     print(sqlquery)
