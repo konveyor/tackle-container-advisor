@@ -31,7 +31,6 @@ kg = os.path.join("config", "kg.ini")
 config.read([common, kg])
 
 
-
 def cleanStrValue(value):
     """
     Clean input strings
@@ -90,7 +89,7 @@ def load_docker_openshift_urls(connect):
         openshift_container_name, open_url = img[1], img[10]
         openshift_urls[openshift_container_name] = open_url
 
-    print(json.dumps(docker_urls, indent=4))
+    #print(json.dumps(docker_urls, indent=4))
 
 
 def type_mapper(db_connection):
@@ -590,14 +589,15 @@ def create_openshift_image_kg(db_connect):
     openshift_image_kg["KG Version"] = config["general"]["version"]
 
     openshift_image_kg["Container Images"] = {}
+
     for image in openshift_cursor.fetchall():
         container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, Docker_URL, _ = image[
                                                                                                                                 1:]
-
+        
         openshift_image_kg["Container Images"][container_name] = {}
         openshift_image_kg["Container Images"][container_name]["OS"] = [
             {"Class": entities[str(os_entity_id)], "Variants": "", "Versions": "", "Type": "OS", "Subtype": ""}]
-
+        
         if lang_id == None:
             openshift_image_kg["Container Images"][container_name]["Lang"] = []
         else:
