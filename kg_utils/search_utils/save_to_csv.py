@@ -85,8 +85,7 @@ def write_to_csv(data:dict, file_name:str):
                         ,"app_server": row["app_server"] , "plugin":row["plugin"] , \
                             "runlib": row["runlib"] , "runtime": row["runtime"] , \
                             "Operator_Correspondant_Image_Url": row["Operator_Correspondant_Image_Url"] ,\
-                                "Operator_Repository" : row["Operator_Repository"], "Other_Operators": row["Other_Operators"]
-
+                                "Operator_Repository" : row["Operator_Repository"]
                                 }) 
         
 
@@ -110,7 +109,7 @@ def write_to_csv(data:dict, file_name:str):
                     , "lang":row["lang"],  "lib": row["lib"] , "app": row["app"] \
                         ,"app_server": row["app_server"] , "plugin":row["plugin"] , \
                             "runlib": row["runlib"] , "runtime": row["runtime"] , \
-                            "Opeshift_Correspondent_Image_Url": row["Openshift_Correspondent_Image_Url"] ,\
+                            "Openshift_Correspondent_Image_Url": row["Openshift_Correspondent_Image_Url"] ,\
                                 "DockerImageType": row["DockerImageType"]
 
                                 }) 
@@ -160,11 +159,14 @@ def csv_columns( table_name = "operator_images"):
     columns = { table_name: "", "container_name":"", "OS": 426, "lang" : None, "lib": None, "app": None, "app_server": None,"plugin": None,"runlib": None,"runtime": None }
 
     docker_col_extension = {"Docker_Url":"", "Notes": "", "CertOfImageAndPublisher": "" }
-    openshift_col_extension = {"Opeshift_Correspondent_Image_Url":"", "DockerImageType": ""}
-    operator_col_extension ={"Operator_Correspondant_Image_Url":[],"Operator_Repository": "", "Other_Operators": ""}
+
+    openshift_col_extension = {"Openshift_Correspondent_Image_Url":"", "DockerImageType": ""}
+
+    operator_col_extension ={"Operator_Correspondant_Image_Url":[],"Operator_Repository": ""}
 
     if table_name == "openshift_images":
         columns.update(openshift_col_extension) 
+
     elif table_name == "docker_images":
         columns.update(docker_col_extension)
     else:
@@ -174,10 +176,11 @@ def csv_columns( table_name = "operator_images"):
 
 
 def operator_images_urls(image_links: list ):
-    """_summary_
+    """
+    Add double quote around urls
 
     Args:
-        images_links (list): _description_
+        images_links (list): list of urls
     """
     urls = []
     if image_links == []:
@@ -280,6 +283,7 @@ def openshift_images():
 
         if len(exact_images) != 0: 
             for ky, val in exact_images.items():
+
                 if ky not in ["type","entity_id"]:
                     img_data = cols.copy()
                     img_data["openshift_images"] = "openshift_images"
@@ -287,7 +291,9 @@ def openshift_images():
                     img_data["Openshift_Correspondent_Image_Url"] = val[0]["url"]
                     
                     img_data_type = entity_type_mapper(exact_images["type"] , str(exact_images["entity_id"]))
-                    img_data["DockerImageType"] = list(img_data_type.keys())[0].title()
+                    
+                    if list(img_data_type.keys())[0].title() =='Os': img_data["DockerImageType"] ='OS'
+                    else: img_data["DockerImageType"] = list(img_data_type.keys())[0].title()
 
                     img_data.update(img_data_type)
                     row_data.append(img_data)
