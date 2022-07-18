@@ -220,27 +220,29 @@ class InferTech:
                 for child_type in child_types:
                     if app[child_type]:
                         for child in Utils.getEntityString(app[child_type]).split(', '):
-                            candidate_OS = self.__get_candidate_OS(child)
-                            if not candidate_OS or len(candidate_OS) == 0:
-                                logging.error(f'[{child}] can not find any OS in the knowledge graph')
-                            else:
-                                reduced_candidate_OS = self.__reduce_to_base_OS(candidate_OS)
-                                if 'Linux' in reduced_candidate_OS:
-                                    app['Linux'][child_type].append(child)
-                                    linux_compatability = True
-                                elif 'Windows' in reduced_candidate_OS:
-                                    app['Windows'][child_type].append(child)
-                                    windows_compatability = True
+                            
+                            if child != 'score':
+                                candidate_OS = self.__get_candidate_OS(child)
+                                if not candidate_OS or len(candidate_OS) == 0:
+                                    logging.error(f'[{child}] can not find any OS in the knowledge graph')
                                 else:
-                                    containerize_not_supported.append(child)
-                                if not is_init_recommended_OS:
-                                    recommended_OS = list(set(candidate_OS))
-                                    is_init_recommended_OS = True
-                                else:
-                                    recommended_OS = self.__update_recommended_OS(candidate_OS, recommended_OS)
-                                if is_need_check_compatible:
-                                    if not self.__check_OS_compatible(candidate_OS, app_OS):
-                                        incompatible_tech.append(child)
+                                    reduced_candidate_OS = self.__reduce_to_base_OS(candidate_OS)
+                                    if 'Linux' in reduced_candidate_OS:
+                                        app['Linux'][child_type].append(child)
+                                        linux_compatability = True
+                                    elif 'Windows' in reduced_candidate_OS:
+                                        app['Windows'][child_type].append(child)
+                                        windows_compatability = True
+                                    else:
+                                        containerize_not_supported.append(child)
+                                    if not is_init_recommended_OS:
+                                        recommended_OS = list(set(candidate_OS))
+                                        is_init_recommended_OS = True
+                                    else:
+                                        recommended_OS = self.__update_recommended_OS(candidate_OS, recommended_OS)
+                                    if is_need_check_compatible:
+                                        if not self.__check_OS_compatible(candidate_OS, app_OS):
+                                            incompatible_tech.append(child)
 
                 if len(incompatible_tech) > 0:
                     app['InCompatible Tech'] = ', '.join(filter(None, incompatible_tech))
