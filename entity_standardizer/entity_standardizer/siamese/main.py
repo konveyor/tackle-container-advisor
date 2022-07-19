@@ -18,6 +18,7 @@ import os, logging, random
 from sklearn.neighbors import KNeighborsClassifier
 import torch
 from tqdm import tqdm
+import pickle
 
 from .loss import batch_all_triplet_loss, batch_hard_triplet_loss
 from .model import Model
@@ -56,28 +57,39 @@ class SIAMESE():
             logging.info(f"Loading training parameters from {model_path}.")
             model.load_state_dict(torch.load(model_path, map_location=device))
 
-        _, train_entity_id_to_name = loader(self.config)
-        train_entities, labels = list(train_entity_id_to_name.values()), list(train_entity_id_to_name.keys())
-        x_test = [d['mention'] for _, d in infer_data['data'].items()]
-        # y_test = [d['entity_id'] for _, d in infer_data['data'].items()]
-
         model.to(device=device)
         model.eval()
 
-        cls = model(train_entities, device)
-        embeddings = cls.detach().cpu().numpy()
-        knn = KNeighborsClassifier(n_neighbors=1).fit(embeddings, labels)
+        entity_vector_name = 'entity_vector.pickle'
+        entity_vector_path = os.path.join(model_dir, entity_vector_name)
+        if not os.path.exists(entity_vector_path):
+            _, train_entity_id_to_name = loader(self.config)
+            train_entities, labels = list(train_entity_id_to_name.values()), list(train_entity_id_to_name.keys())
+            cls = model(train_entities, device)
+            embeddings = cls.detach().cpu().numpy()
+            with open(entity_vector_path, 'wb') as f:
+                pickle.dump((embeddings, labels), f)
+        else:
+            with open(entity_vector_path, 'rb') as f:
+                embeddings,  labels = pickle.load(f)
+                num_entities = len(embeddings)
+                logging.info(f"Loading embeddings of {num_entities} entities from {entity_vector_path}.")
+
+        x_test = [d['mention'] for _, d in infer_data['data'].items()]
+        # y_test = [d['entity_id'] for _, d in infer_data['data'].items()]
+
+        knn = KNeighborsClassifier(n_neighbors=1, metric='cosine').fit(embeddings, labels)
 
         cls_test = model(x_test, device)
-        distances, indices = knn.kneighbors(cls_test.detach().cpu().numpy(),  n_neighbors=10)
-        distances[distances == 0] = float(1e-5)
+        n_neighbors = int(self.config['infer'].get('topk', 10))
+        distances, indices = knn.kneighbors(cls_test.detach().cpu().numpy(),  n_neighbors=n_neighbors)
         distances, indices = distances.tolist(), indices.tolist()
         pred_label_ids = []
         for pred in indices: 
             label = [labels[i] for i in pred]
             pred_label_ids.append(label)
         for idx, inf_id in enumerate(infer_data['data']):
-            predictions = list(zip(pred_label_ids[idx], [1/d for d in distances[idx]]))
+            predictions = list(zip(pred_label_ids[idx], [1-d for d in distances[idx]]))
             infer_data['data'][inf_id]['predictions'] = predictions
         return infer_data
 
@@ -114,9 +126,9 @@ class SIAMESE():
                 optimizer.zero_grad()
                 cls = model(x, device)
                 if epoch < epochs / 2:
-                    loss, _ = batch_all_triplet_loss(torch.tensor(y).to(device), cls, margin, squared=True)
+                    loss, _ = batch_all_triplet_loss(torch.tensor(y).to(device), cls, margin, squared=False)
                 else:
-                    loss = batch_hard_triplet_loss(torch.tensor(y).to(device), cls, margin, squared=True)
+                    loss = batch_hard_triplet_loss(torch.tensor(y).to(device), cls, margin, squared=False)
                 loss.backward()
                 optimizer.step()
                 e_loss.append(loss.detach().cpu())
@@ -125,4 +137,14 @@ class SIAMESE():
                 torch.cuda.empty_cache()
             print('\nEpoch: {} Averge loss: {}'.format(epoch, sum(e_loss)/len(e_loss)))
         torch.save(model.state_dict(), model_path)
+        
+        entity_vector_name = 'entity_vector.pickle'
+        entity_vector_path = os.path.join(model_dir, entity_vector_name)
+        train_entities, labels = list(train_entity_id_to_name.values()), list(train_entity_id_to_name.keys())
+        model.eval()
+        cls = model(train_entities, device)
+        embeddings = cls.detach().cpu().numpy()
+        with open(entity_vector_path, 'wb') as f:
+            pickle.dump((embeddings, labels), f)
+
         return model

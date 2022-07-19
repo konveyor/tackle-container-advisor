@@ -23,6 +23,6 @@ setup(
     ],
     # package_dir={"tfidf": "tfidf", "wdapi": "wdapi"},
     # packages=find_packages(where="src"),
-    packages=["entity_standardizer", "entity_standardizer.tfidf", "entity_standardizer.wdapi"],
+    packages=["entity_standardizer", "entity_standardizer.tfidf", "entity_standardizer.siamese", "entity_standardizer.wdapi"],
     python_requires=">=3.6",
 )

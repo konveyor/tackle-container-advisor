@@ -106,6 +106,7 @@ echo "----------------Generated KG Utility Files--------------------"
 ######################################################################
 echo "--------------Generating Entity Standardizer Models------------------"
 python benchmarks/generate_data.py
+wget https://ibm.box.com/shared/static/mnp323fxslbel8qjecfmryvs8yypooka.pt -O "./models/deploy/siamese.pt"
 python benchmarks/run_models.py
 echo "---------Generated Entity Standardizer Models--------------"
 
