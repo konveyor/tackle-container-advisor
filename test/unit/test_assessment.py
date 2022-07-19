@@ -44,8 +44,8 @@ class TestAssessment(unittest.TestCase):
             'Dependent Apps': {'db2 10.0': {'DB2': '10.0'}, 'Redis': {'Redis': ''}, 'jenkins': {'Jenkins': ''}},
             'Runtime': {},
             'Libs': {'angularJs': {'JavaScript|AngularJS': ''}, 'express.js': {'JavaScript|Express.js': ''}},
-            'KG Version': '1.0.1',
-            'Reason': ''
+            'Reason': '',
+            'KG Version': '1.0.1'
         }
         expected = OrderedDict(expected)
         expected = [expected]

@@ -78,7 +78,7 @@ class Assessment():
         pAppL = []
         try :
             for app in appL:
-                # Order dictionry to fix the order of columns in the output
+                # Order dictionary to fix the order of columns in the output
                 pApp = OrderedDict()
 
                 # Raw Fields
@@ -92,20 +92,24 @@ class Assessment():
                 if 'component_name' in app:
                     pApp['Cmpt'] = app["component_name"]
 
+
                 # Curated
-                pApp['OS'] = app["OS"]
-                pApp['Lang'] = app["Lang"]
-                pApp["App Server"] = app["App Server"]
-                pApp["Dependent Apps"] = app["App"]
-                pApp["Runtime"] = app["Runtime"]
-                pApp["Libs"] = app["Lib"]
+                try:
+                    pApp['OS'] = app["OS"]
+                    pApp['Lang'] = app["Lang"]
+                    pApp["App Server"] = app["App Server"]
+                    pApp["Dependent Apps"] = app["App"]
+                    pApp["Runtime"] = app["Runtime"]
+                    pApp["Libs"] = app["Lib"]
+
+                    pApp['Reason'] = app["assessment_reason"]
+                except:
+                    pApp['Reason'] = 'Technology Summary empty or does not match TCA input format'
 
                 try :
                     pApp["KG Version"] = app["KG Version"]
                 except :
                     pApp["KG Version"] = 'Not Available'
-
-                pApp['Reason'] = app["assessment_reason"]
 
                 pAppL.append(pApp)
 
