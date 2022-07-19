@@ -989,7 +989,7 @@ def create_operator_image_kg(db_connect):
 
     operator_image_kg["Container Images"] = {}
     for image in operator_cursor.fetchall():
-        container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, operator_URL, operator_repository, other_operators = image[
+        container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, operator_URL, operator_repository = image[
                                                                                                                                                                      1:]
 
         operator_image_kg["Container Images"][container_name] = {}
@@ -1041,8 +1041,7 @@ def create_operator_image_kg(db_connect):
 
         operator_image_kg["Container Images"][container_name]["Docker_URL"] = operator_URL
         operator_image_kg["Container Images"][container_name]["OperatorRepository"] = operator_repository
-        operator_image_kg["Container Images"][container_name]["OtherOperators"] = other_operators
-
+       
     save_json(operator_image_kg, "operatorimageKG")
 
 
@@ -1067,7 +1066,7 @@ def create_inverted_operator_image_kg(database_connect):
     cur.execute("SELECT * FROM operator_images")
 
     for img in cur.fetchall():
-        _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id, runtim_id, _, _, _ = img[1:]
+        _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id, runtim_id, _, _ = img[1:]
 
         if os_id == None:
             pass
@@ -1110,7 +1109,7 @@ def create_inverted_operator_image_kg(database_connect):
             inverted_operator_images_kg[entities[str(runtim_id)]] = []
 
     for image in inverted_cur.fetchall():
-        _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _, _, _ = image[
+        _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _, _ = image[
                                                                                                                              :]
 
         if os_entity_id == None:
