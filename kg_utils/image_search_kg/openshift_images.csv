@@ -2,7 +2,7 @@ openshift_images,container_name,OS,lang,lib,app,app_server,plugin,runlib,runtime
 openshift_images,ansible,426,,,5,,,,,https://quay.io/repository/cloudctl/ansible,App
 openshift_images,asterisk,426,,,14,,,,,https://quay.io/repository/citybaseinc/asterisk,App
 openshift_images,db2,426,,,43,,,,,https://quay.io/repository/quarkusqeteam/db2,App
-openshift_images,drupal,426,,,45,,,,,https://quay.io/repository/swsmirror/drupal,App
+openshift_images,drupal,426,,,45,,,,,https://quay.io/repository/official-images/drupal,App
 openshift_images,elastic,426,,,47,,,,,https://quay.io/repository/kmamgain/elastic,App
 openshift_images,genymotion,426,,,54,,,,,https://quay.io/repository/alaska/genymotion,App
 openshift_images,hadoop,426,,,57,,,,,https://quay.io/repository/iguazio/hadoop,App
@@ -55,16 +55,13 @@ openshift_images,dart,421,,,,,,,,https://quay.io/repository/biocontainers/dart,O
 openshift_images,centos,427,,,,,,,,https://quay.io/repository/centos/centos,OS
 openshift_images,debian,429,,,,,,,,https://quay.io/repository/official-images/debian,OS
 openshift_images,opensuse,431,,,,,,,,https://quay.io/repository/wstein/opensuse,OS
-openshift_images,ubuntu,436,,,,,,,,https://quay.io/repository/tamr/ubuntu,OS
+openshift_images,ubuntu,436,,,,,,,,https://quay.io/repository/libpod/ubuntu,OS
 openshift_images,freebsd,447,,,,,,,,https://quay.io/repository/uchida/freebsd,OS
 openshift_images,windows,450,,,,,,,,https://quay.io/repository/mhallin/windows,OS
 openshift_images,fedora,453,,,,,,,,https://quay.io/repository/fedora/fedora,OS
 openshift_images,ado,426,,,,,,488,,https://quay.io/repository/scottlezberg/ado,Runlib
-openshift_images,wildfly,426,,,,,,493,,https://quay.io/repository/56401deb-7290-4d8b-8731-baf6d8b5d27d/wildfly,Runlib
+openshift_images,wildfly,426,,,,,,493,,https://quay.io/repository/wildfly/wildfly,Runlib
 openshift_images,flash,426,,,,,,,504,https://quay.io/repository/biocontainers/flash,Runtime
-openshift_images,database,426,,,,,,,,https://quay.io/repository/deisci/database,Technology
-openshift_images,webtop,426,,,,,,,,https://quay.io/repository/linuxserver.io/webtop,Technology
-openshift_images,utility,426,,,,,,,,https://quay.io/repository/theiagen/utility,Technology
 openshift_images,windows,580,,,,,,,,https://quay.io/repository/mhallin/windows,OS
 openshift_images,java,426,584,,,,,,,https://quay.io/repository/tamr/java,Lang
 openshift_images,perl,426,585,,,,,,,https://quay.io/repository/biocontainers/perl,Lang
@@ -77,7 +74,6 @@ openshift_images,snyk,426,,,613,,,,,https://quay.io/repository/exd_infra_plts_ci
 openshift_images,akka,426,,,614,,,,,https://quay.io/repository/j0zi/akka,App
 openshift_images,varnish,426,,,,615,,,,https://quay.io/repository/api-platform/varnish,App_Server
 openshift_images,datadog,426,,,,,,,616,https://quay.io/repository/blondie/datadog,Runtime
-openshift_images,api,426,,,,,,,,https://quay.io/repository/infrabox/api,Technology
 openshift_images,hazelcast,426,,,,,,,618,https://quay.io/repository/hazelcast_cloud/hazelcast,Runtime
 openshift_images,infinispan,426,,,619,,,,,https://quay.io/repository/operatorhubio/infinispan,App
 openshift_images,nuxeo,426,,,,,,,620,https://quay.io/repository/swsmirror/nuxeo,Runtime
