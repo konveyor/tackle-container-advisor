@@ -29,7 +29,7 @@ import logging
 
 #config file
 config = configparser.ConfigParser()
-config_data = os.path.join("/app/config/kg.ini")
+config_data = os.path.join("config/kg.ini")
 config.read([config_data])
 
 
@@ -118,8 +118,7 @@ def from_database(  entity_names = None, table_name="entities"):
     db_path    =  config["database"]["database_path"]
     
     connection =   create_db_connection(db_path)
-    
-    print(connection)
+
     entities = []
     suggest_entities = []
     cursor = connection.cursor()
@@ -142,6 +141,7 @@ def from_database(  entity_names = None, table_name="entities"):
                     entities.append( (entity_name.strip(),entity[2] , entity[0]) )
 
                 elif name.lower() in entity[1].lower():
+                    print(entity[1])
                     suggest_entities.append(entity[1])
 
                 else: continue

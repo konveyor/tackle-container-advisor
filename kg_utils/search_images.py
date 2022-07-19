@@ -16,28 +16,27 @@
 
 
 import sys
-#from tkinter import image_names
-sys.path.append("/app")
-
-import argparse
-from audioop import tomono
-from encodings import search_function
-from search_utils import load_entities , dockerhub_api , utils , save_to_csv
-import json
+sys.path.append("./kg_utils")
 import requests
 import json
 import itertools
 import operator
 import logging
-import re  
 import os
 import docker
 import configparser
-import time
+import argparse
+import json
+
+from dotenv import load_dotenv
+from search_utils  import load_entities , dockerhub_api , utils , save_to_csv
+
+#load environment variable 
+load_dotenv()
 
 #config file
 config = configparser.ConfigParser()
-config_data = os.path.join("/app/config/kg.ini")
+config_data = os.path.join("config/kg.ini")
 config.read([config_data])
 
 #loggger
@@ -51,25 +50,26 @@ quay_session = requests.Session()
 
 
 #load list of verified and official publishers
-with open("image_search_kg/verified_publisher_names.json", "r", encoding="utf-8") as verified_file:
+with open("kg_utils/image_search_kg/verified_publisher_names.json", "r", encoding="utf-8") as verified_file:
     verified_publishers = json.load(verified_file)
 
 class Operators():
 
     def __init__(self):
 
-        self.api = "https://artifacthub.io/api/v1/" 
+        self.api = "https://artifacthub.io/api/v1/"  
         self.package_query = "packages/search?org=operator-framework&repo=community-operators&ts_query_web=&limit=60&offset="
     
 
     def remove_tags(self, image_link:str)-> str:
-        """_summary_
+        """
+        Remove tags(@) from image_link.
 
         Args:
-            image_link (str): _description_
+            image_link (str): URL link
 
         Returns:
-            str: _description_
+            str: URL without tags 
         """
         if '@' in image_link:
             img_link = image_link.split('@')[0]
@@ -87,6 +87,7 @@ class Operators():
         Returns:
             (lst): A list containing all matching operators 
         """
+
         container_images = []
         request_session = requests.session()
         search_query = self.api + "packages/olm/community-operators/"  + operator_name
@@ -95,6 +96,7 @@ class Operators():
         try:
 
             image_urls = json.loads(response_.text)["containers_images"]
+
             for imgs in image_urls:
 
                 if "quay.io" in imgs['image'] or "docker.io" in imgs['image'] or 'registry.hub.docker' in imgs['image']: 
@@ -102,7 +104,8 @@ class Operators():
                     container_images.append(img_link) 
 
         except KeyError:
-            print("No container images registry found")
+            print(" '{}'  is not a key. So container images registry found for {} ".format("containers_images", operator_name))
+           
 
         return container_images
             
@@ -110,8 +113,10 @@ class Operators():
     def community_op_git_repos(self, operator_name: str):
 
         """
+        Search git repositories for an operator.
 
         Args:
+
             operator_name (str): entity name
 
         Returns:
@@ -130,21 +135,27 @@ class Operators():
            
             for link_data in links:
                 for _ , val in link_data.items():
-                    if val == "source" or val == "GitHub":
+
+                    if val == "source" or val == "GitHub" or val == "Documentation":
                         operator_repository = link_data["url"]
+
         except KeyError:
-            print("No  source urls found")
+
+            print("No  git , source , or  Documentation url links found.")
+
+
         
         return operator_repository
 
     def community_operators(self, entity: str):
 
         """
-        summary_line: Search community  operators from https://artifacthub.io/packages/olm/community-operators/
+        Search community  operators from https://artifacthub.io/packages/olm/community-operators/
         
         Keyword arguments:
         entity (str) -- An entity name from from the database
         Return: list of all matching operators 
+
         """
         
 
@@ -231,8 +242,6 @@ class Quay:
                     image["name"] = img["name"]
                     image["url"] = "https://quay.io"+img['href']
                     image["popularity"] = img["popularity"]
-
-
                     exact.append(image)
 
         return exact
@@ -465,7 +474,7 @@ class DockerHubSearch():
     def get_os_architectures(self, images: list ) -> list:
 
         """"
-        sumary_line: Using docker_api_utils, retrieve os arch for each image
+        Using docker_api_utils, retrieve os arch for each image.
         
         Keyword arguments:
         images(list) -- list of images from Dockerhub
@@ -527,7 +536,7 @@ class DockerHubSearch():
 
     def recommend_exact_image(self,entity_name:str , verified_and_official_images:list):
         """
-        Searches for  exact Dockerhub images
+        Searches for  exact Dockerhub images.
 
         Args:
             entity_name (str): _description_
@@ -595,6 +604,7 @@ class DockerHubSearch():
 
     
         except:
+
             print("ImageNotFound error occurred, check your entry and try again.")
         if images == []:
 
@@ -615,7 +625,7 @@ def save_to_kb(results: list) -> None:
         results (dict): dictionary containing search results from Dockerhub , Quay , and Operatorhub.io
     """
    
-    with open("/app/kg_utils/image_search_kg/images.json", "w" , encoding="utf-8") as images_file:
+    with open("kg_utils/image_search_kg/images.json", "w" , encoding="utf-8") as images_file:
         images_file.write(json.dumps(results, indent=2))
 
     
@@ -730,7 +740,7 @@ def get_entities():
         entity_names= args.entity.split(",") 
 
         entities , suggest_entities    = load_entities.from_database( entity_names = entity_names)
-        print(entities)
+       
      
     else:
         print('Try $python    -e <entity_names>    -db <database_path"> or type $python  src/search_images.py --help')
@@ -740,9 +750,9 @@ def get_entities():
         print("No entity names found for {}. Enter a valid entity from the database.\n".format(args.entity))
     
         
-    if len(suggest_entities) != 0 and len(entities) == 0:
+    if len(suggest_entities) != 0: 
     
-        print("Did you mean the following entity(ies) \n")
+        print("Some entities from {} could not be found. Did you mean the following entity(ies) \n".format( args.entity.split(',')))
         for ent in suggest_entities:
             print("{} \n".format(ent))
 
@@ -754,19 +764,18 @@ def get_entities():
       
 
 if __name__ == "__main__":
+    
+    entities = get_entities()
 
-    # entities = get_entities()
-    # docker_api =dockerhub_api.DockerHub(username=os.environ.get("DOCKERHUB_USERNAME", None) , password=os.environ.get("DOCKERHUB_PASSWORD", None))
-    # docker_   = DockerHubSearch()
-    # quay      = Quay() 
-    # operator_ = Operators()
+    docker_api =dockerhub_api.DockerHub(username=os.environ.get("DOCKERHUB_USERNAME", None) , password=os.environ.get("DOCKERHUB_PASSWORD", None))
+    
+    docker_   = DockerHubSearch()
+    quay      = Quay() 
+    operator_ = Operators()
 
-    # results = search(entities)
+    results = search(entities)
 
-    # save_to_kb(results)
-
+    save_to_kb(results)
     save_to_csv.docker_images()
-  
     save_to_csv.operator_images()
- 
     save_to_csv.openshift_images()
