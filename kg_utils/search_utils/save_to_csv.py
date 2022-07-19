@@ -19,6 +19,8 @@
 import json
 import csv
 
+
+
 def search_results():
     """
     load results 
@@ -27,7 +29,7 @@ def search_results():
         None:  Json file containing  search results
     """
 
-    with open("/app/kg_utils/image_search_kg/images.json", "r" , encoding="utf-8") as images:
+    with open("kg_utils/image_search_kg/images.json", "r" , encoding="utf-8") as images:
         images_ = json.load(images)
 
     return images_
@@ -35,7 +37,7 @@ def search_results():
 
 def entity_type_mapper( entity_type: int , entity_id : str)-> dict:
     """
-    Maps entity_types to an interger ranging from 1 to 12
+    Maps entity_types to an integer ranging from 1 to 12
 
     Args:
         entity_type (int): entity_type id
@@ -65,32 +67,33 @@ def write_to_csv(data:dict, file_name:str):
 
     """
 
-    with open("/app/kg_utils/image_search_kg/{}.csv".format(file_name) , "w" , encoding="utf-8") as op_csv:
+    with open("kg_utils/image_search_kg/{}.csv".format(file_name) , "w" , encoding="utf-8") as op_csv:
 
         if data == []:
             print("No {} found".format(file_name))
             return
 
         columns = list(data[0].keys())
+
         writer = csv.DictWriter(op_csv, fieldnames=columns)
         writer.writeheader()
 
         if file_name == "operator_images":
 
             for row in data:
-                
-            
+
                 writer.writerow({"operator_images":row["operator_images"],'container_name': row["container_name"], 'OS': row["OS"] \
                     , "lang":row["lang"],  "lib": row["lib"] , "app": row["app"] \
                         ,"app_server": row["app_server"] , "plugin":row["plugin"] , \
                             "runlib": row["runlib"] , "runtime": row["runtime"] , \
-                            "Operator_Correspondant_Image_Url": row["Operator_Correspondant_Image_Url"] ,\
+                            "Operator_Correspondent_Image_Url": row["Operator_Correspondent_Image_Url"] ,\
                                 "Operator_Repository" : row["Operator_Repository"]
                                 }) 
-        
+            
 
         if file_name == "docker_images":
             for row in data:
+
                 writer.writerow({"docker_images":row["docker_images"],'container_name': row["container_name"], 'OS': row["OS"] \
                     , "lang":row["lang"],  "lib": row["lib"] , "app": row["app"] \
                         ,"app_server": row["app_server"] , "plugin":row["plugin"] , \
@@ -115,12 +118,12 @@ def write_to_csv(data:dict, file_name:str):
                                 }) 
     
 
-def get_exact_images(all_images:dict , catalogue ="operators", index = 2):
+def get_exact_images(all_images: dict , catalogue ="operators", index = 2):
     """
-    Gather exact image names found during the search proceedure.
+    Gather exact image names found during the search procedure.
 
     Args:
-        all_images (dict): A large dictionary containg all serach results
+        all_images (dict): A large dictionary containing all search results
         catalogue (str, optional): Catalog's name("operator" , "dockerhub_exact_images" ,or "quay_exact_images" ) . Defaults to "operators".
         index (int, optional): _description_. Defaults to 2.
 
@@ -145,15 +148,15 @@ def get_exact_images(all_images:dict , catalogue ="operators", index = 2):
     return images
 
 
-def csv_columns( table_name = "operator_images"):
+def csv_columns( table_name:str ):
     """
     Build the columns headers for the csv files.
 
     Args:
-        table_name (str, optional):The name of the table from the database. Defaults to "operator_images".
+        table_name (str, optional):The name of the table from the database.
 
     Returns:
-        dict:  A fomated headers for the csv.
+        dict:  csv header.
     """
     
     columns = { table_name: "", "container_name":"", "OS": 426, "lang" : None, "lib": None, "app": None, "app_server": None,"plugin": None,"runlib": None,"runtime": None }
@@ -162,15 +165,17 @@ def csv_columns( table_name = "operator_images"):
 
     openshift_col_extension = {"Openshift_Correspondent_Image_Url":"", "DockerImageType": ""}
 
-    operator_col_extension ={"Operator_Correspondant_Image_Url":[],"Operator_Repository": ""}
+    operator_col_extension ={"Operator_Correspondent_Image_Url":[],"Operator_Repository": ""}
 
     if table_name == "openshift_images":
         columns.update(openshift_col_extension) 
 
     elif table_name == "docker_images":
         columns.update(docker_col_extension)
-    else:
+    elif table_name == "operator_images":
         columns.update(operator_col_extension)
+    else: 
+        print("Wrong table's name. Enter one of the following table's names: docker_images, operator_images,operator_images ")
 
     return columns
 
@@ -199,6 +204,7 @@ def operator_images():
     row_data = []
     cols = csv_columns(table_name="operator_images")
     images_ = search_results()
+
     op_images = get_exact_images(images_ , catalogue="operators")
 
     if op_images == None:
@@ -214,13 +220,14 @@ def operator_images():
             op_data["operator_images"] = "operator_images"
             op_data["container_name"] = operator["display_name"]
 
-            op_data["Operator_Correspondant_Image_Url"]= operator_images_urls(operator["container_images"])
-            
-            op_data["Operator_Repository"] = operator["git_repos"]
             img_data_type = entity_type_mapper(op["type"] , str(op["entity_id"]))
-            op_data.update(img_data_type)
-            row_data.append(op_data)
+            if list(img_data_type.keys())[0] in list(op_data.keys()):
+                op_data.update(img_data_type)
+                row_data.append(op_data)
 
+            op_data["Operator_Correspondent_Image_Url"]= operator_images_urls(operator["container_images"])
+            op_data["Operator_Repository"] = operator["git_repos"]
+            
     write_to_csv(row_data ,file_name="operator_images")
 
     
@@ -257,6 +264,7 @@ def docker_images() -> None:
                     if val[0]["Verified Publisher"]: 
                         img_data["CertOfImageAndPublisher"]  = "Verified Publisher"
                         
+
                     img_data_type = entity_type_mapper(exact_images["type"] ,  str(exact_images["entity_id"]))
                     img_data.update(img_data_type)
                     row_data.append(img_data)
@@ -291,12 +299,11 @@ def openshift_images():
                     img_data["Openshift_Correspondent_Image_Url"] = val[0]["url"]
                     
                     img_data_type = entity_type_mapper(exact_images["type"] , str(exact_images["entity_id"]))
-                    
                     if list(img_data_type.keys())[0].title() =='Os': img_data["DockerImageType"] ='OS'
                     else: img_data["DockerImageType"] = list(img_data_type.keys())[0].title()
-
-                    img_data.update(img_data_type)
-                    row_data.append(img_data)
+                    if list(img_data_type.keys())[0] in list(img_data.keys()):
+                        img_data.update(img_data_type)
+                        row_data.append(img_data)
     
     write_to_csv(row_data , "openshift_images")
 
