@@ -251,10 +251,10 @@ def alter_case_format(table_name, userColVals):
 
 def insert_into_table(table_name, userColVals, cur):
     """
-         set of validation checks (format, type, length etc.) before inserting into KB
+         Constructs the insert query for adding values into teh database
          args:
              table_name: table name
-             userColVals:
+             userColVals: column values to be inserted
              cur: cursor pointer to the KB database
          returns: dictionary of the data to be inserted into KB
     """
@@ -312,7 +312,7 @@ def generate_mentions_wiki(cur, my_entity_name):
 
 def enter_mentions_to_table(cur, gen_mentions, entity_id, entity_type_id):
     """
-         add the newly generated mentions generated from
+         add the newly generated mentions generated from wikidata
          args:
              cur: cursor pointer to the KB database
              my_entity_name: new entity thats added to the KB
@@ -327,24 +327,28 @@ def enter_mentions_to_table(cur, gen_mentions, entity_id, entity_type_id):
             print("Mention " + val[0] + " inserted to table..")
 
 
-# main insert new entry function
-def insert_to_kg(mode, batch_filename, cur):
+# main function
+def insert_to_kg(mode, batch_filename, cur, testExec):
     """
-         set of validation checks (format, type, length etc.) before inserting into KB
+         Main function that gets the mode from the user and processes the inputs based on it
          args:
-             table_name: table name
-             userColVals:
+             mode: interactive or batch
+             batch_filename: CSV file for batch processing
              cur: cursor pointer to the KB database
-         returns: dictionary of the data to be inserted into KB
+         returns: none
     """
     assert (mode == "batch" or mode == "interactive"), 'Mode is either batch or interactive'
     num_entries = 1
     batch_data = []
+    returnString = ""
     if mode == "batch":
         batch_data = get_input_batch(batch_filename)
         num_entries = len(batch_data)
     if num_entries == 0:
-        print("No entries to process")
+        if testExec:
+            returnString += "No entries to process"
+        else:
+            print("No entries to process")
     else:
         for i in range(0, num_entries):
             table_name = ""
@@ -359,29 +363,38 @@ def insert_to_kg(mode, batch_filename, cur):
                 alter_case_format(table_name, userColVals)
                 add_to_table = check_if_duplicate(table_name, userColVals, cur)
                 if add_to_table:
-                    insert_into_table(table_name, userColVals, cur)
-                    print("Entry " + str(i) + " inserted to table..")
-                    if table_name == "entities":
-                        my_entity_name = userColVals[0]
-                        # autogenerate mentions..
-                        gen_mentions = generate_mentions_wiki(cur, my_entity_name)
-                        # generate a entity mention with just upper case if not found in wiki.
-                        if len(gen_mentions) == 0:
-                            gen_mentions.append((my_entity_name.upper(), "others"))
-                        if len(gen_mentions) > 0:
-                            sqlquery = "SELECT id,entity_type_id FROM entities WHERE entity_name" + " = \"" + my_entity_name + "\""
-                            # print(sqlquery)
-                            answer = cur.execute(sqlquery)
-                            result = answer.fetchall()[0]
-                            entity_id = str(result[0])
-                            entity_type_id = str(result[1])
-                            # print(entity_id,entity_type_id)
-                            enter_mentions_to_table(cur, gen_mentions, entity_id, entity_type_id)
+                    if testExec:
+                        returnString += "Entry " + str(i) + " inserted to table.."
+                    else:
+                        insert_into_table(table_name, userColVals, cur)
+                        print("Entry " + str(i) + " inserted to table..")
+                        if table_name == "entities":
+                            my_entity_name = userColVals[0]
+                            # autogenerate mentions..
+                            gen_mentions = generate_mentions_wiki(cur, my_entity_name)
+                            # generate a entity mention with just upper case if not found in wiki.
+                            if len(gen_mentions) == 0:
+                                gen_mentions.append((my_entity_name.upper(), "others"))
+                            if len(gen_mentions) > 0:
+                                sqlquery = "SELECT id,entity_type_id FROM entities WHERE entity_name" + " = \"" + my_entity_name + "\""
+                                # print(sqlquery)
+                                answer = cur.execute(sqlquery)
+                                result = answer.fetchall()[0]
+                                entity_id = str(result[0])
+                                entity_type_id = str(result[1])
+                                # print(entity_id,entity_type_id)
+                                enter_mentions_to_table(cur, gen_mentions, entity_id, entity_type_id)
                 else:
-                    print("Entry " + str(i) + " is a duplicate and skipped..")
+                    if testExec:
+                        returnString += "Entry " + str(i) + " is a duplicate and skipped.."
+                    else:
+                        print("Entry " + str(i) + " is a duplicate and skipped..")
             else:
-                print("Entry " + str(i) + " cannot be processed..")
-
+                if testExec:
+                    returnString += "Entry " + str(i) + " cannot be processed.."
+                else:
+                    print("Entry " + str(i) + " cannot be processed..")
+    return returnString
 
 # edit entities table
 def remove_from_entities(table_name, cur, entities_to_remove):
@@ -883,7 +896,7 @@ def main():
     if del_file != "":
         delete_from_kg(del_file, cur, table_names)
     else:
-        insert_to_kg(mode, batch_filename, cur)
+        insert_to_kg(mode, batch_filename, cur, False)
 
     # commit changes and close connection
     conn.commit()
