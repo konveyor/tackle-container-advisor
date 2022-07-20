@@ -1,7 +1,8 @@
-name: test-cases-git-actions
+name: Unit test cases for TCA
 on: [push,pull_request]
 jobs:
-  run-test-cases:
+  run-unit-tests:
+    name: Run unit test cases
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,5 +17,6 @@ jobs:
         run: |
           bash setup.sh
       - name: Test with pytest
+        id: run-unit-tests
         run: |
           python -m unittest discover -v -s test -p test_*.py

@@ -30,6 +30,7 @@ from service.standardization import Standardization
 from service.assessment import Assessment
 from service.planning import Plan
 from service.infer_tech import InferTech
+from service.clustering import Clustering
 
 class Functions:
     def __init__(self):
@@ -42,6 +43,7 @@ class Functions:
         self.standardize= Standardization()
         self.assess     = Assessment()
         self.plan       = Plan()
+        self.cluster = Clustering()
 
         config  = configparser.ConfigParser()
         common       = os.path.join("config", "common.ini")
@@ -129,18 +131,24 @@ class Functions:
             if not is_valid:
                 return resp, code
 
+            print('ok here 1')
             appL = self.standardize.app_standardizer(app_data)
+
+            print('ok here 2')
             appL = self.assess.app_validation(appL)
+
+            print('ok here 3')
+
             # Generate output for UI
             output = self.assess.output_to_ui_assessment(appL)
             logging.info(f'{str(datetime.now())} output assessment num: {str(len(output))} ')
-            return dict(status=201, message="Assessment completed successfully!", assessment=output), 201
+            return dict(status=201, message="Standardization completed successfully!", standardized_apps=output), 201
         except Exception as e:
             logging.error(str(e))
             track = traceback.format_exc()
             return dict(status = 400,message = 'Input data format doesn\'t match the format expected by TCA'), 400
 
-    def planning(self, auth_url, headers, auth_headers, assessment_data,catalog):
+    def planning(self, auth_url, headers, auth_headers, assessment_data, catalog):
         """
         Invokes detect_access_token for accesstoken validation and if it's valid, it will call
         compose_app for assessment and app_validation for validation the assessed application data
@@ -158,8 +166,30 @@ class Functions:
             output = self.plan.output_to_ui_planning(containerL)
 
             logging.info(f"output planning num: {str(len(output))}")
-            return dict(status=201, message="Container recommendation generated!", planning=output), 201
+            return dict(status=201, message="Container recommendation generated!", containerization=output), 201
 
+        except Exception as e:
+            logging.error(str(e))
+            track = traceback.format_exc()
+            return dict(status=400, message='Input data format doesn\'t match the format expected by TCA'), 400
+
+    def clustering(self, auth_url, headers, auth_headers, app_data):
+        """
+        Invokes detect_access_token for accesstoken validation and if it's valid, it will call
+        compose_app for assessment and app_validation for validation the assessed application data
+        and finally call output_to_ui_clustering to return the formatted assessment data
+        """
+        try:
+            resp, code, is_valid = self.detect_access_token(auth_url, headers, auth_headers)
+            if not is_valid:
+                return resp, code
+
+            appL = self.cluster.output_to_ui_assessment(app_data)
+
+            # Generate output for UI
+            clusters = self.cluster.output_to_ui_clustering(appL)
+            logging.info(f'{str(datetime.now())} output clustering num: {str(len(clusters))} ')
+            return dict(status=201, message="Clustering completed successfully!", clusters=clusters), 201
         except Exception as e:
             logging.error(str(e))
             track = traceback.format_exc()
@@ -188,13 +218,24 @@ def do_assessment(auth_url,headers,auth_headers,app_data):
 
     return resp, code
 
-def do_planning(auth_url,headers,auth_headers,assessment_data,catalog):
+def do_planning(auth_url, headers, auth_headers, assessment_data, catalog):
     """
     Creates the instance for Planner Class and invoke containerization_plan method
     """
     controller = None
     if not controller:
         controller = Functions()
-    resp, code = controller.planning(auth_url,headers,auth_headers,assessment_data,catalog)
+    resp, code = controller.planning(auth_url, headers, auth_headers, assessment_data, catalog)
+
+    return resp, code
+
+def do_clustering(auth_url, headers, auth_headers, assessment_data):
+    """
+    Creates the instance for Clustering Class and invoke clustering method
+    """
+    controller = None
+    if not controller:
+        controller = Functions()
+    resp, code = controller.clustering(auth_url, headers, auth_headers, assessment_data)
 
     return resp, code

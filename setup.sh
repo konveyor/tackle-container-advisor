@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 ######################################################################
@@ -12,6 +13,8 @@ echo "+---------------------------------------------------------+"
 version="1.0.4"
 sql_file="$version.sql"
 db_file="$version.db"
+python="python"
+pip="pip3"
 
 echo "------------------Checking Dependencies--------------------"
 # Check to make sure sqlite3 is installed
@@ -27,16 +30,16 @@ then
     echo "**** ERROR: python command could not be found. Cannot continue."
     exit 1
 else
-    python -m pip install --upgrade pip wheel build setuptools
+    $python -m pip install --upgrade pip wheel build setuptools
 fi
 
 # Check to make sure pip3 is installed
-if ! command -v pip3 &> /dev/null
+if ! command -v $pip &> /dev/null
 then
-    echo "**** ERROR: pip3 command could not be found. Cannot continue."
+    echo "**** ERROR: ${pip} command could not be found. Cannot continue."
     exit 1
 else
-    pip3 install setuptools==59.6.0
+    $pip install setuptools==59.6.0
 fi
 echo "-----------------Dependency Checks PASSED------------------"
 
@@ -44,19 +47,19 @@ echo "-----------------Dependency Checks PASSED------------------"
 ## Install dependencies for 
 ######################################################################
 echo "------------------Installing requirements--------------------"
-pip3 install -r entity_standardizer/requirements.txt
+$pip install -r entity_standardizer/requirements.txt
 if [ $? -ne 0 ]; then
     echo "**** ERROR: Failed to install entity_standardizer dependencies. Cannot continue."
 fi
 
 cd entity_standardizer
-python -m build
+$python -m build
 if [ $? -ne 0 ]; then
     echo "**** ERROR: Failed to build entity_standardizer package. Cannot continue."
     exit 1
 fi
 
-pip3 install dist/entity_standardizer_tca-1.0-py3-none-any.whl
+$pip install dist/entity_standardizer_tca-1.0-py3-none-any.whl
 if [ $? -ne 0 ]; then
     echo "**** ERROR: Failed to install entity_standardizer package. Cannot continue."
     exit 1
@@ -64,7 +67,7 @@ else
     cd ..
 fi
 
-pip3 install -r service/requirements.txt
+$pip install -r service/requirements.txt
 if [ $? -ne 0 ]; then
     echo "**** ERROR: Failed to install service dependencies. Cannot continue."
     exit 1
@@ -97,8 +100,8 @@ echo "--------------------Generated DB file----------------------"
 ## Generating KG Utility Files
 ######################################################################
 echo "--------------Generating KG Utility Files------------------"
-python kg_utils/generator.py
-python kg_utils/kg_utils.py
+$python kg_utils/generator.py
+$python kg_utils/kg_utils.py
 echo "----------------Generated KG Utility Files--------------------"
 
 ######################################################################
