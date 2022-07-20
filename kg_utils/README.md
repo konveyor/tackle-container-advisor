@@ -58,28 +58,24 @@ Allows users to search relevant or exact container images from  DockerHub ,Quai.
   - Use [TCA_KG_Aumentation](https://github.ibm.com/tca-team/TCA_KG_Augmentation) repos to augmment new entities to the database by following the instructions from the README file. You can add a single entity or a batch of entities from a csv file to the entities table.
   - Make sure you have [docker](https://docs.docker.com/engine/install/) installed locally.
  
-  - git clone ```git@github.ibm.com:tca-team/tackle_image_search_apis.git```
-
-  - Move the newly augmented db the this path ```kb\{db_version}.db``` 
- 
-  - The path "kb\{db_version}.db", where "db_version" is the latest TCA database version and contains all entities to search(see "entity_name" table) for images.
+  - The path "db\{db_version}.db", where "db_version" is the latest TCA database version and contains all entities to search(see "entity_name" table) for images.
   
   -  In VSCODE,  Open the folder in a container,  which will install all dependencies needed to run the script.
 
 #### Input data to the search engine.
     
-    Data are loaded from the entities table from the database. you can load a single entity or all entities  from the database. 
+    Data are loaded from the entities table from the database. You may search a single entity or all entities from the database. 
  
    Sample entities table 
     
-   ![This is an image](https://github.ibm.com/tca-team/tackle_image_search_apis/blob/master/resources/entity_names.png)
+   ![This is an image](https://github.com/divsan93/tackle-container-advisor/blob/kb_expansion/images/entities.png)
     
 #### Running the script
     
- ```python src/search_images.py   -e <entity_name(s)> -db kb\{db_version}.db``` This loads entity(ies) from the entity_name table and searches images across all catalogues.
+ ```python kg_utils/search_images.py   -e <entity_name(s)> -db db\{db_version}.db``` This loads entity(ies) from the entity_name table and searches images across all catalogues.
  
 ```
-python src/search_images.py -h
+python kg_utils/search_images.py -h
 
 usage: Search container images  from dockerhub , Quay.io , and Artifacthub.io
 
@@ -97,7 +93,7 @@ Try $python    -e <entity_names>    -db <database_path"> or type $python  src/se
 
 ```
 
-Results are saved into the following files:  ```kb\images.json``` , ```kb\operator_images.csv``` ,```kb\openshift_images.csv``` ,and ```kb\docker_images.csv``` 
+Results are saved into the following files:  ```kg_utils\image_search_kg\images.json``` , ```kg_utils\image_search_kg\operator_images.csv``` ,```kg_utils\image_search_kg\openshift_images.csv``` ,and ```kg_utils\image_search_kg\docker_images.csv``` 
  
 
    
