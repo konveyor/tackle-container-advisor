@@ -43,18 +43,13 @@ class test_search(unittest.TestCase):
 
         cols = csv_columns(table_name)
 
-        expected = {'operator_images': '', 'container_name': '', 'OS': 426, 'lang': None, 'lib': None, 'app': None, 'app_server': None, 'plugin': None, 'runlib': None, 'runtime': None, 'Operator_Correspondent_Image_Url': [], 'Operator_Repository': ''}
+        expected = {'operator_images': '', 'container_name': '', 'OS': 576, 'lang': None, 'lib': None, 'app': None, 'app_server': None, 'plugin': None, 'runlib': None, 'runtime': None, 'Operator_Correspondent_Image_Url': [], 'Operator_Repository': ''}
 
         self.assertEqual(cols , expected)
 
 
     def test_filter_entity(self):
 
-        #"TIBCO Business Works (BW)|*" , Cascading Style Sheets (CSS)|*,ColdFusion Markup Language (CFML) ,Data Language Interface (DL/I)
-        #Extensible Stylesheet Language (XSL) , Java|Java Enterprise Edition (Java EE) , Java|Java Standard Edition (Java SE) , Java|JavaServer Pages (JSP)
-        #Java|JavaServer Pages (JSP)|Scriptlets, Java|Java Message Service (JMS)
-        
-        #Java|Spring|Spring Cloud Data Flow , MS SQL Server|SQL Server Analysis Services (SSAS)
 
         entity =   "MS SQL Server|SQL Server Analysis Services (SSAS)"
         expected = "SQL Server Analysis Services"
