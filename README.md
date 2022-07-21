@@ -37,13 +37,13 @@ The pipeline ingests raw inputs from clients data and standardizes the data to g
 
 ## Setting up your environment
 
-Requires Python >= 3.6 environment. You cannot run this code without having a proper 
-Python environment first. We recommend that you follow the instructions 
+Requires Python >= 3.6 environment. You cannot run this code without having a proper
+Python environment first. We recommend that you follow the instructions
 in the [Developer's Guide](docs/development.md) before proceeding further.
 
 ## Running TCA as a service
 
-There are 4 options for deploying TCA as a service. 
+There are 4 options for deploying TCA as a service.
 
 1. Install the service requirements and start the service from command line.
 
@@ -52,12 +52,12 @@ Requires *gunicorn* standalone installation on your system.
 bash setup.sh
 gunicorn --workers=2 --threads=500 --timeout 300 service:app
 OR
-waitress-serve --listen=*:8000 service:app 
+waitress-serve --listen=*:8000 service:app
 ```
 
-2. Running the service as a container. 
+2. Running the service as a container.
 
-Using a bash script. 
+Using a bash script.
 ```
 bash run.sh
 ```
@@ -82,7 +82,7 @@ bash deploy.sh
 
 ## Run a performance test for TCA service
 A performance test measures the response time of TCA service under
-various load conditions. Before running 
+various load conditions. Before running
 performance test, update *config/test.ini* with the hostname
 and port where TCA service has been deployed
 
@@ -101,7 +101,7 @@ Please perform the following steps.
     version = <new_db>
 
 3. Modify the *setup.sh* and *clean.sh* scripts to reflect the version accordingly.
-    
+
     version=<new_db>
 
 4. Re-run *setup.sh* and then deploy the service.

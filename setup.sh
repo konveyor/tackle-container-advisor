@@ -24,10 +24,10 @@ then
     exit 1
 fi
 
-# Check to make sure python3.9 is installed
-if ! command -v python3.9 &> /dev/null
+# Check to make sure python is installed
+if ! command -v python &> /dev/null
 then
-    echo "**** ERROR: python3.9 command could not be found. Cannot continue."
+    echo "**** ERROR: python command could not be found. Cannot continue."
     exit 1
 else
     $python -m pip install --upgrade pip wheel build setuptools
