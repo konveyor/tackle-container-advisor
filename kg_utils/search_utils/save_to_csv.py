@@ -159,7 +159,7 @@ def csv_columns( table_name:str ):
         dict:  csv header.
     """
     
-    columns = { table_name: "", "container_name":"", "OS": 426, "lang" : None, "lib": None, "app": None, "app_server": None,"plugin": None,"runlib": None,"runtime": None }
+    columns = { table_name: "", "container_name":"", "OS": 576, "lang" : None, "lib": None, "app": None, "app_server": None,"plugin": None,"runlib": None,"runtime": None }
 
     docker_col_extension = {"Docker_Url":"", "Notes": "", "CertOfImageAndPublisher": "" }
 
@@ -220,7 +220,9 @@ def operator_images():
             op_data["operator_images"] = "operator_images"
             op_data["container_name"] = operator["display_name"]
 
+
             img_data_type = entity_type_mapper(op["type"] , str(op["entity_id"]))
+
             if list(img_data_type.keys())[0] in list(op_data.keys()):
                 op_data.update(img_data_type)
                 row_data.append(op_data)
