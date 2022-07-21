@@ -273,6 +273,7 @@ def insert_into_table(table_name, userColVals, cur):
             sqlquery += ","
         count += 1
     sqlquery += ")"
+    
     print(sqlquery)
     cur.execute(sqlquery)
 

@@ -50,8 +50,15 @@ class test_search(unittest.TestCase):
 
     def test_filter_entity(self):
 
-        entity = "Linux(ABC)"
-        expected = "Linux"
+        #"TIBCO Business Works (BW)|*" , Cascading Style Sheets (CSS)|*,ColdFusion Markup Language (CFML) ,Data Language Interface (DL/I)
+        #Extensible Stylesheet Language (XSL) , Java|Java Enterprise Edition (Java EE) , Java|Java Standard Edition (Java SE) , Java|JavaServer Pages (JSP)
+        #Java|JavaServer Pages (JSP)|Scriptlets, Java|Java Message Service (JMS)
+        
+        #Java|Spring|Spring Cloud Data Flow , MS SQL Server|SQL Server Analysis Services (SSAS)
+
+        entity =   "MS SQL Server|SQL Server Analysis Services (SSAS)"
+        expected = "SQL Server Analysis Services"
+        
         fil_entity = filter_entity(entity)
         self.assertEqual(fil_entity , expected)
 

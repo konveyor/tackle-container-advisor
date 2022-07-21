@@ -93,6 +93,7 @@ def load_docker_openshift_urls(connect):
 
 
 def type_mapper(db_connection):
+
     """Maps each entity to the corresponding type
 
     :param conn:  A connection to mysql
@@ -110,6 +111,7 @@ def type_mapper(db_connection):
 
     for type_tuple in type_cursor.fetchall():
         type_id, tech_type = type_tuple
+
         type_map[str(type_id)] = tech_type
 
     return type_map
@@ -132,6 +134,7 @@ def entity_mapper(db_connection):
     parent_cursor.execute("SELECT * FROM entities")
 
     for entity_row in parent_cursor.fetchall():
+        
         class_id, entity = entity_row[0], entity_row[1]
         parent_class[str(class_id)] = entity
     return parent_class
@@ -203,12 +206,14 @@ def create_inverted_compatibility_kg(db_connection):
     entity_ids = entity_mapper(db_connection)
     type_ids = type_mapper(db_connection)
 
+   
+
     inverted_compatibilty_kg["KG Version"] = config["general"]["version"]
 
     for inverted_ids in inverted_cursor.fetchall():
         inverted_lst = []
         parent_type_id, parent_id, child_type_id, child_id = inverted_ids[1:5]
-
+        
         inverted_lst.append({"Parent Type": type_ids[str(parent_type_id)], "Parent Class": entity_ids[str(parent_id)],
                              "Child Type": type_ids[str(child_type_id)]})
 

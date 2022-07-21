@@ -33,6 +33,7 @@ config_data = os.path.join("config/kg.ini")
 config.read([config_data])
 
 
+
 def create_db_connection(database_path):
     """
     Create connection to database
@@ -74,23 +75,23 @@ def filter_entity(entity:str)-> str:
     match_pipe_only = re.findall(r'\|', entity)
 
     if match_pipe_star : 
-        return entity.split('|*')[0]
+        return entity.split('|*')[0].strip()
 
     elif match_less_greater_sign:
 
         if "|" in entity.split("<>")[1]:
-            return entity.split("<>")[1].split("|")[-1]
-        return(entity.split("<>")[1])
+            return entity.split("<>")[1].split("|")[-1].strip()
+        return(entity.split("<>")[1].strip())
 
     elif match_abbreviation:
         if entity.startswith("("):  
-            return entity
+            return entity.strip()
         elif ('|') in   entity.split("(")[0]:
 
             n_ent = entity.split("(")[0].split('|')[-1]
-            return  n_ent
+            return  n_ent.strip()
         else: 
-            return entity.split("(")[0]
+            return entity.split("(")[0].strip()
     elif match_pipe_only and '|*' not in entity:
 
         num = entity.count("|")
@@ -99,9 +100,9 @@ def filter_entity(entity:str)-> str:
             ent = entity.split("|")[-1]
         else: 
             ent = entity.split('|')[1]
-        return ent
+        return ent.strip()
     else: 
-        return entity
+        return entity.strip()
 
 def from_database(  entity_names = None, table_name="entities"):
 
@@ -118,15 +119,16 @@ def from_database(  entity_names = None, table_name="entities"):
     db_path    =  config["database"]["database_path"]
     
     connection =   create_db_connection(db_path)
+    print("Connection", connection)
 
     entities = []
     suggest_entities = []
     cursor = connection.cursor()
-    
+   
     cursor.execute("SELECT   *  FROM {} ".format(table_name))
     for entity  in cursor.fetchall():
     
-
+        print(entity)
         if entity_names == "all": 
             entity_name = filter_entity(entity[1]) 
             entities.append( (entity_name.strip(),entity[2] , entity[0]) )
@@ -138,6 +140,7 @@ def from_database(  entity_names = None, table_name="entities"):
                 if entity[1].lower() == name.lower():
                     
                     entity_name = filter_entity(entity[1])
+
                     entities.append( (entity_name.strip(),entity[2] , entity[0]) )
 
                 elif name.lower() in entity[1].lower():

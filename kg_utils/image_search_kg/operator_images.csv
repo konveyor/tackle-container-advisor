@@ -1,176 +1,129 @@
 operator_images,container_name,OS,lang,lib,app,app_server,plugin,runlib,runtime,Operator_Correspondent_Image_Url,Operator_Repository
-operator_images,Strimzi,426,,,9,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
-operator_images,Eclipse Ditto,426,,,46,,,,,,https://github.com/ctron/ditto-operator
-operator_images,Eclipse Hawkbit,426,,,46,,,,,,https://github.com/ctron/hawkbit-operator
-operator_images,IoT simulator,426,,,46,,,,,,https://github.com/ctron/iot-simulator-operator
-operator_images,Elasticsearch (ECK) Operator,426,,,47,,,,,,https://github.com/elastic/cloud-on-k8s
-operator_images,Elasticsearch Phenix Operator,426,,,47,,,,,,https://github.com/Carrefour-Group/elastic-phenix-operator
-operator_images,Nuxeo Operator,426,,,47,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
-operator_images,Logging Operator,426,,,47,,,,,"[""''quay.io/opstree/logging-operator:v0.3.0''""]",https://github.com/ot-container-kit/logging-operator
-operator_images,AWS Controllers for Kubernetes - Amazon ElastiCache,426,,,47,,,,,,https://github.com/aws-controllers-k8s
-operator_images,Elasticsearch Index Operator,426,,,47,,,,,,https://github.com/IBM/esindex-operator
-operator_images,Prometheus Exporter Operator,426,,,47,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
-operator_images,IBM Spectrum Scale CSI Plugin Operator,426,,,74,,,,,"[""''quay.io/ibm-spectrum-scale/ibm-spectrum-scale-csi-operator''""]",https://github.com/IBM/ibm-spectrum-scale-csi/
-operator_images,Kong Operator,426,,,88,,,,,,https://github.com/kong/kong-operator
-operator_images,Jenkins Operator,426,,,90,,,,,,https://github.com/jenkinsci/kubernetes-operator
-operator_images,Prometheus Exporter Operator,426,,,98,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
-operator_images,MongoDB Enterprise Operator,426,,,116,,,,,"[""''quay.io/mongodb/mongodb-enterprise-operator-ubi:1.16.3''""]",https://github.com/mongodb/mongodb-enterprise-kubernetes
-operator_images,MongoDB Operator,426,,,116,,,,,"[""''quay.io/opstree/mongodb-operator:v0.3.0''""]",https://github.com/ot-container-kit/mongodb-operator
-operator_images,MongoDB Atlas Operator,426,,,116,,,,,"[""''quay.io/mongodb/mongodb-atlas-kubernetes-operator:1.1.0''""]",
-operator_images,Percona Distribution for MongoDB Operator,426,,,116,,,,,,https://github.com/percona/percona-server-mongodb-operator
-operator_images,Nuxeo Operator,426,,,116,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
-operator_images,GrdsCloud MySQL for Kubernetes,426,,,122,,,,,,https://github.com/GrdsCloud
-operator_images,Percona Distribution for MySQL Operator,426,,,122,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
-operator_images,PlanetScale Operator for Vitess,426,,,122,,,,,,
-operator_images,Prometheus Exporter Operator,426,,,122,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
-operator_images,Postgresql Operator,426,,,157,,,,,"[""''quay.io/deekshah86/postgresql-operator''""]",https://github.com/janepelladinesh/postgresql-operator
-operator_images,Percona Operator for PostgreSQL,426,,,157,,,,,,https://github.com/percona/percona-postgresql-operator
-operator_images,PostgreSQL Operator by Dev4Ddevs.com,426,,,157,,,,,"[""''quay.io/dev4devs-com/postgresql-operator:0.1.1''""]",https://github.com/dev4devs-com/postgresql-operator
-operator_images,Crunchy Postgres for Kubernetes,426,,,157,,,,,,https://github.com/CrunchyData/postgres-operator
-operator_images,EDB Postgres for Kubernetes,426,,,157,,,,,"[""''quay.io/enterprisedb/cloud-native-postgresql''""]",https://www.enterprisedb.com/docs/postgres_for_kubernetes/latest/
-operator_images,Postgres-Operator,426,,,157,,,,,,https://github.com/zalando/postgres-operator
-operator_images,Ext Postgres Operator,426,,,157,,,,,,https://github.com/movetokube/postgres-operator
-operator_images,Nuxeo Operator,426,,,157,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
-operator_images,Prometheus Exporter Operator,426,,,157,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
-operator_images,Robin Cloud Native Storage,426,,,157,,,,,,
-operator_images,Redis Operator,426,,,168,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
-operator_images,Redis Enterprise,426,,,168,,,,,,https://github.com/RedisLabs/redis-enterprise-k8s-docs
-operator_images,Prometheus Exporter Operator,426,,,168,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
-operator_images,Splunk Operator,426,,,188,,,,,,
-operator_images,Encrypted Images Key Syncer Helm Operator,426,,,209,,,,,"[""''docker.io/lumjjb/enc-key-sync-operator:v0.0.1''""]",https://github.com/IBM/k8s-enc-image-operator
-operator_images,Joget DX on Apache Tomcat,426,,,,260,,,,,https://github.com/jogetworkflow/
-operator_images,APIcast,426,,,,274,,,,"[""''quay.io/3scale/apicast-operator:v0.4.0''""]",https://github.com/3scale/apicast-operator
-operator_images,Spark Operator,426,,,,280,,,,,https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
-operator_images,Apache Spark Operator,426,,,,280,,,,"[""''quay.io/radanalyticsio/spark-operator:1.0.2''""]",https://github.com/radanalyticsio/spark-operator
-operator_images,Kubestone,426,,,,280,,,,,https://github.com/xridge/kubestone
-operator_images,Flink Kubernetes Operator,426,301,,,,,,,"[""''docker.io/apache/flink-kubernetes-operator:1.0.1''""]",https://github.com/apache/flink-kubernetes-operator.git
-operator_images,Alvearie Imaging Ingestion Operator,426,303,,,,,,,,https://github.com/Alvearie/imaging-ingestion
-operator_images,DataStax Kubernetes Operator for Apache Cassandra,426,303,,,,,,,,https://github.com/k8ssandra/cass-operator
-operator_images,Qserv operator,426,303,,,,,,,,https://github.com/lsst/qserv-operator
-operator_images,Strimzi,426,303,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
-operator_images,Keycloak Operator,426,303,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
-operator_images,Prometheus Operator,426,303,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
-operator_images,Elasticsearch (ECK) Operator,426,303,,,,,,,,https://github.com/elastic/cloud-on-k8s
-operator_images,Crunchy Postgres for Kubernetes,426,303,,,,,,,,https://github.com/CrunchyData/postgres-operator
-operator_images,Knative Operator,426,303,,,,,,,,https://github.com/knative/operator
-operator_images,Redis Operator,426,303,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
-operator_images,Rook-Ceph,426,303,,,,,,,,https://github.com/rook/rook
-operator_images,Argo CD,426,303,,,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
-operator_images,Grafana Operator,426,303,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
-operator_images,Starboard Operator,426,303,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
-operator_images,TiDB Operator,426,303,,,,,,,,https://github.com/pingcap/tidb-operator
-operator_images,Altinity Operator for ClickHouse,426,303,,,,,,,,https://github.com/altinity/clickhouse-operator
-operator_images,Flux,426,303,,,,,,,,https://fluxcd.io/docs/
-operator_images,Percona Distribution for MySQL Operator,426,303,,,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
-operator_images,RocketMQ Operator,426,303,,,,,,,,https://github.com/apache/rocketmq-operator
-operator_images,StorageOS,426,303,,,,,,,,https://github.com/storageos/operator
-operator_images,Alvearie Imaging Ingestion Operator,426,304,,,,,,,,https://github.com/Alvearie/imaging-ingestion
-operator_images,DataStax Kubernetes Operator for Apache Cassandra,426,304,,,,,,,,https://github.com/k8ssandra/cass-operator
-operator_images,Qserv operator,426,304,,,,,,,,https://github.com/lsst/qserv-operator
-operator_images,Strimzi,426,304,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
-operator_images,Keycloak Operator,426,304,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
-operator_images,Prometheus Operator,426,304,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
-operator_images,Elasticsearch (ECK) Operator,426,304,,,,,,,,https://github.com/elastic/cloud-on-k8s
-operator_images,Crunchy Postgres for Kubernetes,426,304,,,,,,,,https://github.com/CrunchyData/postgres-operator
-operator_images,Knative Operator,426,304,,,,,,,,https://github.com/knative/operator
-operator_images,Redis Operator,426,304,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
-operator_images,Rook-Ceph,426,304,,,,,,,,https://github.com/rook/rook
-operator_images,Argo CD,426,304,,,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
-operator_images,Grafana Operator,426,304,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
-operator_images,Starboard Operator,426,304,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
-operator_images,TiDB Operator,426,304,,,,,,,,https://github.com/pingcap/tidb-operator
-operator_images,Altinity Operator for ClickHouse,426,304,,,,,,,,https://github.com/altinity/clickhouse-operator
-operator_images,Flux,426,304,,,,,,,,https://fluxcd.io/docs/
-operator_images,Percona Distribution for MySQL Operator,426,304,,,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
-operator_images,RocketMQ Operator,426,304,,,,,,,,https://github.com/apache/rocketmq-operator
-operator_images,StorageOS,426,304,,,,,,,,https://github.com/storageos/operator
-operator_images,Alvearie Imaging Ingestion Operator,426,305,,,,,,,,https://github.com/Alvearie/imaging-ingestion
-operator_images,DataStax Kubernetes Operator for Apache Cassandra,426,305,,,,,,,,https://github.com/k8ssandra/cass-operator
-operator_images,Qserv operator,426,305,,,,,,,,https://github.com/lsst/qserv-operator
-operator_images,Strimzi,426,305,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
-operator_images,Keycloak Operator,426,305,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
-operator_images,Prometheus Operator,426,305,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
-operator_images,Elasticsearch (ECK) Operator,426,305,,,,,,,,https://github.com/elastic/cloud-on-k8s
-operator_images,Crunchy Postgres for Kubernetes,426,305,,,,,,,,https://github.com/CrunchyData/postgres-operator
-operator_images,Knative Operator,426,305,,,,,,,,https://github.com/knative/operator
-operator_images,Redis Operator,426,305,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
-operator_images,Rook-Ceph,426,305,,,,,,,,https://github.com/rook/rook
-operator_images,Argo CD,426,305,,,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
-operator_images,Grafana Operator,426,305,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
-operator_images,Starboard Operator,426,305,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
-operator_images,TiDB Operator,426,305,,,,,,,,https://github.com/pingcap/tidb-operator
-operator_images,Altinity Operator for ClickHouse,426,305,,,,,,,,https://github.com/altinity/clickhouse-operator
-operator_images,Flux,426,305,,,,,,,,https://fluxcd.io/docs/
-operator_images,Percona Distribution for MySQL Operator,426,305,,,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
-operator_images,RocketMQ Operator,426,305,,,,,,,,https://github.com/apache/rocketmq-operator
-operator_images,StorageOS,426,305,,,,,,,,https://github.com/storageos/operator
-operator_images,Joget DX on Apache Tomcat,426,306,,,,,,,,https://github.com/jogetworkflow/
-operator_images,Lightbend Console Operator,426,306,,,,,,,,https://github.com/lightbend/console-charts/tree/master/operator
-operator_images,Knative Operator,426,321,,,,,,,,https://github.com/knative/operator
-operator_images,PostgreSQL Operator by Dev4Ddevs.com,426,323,,,,,,,"[""''quay.io/dev4devs-com/postgresql-operator:0.1.1''""]",https://github.com/dev4devs-com/postgresql-operator
-operator_images,Redis Operator,426,323,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
-operator_images,Logging Operator,426,323,,,,,,,"[""''quay.io/opstree/logging-operator:v0.3.0''""]",https://github.com/ot-container-kit/logging-operator
-operator_images,External Secrets Operator,426,323,,,,,,,,https://github.com/external-secrets/external-secrets-helm-operator
-operator_images,Intel Device Plugins Operator,426,323,,,,,,,,https://github.com/intel/intel-device-plugins-for-kubernetes
-operator_images,MongoDB Operator,426,323,,,,,,,"[""''quay.io/opstree/mongodb-operator:v0.3.0''""]",https://github.com/ot-container-kit/mongodb-operator
-operator_images,silicom-sts-operator,426,323,,,,,,,"[""''quay.io/silicom/sts-operator:v0.0.1''""]",github.com/silicomdk/sts-operator
-operator_images,Spark Operator,426,323,,,,,,,,https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
-operator_images,WildFly,426,331,,,,,,,"[""''quay.io/wildfly/wildfly-operator:0.5.3''""]",https://github.com/wildfly/wildfly-operator
-operator_images,AtlasMap Operator,426,331,,,,,,,"[""''quay.io/atlasmap/atlasmap-operator:0.4.1''""]",https://github.com/atlasmap/atlasmap-operator
-operator_images,Appsody Operator,426,331,,,,,,,,https://github.com/appsody/appsody-operator
-operator_images,Cryostat Operator,426,331,,,,,,,"[""''quay.io/cryostat/cryostat-operator:2.1.1''""]",github.com/cryostatio/cryostat-operator
-operator_images,Open Liberty Operator,426,331,,,,,,,,https://github.com/OpenLiberty/open-liberty-operator
-operator_images,Runtime Component Operator,426,331,,,,,,,,https://github.com/application-stacks/runtime-component-operator
-operator_images,Azure Service Operator,426,353,,,,,,,,https://github.com/Azure/azure-service-operator
-operator_images,API Operator for Kubernetes,426,353,,,,,,,,https://github.com/wso2/k8s-api-operator
-operator_images,KEDA,426,353,,,,,,,,https://github.com/kedacore/keda-olm-operator
-operator_images,WSO2 API Manager Operator for Kubernetes,426,353,,,,,,,,https://github.com/wso2/k8s-wso2am-operator
-operator_images,AWS Controllers for Kubernetes - Amazon API Gateway v2,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon Application Auto Scaling,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon DynamoDB,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon EC2,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon ECR,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon EKS,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon ElastiCache,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon EMR on EKS,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon IAM,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon KMS,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon Lambda,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon MQ,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon OpenSearch Service,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon RDS,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon S3,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,AWS Controllers for Kubernetes - Amazon SageMaker,426,353,,,,,,,,https://github.com/aws-controllers-k8s
-operator_images,Strimzi,426,355,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
-operator_images,Keycloak Operator,426,355,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
-operator_images,Prometheus Operator,426,355,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
-operator_images,Elasticsearch (ECK) Operator,426,355,,,,,,,,https://github.com/elastic/cloud-on-k8s
-operator_images,Knative Operator,426,355,,,,,,,,https://github.com/knative/operator
-operator_images,Redis Operator,426,355,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
-operator_images,Rook-Ceph,426,355,,,,,,,,https://github.com/rook/rook
-operator_images,Grafana Operator,426,355,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
-operator_images,Starboard Operator,426,355,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
-operator_images,TiDB Operator,426,355,,,,,,,,https://github.com/pingcap/tidb-operator
-operator_images,RocketMQ Operator,426,355,,,,,,,,https://github.com/apache/rocketmq-operator
-operator_images,Falco Operator,426,355,,,,,,,"[""''docker.io/falcosecurity/falco-operator-helm:0.7.6''""]",https://github.com/falcosecurity/falco-operator/tree/helm-based-operator
-operator_images,Kubemq Enterprise Operator,426,355,,,,,,,"[""''docker.io/kubemq/kubemq-operator:latest''""]",https://github.com/kubemq-io/kubemq-operator
-operator_images,Postgres-Operator,426,355,,,,,,,,https://github.com/zalando/postgres-operator
-operator_images,AWS S3 Operator,426,355,,,,,,,"[""''quay.io/screeley44/aws-s3-provisioner:v1.0.0''""]",https://github.com/yard-turkey/aws-s3-provisioner
-operator_images,Azure Service Operator,426,355,,,,,,,,https://github.com/Azure/azure-service-operator
-operator_images,ArangoDB,426,355,,,,,,,,https://github.com/arangodb/kube-arangodb
-operator_images,Redis Enterprise,426,355,,,,,,,,https://github.com/RedisLabs/redis-enterprise-k8s-docs
-operator_images,Apicurio Registry Operator,426,355,,,,,,,"[""''quay.io/apicurio/apicurio-registry-operator:1.0.0''""]",https://github.com/Apicurio/apicurio-registry-operator
-operator_images,API Operator for Kubernetes,426,355,,,,,,,,https://github.com/wso2/k8s-api-operator
-operator_images,GitLab,426,360,,,,,,,,https://gitlab.com/gitlab-org/cloud-native/gitlab-operator
-operator_images,GitLab Runner,426,360,,,,,,,,https://gitlab.com/gitlab-org/gl-openshift/gitlab-runner-operator
-operator_images,nfd-operator,426,362,,,,,,,,https://github.com/kubernetes-sigs/node-feature-discovery-operator
-operator_images,Appsody Operator,426,364,,,,,,,,https://github.com/appsody/appsody-operator
-operator_images,Runtime Component Operator,426,364,,,,,,,,https://github.com/application-stacks/runtime-component-operator
-operator_images,Camel K Operator,426,,378,,,,,,"[""''docker.io/apache/camel-k:1.9.2''""]",https://github.com/apache/camel-k
-operator_images,Appsody Operator,426,,398,,,,,,,https://github.com/appsody/appsody-operator
-operator_images,Open Liberty Operator,426,,398,,,,,,,https://github.com/OpenLiberty/open-liberty-operator
-operator_images,Runtime Component Operator,426,,398,,,,,,,https://github.com/application-stacks/runtime-component-operator
-operator_images,Kogito,426,,398,,,,,,"[""''quay.io/kiegroup/kogito-operator:1.24.0''""]",https://github.com/kiegroup/kogito-operator
+operator_images,Strimzi,576,,,9,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
+operator_images,Eclipse Ditto,576,,,46,,,,,,https://github.com/ctron/ditto-operator
+operator_images,Eclipse Hawkbit,576,,,46,,,,,,https://github.com/ctron/hawkbit-operator
+operator_images,IoT simulator,576,,,46,,,,,,https://github.com/ctron/iot-simulator-operator
+operator_images,Elasticsearch (ECK) Operator,576,,,47,,,,,,https://github.com/elastic/cloud-on-k8s
+operator_images,Elasticsearch Phenix Operator,576,,,47,,,,,,https://github.com/Carrefour-Group/elastic-phenix-operator
+operator_images,Nuxeo Operator,576,,,47,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
+operator_images,Logging Operator,576,,,47,,,,,"[""''quay.io/opstree/logging-operator:v0.3.0''""]",https://github.com/ot-container-kit/logging-operator
+operator_images,AWS Controllers for Kubernetes - Amazon ElastiCache,576,,,47,,,,,,https://github.com/aws-controllers-k8s
+operator_images,Elasticsearch Index Operator,576,,,47,,,,,,https://github.com/IBM/esindex-operator
+operator_images,Prometheus Exporter Operator,576,,,47,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
+operator_images,Kong Operator,576,,,88,,,,,,https://github.com/kong/kong-operator
+operator_images,Jenkins Operator,576,,,90,,,,,,https://github.com/jenkinsci/kubernetes-operator
+operator_images,Prometheus Exporter Operator,576,,,98,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
+operator_images,MongoDB Enterprise Operator,576,,,116,,,,,"[""''quay.io/mongodb/mongodb-enterprise-operator-ubi:1.16.3''""]",https://github.com/mongodb/mongodb-enterprise-kubernetes
+operator_images,MongoDB Operator,576,,,116,,,,,"[""''quay.io/opstree/mongodb-operator:v0.3.0''""]",https://github.com/ot-container-kit/mongodb-operator
+operator_images,MongoDB Atlas Operator,576,,,116,,,,,"[""''quay.io/mongodb/mongodb-atlas-kubernetes-operator:1.1.0''""]",
+operator_images,Percona Distribution for MongoDB Operator,576,,,116,,,,,,https://github.com/percona/percona-server-mongodb-operator
+operator_images,Nuxeo Operator,576,,,116,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
+operator_images,GrdsCloud MySQL for Kubernetes,576,,,122,,,,,,https://github.com/GrdsCloud
+operator_images,Percona Distribution for MySQL Operator,576,,,122,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,PlanetScale Operator for Vitess,576,,,122,,,,,,
+operator_images,Prometheus Exporter Operator,576,,,122,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
+operator_images,Postgresql Operator,576,,,157,,,,,"[""''quay.io/deekshah86/postgresql-operator''""]",https://github.com/janepelladinesh/postgresql-operator
+operator_images,Percona Operator for PostgreSQL,576,,,157,,,,,,https://github.com/percona/percona-postgresql-operator
+operator_images,PostgreSQL Operator by Dev4Ddevs.com,576,,,157,,,,,"[""''quay.io/dev4devs-com/postgresql-operator:0.1.1''""]",https://github.com/dev4devs-com/postgresql-operator
+operator_images,Crunchy Postgres for Kubernetes,576,,,157,,,,,,https://github.com/CrunchyData/postgres-operator
+operator_images,EDB Postgres for Kubernetes,576,,,157,,,,,"[""''quay.io/enterprisedb/cloud-native-postgresql''""]",https://www.enterprisedb.com/docs/postgres_for_kubernetes/latest/
+operator_images,Postgres-Operator,576,,,157,,,,,,https://github.com/zalando/postgres-operator
+operator_images,Ext Postgres Operator,576,,,157,,,,,,https://github.com/movetokube/postgres-operator
+operator_images,Nuxeo Operator,576,,,157,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
+operator_images,Prometheus Exporter Operator,576,,,157,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
+operator_images,Robin Cloud Native Storage,576,,,157,,,,,,
+operator_images,Redis Operator,576,,,168,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
+operator_images,Redis Enterprise,576,,,168,,,,,,https://github.com/RedisLabs/redis-enterprise-k8s-docs
+operator_images,Prometheus Exporter Operator,576,,,168,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
+operator_images,Splunk Operator,576,,,188,,,,,,
+operator_images,Encrypted Images Key Syncer Helm Operator,576,,,209,,,,,"[""''docker.io/lumjjb/enc-key-sync-operator:v0.0.1''""]",https://github.com/IBM/k8s-enc-image-operator
+operator_images,Joget DX on Apache Tomcat,576,,,,260,,,,,https://github.com/jogetworkflow/
+operator_images,APIcast,576,,,,274,,,,"[""''quay.io/3scale/apicast-operator:v0.4.0''""]",https://github.com/3scale/apicast-operator
+operator_images,Spark Operator,576,,,,280,,,,,https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
+operator_images,Apache Spark Operator,576,,,,280,,,,"[""''quay.io/radanalyticsio/spark-operator:1.0.2''""]",https://github.com/radanalyticsio/spark-operator
+operator_images,Kubestone,576,,,,280,,,,,https://github.com/xridge/kubestone
+operator_images,Flink Kubernetes Operator,576,301,,,,,,,"[""''docker.io/apache/flink-kubernetes-operator:1.0.1''""]",https://github.com/apache/flink-kubernetes-operator.git
+operator_images,Alvearie Imaging Ingestion Operator,576,303,,,,,,,,https://github.com/Alvearie/imaging-ingestion
+operator_images,DataStax Kubernetes Operator for Apache Cassandra,576,303,,,,,,,,https://github.com/k8ssandra/cass-operator
+operator_images,Qserv operator,576,303,,,,,,,,https://github.com/lsst/qserv-operator
+operator_images,Strimzi,576,303,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
+operator_images,Keycloak Operator,576,303,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
+operator_images,Prometheus Operator,576,303,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
+operator_images,Elasticsearch (ECK) Operator,576,303,,,,,,,,https://github.com/elastic/cloud-on-k8s
+operator_images,Crunchy Postgres for Kubernetes,576,303,,,,,,,,https://github.com/CrunchyData/postgres-operator
+operator_images,Knative Operator,576,303,,,,,,,,https://github.com/knative/operator
+operator_images,Redis Operator,576,303,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
+operator_images,Rook-Ceph,576,303,,,,,,,,https://github.com/rook/rook
+operator_images,Argo CD,576,303,,,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
+operator_images,Grafana Operator,576,303,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
+operator_images,Starboard Operator,576,303,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
+operator_images,TiDB Operator,576,303,,,,,,,,https://github.com/pingcap/tidb-operator
+operator_images,Altinity Operator for ClickHouse,576,303,,,,,,,,https://github.com/altinity/clickhouse-operator
+operator_images,Flux,576,303,,,,,,,,https://fluxcd.io/docs/
+operator_images,Percona Distribution for MySQL Operator,576,303,,,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,RocketMQ Operator,576,303,,,,,,,,https://github.com/apache/rocketmq-operator
+operator_images,StorageOS,576,303,,,,,,,,https://github.com/storageos/operator
+operator_images,Joget DX on Apache Tomcat,576,306,,,,,,,,https://github.com/jogetworkflow/
+operator_images,Lightbend Console Operator,576,306,,,,,,,,https://github.com/lightbend/console-charts/tree/master/operator
+operator_images,Knative Operator,576,321,,,,,,,,https://github.com/knative/operator
+operator_images,PostgreSQL Operator by Dev4Ddevs.com,576,323,,,,,,,"[""''quay.io/dev4devs-com/postgresql-operator:0.1.1''""]",https://github.com/dev4devs-com/postgresql-operator
+operator_images,Redis Operator,576,323,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
+operator_images,Logging Operator,576,323,,,,,,,"[""''quay.io/opstree/logging-operator:v0.3.0''""]",https://github.com/ot-container-kit/logging-operator
+operator_images,External Secrets Operator,576,323,,,,,,,,https://github.com/external-secrets/external-secrets-helm-operator
+operator_images,Intel Device Plugins Operator,576,323,,,,,,,,https://github.com/intel/intel-device-plugins-for-kubernetes
+operator_images,MongoDB Operator,576,323,,,,,,,"[""''quay.io/opstree/mongodb-operator:v0.3.0''""]",https://github.com/ot-container-kit/mongodb-operator
+operator_images,silicom-sts-operator,576,323,,,,,,,"[""''quay.io/silicom/sts-operator:v0.0.1''""]",github.com/silicomdk/sts-operator
+operator_images,Spark Operator,576,323,,,,,,,,https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
+operator_images,Azure Service Operator,576,353,,,,,,,,https://github.com/Azure/azure-service-operator
+operator_images,API Operator for Kubernetes,576,353,,,,,,,,https://github.com/wso2/k8s-api-operator
+operator_images,KEDA,576,353,,,,,,,,https://github.com/kedacore/keda-olm-operator
+operator_images,WSO2 API Manager Operator for Kubernetes,576,353,,,,,,,,https://github.com/wso2/k8s-wso2am-operator
+operator_images,AWS Controllers for Kubernetes - Amazon API Gateway v2,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon Application Auto Scaling,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon DynamoDB,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon EC2,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon ECR,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon EKS,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon ElastiCache,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon EMR on EKS,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon IAM,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon KMS,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon Lambda,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon MQ,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon OpenSearch Service,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon RDS,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon S3,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,AWS Controllers for Kubernetes - Amazon SageMaker,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,Strimzi,576,355,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
+operator_images,Keycloak Operator,576,355,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
+operator_images,Prometheus Operator,576,355,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
+operator_images,Elasticsearch (ECK) Operator,576,355,,,,,,,,https://github.com/elastic/cloud-on-k8s
+operator_images,Knative Operator,576,355,,,,,,,,https://github.com/knative/operator
+operator_images,Redis Operator,576,355,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
+operator_images,Rook-Ceph,576,355,,,,,,,,https://github.com/rook/rook
+operator_images,Grafana Operator,576,355,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
+operator_images,Starboard Operator,576,355,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
+operator_images,TiDB Operator,576,355,,,,,,,,https://github.com/pingcap/tidb-operator
+operator_images,RocketMQ Operator,576,355,,,,,,,,https://github.com/apache/rocketmq-operator
+operator_images,Falco Operator,576,355,,,,,,,"[""''docker.io/falcosecurity/falco-operator-helm:0.7.6''""]",https://github.com/falcosecurity/falco-operator/tree/helm-based-operator
+operator_images,Kubemq Enterprise Operator,576,355,,,,,,,"[""''docker.io/kubemq/kubemq-operator:latest''""]",https://github.com/kubemq-io/kubemq-operator
+operator_images,Postgres-Operator,576,355,,,,,,,,https://github.com/zalando/postgres-operator
+operator_images,AWS S3 Operator,576,355,,,,,,,"[""''quay.io/screeley44/aws-s3-provisioner:v1.0.0''""]",https://github.com/yard-turkey/aws-s3-provisioner
+operator_images,Azure Service Operator,576,355,,,,,,,,https://github.com/Azure/azure-service-operator
+operator_images,ArangoDB,576,355,,,,,,,,https://github.com/arangodb/kube-arangodb
+operator_images,Redis Enterprise,576,355,,,,,,,,https://github.com/RedisLabs/redis-enterprise-k8s-docs
+operator_images,Apicurio Registry Operator,576,355,,,,,,,"[""''quay.io/apicurio/apicurio-registry-operator:1.0.0''""]",https://github.com/Apicurio/apicurio-registry-operator
+operator_images,API Operator for Kubernetes,576,355,,,,,,,,https://github.com/wso2/k8s-api-operator
+operator_images,GitLab,576,360,,,,,,,,https://gitlab.com/gitlab-org/cloud-native/gitlab-operator
+operator_images,GitLab Runner,576,360,,,,,,,,https://gitlab.com/gitlab-org/gl-openshift/gitlab-runner-operator
+operator_images,nfd-operator,576,362,,,,,,,,https://github.com/kubernetes-sigs/node-feature-discovery-operator
+operator_images,Appsody Operator,576,364,,,,,,,,https://github.com/appsody/appsody-operator
+operator_images,Runtime Component Operator,576,364,,,,,,,,https://github.com/application-stacks/runtime-component-operator
+operator_images,Camel K Operator,576,,378,,,,,,"[""''docker.io/apache/camel-k:1.9.2''""]",https://github.com/apache/camel-k
+operator_images,Appsody Operator,576,,398,,,,,,,https://github.com/appsody/appsody-operator
+operator_images,Open Liberty Operator,576,,398,,,,,,,https://github.com/OpenLiberty/open-liberty-operator
+operator_images,Runtime Component Operator,576,,398,,,,,,,https://github.com/application-stacks/runtime-component-operator
+operator_images,Kogito,576,,398,,,,,,"[""''quay.io/kiegroup/kogito-operator:1.24.0''""]",https://github.com/kiegroup/kogito-operator
 operator_images,Kubeflow,424,,,,,,,,,https://github.com/kubeflow/kfctl
 operator_images,Varnish Operator,424,,,,,,,,,https://github.com/IBM/varnish-operator
 operator_images,Composable,424,,,,,,,,,https://github.com/IBM/composable
@@ -189,190 +142,184 @@ operator_images,IBM Security Verify Access Operator,424,,,,,,,,,https://github.c
 operator_images,IBM Spectrum Scale CSI Plugin Operator,424,,,,,,,,"[""''quay.io/ibm-spectrum-scale/ibm-spectrum-scale-csi-operator''""]",https://github.com/IBM/ibm-spectrum-scale-csi/
 operator_images,Open Liberty Operator,424,,,,,,,,,https://github.com/OpenLiberty/open-liberty-operator
 operator_images,QiskitPlayground,424,,,,,,,,"[""''docker.io/qiskit/operator:0.1''""]",https://github.com/qiskit-community/openshift-quantum-operators/tree/master/operators-examples/kubernetes-qiskit-operator
-operator_images,WildFly,426,,,,,,493,,"[""''quay.io/wildfly/wildfly-operator:0.5.3''""]",https://github.com/wildfly/wildfly-operator
-operator_images,Knative Operator,426,,,,,,,497,,https://github.com/knative/operator
-operator_images,Submariner,426,,,,,,,497,"[""''quay.io/submariner/submariner-operator:0.11.0''""]",https://github.com/submariner-io/submariner-operator
-operator_images,Kong Operator,426,,,,,,,497,,https://github.com/kong/kong-operator
-operator_images,Traefikee Operator,426,,,,,,,497,,https://docs.containo.us
-operator_images,Upbound Universal Crossplane (UXP),426,,,,,,,497,,https://github.com/upbound/universal-crossplane
-operator_images,Varnish Operator,426,,,,,,,497,,https://github.com/IBM/varnish-operator
-operator_images,BeeGFS CSI Driver,426,,,,,,,497,,https://github.com/netapp/beegfs-csi-driver
-operator_images,cluster-impairment-operator,426,,,,,,,497,"[""''quay.io/redhat-performance/cluster-impairment-operator:1.0.4''""]",https://github.com/redhat-performance/cluster-impairment-operator
-operator_images,Kogito Knative Eventing Source,426,,,,,,,497,,https://github.com/knative-sandbox/eventing-kogito
-operator_images,k8gb,426,,,,,,,497,,https://github.com/k8gb-io/k8gb
-operator_images,Kubernetes NMState Operator,426,,,,,,,497,"[""''quay.io/nmstate/kubernetes-nmstate-operator:v0.47.0''""]",https://github.com/nmstate/kubernetes-nmstate
-operator_images,MARIN3R,426,,,,,,,497,"[""''quay.io/3scale/marin3r''""]",https://github.com/3scale-ops/marin3r
-operator_images,MetalLB Operator,426,,,,,,,497,"[""''quay.io/metallb/metallb-operator''""]",https://github.com/metallb/metallb-operator
-operator_images,NetObserv Operator,426,,,,,,,497,"[""''quay.io/netobserv/network-observability-operator:0.1.3''""]",https://github.com/netobserv/network-observability-operator
-operator_images,NeuVector Operator,426,,,,,,,497,,https://github.com/neuvector/neuvector-operator
-operator_images,Network Service Mesh Operator,426,,,,,,,497,"[""''quay.io/acmenezes/nsm-operator:v0.0.1''""]",https://github.com/acmenezes/nsm-operator
-operator_images,Prisma Cloud Compute Operator,426,,,,,,,497,"[""''quay.io/prismacloud/pcc-operator''""]",https://github.com/PaloAltoNetworks/prisma-cloud-compute-operator
-operator_images,Routernetes,426,,,,,,,497,"[""''quay.io/routernetes/routernetes-operator:0.0.5''""]",https://github.com/routernetes/routernetes-operator
-operator_images,skydive-operator,426,,,,,,,497,"[""''docker.io/skydive/skydive-operator:0.0.50''""]",https://github.com/skydive-project/skydive-golang-operator
-operator_images,Tf Operator,426,,,,,,,497,"[""''docker.io/tungstenfabric/tf-operator:latest''""]",https://github.com/tungstenfabric/tf-operator
-operator_images,Nexus Operator,426,,,,,,,503,"[""''quay.io/m88i/nexus-operator:0.6.0''""]",https://github.com/m88i/nexus-operator
-operator_images,Anchore Engine Operator,426,,,,,,,503,"[""''docker.io/anchore/engine-operator:v0.1.3''""]",https://github.com/anchore/engine-operator
-operator_images,Carbonetes Operator,426,,,,,,,503,"[""''docker.io/carbonetes/operator:1.0.4''""]",https://github.com/carbonetes/carbonetes-analyzer
-operator_images,Prisma Cloud Compute Operator,426,,,,,,,503,"[""''quay.io/prismacloud/pcc-operator''""]",https://github.com/PaloAltoNetworks/prisma-cloud-compute-operator
-operator_images,Crunchy Postgres for Kubernetes,426,532,,,,,,,,https://github.com/CrunchyData/postgres-operator
-operator_images,TiDB Operator,426,532,,,,,,,,https://github.com/pingcap/tidb-operator
-operator_images,EDB Postgres for Kubernetes,426,532,,,,,,,"[""''quay.io/enterprisedb/cloud-native-postgresql''""]",https://www.enterprisedb.com/docs/postgres_for_kubernetes/latest/
-operator_images,GrdsCloud MySQL for Kubernetes,426,532,,,,,,,,https://github.com/GrdsCloud
-operator_images,Percona Operator for PostgreSQL,426,532,,,,,,,,https://github.com/percona/percona-postgresql-operator
-operator_images,Alvearie Imaging Ingestion Operator,426,582,,,,,,,,https://github.com/Alvearie/imaging-ingestion
-operator_images,DataStax Kubernetes Operator for Apache Cassandra,426,582,,,,,,,,https://github.com/k8ssandra/cass-operator
-operator_images,Qserv operator,426,582,,,,,,,,https://github.com/lsst/qserv-operator
-operator_images,Strimzi,426,582,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
-operator_images,Keycloak Operator,426,582,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
-operator_images,Prometheus Operator,426,582,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
-operator_images,Elasticsearch (ECK) Operator,426,582,,,,,,,,https://github.com/elastic/cloud-on-k8s
-operator_images,Crunchy Postgres for Kubernetes,426,582,,,,,,,,https://github.com/CrunchyData/postgres-operator
-operator_images,Knative Operator,426,582,,,,,,,,https://github.com/knative/operator
-operator_images,Redis Operator,426,582,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
-operator_images,Rook-Ceph,426,582,,,,,,,,https://github.com/rook/rook
-operator_images,Argo CD,426,582,,,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
-operator_images,Grafana Operator,426,582,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
-operator_images,Starboard Operator,426,582,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
-operator_images,TiDB Operator,426,582,,,,,,,,https://github.com/pingcap/tidb-operator
-operator_images,Altinity Operator for ClickHouse,426,582,,,,,,,,https://github.com/altinity/clickhouse-operator
-operator_images,Flux,426,582,,,,,,,,https://fluxcd.io/docs/
-operator_images,Percona Distribution for MySQL Operator,426,582,,,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
-operator_images,RocketMQ Operator,426,582,,,,,,,,https://github.com/apache/rocketmq-operator
-operator_images,StorageOS,426,582,,,,,,,,https://github.com/storageos/operator
-operator_images,Alvearie Imaging Ingestion Operator,426,583,,,,,,,,https://github.com/Alvearie/imaging-ingestion
-operator_images,DataStax Kubernetes Operator for Apache Cassandra,426,583,,,,,,,,https://github.com/k8ssandra/cass-operator
-operator_images,Qserv operator,426,583,,,,,,,,https://github.com/lsst/qserv-operator
-operator_images,Strimzi,426,583,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
-operator_images,Keycloak Operator,426,583,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
-operator_images,Prometheus Operator,426,583,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
-operator_images,Elasticsearch (ECK) Operator,426,583,,,,,,,,https://github.com/elastic/cloud-on-k8s
-operator_images,Crunchy Postgres for Kubernetes,426,583,,,,,,,,https://github.com/CrunchyData/postgres-operator
-operator_images,Knative Operator,426,583,,,,,,,,https://github.com/knative/operator
-operator_images,Redis Operator,426,583,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
-operator_images,Rook-Ceph,426,583,,,,,,,,https://github.com/rook/rook
-operator_images,Argo CD,426,583,,,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
-operator_images,Grafana Operator,426,583,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
-operator_images,Starboard Operator,426,583,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
-operator_images,TiDB Operator,426,583,,,,,,,,https://github.com/pingcap/tidb-operator
-operator_images,Altinity Operator for ClickHouse,426,583,,,,,,,,https://github.com/altinity/clickhouse-operator
-operator_images,Flux,426,583,,,,,,,,https://fluxcd.io/docs/
-operator_images,Percona Distribution for MySQL Operator,426,583,,,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
-operator_images,RocketMQ Operator,426,583,,,,,,,,https://github.com/apache/rocketmq-operator
-operator_images,StorageOS,426,583,,,,,,,,https://github.com/storageos/operator
-operator_images,WildFly,426,584,,,,,,,"[""''quay.io/wildfly/wildfly-operator:0.5.3''""]",https://github.com/wildfly/wildfly-operator
-operator_images,AtlasMap Operator,426,584,,,,,,,"[""''quay.io/atlasmap/atlasmap-operator:0.4.1''""]",https://github.com/atlasmap/atlasmap-operator
-operator_images,Appsody Operator,426,584,,,,,,,,https://github.com/appsody/appsody-operator
-operator_images,Cryostat Operator,426,584,,,,,,,"[""''quay.io/cryostat/cryostat-operator:2.1.1''""]",github.com/cryostatio/cryostat-operator
-operator_images,Open Liberty Operator,426,584,,,,,,,,https://github.com/OpenLiberty/open-liberty-operator
-operator_images,Runtime Component Operator,426,584,,,,,,,,https://github.com/application-stacks/runtime-component-operator
-operator_images,IBM Spectrum Scale CSI Plugin Operator,426,,,605,,,,,"[""''quay.io/ibm-spectrum-scale/ibm-spectrum-scale-csi-operator''""]",https://github.com/IBM/ibm-spectrum-scale-csi/
-operator_images,Instana Agent Operator,426,,,,,,,611,,https://github.com/instana/instana-agent-operator
-operator_images,credstash-operator,426,,,612,,,,,"[""''quay.io/ouzi/credstash-operator:v1.13.0''""]",https://github.com/ouzi-dev/credstash-operator
-operator_images,Snyk Operator,426,,,613,,,,,"[""''docker.io/snyk/kubernetes-operator:1.92.0''""]",https://github.com/snyk/kubernetes-monitor
-operator_images,Akka Cluster Operator,426,,,614,,,,,,https://github.com/lightbend/akka-cluster-operator
-operator_images,Lightbend Console Operator,426,,,614,,,,,,https://github.com/lightbend/console-charts/tree/master/operator
-operator_images,Varnish Operator,426,,,,615,,,,,https://github.com/IBM/varnish-operator
-operator_images,Datadog Operator,426,,,,,,,616,,https://github.com/DataDog/datadog-operator
-operator_images,Hazelcast Platform Operator,426,,,,,,,618,"[""''docker.io/hazelcast/hazelcast-platform-operator:5.3''""]",https://docs.hazelcast.com/operator/latest/
-operator_images,Infinispan Operator,426,,,619,,,,,"[""''quay.io/infinispan/operator:2.2.4.Final''""]",https://github.com/infinispan/infinispan-operator
-operator_images,Nuxeo Operator,426,,,,,,,620,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
-operator_images,ArangoDB,426,,,621,,,,,,https://github.com/arangodb/kube-arangodb
-operator_images,AWS Controllers for Kubernetes - Amazon S3,426,,,623,,,,,,https://github.com/aws-controllers-k8s
-operator_images,Altinity Operator for ClickHouse,426,,,624,,,,,,https://github.com/altinity/clickhouse-operator
-operator_images,Minio Operator,426,,,625,,,,,"[""''quay.io/minio/operator''""]",https://github.com/minio/operator
-operator_images,Elasticsearch Index Operator,426,,,626,,,,,,https://github.com/IBM/esindex-operator
-operator_images,Elasticsearch (ECK) Operator,426,,,626,,,,,,https://github.com/elastic/cloud-on-k8s
-operator_images,Elasticsearch Phenix Operator,426,,,626,,,,,,https://github.com/Carrefour-Group/elastic-phenix-operator
-operator_images,Logging Operator,426,,,626,,,,,"[""''quay.io/opstree/logging-operator:v0.3.0''""]",https://github.com/ot-container-kit/logging-operator
-operator_images,Nuxeo Operator,426,,,626,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
-operator_images,Prometheus Exporter Operator,426,,,626,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
-operator_images,Percona Distribution for MySQL Operator,426,,,627,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
-operator_images,Keycloak Operator,426,,,628,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
-operator_images,Grafana Operator,426,,,629,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
-operator_images,Prometheus Exporter Operator,426,,,629,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
-operator_images,Mattermost Operator,426,,,,,,,630,"[""''docker.io/mattermost/mattermost-operator:v0.5.0''""]",https://github.com/mattermost/mattermost-operator
-operator_images,synapse-helm,426,,,631,,,,,"[""''quay.io/mgoerens/synapse-helm:v0.0.11''""]",https://github.com/opdev/synapse-helm
-operator_images,IBM Cloud IAM Operator,426,,,632,,,,,,https://github.com/IBM/ibmcloud-iam-operator
-operator_images,AWS Controllers for Kubernetes - Amazon IAM,426,,,632,,,,,,https://github.com/aws-controllers-k8s
-operator_images,Knative Operator,426,,,,,,,633,,https://github.com/knative/operator
-operator_images,Kogito Knative Eventing Source,426,,,,,,,633,,https://github.com/knative-sandbox/eventing-kogito
-operator_images,YAKS Operator,426,,,,,,,633,"[""''docker.io/citrusframework/yaks:0.10.0''""]",https://github.com/citrusframework/yaks
-operator_images,DataStax Kubernetes Operator for Apache Cassandra,426,,,634,,,,,,https://github.com/k8ssandra/cass-operator
-operator_images,Kubeflow,426,,,,,,,635,,https://github.com/kubeflow/kfctl
-operator_images,QiskitPlayground,426,,,636,,,,,"[""''docker.io/qiskit/operator:0.1''""]",https://github.com/qiskit-community/openshift-quantum-operators/tree/master/operators-examples/kubernetes-qiskit-operator
-operator_images,Ibm Quantum Operator,426,,,636,,,,,"[""''quay.io/application/husky_parul/ibm-quantum-operator''""]",https://github.com/redhat-et/ibm-quantum-operator
-operator_images,Azure Service Operator,426,,,637,,,,,,https://github.com/Azure/azure-service-operator
-operator_images,Strimzi,426,,,,,,,638,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
-operator_images,Sematext Operator,426,,,,,,,639,"[""''docker.io/sematext/sematext-operator:1.0.46''""]",https://github.com/sematext/sematext-operator
-operator_images,Eclipse Hawkbit,426,,,640,,,,,,https://github.com/ctron/hawkbit-operator
-operator_images,Eclipse Ditto,426,,,641,,,,,,https://github.com/ctron/ditto-operator
-operator_images,Mariadb Operator,426,,,642,,,,,"[""''quay.io/manojdhanorkar/mariadb-operator:v0.0.4''""]",https://github.com/abalki001/mariadb-operator
-operator_images,Zadara Operator,426,,,643,,,,,,https://github.com/zadarastorage/zadara-operator
-operator_images,Istio,426,,,644,,,,,,https://github.com/banzaicloud/istio-operator/tree/release-1.1
-operator_images,Istio Workspace,426,,,644,,,,,"[""''quay.io/maistra/istio-workspace:v0.5.1''""]",https://github.com/maistra/istio-workspace
-operator_images,Kiali Operator,426,,,644,,,,,"[""''quay.io/kiali/kiali-operator:v1.53.0''""]",https://github.com/kiali/kiali
-operator_images,Vault Operator,426,,,645,,,,,,https://github.com/banzaicloud/bank-vaults/tree/master/operator
-operator_images,Vault Helm,426,,,645,,,,,"[""''quay.io/brejohns/vault-helm:0.0.2''""]",https://github.com/SDBrett/vault-helm
-operator_images,External Secrets Operator,426,,,645,,,,,,https://github.com/external-secrets/external-secrets-helm-operator
-operator_images,druid-operator,426,,,646,,,,,"[""''docker.io/druidio/druid-operator:0.0.9''""]",https://github.com/druid-io/druid-operator
-operator_images,etcd,426,,,647,,,,,"[""''quay.io/coreos/etcd-operator''""]",https://github.com/coreos/etcd-operator
-operator_images,Traefikee Operator,426,,,,648,,,,,https://docs.containo.us
-operator_images,IBM Cloud Operator,426,,,649,,,,,,https://github.com/IBM/cloud-operators
-operator_images,IBM Cloud IAM Operator,426,,,649,,,,,,https://github.com/IBM/ibmcloud-iam-operator
-operator_images,Event Streams Topic,426,,,649,,,,,,https://github.com/IBM/event-streams-topic
-operator_images,IBM COS Bucket Operator,426,,,649,,,,,,https://github.com/IBM/cos-bucket-operator
-operator_images,Composable,426,,,649,,,,,,https://github.com/IBM/composable
-operator_images,Elasticsearch Index Operator,426,,,649,,,,,,https://github.com/IBM/esindex-operator
-operator_images,IBM block storage CSI driver operator,426,,,649,,,,,,https://github.com/IBM/ibm-block-csi-operator
-operator_images,Yugabyte Operator,426,,,650,,,,,"[""''quay.io/yugabyte/yugabytedb-operator''""]",https://github.com/yugabyte/yugabyte-operator
-operator_images,CockroachDB,426,,,651,,,,,"[""''quay.io/helmoperators/cockroachdb:v5.0.4''""]",https://github.com/dmesser/cockroachdb-operator
-operator_images,Community Jaeger Operator,426,,,,,,,652,"[""''quay.io/jaegertracing/jaeger-operator:1.35.0''""]",https://github.com/jaegertracing/jaeger-operator
-operator_images,PostgreSQL Operator by Dev4Ddevs.com,426,,,,,,,661,"[""''quay.io/dev4devs-com/postgresql-operator:0.1.1''""]",https://github.com/dev4devs-com/postgresql-operator
-operator_images,Strimzi,426,,,,,,,661,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
-operator_images,Keycloak Operator,426,,,,,,,661,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
-operator_images,Prometheus Operator,426,,,,,,,661,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
-operator_images,Elasticsearch (ECK) Operator,426,,,,,,,661,,https://github.com/elastic/cloud-on-k8s
-operator_images,Crunchy Postgres for Kubernetes,426,,,,,,,661,,https://github.com/CrunchyData/postgres-operator
-operator_images,Knative Operator,426,,,,,,,661,,https://github.com/knative/operator
-operator_images,Redis Operator,426,,,,,,,661,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
-operator_images,Rook-Ceph,426,,,,,,,661,,https://github.com/rook/rook
-operator_images,Argo CD,426,,,,,,,661,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
-operator_images,Grafana Operator,426,,,,,,,661,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
-operator_images,Starboard Operator,426,,,,,,,661,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
-operator_images,TiDB Operator,426,,,,,,,661,,https://github.com/pingcap/tidb-operator
-operator_images,Altinity Operator for ClickHouse,426,,,,,,,661,,https://github.com/altinity/clickhouse-operator
-operator_images,Flux,426,,,,,,,661,,https://fluxcd.io/docs/
-operator_images,Percona Distribution for MySQL Operator,426,,,,,,,661,,https://github.com/percona/percona-xtradb-cluster-operator
-operator_images,RocketMQ Operator,426,,,,,,,661,,https://github.com/apache/rocketmq-operator
-operator_images,StorageOS,426,,,,,,,661,,https://github.com/storageos/operator
-operator_images,Falco Operator,426,,,,,,,661,"[""''docker.io/falcosecurity/falco-operator-helm:0.7.6''""]",https://github.com/falcosecurity/falco-operator/tree/helm-based-operator
-operator_images,Community Jaeger Operator,426,,,,,,,661,"[""''quay.io/jaegertracing/jaeger-operator:1.35.0''""]",https://github.com/jaegertracing/jaeger-operator
-operator_images,DataStax Kubernetes Operator for Apache Cassandra,426,,,671,,,,,,https://github.com/k8ssandra/cass-operator
-operator_images,ks-releaser,426,,,677,,,,,,https://github.com/kubesphere-sigs/ks-releaser-operator
-operator_images,Argo CD,426,,,677,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
-operator_images,Flux,426,,,677,,,,,,https://fluxcd.io/docs/
-operator_images,Argo CD Operator (Helm),426,,,677,,,,,"[""''quay.io/disposab1e/argocd-operator-helm''""]",https://github.com/disposab1e/argocd-operator-helm.git
-operator_images,External Secrets Operator,426,,,677,,,,,,https://github.com/external-secrets/external-secrets-helm-operator
-operator_images,GitLab,426,,,677,,,,,,https://gitlab.com/gitlab-org/cloud-native/gitlab-operator
-operator_images,GitLab Runner,426,,,677,,,,,,https://gitlab.com/gitlab-org/gl-openshift/gitlab-runner-operator
-operator_images,Multicluster Subscription Operator,426,,,677,,,,,"[""''quay.io/open-cluster-management/multicluster-operators-subscription:2.3.0''""]",https://github.com/open-cluster-management/multicloud-operators-subscription
-operator_images,Weave GitOps Terraform Controller,426,,,677,,,,,,https://weaveworks.github.io/tf-controller/
-operator_images,GitLab,426,,,678,,,,,,https://gitlab.com/gitlab-org/cloud-native/gitlab-operator
-operator_images,GitLab Runner,426,,,678,,,,,,https://gitlab.com/gitlab-org/gl-openshift/gitlab-runner-operator
-operator_images,External Secrets Operator,426,,,678,,,,,,https://github.com/external-secrets/external-secrets-helm-operator
-operator_images,GrdsCloud MySQL for Kubernetes,426,,,684,,,,,,https://github.com/GrdsCloud
-operator_images,Percona Distribution for MySQL Operator,426,,,684,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
-operator_images,PlanetScale Operator for Vitess,426,,,684,,,,,,
-operator_images,Prometheus Exporter Operator,426,,,684,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
-operator_images,Postgresql Operator,426,,,686,,,,,"[""''quay.io/deekshah86/postgresql-operator''""]",https://github.com/janepelladinesh/postgresql-operator
-operator_images,Percona Operator for PostgreSQL,426,,,686,,,,,,https://github.com/percona/percona-postgresql-operator
-operator_images,PostgreSQL Operator by Dev4Ddevs.com,426,,,686,,,,,"[""''quay.io/dev4devs-com/postgresql-operator:0.1.1''""]",https://github.com/dev4devs-com/postgresql-operator
-operator_images,Crunchy Postgres for Kubernetes,426,,,686,,,,,,https://github.com/CrunchyData/postgres-operator
-operator_images,EDB Postgres for Kubernetes,426,,,686,,,,,"[""''quay.io/enterprisedb/cloud-native-postgresql''""]",https://www.enterprisedb.com/docs/postgres_for_kubernetes/latest/
-operator_images,Postgres-Operator,426,,,686,,,,,,https://github.com/zalando/postgres-operator
-operator_images,Ext Postgres Operator,426,,,686,,,,,,https://github.com/movetokube/postgres-operator
-operator_images,Nuxeo Operator,426,,,686,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
-operator_images,Prometheus Exporter Operator,426,,,686,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
-operator_images,Robin Cloud Native Storage,426,,,686,,,,,,
-operator_images,AWS Controllers for Kubernetes - Amazon RDS,426,,,687,,,,,,https://github.com/aws-controllers-k8s
-operator_images,Upbound Universal Crossplane (UXP),426,,,687,,,,,,https://github.com/upbound/universal-crossplane
+operator_images,WildFly,576,,,,,,493,,"[""''quay.io/wildfly/wildfly-operator:0.5.3''""]",https://github.com/wildfly/wildfly-operator
+operator_images,Knative Operator,576,,,,,,,497,,https://github.com/knative/operator
+operator_images,Submariner,576,,,,,,,497,"[""''quay.io/submariner/submariner-operator:0.11.0''""]",https://github.com/submariner-io/submariner-operator
+operator_images,Kong Operator,576,,,,,,,497,,https://github.com/kong/kong-operator
+operator_images,Traefikee Operator,576,,,,,,,497,,https://docs.containo.us
+operator_images,Upbound Universal Crossplane (UXP),576,,,,,,,497,,https://github.com/upbound/universal-crossplane
+operator_images,Varnish Operator,576,,,,,,,497,,https://github.com/IBM/varnish-operator
+operator_images,BeeGFS CSI Driver,576,,,,,,,497,,https://github.com/netapp/beegfs-csi-driver
+operator_images,cluster-impairment-operator,576,,,,,,,497,"[""''quay.io/redhat-performance/cluster-impairment-operator:1.0.4''""]",https://github.com/redhat-performance/cluster-impairment-operator
+operator_images,Kogito Knative Eventing Source,576,,,,,,,497,,https://github.com/knative-sandbox/eventing-kogito
+operator_images,k8gb,576,,,,,,,497,,https://github.com/k8gb-io/k8gb
+operator_images,Kubernetes NMState Operator,576,,,,,,,497,"[""''quay.io/nmstate/kubernetes-nmstate-operator:v0.47.0''""]",https://github.com/nmstate/kubernetes-nmstate
+operator_images,MARIN3R,576,,,,,,,497,"[""''quay.io/3scale/marin3r''""]",https://github.com/3scale-ops/marin3r
+operator_images,MetalLB Operator,576,,,,,,,497,"[""''quay.io/metallb/metallb-operator''""]",https://github.com/metallb/metallb-operator
+operator_images,NetObserv Operator,576,,,,,,,497,"[""''quay.io/netobserv/network-observability-operator:0.1.3''""]",https://github.com/netobserv/network-observability-operator
+operator_images,NeuVector Operator,576,,,,,,,497,,https://github.com/neuvector/neuvector-operator
+operator_images,Network Service Mesh Operator,576,,,,,,,497,"[""''quay.io/acmenezes/nsm-operator:v0.0.1''""]",https://github.com/acmenezes/nsm-operator
+operator_images,Prisma Cloud Compute Operator,576,,,,,,,497,"[""''quay.io/prismacloud/pcc-operator''""]",https://github.com/PaloAltoNetworks/prisma-cloud-compute-operator
+operator_images,Routernetes,576,,,,,,,497,"[""''quay.io/routernetes/routernetes-operator:0.0.5''""]",https://github.com/routernetes/routernetes-operator
+operator_images,skydive-operator,576,,,,,,,497,"[""''docker.io/skydive/skydive-operator:0.0.50''""]",https://github.com/skydive-project/skydive-golang-operator
+operator_images,Tf Operator,576,,,,,,,497,"[""''docker.io/tungstenfabric/tf-operator:latest''""]",https://github.com/tungstenfabric/tf-operator
+operator_images,Nexus Operator,576,,,,,,,503,"[""''quay.io/m88i/nexus-operator:0.6.0''""]",https://github.com/m88i/nexus-operator
+operator_images,Anchore Engine Operator,576,,,,,,,503,"[""''docker.io/anchore/engine-operator:v0.1.3''""]",https://github.com/anchore/engine-operator
+operator_images,Carbonetes Operator,576,,,,,,,503,"[""''docker.io/carbonetes/operator:1.0.4''""]",https://github.com/carbonetes/carbonetes-analyzer
+operator_images,Prisma Cloud Compute Operator,576,,,,,,,503,"[""''quay.io/prismacloud/pcc-operator''""]",https://github.com/PaloAltoNetworks/prisma-cloud-compute-operator
+operator_images,Alvearie Imaging Ingestion Operator,576,582,,,,,,,,https://github.com/Alvearie/imaging-ingestion
+operator_images,DataStax Kubernetes Operator for Apache Cassandra,576,582,,,,,,,,https://github.com/k8ssandra/cass-operator
+operator_images,Qserv operator,576,582,,,,,,,,https://github.com/lsst/qserv-operator
+operator_images,Strimzi,576,582,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
+operator_images,Keycloak Operator,576,582,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
+operator_images,Prometheus Operator,576,582,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
+operator_images,Elasticsearch (ECK) Operator,576,582,,,,,,,,https://github.com/elastic/cloud-on-k8s
+operator_images,Crunchy Postgres for Kubernetes,576,582,,,,,,,,https://github.com/CrunchyData/postgres-operator
+operator_images,Knative Operator,576,582,,,,,,,,https://github.com/knative/operator
+operator_images,Redis Operator,576,582,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
+operator_images,Rook-Ceph,576,582,,,,,,,,https://github.com/rook/rook
+operator_images,Argo CD,576,582,,,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
+operator_images,Grafana Operator,576,582,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
+operator_images,Starboard Operator,576,582,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
+operator_images,TiDB Operator,576,582,,,,,,,,https://github.com/pingcap/tidb-operator
+operator_images,Altinity Operator for ClickHouse,576,582,,,,,,,,https://github.com/altinity/clickhouse-operator
+operator_images,Flux,576,582,,,,,,,,https://fluxcd.io/docs/
+operator_images,Percona Distribution for MySQL Operator,576,582,,,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,RocketMQ Operator,576,582,,,,,,,,https://github.com/apache/rocketmq-operator
+operator_images,StorageOS,576,582,,,,,,,,https://github.com/storageos/operator
+operator_images,Alvearie Imaging Ingestion Operator,576,583,,,,,,,,https://github.com/Alvearie/imaging-ingestion
+operator_images,DataStax Kubernetes Operator for Apache Cassandra,576,583,,,,,,,,https://github.com/k8ssandra/cass-operator
+operator_images,Qserv operator,576,583,,,,,,,,https://github.com/lsst/qserv-operator
+operator_images,Strimzi,576,583,,,,,,,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
+operator_images,Keycloak Operator,576,583,,,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
+operator_images,Prometheus Operator,576,583,,,,,,,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
+operator_images,Elasticsearch (ECK) Operator,576,583,,,,,,,,https://github.com/elastic/cloud-on-k8s
+operator_images,Crunchy Postgres for Kubernetes,576,583,,,,,,,,https://github.com/CrunchyData/postgres-operator
+operator_images,Knative Operator,576,583,,,,,,,,https://github.com/knative/operator
+operator_images,Redis Operator,576,583,,,,,,,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
+operator_images,Rook-Ceph,576,583,,,,,,,,https://github.com/rook/rook
+operator_images,Argo CD,576,583,,,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
+operator_images,Grafana Operator,576,583,,,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
+operator_images,Starboard Operator,576,583,,,,,,,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
+operator_images,TiDB Operator,576,583,,,,,,,,https://github.com/pingcap/tidb-operator
+operator_images,Altinity Operator for ClickHouse,576,583,,,,,,,,https://github.com/altinity/clickhouse-operator
+operator_images,Flux,576,583,,,,,,,,https://fluxcd.io/docs/
+operator_images,Percona Distribution for MySQL Operator,576,583,,,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,RocketMQ Operator,576,583,,,,,,,,https://github.com/apache/rocketmq-operator
+operator_images,StorageOS,576,583,,,,,,,,https://github.com/storageos/operator
+operator_images,WildFly,576,584,,,,,,,"[""''quay.io/wildfly/wildfly-operator:0.5.3''""]",https://github.com/wildfly/wildfly-operator
+operator_images,AtlasMap Operator,576,584,,,,,,,"[""''quay.io/atlasmap/atlasmap-operator:0.4.1''""]",https://github.com/atlasmap/atlasmap-operator
+operator_images,Appsody Operator,576,584,,,,,,,,https://github.com/appsody/appsody-operator
+operator_images,Cryostat Operator,576,584,,,,,,,"[""''quay.io/cryostat/cryostat-operator:2.1.1''""]",github.com/cryostatio/cryostat-operator
+operator_images,Open Liberty Operator,576,584,,,,,,,,https://github.com/OpenLiberty/open-liberty-operator
+operator_images,Runtime Component Operator,576,584,,,,,,,,https://github.com/application-stacks/runtime-component-operator
+operator_images,IBM Spectrum Scale CSI Plugin Operator,576,,,605,,,,,"[""''quay.io/ibm-spectrum-scale/ibm-spectrum-scale-csi-operator''""]",https://github.com/IBM/ibm-spectrum-scale-csi/
+operator_images,Instana Agent Operator,576,,,,,,,611,,https://github.com/instana/instana-agent-operator
+operator_images,credstash-operator,576,,,612,,,,,"[""''quay.io/ouzi/credstash-operator:v1.13.0''""]",https://github.com/ouzi-dev/credstash-operator
+operator_images,Snyk Operator,576,,,613,,,,,"[""''docker.io/snyk/kubernetes-operator:1.92.0''""]",https://github.com/snyk/kubernetes-monitor
+operator_images,Akka Cluster Operator,576,,,614,,,,,,https://github.com/lightbend/akka-cluster-operator
+operator_images,Lightbend Console Operator,576,,,614,,,,,,https://github.com/lightbend/console-charts/tree/master/operator
+operator_images,Varnish Operator,576,,,,615,,,,,https://github.com/IBM/varnish-operator
+operator_images,Datadog Operator,576,,,,,,,616,,https://github.com/DataDog/datadog-operator
+operator_images,Hazelcast Platform Operator,576,,,,,,,618,"[""''docker.io/hazelcast/hazelcast-platform-operator:5.3''""]",https://docs.hazelcast.com/operator/latest/
+operator_images,Infinispan Operator,576,,,619,,,,,"[""''quay.io/infinispan/operator:2.2.4.Final''""]",https://github.com/infinispan/infinispan-operator
+operator_images,Nuxeo Operator,576,,,,,,,620,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
+operator_images,ArangoDB,576,,,621,,,,,,https://github.com/arangodb/kube-arangodb
+operator_images,AWS Controllers for Kubernetes - Amazon S3,576,,,623,,,,,,https://github.com/aws-controllers-k8s
+operator_images,Altinity Operator for ClickHouse,576,,,624,,,,,,https://github.com/altinity/clickhouse-operator
+operator_images,Minio Operator,576,,,625,,,,,"[""''quay.io/minio/operator''""]",https://github.com/minio/operator
+operator_images,Elasticsearch Index Operator,576,,,626,,,,,,https://github.com/IBM/esindex-operator
+operator_images,Elasticsearch (ECK) Operator,576,,,626,,,,,,https://github.com/elastic/cloud-on-k8s
+operator_images,Elasticsearch Phenix Operator,576,,,626,,,,,,https://github.com/Carrefour-Group/elastic-phenix-operator
+operator_images,Logging Operator,576,,,626,,,,,"[""''quay.io/opstree/logging-operator:v0.3.0''""]",https://github.com/ot-container-kit/logging-operator
+operator_images,Nuxeo Operator,576,,,626,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
+operator_images,Prometheus Exporter Operator,576,,,626,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
+operator_images,Percona Distribution for MySQL Operator,576,,,627,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,Keycloak Operator,576,,,628,,,,,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
+operator_images,Grafana Operator,576,,,629,,,,,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
+operator_images,Prometheus Exporter Operator,576,,,629,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
+operator_images,Mattermost Operator,576,,,,,,,630,"[""''docker.io/mattermost/mattermost-operator:v0.5.0''""]",https://github.com/mattermost/mattermost-operator
+operator_images,synapse-helm,576,,,631,,,,,"[""''quay.io/mgoerens/synapse-helm:v0.0.11''""]",https://github.com/opdev/synapse-helm
+operator_images,IBM Cloud IAM Operator,576,,,632,,,,,,https://github.com/IBM/ibmcloud-iam-operator
+operator_images,AWS Controllers for Kubernetes - Amazon IAM,576,,,632,,,,,,https://github.com/aws-controllers-k8s
+operator_images,Knative Operator,576,,,,,,,633,,https://github.com/knative/operator
+operator_images,Kogito Knative Eventing Source,576,,,,,,,633,,https://github.com/knative-sandbox/eventing-kogito
+operator_images,YAKS Operator,576,,,,,,,633,"[""''docker.io/citrusframework/yaks:0.10.0''""]",https://github.com/citrusframework/yaks
+operator_images,DataStax Kubernetes Operator for Apache Cassandra,576,,,634,,,,,,https://github.com/k8ssandra/cass-operator
+operator_images,Kubeflow,576,,,,,,,635,,https://github.com/kubeflow/kfctl
+operator_images,QiskitPlayground,576,,,636,,,,,"[""''docker.io/qiskit/operator:0.1''""]",https://github.com/qiskit-community/openshift-quantum-operators/tree/master/operators-examples/kubernetes-qiskit-operator
+operator_images,Ibm Quantum Operator,576,,,636,,,,,"[""''quay.io/application/husky_parul/ibm-quantum-operator''""]",https://github.com/redhat-et/ibm-quantum-operator
+operator_images,Azure Service Operator,576,,,637,,,,,,https://github.com/Azure/azure-service-operator
+operator_images,Strimzi,576,,,,,,,638,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
+operator_images,Sematext Operator,576,,,,,,,639,"[""''docker.io/sematext/sematext-operator:1.0.46''""]",https://github.com/sematext/sematext-operator
+operator_images,Eclipse Hawkbit,576,,,640,,,,,,https://github.com/ctron/hawkbit-operator
+operator_images,Eclipse Ditto,576,,,641,,,,,,https://github.com/ctron/ditto-operator
+operator_images,Mariadb Operator,576,,,642,,,,,"[""''quay.io/manojdhanorkar/mariadb-operator:v0.0.4''""]",https://github.com/abalki001/mariadb-operator
+operator_images,Zadara Operator,576,,,643,,,,,,https://github.com/zadarastorage/zadara-operator
+operator_images,Istio,576,,,644,,,,,,https://github.com/banzaicloud/istio-operator/tree/release-1.1
+operator_images,Istio Workspace,576,,,644,,,,,"[""''quay.io/maistra/istio-workspace:v0.5.1''""]",https://github.com/maistra/istio-workspace
+operator_images,Kiali Operator,576,,,644,,,,,"[""''quay.io/kiali/kiali-operator:v1.53.0''""]",https://github.com/kiali/kiali
+operator_images,Vault Operator,576,,,645,,,,,,https://github.com/banzaicloud/bank-vaults/tree/master/operator
+operator_images,Vault Helm,576,,,645,,,,,"[""''quay.io/brejohns/vault-helm:0.0.2''""]",https://github.com/SDBrett/vault-helm
+operator_images,External Secrets Operator,576,,,645,,,,,,https://github.com/external-secrets/external-secrets-helm-operator
+operator_images,druid-operator,576,,,646,,,,,"[""''docker.io/druidio/druid-operator:0.0.9''""]",https://github.com/druid-io/druid-operator
+operator_images,etcd,576,,,647,,,,,"[""''quay.io/coreos/etcd-operator''""]",https://github.com/coreos/etcd-operator
+operator_images,Traefikee Operator,576,,,,648,,,,,https://docs.containo.us
+operator_images,IBM Cloud Operator,576,,,649,,,,,,https://github.com/IBM/cloud-operators
+operator_images,IBM Cloud IAM Operator,576,,,649,,,,,,https://github.com/IBM/ibmcloud-iam-operator
+operator_images,Event Streams Topic,576,,,649,,,,,,https://github.com/IBM/event-streams-topic
+operator_images,IBM COS Bucket Operator,576,,,649,,,,,,https://github.com/IBM/cos-bucket-operator
+operator_images,Composable,576,,,649,,,,,,https://github.com/IBM/composable
+operator_images,Elasticsearch Index Operator,576,,,649,,,,,,https://github.com/IBM/esindex-operator
+operator_images,IBM block storage CSI driver operator,576,,,649,,,,,,https://github.com/IBM/ibm-block-csi-operator
+operator_images,Yugabyte Operator,576,,,650,,,,,"[""''quay.io/yugabyte/yugabytedb-operator''""]",https://github.com/yugabyte/yugabyte-operator
+operator_images,CockroachDB,576,,,651,,,,,"[""''quay.io/helmoperators/cockroachdb:v5.0.4''""]",https://github.com/dmesser/cockroachdb-operator
+operator_images,Community Jaeger Operator,576,,,,,,,652,"[""''quay.io/jaegertracing/jaeger-operator:1.36.0''""]",https://github.com/jaegertracing/jaeger-operator
+operator_images,PostgreSQL Operator by Dev4Ddevs.com,576,,,,,,,661,"[""''quay.io/dev4devs-com/postgresql-operator:0.1.1''""]",https://github.com/dev4devs-com/postgresql-operator
+operator_images,Strimzi,576,,,,,,,661,"[""''quay.io/strimzi/operator''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka''"", ""''quay.io/strimzi/kafka-bridge''"", ""''quay.io/strimzi/jmxtrans''"", ""''quay.io/strimzi/kaniko-executor''"", ""''quay.io/strimzi/maven-builder''""]",https://github.com/strimzi/strimzi-kafka-operator
+operator_images,Keycloak Operator,576,,,,,,,661,"[""''quay.io/keycloak/keycloak-operator:18.0.2''""]",https://github.com/keycloak/keycloak
+operator_images,Prometheus Operator,576,,,,,,,661,"[""''quay.io/prometheus-operator/prometheus-operator:v0.47.0''""]",https://github.com/prometheus-operator/prometheus-operator
+operator_images,Elasticsearch (ECK) Operator,576,,,,,,,661,,https://github.com/elastic/cloud-on-k8s
+operator_images,Crunchy Postgres for Kubernetes,576,,,,,,,661,,https://github.com/CrunchyData/postgres-operator
+operator_images,Knative Operator,576,,,,,,,661,,https://github.com/knative/operator
+operator_images,Redis Operator,576,,,,,,,661,"[""''quay.io/opstree/redis-operator:v0.11.0''""]",https://github.com/ot-container-kit/redis-operator
+operator_images,Rook-Ceph,576,,,,,,,661,,https://github.com/rook/rook
+operator_images,Argo CD,576,,,,,,,661,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
+operator_images,Grafana Operator,576,,,,,,,661,"[""''quay.io/grafana-operator/grafana-operator:v4.5.0''""]",https://github.com/grafana-operator/grafana-operator
+operator_images,Starboard Operator,576,,,,,,,661,"[""''docker.io/aquasec/starboard-operator:0.15.6''""]",https://github.com/aquasecurity/starboard
+operator_images,TiDB Operator,576,,,,,,,661,,https://github.com/pingcap/tidb-operator
+operator_images,Altinity Operator for ClickHouse,576,,,,,,,661,,https://github.com/altinity/clickhouse-operator
+operator_images,Flux,576,,,,,,,661,,https://fluxcd.io/docs/
+operator_images,Percona Distribution for MySQL Operator,576,,,,,,,661,,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,RocketMQ Operator,576,,,,,,,661,,https://github.com/apache/rocketmq-operator
+operator_images,StorageOS,576,,,,,,,661,,https://github.com/storageos/operator
+operator_images,Falco Operator,576,,,,,,,661,"[""''docker.io/falcosecurity/falco-operator-helm:0.7.6''""]",https://github.com/falcosecurity/falco-operator/tree/helm-based-operator
+operator_images,Community Jaeger Operator,576,,,,,,,661,"[""''quay.io/jaegertracing/jaeger-operator:1.36.0''""]",https://github.com/jaegertracing/jaeger-operator
+operator_images,ks-releaser,576,,,677,,,,,,https://github.com/kubesphere-sigs/ks-releaser-operator
+operator_images,Argo CD,576,,,677,,,,,"[""''quay.io/argoprojlabs/argocd-operator''""]",https://github.com/argoproj-labs/argocd-operator
+operator_images,Flux,576,,,677,,,,,,https://fluxcd.io/docs/
+operator_images,Argo CD Operator (Helm),576,,,677,,,,,"[""''quay.io/disposab1e/argocd-operator-helm''""]",https://github.com/disposab1e/argocd-operator-helm.git
+operator_images,External Secrets Operator,576,,,677,,,,,,https://github.com/external-secrets/external-secrets-helm-operator
+operator_images,GitLab,576,,,677,,,,,,https://gitlab.com/gitlab-org/cloud-native/gitlab-operator
+operator_images,GitLab Runner,576,,,677,,,,,,https://gitlab.com/gitlab-org/gl-openshift/gitlab-runner-operator
+operator_images,Multicluster Subscription Operator,576,,,677,,,,,"[""''quay.io/open-cluster-management/multicluster-operators-subscription:2.3.0''""]",https://github.com/open-cluster-management/multicloud-operators-subscription
+operator_images,Weave GitOps Terraform Controller,576,,,677,,,,,,https://weaveworks.github.io/tf-controller/
+operator_images,GitLab,576,,,678,,,,,,https://gitlab.com/gitlab-org/cloud-native/gitlab-operator
+operator_images,GitLab Runner,576,,,678,,,,,,https://gitlab.com/gitlab-org/gl-openshift/gitlab-runner-operator
+operator_images,External Secrets Operator,576,,,678,,,,,,https://github.com/external-secrets/external-secrets-helm-operator
+operator_images,GrdsCloud MySQL for Kubernetes,576,,,684,,,,,,https://github.com/GrdsCloud
+operator_images,Percona Distribution for MySQL Operator,576,,,684,,,,,,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,PlanetScale Operator for Vitess,576,,,684,,,,,,
+operator_images,Prometheus Exporter Operator,576,,,684,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
+operator_images,Postgresql Operator,576,,,686,,,,,"[""''quay.io/deekshah86/postgresql-operator''""]",https://github.com/janepelladinesh/postgresql-operator
+operator_images,Percona Operator for PostgreSQL,576,,,686,,,,,,https://github.com/percona/percona-postgresql-operator
+operator_images,PostgreSQL Operator by Dev4Ddevs.com,576,,,686,,,,,"[""''quay.io/dev4devs-com/postgresql-operator:0.1.1''""]",https://github.com/dev4devs-com/postgresql-operator
+operator_images,Crunchy Postgres for Kubernetes,576,,,686,,,,,,https://github.com/CrunchyData/postgres-operator
+operator_images,EDB Postgres for Kubernetes,576,,,686,,,,,"[""''quay.io/enterprisedb/cloud-native-postgresql''""]",https://www.enterprisedb.com/docs/postgres_for_kubernetes/latest/
+operator_images,Postgres-Operator,576,,,686,,,,,,https://github.com/zalando/postgres-operator
+operator_images,Ext Postgres Operator,576,,,686,,,,,,https://github.com/movetokube/postgres-operator
+operator_images,Nuxeo Operator,576,,,686,,,,,"[""''docker.io/appzygy/nuxeo-operator:0.7.1''""]",https://github.com/aceeric/nuxeo-operator
+operator_images,Prometheus Exporter Operator,576,,,686,,,,,"[""''quay.io/3scale/prometheus-exporter-operator:v0.2.4''""]",https://github.com/3scale/prometheus-exporter-operator
+operator_images,Robin Cloud Native Storage,576,,,686,,,,,,
+operator_images,AWS Controllers for Kubernetes - Amazon RDS,576,,,687,,,,,,https://github.com/aws-controllers-k8s
+operator_images,Upbound Universal Crossplane (UXP),576,,,687,,,,,,https://github.com/upbound/universal-crossplane

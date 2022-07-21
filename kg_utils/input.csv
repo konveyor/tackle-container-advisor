@@ -1,7 +1,2 @@
-entities, comtran11, 9,{''qid'': ''Q5013384'',''url'': ''https://www.wikidata.org/wiki/Q5013384''}, N, Y, Y, N
-entities, AppleScript11, 9, {''qid'': ''Q129137'',''url'': ''https://www.wikidata.org/wiki/Q129137''}, N, Y, N, N
-entity_types, test123
-entity_mentions, test12,6, 169, others
-entity_versions, 497, 20.1,NULL,NULL
-entity_relations,6,581,10,501
 operator_images,YAKS1 Operator,426,0,0,0,0,0,0,0,https://github.com/k8s-operatorhub/community-operators/operators,,https://github.com/k8s-operatorhub/community-operators/operators
+operator_images,Elasticsearch Index Operator,426,,,47,,,,,,,
