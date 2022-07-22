@@ -24,5 +24,5 @@ class TestAug(unittest.TestCase):
         conn = sqlite3.connect("./db/1.0.4.db")
         cur = conn.cursor()
         appL = kg_aug.insert_to_kg("batch", "./test/unit/test.csv", cur, True)
-        expected = "Entry 0 cannot be processed..Entry 1 cannot be processed.."
+        expected = "Entry 0 inserted to table..Entry 1 cannot be processed.."
         self.assertTrue(appL == expected)
