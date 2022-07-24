@@ -332,11 +332,11 @@ class Plan():
                     backup_images.append(osBaseImages[os])
                     break
         full_os_check_images = []
-        parent_os_check_iamges = []
+        parent_os_check_images = []
         if app['OS'] in inverted_containerimageKG:
             full_os_check_images = inverted_containerimageKG[app['OS']]
         if (app['OS'].split('|')[0] != app['OS']) and app['OS'].split('|')[0] in inverted_containerimageKG:
-            parent_os_check_iamges = inverted_containerimageKG[app['OS'].split('|')[0]]
+            parent_os_check_images = inverted_containerimageKG[app['OS'].split('|')[0]]
 
         # parent_os_scope_images = []
         child_types = ["App Server", "App", "Runtime","Lang"]
@@ -345,7 +345,7 @@ class Plan():
                 # Use inverted index to find dockerimage and check its OS
                 if child and child in inverted_containerimageKG:
                     for image_name in inverted_containerimageKG[child]:
-                        if ((image_name in full_os_check_images) or (image_name in parent_os_check_iamges)) and (image_name not in app['scope_images']):
+                        if ((image_name in full_os_check_images) or (image_name in parent_os_check_images)) and (image_name not in app['scope_images']):
                             app['scope_images'].append(image_name)
 
         # add base image for the OS if no element in tech stack has a pre-existing image
@@ -410,6 +410,11 @@ class Plan():
 
                 # Curated
                 pApp['OS'] = eval(app["OS"])
+
+                print('+++++++++OS++++++++++++')
+                print( pApp['OS'])
+                print('+++++++++END OS++++++++++++')
+
                 pApp['Lang'] = eval(app["Lang"])
                 pApp["App Server"] = eval(app["App Server"])
                 pApp["App"] = eval(app["Dependent Apps"])
@@ -496,6 +501,7 @@ class Plan():
                             subapp['OS'] = self.__find_best_os(app, os)
                             for child_type in app[os]:
                                 subapp[child_type] = ', '.join(filter(None, app[os][child_type]))
+
                             subapp = self.__search_docker(subapp, catalog)
                             try:
                                 subapp['unknown'] = app['unknown']
@@ -533,7 +539,7 @@ class Plan():
                             except Exception :
                                 subapp['unknown'] = []
                             subapp = self.__compute_confidence(subapp, catalog)
-                            if os == 'Windows' and 'Linux' in app['OS']:
+                            if os == 'Windows' and ('Linux' in app['OS'] or 'Linux' in app['OS'] ):
                                 app['scope_images_win'] = subapp['scope_images']
                                 app['scope_images_confidence_win'] = subapp['scope_images_confidence']
                             else:

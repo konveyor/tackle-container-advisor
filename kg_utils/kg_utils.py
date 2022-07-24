@@ -90,7 +90,7 @@ def load_docker_openshift_urls(connect):
         openshift_container_name, open_url = img[1], img[10]
         openshift_urls[openshift_container_name] = open_url
 
-    print(json.dumps(docker_urls, indent=4))
+    #print(json.dumps(docker_urls, indent=4))
 
 
 def type_mapper(db_connection):
@@ -134,6 +134,10 @@ def entity_mapper(db_connection):
 
     for entity_row in parent_cursor.fetchall():
         class_id, entity = entity_row[0], entity_row[1]
+        if entity == 'Windows|*':
+            entity = 'Windows'
+        if entity == 'Linux|*':
+            entity = 'Linux'
         parent_class[str(class_id)] = entity
     return parent_class
 
@@ -182,6 +186,10 @@ def create_class_type_mapper(db_connection):
         entity = entity_names[index]
         entity_mentions["mappings"][entity] = class_type
 
+    # add Linux|* and Windows|*
+    entity_mentions["mappings"]['Linux|*'] = 'OS'
+    entity_mentions["mappings"]['Windows|*'] = 'OS'
+
     save_json(entity_mentions, "class_type_mapper")
 
 
@@ -202,6 +210,7 @@ def create_inverted_compatibility_kg(db_connection):
     inverted_cursor.execute("SELECT * FROM entity_relations")
 
     entity_ids = entity_mapper(db_connection)
+
     type_ids = type_mapper(db_connection)
 
     inverted_compatibilty_kg["KG Version"] = config["general"]["version"]
@@ -989,7 +998,7 @@ def create_operator_image_kg(db_connect):
 
     operator_image_kg["Container Images"] = {}
     for image in operator_cursor.fetchall():
-        container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, operator_URL, operator_repository, other_operators = image[
+        container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, operator_URL, operator_repository = image[
                                                                                                                                                                      1:]
 
         operator_image_kg["Container Images"][container_name] = {}
@@ -1041,8 +1050,7 @@ def create_operator_image_kg(db_connect):
 
         operator_image_kg["Container Images"][container_name]["Docker_URL"] = operator_URL
         operator_image_kg["Container Images"][container_name]["OperatorRepository"] = operator_repository
-        operator_image_kg["Container Images"][container_name]["OtherOperators"] = other_operators
-
+       
     save_json(operator_image_kg, "operatorimageKG")
 
 
@@ -1067,7 +1075,7 @@ def create_inverted_operator_image_kg(database_connect):
     cur.execute("SELECT * FROM operator_images")
 
     for img in cur.fetchall():
-        _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id, runtim_id, _, _, _ = img[1:]
+        _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id, runtim_id, _, _ = img[1:]
 
         if os_id == None:
             pass
@@ -1110,7 +1118,7 @@ def create_inverted_operator_image_kg(database_connect):
             inverted_operator_images_kg[entities[str(runtim_id)]] = []
 
     for image in inverted_cur.fetchall():
-        _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _, _, _ = image[
+        _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _, _ = image[
                                                                                                                              :]
 
         if os_entity_id == None:
