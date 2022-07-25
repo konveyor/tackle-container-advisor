@@ -19,6 +19,8 @@ import json
 from collections import OrderedDict
 import logging
 from service.utils import Utils
+import ast
+import numpy as np
 
 import configparser
 
@@ -30,7 +32,7 @@ config.read([common, kg])
 
 class Clustering():
     """
-    This class for containerize Clustering
+    This class for Clustering
     """
 
     def __init__(self):
@@ -39,59 +41,21 @@ class Clustering():
             Setting up the logging level as info and opens logfile in write mode to capture the logs in text file
          """
 
-    def output_to_ui_assessment(self, appL):
-        """
-        output_to_ui assessment methods takes the final assessed data as input and formats it & keeps
-         only required fields and returns it as output assessment response
+        logging.basicConfig(level=logging.INFO)
 
-        """
-        pAppL = []
-        print('ok here!')
-        try :
-            for app in appL:
-
-
-
-                # Order dictionry to fix the order of columns in the output
-                pApp = OrderedDict()
+        # read entities
+        entities_filepath = os.path.join(config['general']['kg_dir'], config['tca']['entities'])
+        if os.path.exists(entities_filepath):
+            with open(entities_filepath, 'r') as f:
+                entities_json = json.load(f)
+                self.entity_names = np.empty(len(entities_json['data']), dtype='object')
+                for i, en in enumerate(entities_json['data']):
+                    self.entity_names[i] = entities_json['data'][en]['entity_name']
+        else:
+            self.entities = {}
+            logging.error(f'entities[{entities_filepath}] is empty or not exists')
 
 
-                # Raw Fields
-                pApp['Name'] = ''
-                if 'Name' in app:
-                    pApp['application_name'] = app["Name"]
-
-                pApp['application_description'] = ''
-                if 'Desc' in app:
-                    pApp['application_description'] = app["Desc"]
-
-                pApp['component_name'] = ''
-                if 'Cmpt' in app:
-                    pApp['component_name'] = app["Cmpt"]
-
-
-                # Curated
-                pApp['OS'] = eval(app["OS"])
-                pApp['Lang'] = eval(app["Lang"])
-                pApp["App Server"] = eval(app["App Server"])
-                pApp["App"] = eval(app["Dependent Apps"])
-                pApp["Runtime"] = eval(app["Runtime"])
-                pApp["Lib"] = eval(app["Libs"])
-
-                pApp['assessment_reason'] = app['Reason']
-
-                try :
-                    pApp["KG Version"] = app["KG Version"]
-                except :
-                    pApp["KG Version"] = 'Not Available'
-
-
-                pAppL.append(pApp)
-
-            return pAppL
-
-        except Exception as e:
-            logging.error(str(e))
 
 
     def output_to_ui_clustering(self, appL):
@@ -100,30 +64,40 @@ class Clustering():
          only required fields and returns it as output assessment response
 
         """
-        pAppL = []
-        for app in appL:
 
-            print(app)
+        # initialize tech stack
+        tech_stack = np.zeros((len(appL), self.entity_names.shape[0]), dtype='bool')
+        appL_array = np.array(appL)
 
-            # Order dictionry to fix the order of columns in the output
-            pApp = OrderedDict()
+        # find unique clusters
+        fields = ['OS', 'Lang', 'App Server', 'Dependent Apps', 'Runtime', 'Libs']
+        for i, app in enumerate(appL):
+            for k in fields:
+                txt = ast.literal_eval(app[k])
+                for t in txt.keys():
+                    entity = list(txt[t].keys())[0]
 
-            # Raw Data
-            pApp['Name'] = ''
-            if 'application_name' in app:
-                pApp['Name'] = app["application_name"]
-            pApp['Desc'] = ''
-            if 'application_description' in app:
-                pApp['Desc'] = app["application_description"]
-            pApp['Cmpt'] = ''
-            if 'component_name' in app:
-                pApp['Cmpt'] = app["component_name"]
+                    # keep only root of hierarchical entity
+                    if entity.find('|') > 0:
+                        entity = f"{entity.split('|')[0]}|*"
 
-            # AI Insights
-            pApp["Ref Dockers"] = ""
-            pApp["Confidence"] = 0
+                    tech_stack[i][self.entity_names == entity] = 1
 
-            # pAppL['Clusters'].append(pApp)
-            pAppL.append(pApp)
+        # find unique clusters
+        clusters, index, counts = np.unique(tech_stack, return_inverse=True, return_counts=True, axis=0)
 
-        return pAppL
+        # sort clusters by number of apps
+        order = np.argsort(counts)[::-1]
+
+        clusters = clusters[order]
+        counts = counts[order]
+
+        unique_clusters = []
+        for i in range(clusters.shape[0]):
+            cl = { "id": i, "name": f'unique_tech_stack_{i}',  "type": 'unique', "tech_stack": list(self.entity_names[clusters[i] == 1]),\
+                   "num_elements": counts[i], "apps": list(appL_array[index == order[i]]) }
+
+            unique_clusters.append(cl)
+
+
+        return unique_clusters

@@ -131,13 +131,9 @@ class Functions:
             if not is_valid:
                 return resp, code
 
-            print('ok here 1')
             appL = self.standardize.app_standardizer(app_data)
 
-            print('ok here 2')
             appL = self.assess.app_validation(appL)
-
-            print('ok here 3')
 
             # Generate output for UI
             output = self.assess.output_to_ui_assessment(appL)
@@ -176,18 +172,15 @@ class Functions:
     def clustering(self, auth_url, headers, auth_headers, app_data):
         """
         Invokes detect_access_token for accesstoken validation and if it's valid, it will call
-        compose_app for assessment and app_validation for validation the assessed application data
-        and finally call output_to_ui_clustering to return the formatted assessment data
+        output_to_ui_clustering to return the formatted assessment data
         """
         try:
             resp, code, is_valid = self.detect_access_token(auth_url, headers, auth_headers)
             if not is_valid:
                 return resp, code
 
-            appL = self.cluster.output_to_ui_assessment(app_data)
-
             # Generate output for UI
-            clusters = self.cluster.output_to_ui_clustering(appL)
+            clusters = self.cluster.output_to_ui_clustering(app_data)
             logging.info(f'{str(datetime.now())} output clustering num: {str(len(clusters))} ')
             return dict(status=201, message="Clustering completed successfully!", clusters=clusters), 201
         except Exception as e:
