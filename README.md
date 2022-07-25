@@ -31,19 +31,19 @@ For OpenShift, TCA generates the following images.
 
 ## TCA Pipeline
 
-<img width="1000" alt="Screen Shot 2021-07-29 at 4 10 10 PM" src="https://user-images.githubusercontent.com/8302569/127559151-bc9f3176-fcc4-4032-a0b7-ba1a29212b5b.png">
+<img width="1000" alt="TCA Pipeline" src=https://github.com/konveyor/tackle-container-advisor/blob/main/images/tca_pipeline.png>
 
 The pipeline ingests raw inputs from clients data and standardizes the data to generate named entities and versions. For standardizing or normalizing raw inputs we use a tf-idf similarity based approach. To find container images we represent images in terms of named entities as well. The normalized representation helps to match legacy applications with container images to suggest the best possible recommendations.
 
 ## Setting up your environment
 
-Requires Python >= 3.6 environment. You cannot run this code without having a proper 
-Python environment first. We recommend that you follow the instructions 
+Requires Python >= 3.6 environment. You cannot run this code without having a proper
+Python environment first. We recommend that you follow the instructions
 in the [Developer's Guide](docs/development.md) before proceeding further.
 
 ## Running TCA as a service
 
-There are 4 options for deploying TCA as a service. 
+There are 4 options for deploying TCA as a service.
 
 1. Install the service requirements and start the service from command line.
 
@@ -52,12 +52,12 @@ Requires *gunicorn* standalone installation on your system.
 bash setup.sh
 gunicorn --workers=2 --threads=500 --timeout 300 service:app
 OR
-waitress-serve --listen=*:8000 service:app 
+waitress-serve --listen=*:8000 service:app
 ```
 
-2. Running the service as a container. 
+2. Running the service as a container.
 
-Using a bash script. 
+Using a bash script.
 ```
 bash run.sh
 ```
@@ -82,7 +82,7 @@ bash deploy.sh
 
 ## Run a performance test for TCA service
 A performance test measures the response time of TCA service under
-various load conditions. Before running 
+various load conditions. Before running
 performance test, update *config/test.ini* with the hostname
 and port where TCA service has been deployed
 
@@ -101,7 +101,7 @@ Please perform the following steps.
     version = <new_db>
 
 3. Modify the *setup.sh* and *clean.sh* scripts to reflect the version accordingly.
-    
+
     version=<new_db>
 
 4. Re-run *setup.sh* and then deploy the service.

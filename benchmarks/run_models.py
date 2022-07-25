@@ -157,6 +157,7 @@ if __name__ == "__main__":
         tfidf_start = time.time()
         tfidf_infer = copy.deepcopy(tca_infer_data)
         tfidf_infer = tfidf.infer(tfidf_infer)
+
         tfidf_end = time.time()
         tfidf_time = (tfidf_end - tfidf_start)
         tfidf_x_data = []
@@ -166,7 +167,11 @@ if __name__ == "__main__":
             tfidf_x_data.append(tfidf_topk['fpr']/tfidf_topk['unks'])
             for k in range(3):
                 tfidf_topk_data[k].append(tfidf_topk['topk'][k]/tfidf_topk['kns'])
-        plot(tfidf_x_data, tfidf_topk_data, '-', 'b', 'tfidf')
+        if mode != 'deploy':
+            plot(tfidf_x_data, tfidf_topk_data, '-', 'b', 'tfidf')
+            print(tfidf_x_data, tfidf_topk_data)
+            # with open("tfidf_prediction.json", 'w') as f:
+            #     json.dump(tfidf_infer, f)
 
         tfidf_topk = topk(tfidf_infer, threshold)
         table_data["tfidf"] = {}
@@ -175,6 +180,43 @@ if __name__ == "__main__":
         table_data["tfidf"]["fpr"] = tfidf_topk["fpr"]
         table_data["tfidf"]["unks"] = tfidf_topk["unks"]
         table_data["tfidf"]["time"] = tfidf_time
+
+
+    if model_type == "siamese" or model_type == "all":
+        logging.info("----------- SIAMESE -------------")
+        
+        from entity_standardizer.siamese import SIAMESE
+        if mode != 'deploy':
+            mode = 'tca'
+        siamese = SIAMESE(mode)
+
+        siamese_start = time.time()
+        siamese_infer = copy.deepcopy(tca_infer_data)
+        siamese_infer = siamese.infer(siamese_infer)
+
+        siamese_end = time.time()
+        siamese_time = (siamese_end - siamese_start)
+        siamese_x_data = []
+        siamese_topk_data = [[] for k in range(3)]
+        for thr in np.arange(0.0,1.0,0.05):        
+            siamese_topk = topk(siamese_infer, thr)
+            siamese_x_data.append(siamese_topk['fpr']/siamese_topk['unks'])
+            for k in range(3):
+                siamese_topk_data[k].append(siamese_topk['topk'][k]/siamese_topk['kns'])
+        if mode != 'deploy':
+            print(siamese_x_data, siamese_topk_data)
+            plot(siamese_x_data, siamese_topk_data, '-', 'b', 'SIAMESE')
+            # with open("siamese_prediction.json", 'w') as f:
+            #     json.dump(siamese_infer, f)
+        threshold = float(siamese.config['Thresholds']['HIGH_THRESHOLD'])
+        siamese_topk = topk(siamese_infer, threshold)
+        table_data["siamese"] = {}
+        table_data["siamese"]["topk"] = siamese_topk["topk"]
+        table_data["siamese"]["kns"] = siamese_topk["kns"]
+        table_data["siamese"]["fpr"] = siamese_topk["fpr"]
+        table_data["siamese"]["unks"] = siamese_topk["unks"]
+        table_data["siamese"]["time"] = siamese_time
+
 
     if model_type == "wiki_data_api" or model_type == "all":
         logging.info("----------- WIKIDATA API -------------")
@@ -195,7 +237,8 @@ if __name__ == "__main__":
             wdapi_x_data.append(wdapi_topk['fpr']/tfidf_topk['unks'])
             for k in range(3):
                 wdapi_topk_data[k].append(wdapi_topk['topk'][k]/wdapi_topk['kns'])
-        plot(wdapli_x_data, wdapi_topk_data, '-', 'g', 'wdapi')
+        if mode != 'deploy':
+            plot(wdapi_x_data, wdapi_topk_data, '-', 'g', 'wdapi')
         wdapi_topk = topk(wdapi_infer, threshold)
         table_data["wdapi"] = {}
         table_data["wdapi"]["topk"] = wdapi_topk["topk"]
@@ -204,9 +247,10 @@ if __name__ == "__main__":
         table_data["wdapi"]["unks"] = wdapi_topk["unks"]
         table_data["wdapi"]["time"] = wdapi_time
     
-    plt.xlabel("False positive rate")
-    plt.ylabel("Top-1 accuracy")
-    plt.legend()
-    plt.savefig('top1.png')
+    if mode != 'deploy':
+        plt.xlabel("False positive rate")
+        plt.ylabel("Top-1 accuracy")
+        plt.legend()
+        plt.savefig('top1.png')
 
     print_gh_markdown(table_data)

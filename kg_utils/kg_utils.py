@@ -31,7 +31,6 @@ kg = os.path.join("config", "kg.ini")
 config.read([common, kg])
 
 
-
 def cleanStrValue(value):
     """
     Clean input strings
@@ -94,6 +93,7 @@ def load_docker_openshift_urls(connect):
 
 
 def type_mapper(db_connection):
+
     """Maps each entity to the corresponding type
 
     :param conn:  A connection to mysql
@@ -111,6 +111,7 @@ def type_mapper(db_connection):
 
     for type_tuple in type_cursor.fetchall():
         type_id, tech_type = type_tuple
+
         type_map[str(type_id)] = tech_type
 
     return type_map
@@ -133,6 +134,7 @@ def entity_mapper(db_connection):
     parent_cursor.execute("SELECT * FROM entities")
 
     for entity_row in parent_cursor.fetchall():
+        
         class_id, entity = entity_row[0], entity_row[1]
         if entity == 'Windows|*':
             entity = 'Windows'
@@ -213,12 +215,14 @@ def create_inverted_compatibility_kg(db_connection):
 
     type_ids = type_mapper(db_connection)
 
+   
+
     inverted_compatibilty_kg["KG Version"] = config["general"]["version"]
 
     for inverted_ids in inverted_cursor.fetchall():
         inverted_lst = []
         parent_type_id, parent_id, child_type_id, child_id = inverted_ids[1:5]
-
+        
         inverted_lst.append({"Parent Type": type_ids[str(parent_type_id)], "Parent Class": entity_ids[str(parent_id)],
                              "Child Type": type_ids[str(child_type_id)]})
 
@@ -599,14 +603,15 @@ def create_openshift_image_kg(db_connect):
     openshift_image_kg["KG Version"] = config["general"]["version"]
 
     openshift_image_kg["Container Images"] = {}
+
     for image in openshift_cursor.fetchall():
         container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, Docker_URL, _ = image[
                                                                                                                                 1:]
-
+        
         openshift_image_kg["Container Images"][container_name] = {}
         openshift_image_kg["Container Images"][container_name]["OS"] = [
             {"Class": entities[str(os_entity_id)], "Variants": "", "Versions": "", "Type": "OS", "Subtype": ""}]
-
+        
         if lang_id == None:
             openshift_image_kg["Container Images"][container_name]["Lang"] = []
         else:
