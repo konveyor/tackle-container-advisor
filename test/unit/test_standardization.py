@@ -132,7 +132,7 @@ class TestEntityDetection(unittest.TestCase):
                              }, \
                      'HW': {}, \
                      'Lib': {}, \
-                     'App Server': {'Oracle WebLogic Server 14c': {'Oracle WebLogic Server|*': ('14c', '14c')}}, \
+                     'App Server': {'Oracle WebLogic Server 14c': {'Oracle WebLogic Server': ('14c', '14c')}}, \
                      'Runlib': {}, \
                      'Lang': {'Java 1.2': {'Java|*': ('1.2', '1.4')}}, \
                      'OS': {'Linux|Amazon Linux 2013.09.1': {'Linux|Amazon Linux': ('2013.09.1', '2013.09.2')}}
