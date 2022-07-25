@@ -136,6 +136,10 @@ def entity_mapper(db_connection):
     for entity_row in parent_cursor.fetchall():
         
         class_id, entity = entity_row[0], entity_row[1]
+        if entity == 'Windows|*':
+            entity = 'Windows'
+        if entity == 'Linux|*':
+            entity = 'Linux'
         parent_class[str(class_id)] = entity
     return parent_class
 
@@ -184,6 +188,10 @@ def create_class_type_mapper(db_connection):
         entity = entity_names[index]
         entity_mentions["mappings"][entity] = class_type
 
+    # add Linux|* and Windows|*
+    entity_mentions["mappings"]['Linux|*'] = 'OS'
+    entity_mentions["mappings"]['Windows|*'] = 'OS'
+
     save_json(entity_mentions, "class_type_mapper")
 
 
@@ -204,6 +212,7 @@ def create_inverted_compatibility_kg(db_connection):
     inverted_cursor.execute("SELECT * FROM entity_relations")
 
     entity_ids = entity_mapper(db_connection)
+
     type_ids = type_mapper(db_connection)
 
    
