@@ -411,10 +411,6 @@ class Plan():
                 # Curated
                 pApp['OS'] = eval(app["OS"])
 
-                print('+++++++++OS++++++++++++')
-                print( pApp['OS'])
-                print('+++++++++END OS++++++++++++')
-
                 pApp['Lang'] = eval(app["Lang"])
                 pApp["App Server"] = eval(app["App Server"])
                 pApp["App"] = eval(app["Dependent Apps"])

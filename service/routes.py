@@ -121,13 +121,14 @@ planning_model = api.model('Containerization', {
     "Recommend": fields.String(required=False, description='Recommended disposition')
     })
 
-# clustering_model = api.model('Clustering', {
-#     "Name": fields.String(required=True, description='Name of the application'),
-#     "Desc": fields.String(required=True, description='Description of the application'),
-#     "Cmpt": fields.String(required=True, description='Component/Deployment Unit of the application'),
-#     "Ref Dockers": fields.String(required=False, description='Description of the application'),
-#     "Confidence": fields.Float(required=False, description='Confidence of the assessment')
-#     })
+clustering_model = api.model('Clustering', {
+    "id": fields.Integer(required=True, description='Cluster ID'),
+    "name": fields.String(required=True, description='Cluster name'),
+    "type": fields.String(required=True, description='Cluster type'),
+    "tech_stack": fields.List(fields.String, required=True, description='List of tech stack elements'),
+    "num_elements": fields.Integer(required=True, description='Number of elements'),
+    "apps": fields.List(fields.Nested(assessment_model), required=True, description='An array of applications')
+    })
 
 
 output_model_assessment = api.model('Standardization Output', {
@@ -142,11 +143,11 @@ output_model_planning = api.model('Containerization Output', {
     "containerization": fields.List(fields.Nested(planning_model), required=True, description='An array of containerization planning for application workload')
     })
 
-# output_model_clustering = api.model('Clustering Output', {
-#     "status": fields.Integer(required=True, description='Status of the call'),
-#     "message": fields.String(required=True, description='Status message'),
-#     "clusters": fields.List(fields.Nested(clustering_model), required=True, description='An array of containerization clustering for application workload')
-#     })
+output_model_clustering = api.model('Clustering Output', {
+    "status": fields.Integer(required=True, description='Status of the call'),
+    "message": fields.String(required=True, description='Status message'),
+    "clusters": fields.List(fields.Nested(clustering_model), required=True, description='An array of containerization clustering for application workload')
+    })
 
 # @api.route('/match', strict_slashes=False)
 # class Standardization(Resource):
@@ -228,28 +229,28 @@ class Planning(Resource):
 
         return functions.do_planning(auth_url,dict(request.headers),auth_headers,api.payload,catalog)
 
-# @api.route('/clustering', strict_slashes=False)
-# class ContainerizationClustering(Resource):
-#     """
-#     ContainerizationClustering class creates the clustering in the form of clustering_model for the
-#     applications/components details given in the assessment_model
-#     """
-#     @api.doc('create_clustering')
-#     @api.response(201, 'Clustering Completed successfully!')
-#     @api.response(400, 'Input data format doesn\'t match the format expected by TCA')
-#     @api.response(401, 'Unauthorized, missing or invalid access token')
-#     @api.response(500, 'Internal Server Error, missing or wrong config of RBAC access token validation url')
-#     @api.expect([assessment_model])
-#     @api.marshal_with(output_model_clustering)
-#     @api.doc(security='apikey')
-#
-#
-#     def post(self):
-#         """
-#         Returns grouping of apps based on technology stack similarity
-#         """
-#         # Invoke do_clustering method in clustering class to initiate clustering process
-#         return functions.do_clustering(auth_url,dict(request.headers),auth_headers,api.payload)
+@api.route('/clustering', strict_slashes=False)
+class ContainerizationClustering(Resource):
+    """
+    ContainerizationClustering class creates the clustering in the form of clustering_model for the
+    applications/components details given in the assessment_model
+    """
+    @api.doc('create_clustering')
+    @api.response(201, 'Clustering Completed successfully!')
+    @api.response(400, 'Input data format doesn\'t match the format expected by TCA')
+    @api.response(401, 'Unauthorized, missing or invalid access token')
+    @api.response(500, 'Internal Server Error, missing or wrong config of RBAC access token validation url')
+    @api.expect([assessment_model])
+    @api.marshal_with(output_model_clustering)
+    @api.doc(security='apikey')
+
+
+    def post(self):
+        """
+        Returns grouping of apps based on technology stack similarity
+        """
+        # Invoke do_clustering method in clustering class to initiate clustering process
+        return functions.do_clustering(auth_url,dict(request.headers),auth_headers,api.payload)
 
 @api.route('/health_check')
 @api.response(200, 'HTTP OK')
