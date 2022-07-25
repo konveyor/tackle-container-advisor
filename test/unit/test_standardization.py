@@ -222,7 +222,7 @@ class TestEntityDetection(unittest.TestCase):
         expected = [{'application_name': 'App 1 ', 'application_description': 'desc 1', \
                      'technology_summary': 'ZOS, JavaScript\nPL1, Private Cloud', \
                      'KG Version': '1.0.4', \
-                     'Lang': {'JavaScript': {'JavaScript': ('NA_VERSION', 'ES6')}, 'PL1': {'PL/I': ('1', '1')}}, \
+                     'Lang': {'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL1': {'PL/I': ('1', '1')}}, \
                      'Runlib': {}, \
                      'Storage': {}, \
                      'OS': {'ZOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}, \
@@ -232,15 +232,15 @@ class TestEntityDetection(unittest.TestCase):
                     {'application_name': 'App 2', 'application_description': 'desc 2', \
                      'technology_summary': 'ZOS, PL1, Linux Red Hat\nLinux Ubuntu, JavaScript\nNode.js\nPHP\nPython\nScala', \
                      'KG Version': '1.0.4', \
-                     'Lang': {'PL1': {'PL/I': ('1', '1')}, 'JavaScript': {'JavaScript': ('NA_VERSION', 'ES6')}, \
+                     'Lang': {'PL1': {'PL/I': ('1', '1')}, 'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, \
                               'PHP': {'PHP': ('NA_VERSION', '8')}, 'Python': {'Python': ('NA_VERSION', '3.10.0')}, \
-                              'Scala': {'Scala': ('NA_VERSION', '2.9.0')},
+                              'Scala': {'Scala': ('NA_VERSION', '2.9.0')}}, \
                      'Runlib': {}, 'Storage': {}, \
                      'OS': {'Linux Red Hat': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')},
                             'Linux Ubuntu': {'Linux|Ubuntu': ('NA_VERSION', '20.10')},
                             'ZOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}, \
                      'Plugin': {}, 'App': {}, 'Technology': {}, 'VM': {}, 'Lib': {}, 'App Server': {}, 'HW': {}, \
-                     'Runtime': {'Node.js': {'Node.js': ('NA_VERSION', '18')}}
+                     'Runtime': {'Node.js': {'Node.js': ('NA_VERSION', '18')}} \
                      }, \
                     {'application_name': 'App 3', 'application_description': 'desc 3', \
                      'technology_summary': 'AIX\nLinux Red Hat, Java\nOther, microservices, angular', \
@@ -253,6 +253,7 @@ class TestEntityDetection(unittest.TestCase):
                      'Lib': {'angular': {'JavaScript|AngularJS': ('NA_VERSION', 'NA_VERSION')}}, \
                      'App Server': {}, 'HW': {}, 'Runtime': {}, \
                      'unknown': ['microservices']}]
+
         standardizer = Standardization()
         app_data = standardizer.app_standardizer(app_data)
         if app_data != expected:
