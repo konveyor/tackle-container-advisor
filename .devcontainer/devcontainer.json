@@ -9,6 +9,11 @@
     "remoteEnv": {
       "FLASK_ENV": "development"
     },
+	
+	"features": {
+		"docker-from-docker": "latest",
+		"podman-from-podman": "latest"
+	} ,
 	"extensions": [
 		"VisualStudioExptTeam.vscodeintellicode",
 		"alexkrechik.cucumberautocomplete",
