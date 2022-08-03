@@ -39,7 +39,6 @@ For OpenShift, TCA generates the following images.
 
 ## TCA Pipeline
 
-<img width="1000" alt="TCA Pipeline" src="https://github.com/konveyor/tackle-container-advisor/tree/main/images/tca_pipeline.png"/>
 ![TCA Pipeline](/images/tca_pipeline.png)
 
 The pipeline ingests raw inputs from clients data and standardizes the data to generate named entities and versions. For standardizing or normalizing raw inputs we use a tf-idf similarity based approach. To find container images we represent images in terms of named entities as well. The normalized representation helps to match legacy applications with container images to suggest the best possible recommendations.
