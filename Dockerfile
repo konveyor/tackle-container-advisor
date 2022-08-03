@@ -15,6 +15,7 @@
 ################################################################################
 
 FROM registry.access.redhat.com/ubi8/python-38
+FROM ruby:2.6
 
 # Need to be root to install dependencies
 USER 0
@@ -46,3 +47,15 @@ EXPOSE $PORT
 
 ENV GUNICORN_BIND 0.0.0.0:$PORT
 CMD ["gunicorn", "--workers=2", "--threads=500", "--timeout", "300", "service:app"]
+
+
+ENV LC_ALL C.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
+WORKDIR /usr/src/app
+
+COPY Gemfile just-the-docs.gemspec ./
+RUN gem install bundler && bundle install
+
+EXPOSE 4000

@@ -1,0 +1,152 @@
+{"0": {
+    "doc": "KG Utils",
+    "title": "TCA’s Knowledge Base Utilities",
+    "content": "Python scripts to generate JSON from Database . Install Anaconda3 . | Follow instructions to download and install Anaconda3 | . Create conda virtual environment . # Requires python 3.8 conda create --name &lt;env-name&gt; python=3.8 conda activate &lt;env-name&gt; ### Clone TCA git clone git@github.com:konveyor/tackle-container-advisor.git . How to use . | cd tackle-container-advisor | pip3 install -r requirements.txt | cd kg_utils | db provides the input data | From top level folder run python kg_utils/kg_utils.py and python kg_utils/generator.py | Outputs json are saved in: kg/ | . Generate documentation: . | mkdir docs &amp;&amp; cd docs | Run sphinx-quickstart | Follow and accept default prompts. make sure you enter the project’s name | Setting up conf.py: . | Uncomment import os and import sys | Uncomment and Change path: sys.path.insert(0, os.path.abspath('..')) . | In the # -- General configuration --- field, add extensions = ['sphinx.ext.autodoc'] . | In the # -- Options for HTML output --- field, add html_theme = 'sphinx_rtd_theme' | . | Setting up index.rst: Add modules after line 11 | Run sphinx-apidoc -o .. | Run make html | Documentation is located in /docs/_build/html/index.html | . ",
+    "url": "http://localhost:4000/docs/KG-utils/#tcas-knowledge-base-utilities",
+    "relUrl": "/docs/KG-utils/#tcas-knowledge-base-utilities"
+  },"1": {
+    "doc": "KG Utils",
+    "title": "TCA_image_search",
+    "content": "Allows users to search relevant or exact container images from DockerHub ,Quai.io , and Artifacthub.io(Community Operators OLM) registries. ",
+    "url": "http://localhost:4000/docs/KG-utils/#tca_image_search",
+    "relUrl": "/docs/KG-utils/#tca_image_search"
+  },"2": {
+    "doc": "KG Utils",
+    "title": "Search urls:",
+    "content": ". | Dockerhub Dockerhub repository: Dockerhub images. | RedHat OpenShift: RedHat Quay, . | Redhat OperatorHub: Artifact.io . | . ",
+    "url": "http://localhost:4000/docs/KG-utils/#search-urls",
+    "relUrl": "/docs/KG-utils/#search-urls"
+  },"3": {
+    "doc": "KG Utils",
+    "title": "Getting started",
+    "content": "Prerequisite . | Use TCA_KG_Aumentation repos to augmment new entities to the database by following the instructions from the README file. You can add a single entity or a batch of entities from a csv file to the entities table. | Make sure you have docker installed locally. | The path “db{db_version}.db”, where “db_version” is the latest TCA database version and contains all entities to search(see “entity_name” table) for images. | In VSCODE, Open the folder in a container, which will install all dependencies needed to run the script. | . Input data to the search engine. Data are loaded from the entities table from the database. You may search a single entity or all entities from the database. Sample entities table . Running the script . python kg_utils/search_images.py -e &lt;entity_name(s)&gt; -db db\\{db_version}.db This loads entity(ies) from the entity_name table and searches images across all catalogues. python kg_utils/search_images.py -h usage: Search container images from dockerhub , Quay.io , and Artifacthub.io optional arguments: -h, --help show this help message and exit -e ENTITY, --entity ENTITY Enter entity name(s) from the database. i.e :-e nginx,tomcat,ubuntu or -e all ( to search all entities). Also enclose entities with double words in a quote. For example: -e 'ibm i',db2,'Apache Kafka' -db DATABASE_PATH, --database_path DATABASE_PATH Path containing the latest tackle containerization advisor database. Try $python -e &lt;entity_names&gt; -db &lt;database_path\"&gt; or type $python src/search_images.py --help . Results are saved into the following files: kg_utils\\image_search_kg\\images.json , kg_utils\\image_search_kg\\operator_images.csv ,kg_utils\\image_search_kg\\openshift_images.csv ,and kg_utils\\image_search_kg\\docker_images.csv . KG Augmentation . TCA KG Augmentation script allows a semi-automatic way of ingesting data into the TCA Knowledge Base . The command line script (kg_aug.py) can be executed in 2 modes: . | Interactive - This mode can be used for processing single entry. It allows the user to choose a table by listing all the tables in the TCA database. Based on the chosen table, the user can interactively enter values for the vaious fields. All the fields are listed along with the field type (e.g.- integer, text etc.) For fields that accept only certain values, the acceptable values are also displayed along with the field name. Some automatic checks are perfomed as the user enters a value for a particular field and if the value does not match the specified type or acceptable list of values mentioned, there is a prompt to re-enter the value for that particular field. | Batch - Batch mode is used for processing multiple entries. The input is a csv file with multiple values that need to be entered into the database. The format to enter values in the csv is as follows: Table_name, value1, value2,…, value n . | . The id field for all the tables is auto generated so the user does not have to specify it. As every entry is processed there is a automatic check for dulpicate entries. If a duplicate entry is found it is skipped and not inserted into the database. For every new entity thats inserted into KG, the mentions are automatically generated from wikidata. A sample csv file (input.csv) has been uploaded for reference - input.csv . Running the script . To run the script you can use one of the following commands based: . | Interactive mode: python kg_aug.py -m interactive -d 1.0.4.db | Batch mode: python kg_aug.py -m batch -b input.csv -d 1.0.4.db | . The -m indicated the mode (interactive or batch), -b points to the csv file for batch processing and -d specifies the database file. Usage . usage: kg_aug.py [-h] -m MODE -d DB_FILE [-b BATCH_FILE] [-r DEL_FILE] modify KB by adding or deleting entities optional arguments: -h, --help show this help message and exit -m MODE mode: interactive or batch -d DB_FILE database file (.db) path -b BATCH_FILE batch file (.txt) path -r DEL_FILE entities to delete/replace list file (.csv) path . ",
+    "url": "http://localhost:4000/docs/KG-utils/#getting-started",
+    "relUrl": "/docs/KG-utils/#getting-started"
+  },"4": {
+    "doc": "KG Utils",
+    "title": "KG Utils",
+    "content": " ",
+    "url": "http://localhost:4000/docs/KG-utils/",
+    "relUrl": "/docs/KG-utils/"
+  },"5": {
+    "doc": "Configuration",
+    "title": "Configuration",
+    "content": "This folder contains config files for various packages. | common.ini contains configuration data that is common to all packages. | kg.ini contains configuration data used to generate json files from the knowledge base (sql and db) files. These json files contain all the knowledge base data that is needed by various packages. | The tca and wikidata are folders corresponding to two tasks that are created by benchmarks/generate_data.py. The tfidf entity standardization approach runs on the tca task and wdpapi entity standardization approach runs on the wikidata task. The configuration data for each approach can be found in the respective task directories. | . ",
+    "url": "http://localhost:4000/docs/configuration/",
+    "relUrl": "/docs/configuration/"
+  },"6": {
+    "doc": "Entity Standardizer",
+    "title": "entity_standardizer",
+    "content": "Each folder contains a different approach to perform entity standardization. | tfidf - A supervised approach that computes tfidf vectors for a given training dataset. | wdapi - An unsupervised approach based on wikidata autocomplete api. | . Input data from . data/tca and data/wikidata . For configuration see . config/tca/tfidf.ini and config/wikidata/wdapi.ini . Models saved in . models/tca/ . To generate training and inference data (run from top level folder). Training data will be stored inside data/tca/train.json and inference data for evaluation will be stored at data/tca/infer.json . python benchmarks/generate_data.py . Evaluate entity standardization models (from top level folder) . python benchmarks/run_models.py -mode tca . Usage . usage: run_models.py [-h] [-model_type MODEL_TYPE] [-mode MODE] Train and evaluate TCA entity standardization models optional arguments: -h, --help show this help message and exit -model_type MODEL_TYPE tf_idf (default) | wiki_data_api | all -mode MODE deploy (default) | tca . Model comparison (04/14/2022) . | Method | top-1 | top-3 | top-5 | top-10 | top-inf(count) | False positive rate | Runtime (on cpu) | . | tfidf | 0.63 | 0.77 | 0.79 | 0.81 | 0.81 (2415/2976) | 0.00(0/0) | 70.63s | . | wdapi | 0.44 | 0.58 | 0.63 | 0.65 | 0.71 (1832/2566) | 0.87(358/410) | 2349.05s | . ",
+    "url": "http://localhost:4000/docs/entity-standardizer/#entity_standardizer",
+    "relUrl": "/docs/entity-standardizer/#entity_standardizer"
+  },"7": {
+    "doc": "Entity Standardizer",
+    "title": "Entity Standardizer",
+    "content": " ",
+    "url": "http://localhost:4000/docs/entity-standardizer/",
+    "relUrl": "/docs/entity-standardizer/"
+  },"8": {
+    "doc": "Home",
+    "title": "Tackle Container Advisor (TCA)",
+    "content": " ",
+    "url": "http://localhost:4000/#tackle-container-advisor-tca",
+    "relUrl": "/#tackle-container-advisor-tca"
+  },"9": {
+    "doc": "Home",
+    "title": "Purpose",
+    "content": "TCA takes client applications as a natural language description and recommends whether client applications can be containerized. For example, a client can provide the application description as the following. 1. App1: rhel, db2, java, tomcat . TCA takes the following steps to recommend the containerization. | Assessment: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the db folder. For example, the inputs in App1 get mapped as the following named entities. | . 1. App1: rhel: Linux|RedHat Linux, db2: DB2, java: Java, tomcat: Apache Tomcat . | Containerization: First, it recommends whether App1 can be containerized, partially containerized, or kept as it is. Then if App1 is recommended as containerized or partially containerized, TCA generates container images based on DockerHub or Openshift. For example, if a user decides to generate DockerHub related images, then TCA generates the following images. | . 1. tomcat|https://hub.docker.com/_/tomcat 2. db2|https://hub.docker.com/r/ibmcom/db2 . For OpenShift, TCA generates the following images. 1. tomcat|https://access.redhat.com/containers/#/registry.access.redhat.com/jboss-webserver-3/webserver31-tomcat8-openshift 2. db2|https://access.redhat.com/containers/#/cp.stg.icr.io/cp/ftm/base/ftm-db2-base . ",
+    "url": "http://localhost:4000/#purpose",
+    "relUrl": "/#purpose"
+  },"10": {
+    "doc": "Home",
+    "title": "TCA Pipeline",
+    "content": ". The pipeline ingests raw inputs from clients data and standardizes the data to generate named entities and versions. For standardizing or normalizing raw inputs we use a tf-idf similarity based approach. To find container images we represent images in terms of named entities as well. The normalized representation helps to match legacy applications with container images to suggest the best possible recommendations. ",
+    "url": "http://localhost:4000/#tca-pipeline",
+    "relUrl": "/#tca-pipeline"
+  },"11": {
+    "doc": "Home",
+    "title": "Home",
+    "content": " ",
+    "url": "http://localhost:4000/",
+    "relUrl": "/"
+  },"12": {
+    "doc": "Knowledge Base",
+    "title": "TCA’s Knowledge Base",
+    "content": "Prerequisites . Install sqlite3 . 1. https://www.sqlite.org/download.html . Entity-Relationship in TCA’s Knowledge Base . We represent the knowledge base in terms of a database. Below we provide an entity-relationship diagram. Setting up TCA’s Knowledge Base . Generate the .db file from the .sql file. 1. cd db/ 2. cat 1.0.4.sql | sqlite3 1.0.4.db`` . Download DBeaver Community tool from the link below . 1. https://dbeaver.io/ . Set the .db file path to DBeaver to view tables and data. To set right click on Database Navigator to choose create -&gt; connection -&gt; SQLite. Then set the path as follows by providing the absolute path of the .db file . Path: /&lt;path&gt;/1.0.4.db . Table Details . 1. entity_types . This contains all the entity types present in our taxonomy. Under each entity type we define entities. For example, the OS entity type contains the Linux|RedHat Linux as an entity. A new entry can be added as . INSERT INTO entity_types(entity_type_name) VALUES(?) . 2. entities . This contains all the named entities along with their types and mappings to Wikidata or DBPedia. The scores are obtained based on an entity linking algorithm. A new entry can be added as . INSERT INTO entities(entity_name, entity_type_id, external_link) VALUES(?,?,?) . For external link use the following format . {'name': '', 'qid': '&lt;QID&gt;', 'url': 'https://www.wikidata.org/wiki/&lt;QID&gt;', 'score': 1} . The QID can for a named enitity can be obtained from . https://www.wikidata.org/wiki/Wikidata:Main_Page . 3. entity mentions . This contains mappings of raw mentions with their entities. Each entity could have multiple mentions. For example, Apache Tomcat can be called as Tomcat or Apache Tomcat. A new entry can be added as . INSERT INTO entity_mentions(entity_mention_name, entity_type_id, entity_id) VALUES(?,?,?) . 4. entity relations . This contains mappings of entities based on their compatibilities. For example, a relation might exists between Linux|* and Apache Tomcat which suggest Apache Tomcat is compatible with different variants of Linux such as RedHat Linux, Ubuntu, CentOS and so on. A new entry can be added as . INSERT INTO entity_relations(entity_parent_type_id, entity_parent_id, entity_child_type_id, entity_child_id, COTS) VALUES(?,?,?,?,?) . 5. docker base os images . This contains Docker specific base OS images. For example, RedHat Linux along with its mapping a DockerHub image. A new entry can be added as . INSERT INTO docker_baseos_images(container_name, OS, Docker_URL, Notes, CertOfImageAndPublisher, Certification_Status, OfficialImage, VerifiedPublisher, OpenShift_Correspondent_Image_URL, OpenShiftStatus) VALUES(?,?,?,?,?,?,?,?,?,?) . 6. openshift base os images . This contains Openshift specific base OS images. For example, RedHat Linux along with its mapping a OpenShift image. A new entry can be added as . INSERT INTO openshift_baseos_images(container_name, OS, OpenShift_Correspondent_Image_URL, Notes, OpenShiftStatus, DockerImageType) VALUES(?,?,?,?,?,?) . 7. docker images . This contains Docker specific images. For example, Apache Tomcat long with its mapping a DockerHub image. A new entry can be added as . INSERT INTO docker_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Docker_URL, Notes, CertOfImageAndPublisher) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) . 8. openshift images . This contains OpenShift specific images. For example, Apache Tomcat long with its mapping a OpenShift image. A new entry can be added as . INSERT INTO openshift_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Docker_URL, Notes, CertOfImageAndPublisher) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) . 9. entity versions . This contains versions and licensing costs for all entities. A new entry can be added as . INSERT INTO entity_versions (id, entity_id, version, release_date, end_date, cost) VALUES (?,?,?,?,?,?) . 10. docker environment variable . This contains environment variables for all docker images. A new entry can be added as . INSERT INTO docker_environment_variables(Environment_Variables, Container_Name, Required, Default_Values) VALUES(?,?,?,?) . 11. operator images . This contains operator specific images. For example, Postgresql along with its mapping a operator image . A new entry can be added as . INSERT INTO operator_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Operator_Correspondent_Image_URL, Operator_Repository, Other_Operators) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) . ",
+    "url": "http://localhost:4000/docs/knowledge-base/#tcas-knowledge-base",
+    "relUrl": "/docs/knowledge-base/#tcas-knowledge-base"
+  },"13": {
+    "doc": "Knowledge Base",
+    "title": "Knowledge Base",
+    "content": " ",
+    "url": "http://localhost:4000/docs/knowledge-base/",
+    "relUrl": "/docs/knowledge-base/"
+  },"14": {
+    "doc": "References",
+    "title": "Publications",
+    "content": ". | Anup K. Kalia, Raghav Batta, Jin Xiao, Mihir Choudhury and Maja Vukovic. ACA: Application Containerization Advisory Framework for Modernizing Legacy Applications. IEEE International Conference on Cloud Computing (Cloud) [Work-in-progress], sept, pages 1–3, 2021. | . ",
+    "url": "http://localhost:4000/docs/publications/#publications",
+    "relUrl": "/docs/publications/#publications"
+  },"15": {
+    "doc": "References",
+    "title": "Article",
+    "content": "Tutorial on TCA: link . ",
+    "url": "http://localhost:4000/docs/publications/#article",
+    "relUrl": "/docs/publications/#article"
+  },"16": {
+    "doc": "References",
+    "title": "References",
+    "content": " ",
+    "url": "http://localhost:4000/docs/publications/",
+    "relUrl": "/docs/publications/"
+  },"17": {
+    "doc": "Presentations",
+    "title": "Konveyor - Tackle Container Advisor Presentation",
+    "content": " ",
+    "url": "http://localhost:4000/docs/references/#konveyor---tackle-container-advisor-presentation",
+    "relUrl": "/docs/references/#konveyor---tackle-container-advisor-presentation"
+  },"18": {
+    "doc": "Presentations",
+    "title": "Tackle Containerization Advisory for Legacy Applications",
+    "content": " ",
+    "url": "http://localhost:4000/docs/references/#tackle-containerization-advisory-for-legacy-applications",
+    "relUrl": "/docs/references/#tackle-containerization-advisory-for-legacy-applications"
+  },"19": {
+    "doc": "Presentations",
+    "title": "Presentations",
+    "content": " ",
+    "url": "http://localhost:4000/docs/references/",
+    "relUrl": "/docs/references/"
+  },"20": {
+    "doc": "Setup and Running TCA",
+    "title": "Setting up your environment",
+    "content": "Requires Python &gt;= 3.6 environment. You cannot run this code without having a proper Python environment first. We recommend that you follow the instructions in the Developer’s Guide before proceeding further. ",
+    "url": "http://localhost:4000/docs/setup/#setting-up-your-environment",
+    "relUrl": "/docs/setup/#setting-up-your-environment"
+  },"21": {
+    "doc": "Setup and Running TCA",
+    "title": "Running TCA as a service",
+    "content": "There are 4 options for deploying TCA as a service. | Install the service requirements and start the service from command line. | . Requires gunicorn standalone installation on your system. bash setup.sh gunicorn --workers=2 --threads=500 --timeout 300 service:app OR waitress-serve --listen=*:8000 service:app . | Running the service as a container. | . Using a bash script. bash run.sh . Using command line. docker-compose -f 'docker-compose-api.yml' up -d --build . | Running the service in a virtual machine using vagrant. vagrant up vagrant ssh cd /vagrant bash run.sh . | Deploy the container on Redhat Openshift Container Platform. | . bash deploy.sh . ",
+    "url": "http://localhost:4000/docs/setup/#running-tca-as-a-service",
+    "relUrl": "/docs/setup/#running-tca-as-a-service"
+  },"22": {
+    "doc": "Setup and Running TCA",
+    "title": "Run a performance test for TCA service",
+    "content": "A performance test measures the response time of TCA service under various load conditions. Before running performance test, update config/test.ini with the hostname and port where TCA service has been deployed . python test/performance/run_payload.py &lt;#users&gt; &lt;#applications/user&gt; . ",
+    "url": "http://localhost:4000/docs/setup/#run-a-performance-test-for-tca-service",
+    "relUrl": "/docs/setup/#run-a-performance-test-for-tca-service"
+  },"23": {
+    "doc": "Setup and Running TCA",
+    "title": "Running TCA with a new version of Knowledge Base",
+    "content": "Please perform the following steps. | Replace the existing .sql file with the new .sql file in the db folder . | Change the common.ini file in the config folder as follows . version = . | Modify the setup.sh and clean.sh scripts to reflect the version accordingly. version= . | Re-run setup.sh and then deploy the service. | . ",
+    "url": "http://localhost:4000/docs/setup/#running-tca-with-a-new-version-of-knowledge-base",
+    "relUrl": "/docs/setup/#running-tca-with-a-new-version-of-knowledge-base"
+  },"24": {
+    "doc": "Setup and Running TCA",
+    "title": "Setup and Running TCA",
+    "content": " ",
+    "url": "http://localhost:4000/docs/setup/",
+    "relUrl": "/docs/setup/"
+  }
+}
