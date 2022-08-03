@@ -16,8 +16,7 @@ nav_order: 4
 
 We represent the knowledge base in terms of a database. Below we provide an entity-relationship diagram.
 
-<img width="800" alt="ER_DIAGRAM" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/ER_diagram.png">
-
+![ER_DIAGRAM](../images/ER_diagram.png)
 
 ### Setting up TCA's Knowledge Base
 
@@ -40,7 +39,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 ##### This contains all the entity types present in our taxonomy. Under each entity type we define entities. For example, the OS entity type contains the Linux|RedHat Linux as an entity.
 
-<img width="200" alt="Entity Types" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/entity_types.png">
+![Entity_Types](../images/entity_types.png)
 
 ##### A new entry can be added as
 
@@ -51,7 +50,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 ##### This contains all the named entities along with their types and mappings to Wikidata or DBPedia. The scores are obtained based on an entity linking algorithm.
 
-<img width="800" alt="Entities" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/entities.png">
+![Entities](../images/entities.png)
 
 ##### A new entry can be added as
 
@@ -70,7 +69,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 ##### This contains mappings of raw mentions with their entities. Each entity could have multiple mentions. For example, Apache Tomcat can be called as Tomcat or Apache Tomcat.
 
-<img width="500" alt="Entity Mentions" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/entity_mentions.png">
+![Entity_Mentions](../images/entity_mentions.png)
 
 ##### A new entry can be added as
 
@@ -80,7 +79,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 ##### This contains mappings of entities based on their compatibilities. For example, a relation might exists between Linux|* and Apache Tomcat which suggest Apache Tomcat is compatible with different variants of Linux such as RedHat Linux, Ubuntu, CentOS and so on.
 
-<img width="800" alt="Entity Relations" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/operator_images.png">
+![Entity_Relations](../images/entity_relations.png)
 
 ##### A new entry can be added as
 
@@ -90,7 +89,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 ##### This contains Docker specific base OS images. For example, RedHat Linux along with its mapping a DockerHub image.
 
-<img width="1000" alt="Docker Base OS Images" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/docker_baseos.png">
+![Docker_baseos_images](../images/docker_baseos.png)
 
 ##### A new entry can be added as
 
@@ -101,7 +100,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 ##### This contains Openshift specific base OS images. For example, RedHat Linux along with its mapping a OpenShift image.
 
-<img width="1000" alt="Openshift Base OS Images" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/OS_baseos.png">
+![Openshift_baseos_images](../images/OS_baseos.png)
 
 ##### A new entry can be added as
 
@@ -112,7 +111,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 ##### This contains Docker specific images. For example, Apache Tomcat long with its mapping a DockerHub image.
 
-<img width="1000" alt="Docker Images" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/docker_images.png">
+![Docker_images](../images/docker_images.png)
 
 ##### A new entry can be added as
 
@@ -123,7 +122,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 
 ##### This contains OpenShift specific images. For example, Apache Tomcat long with its mapping a OpenShift image.
 
-<img width="1000" alt="Openshift Images" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/OS_images.png">
+![Openshift_images](../images/OS_images.png)
 
 ##### A new entry can be added as
 
@@ -132,7 +131,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 **9. entity versions**
 ##### This contains versions and licensing costs for all entities.
 
-<img width="1000" alt="entity_versions" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/entity_versions.png">
+![entity_versions](../images/entity_versions.png)
 
 ##### A new entry can be added as
         INSERT INTO entity_versions (id, entity_id, version, release_date, end_date, cost)  VALUES (?,?,?,?,?,?)
@@ -140,8 +139,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 **10. docker environment variable**
 ##### This contains environment variables for all docker images.
 
-<img width="1000" alt="Docker_env_var" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/docker_env.png">
-
+![Docker_env_var](../images/docker_env.png)
 
 ##### A new entry can be added as
 	INSERT  INTO docker_environment_variables(Environment_Variables, Container_Name, Required, Default_Values) VALUES(?,?,?,?)
@@ -150,7 +148,7 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 **11. operator images**
 ##### This contains operator specific images. For example, Postgresql along with its mapping a operator image
 
-<img width="1000" alt="operators" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/operator_images.png">
+![operators](../images/operator_images.png)
 
 ##### A new entry can be added as
 	INSERT INTO operator_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Operator_Correspondent_Image_URL, Operator_Repository, Other_Operators) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
