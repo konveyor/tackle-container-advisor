@@ -1,3 +1,9 @@
+---
+layout: default
+title: Entity Standardizer
+nav_order: 6
+---
+
 # entity_standardizer
 Each folder contains a different approach to perform entity standardization.
 
@@ -6,15 +12,15 @@ Each folder contains a different approach to perform entity standardization.
 
 ### Input data from
  ``data/tca and data/wikidata``
- 
-### For configuration see 
+
+### For configuration see
  `config/tca/tfidf.ini` and `config/wikidata/wdapi.ini`
 
-### Models saved in 
+### Models saved in
   ``models/tca/``
 
-### To generate training and inference data (run from top level folder). 
-Training data will be stored inside ``data/tca/train.json`` and inference data for evaluation will 
+### To generate training and inference data (run from top level folder).
+Training data will be stored inside ``data/tca/train.json`` and inference data for evaluation will
 be stored at ``data/tca/infer.json``
 
 ```
@@ -41,7 +47,7 @@ optional arguments:
 ```
 
 ### Model comparison (04/14/2022)
-<p><table> <thead> 
+<p><table> <thead>
 <tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th><th>False positive rate</th><th>Runtime (on cpu)</th></tr>
 </thead>
 <tbody>
@@ -49,4 +55,3 @@ optional arguments:
 <tr><td>wdapi</td><td>0.44</td><td>0.58</td><td>0.63</td><td>0.65</td><td>0.71 (1832/2566)</td><td>0.87(358/410)</td><td>2349.05s</td></tr>
 </tbody>
 </table></p>
-

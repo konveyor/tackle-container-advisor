@@ -1,3 +1,8 @@
+---
+layout: default
+title: Knowledge Base
+nav_order: 4
+---
 # TCA's Knowledge Base
 
 ### Prerequisites

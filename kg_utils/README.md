@@ -1,3 +1,9 @@
+---
+layout: default
+title: KG Utils
+nav_order: 5
+---
+
 ## TCA's Knowledge Base Utilities
 
 Python scripts to generate JSON from Database
@@ -50,30 +56,30 @@ Allows users to search relevant or exact container images from  DockerHub ,Quai.
    - RedHat OpenShift: [RedHat Quay](https://quay.io/search),
 
    - Redhat OperatorHub: [Artifact.io](https://artifacthub.io/)
-  
+
 ## Getting started
 
 #### Prerequisite
-  
+
   - Use [TCA_KG_Aumentation](https://github.ibm.com/tca-team/TCA_KG_Augmentation) repos to augmment new entities to the database by following the instructions from the README file. You can add a single entity or a batch of entities from a csv file to the entities table.
   - Make sure you have [docker](https://docs.docker.com/engine/install/) installed locally.
- 
+
   - The path "db\{db_version}.db", where "db_version" is the latest TCA database version and contains all entities to search(see "entity_name" table) for images.
-  
+
   -  In VSCODE,  Open the folder in a container,  which will install all dependencies needed to run the script.
 
 #### Input data to the search engine.
-    
-    Data are loaded from the entities table from the database. You may search a single entity or all entities from the database. 
- 
-   Sample entities table 
-    
+
+    Data are loaded from the entities table from the database. You may search a single entity or all entities from the database.
+
+   Sample entities table
+
    ![This is an image](https://github.com/divsan93/tackle-container-advisor/blob/kb_expansion/images/entities.png)
-    
+
 #### Running the script
-    
+
  ```python kg_utils/search_images.py   -e <entity_name(s)> -db db\{db_version}.db``` This loads entity(ies) from the entity_name table and searches images across all catalogues.
- 
+
 ```
 python kg_utils/search_images.py -h
 
@@ -82,21 +88,21 @@ usage: Search container images  from dockerhub , Quay.io , and Artifacthub.io
 optional arguments:
 
   -h, --help            show this help message and exit
-  
+
   -e ENTITY, --entity ENTITY  Enter entity name(s) from the database. i.e :-e nginx,tomcat,ubuntu or -e all ( to search all entities). Also enclose entities with                        
-  
+
              double words in  a quote. For example: -e 'ibm i',db2,'Apache Kafka'
-             
+
   -db DATABASE_PATH, --database_path  DATABASE_PATH    Path containing the latest tackle containerization advisor database.
-  
+
 Try $python    -e <entity_names>    -db <database_path"> or type $python  src/search_images.py --help
 
 ```
 
-Results are saved into the following files:  ```kg_utils\image_search_kg\images.json``` , ```kg_utils\image_search_kg\operator_images.csv``` ,```kg_utils\image_search_kg\openshift_images.csv``` ,and ```kg_utils\image_search_kg\docker_images.csv``` 
- 
+Results are saved into the following files:  ```kg_utils\image_search_kg\images.json``` , ```kg_utils\image_search_kg\operator_images.csv``` ,```kg_utils\image_search_kg\openshift_images.csv``` ,and ```kg_utils\image_search_kg\docker_images.csv```
 
-   
+
+
 ### KG Augmentation
 
 ##### TCA KG Augmentation script allows a semi-automatic way of ingesting data into the TCA Knowledge Base
