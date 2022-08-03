@@ -16,7 +16,7 @@
 title: Tackle Container Advisor
 description: A Jekyll theme for TCA documentation
 remote_theme: "just-the-docs"
-baseurl: "/just-the-docs" # the subpath of your site, e.g. /blog
+baseurl: "/tackle-container-advisor" # the subpath of your site, e.g. /blog
 permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"
 , "docs/tests/"
