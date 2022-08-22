@@ -172,13 +172,12 @@ class Standardization():
         # entities         = {}
         mention_data     = tfidf_data.get("data", {})
 
-
         for idx, mention in mention_data.items():
             mention_name= mention.get("mention", "")
             predictions = mention.get("predictions", [])
             if not predictions:            
                 logging.info(f"No predictions for {mention}")
-                continue
+                # continue
             entity_names= [self.__entity_data[p[0]][0] for p in predictions if p[1] > self.medium_threshold]
             entity_types= [self.__entity_data[p[0]][1] for p in predictions if p[1] > self.medium_threshold]
             conf_scores = [round(p[1],2) for p in predictions if p[1] > self.medium_threshold]
@@ -187,10 +186,6 @@ class Standardization():
             for entity, score in zip(entity_names, conf_scores):
                 version  = self.version_standardizer(mention_name, [entity, score])
                 versions.append(version)
-                # if version[1] == self.na_version:
-                #    versions.append('')
-                # else:
-                #    versions.append(version[1])
             mention["entity_types"] = entity_types
             mention["confidence"]   = conf_scores
             mention["versions"]     = versions
