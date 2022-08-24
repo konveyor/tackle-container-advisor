@@ -45,4 +45,4 @@ ENV PORT 8000
 EXPOSE $PORT
 
 ENV GUNICORN_BIND 0.0.0.0:$PORT
-CMD ["gunicorn", "--workers=2", "--threads=500", "--timeout", "300", "service:app"]
+CMD ["gunicorn", "-c", "config/gunicorn.py", "service:app"]
