@@ -21,7 +21,7 @@ import logging
 import configparser
 import re
 import numpy as np
-from word2number import w2n
+# from word2number import w2n
 
 from entity_standardizer.tfidf import TFIDF
 from entity_standardizer.tfidf import utils
