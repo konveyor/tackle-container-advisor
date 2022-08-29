@@ -95,7 +95,7 @@ class Clustering():
         unique_clusters = []
         for i in range(clusters.shape[0]):
             cl = { "id": i, "name": f'unique_tech_stack_{i}',  "type": 'unique', "tech_stack": list(self.entity_names[clusters[i] == 1]),\
-                   "num_elements": counts[i], "apps": list(appL_array[index == order[i]]) }
+                   "num_elements": int(counts[i]), "apps": list(appL_array[index == order[i]]) }
 
             unique_clusters.append(cl)
 
