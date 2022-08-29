@@ -287,3 +287,28 @@ class TestEntityDetection(unittest.TestCase):
             diff = DeepDiff(expected, app_data)
             print("Test app5 Diff = ", diff)
         self.assertTrue(app_data == expected)
+
+
+    def test_compose_app6(self):
+        app_data = [{'application_name': 'App 1',
+                     'application_description': 'desc 1',
+                     'technology_summary': 'IBM Out of Profile On Prem (other non-CIO Iaas),Linux Red Hat,PHP\nJavaScript'}]
+
+        expected =  [{'application_name': 'App 1', 'application_description': 'desc 1', \
+                      'technology_summary': 'IBM Out of Profile On Prem (other non-CIO Iaas),Linux Red Hat,PHP\nJavaScript', \
+                      'KG Version': '1.0.4', \
+                      'Lang': {'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, \
+                      'PHP': {'PHP': ('NA_VERSION', '8')}}, \
+                      'HW': {}, 'Runtime': {}, 'Lib': {}, 'VM': {}, 'Plugin': {}, 'Storage': {}, 'Technology': {}, 'App Server': {}, 'App': {}, 'Runlib': {}, \
+                      'OS': {'Linux Red Hat': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')}}, \
+                      'unknown': ['Out Profile Prem (', 'non-CIO Iaas'], \
+                      'low_medium_confidence': {'IBM Out Profile Prem (': {'IBM HTTP Server': ('NA_VERSION', '9.0.0')}}}]
+
+        standardizer = Standardization()
+        app_data = standardizer.app_standardizer(app_data)
+        if app_data != expected:
+            diff = DeepDiff(expected, app_data)
+            print("Test app6 Diff = ", diff)
+        self.assertTrue(app_data == expected)
+
+
