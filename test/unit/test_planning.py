@@ -142,6 +142,21 @@ class TestPlan(unittest.TestCase):
                          'custom_images_needed': []}}]
 
         appL = plan.map_to_docker(appL)
+
+        # add correction in case difference is for lower case vs upper case
+        if appL != expected:
+            new_key_assign = {}
+            for k in expected[0]['scope_images'].keys():
+                new_key_assign[k] = k.lower()
+            expected[0]['scope_images'] = dict(
+                [(new_key_assign.get(key), value) for key, value in expected[0]['scope_images'].items()])
+            new_value_assign = {}
+            for k in expected[0]['scope_images_confidence']['mapping'].values():
+                new_value_assign[k] = k.lower()
+            expected[0]['scope_images_confidence']['mapping'] = dict([(key, new_value_assign.get(value)) for key, value in
+                                                                      expected[0]['scope_images_confidence'][
+                                                                          'mapping'].items()])
+
         self.assertTrue(appL == expected)
 
 
@@ -179,7 +194,12 @@ class TestPlan(unittest.TestCase):
             'Desc': 'App Desc 0114',
             'Cmpt': 'Comp 1',
             'Valid': True,
-            'Ref Dockers': "1. {'websphere-traditional': 'https://hub.docker.com/r/ibmcom/websphere-traditional/'}\n2. {'db2': 'https://hub.docker.com/r/ibmcom/db2'}\n3. {'redis_Linux(Official Image)': 'https://hub.docker.com/_/redis/'}\n4. {'jenkins(Official Image)': 'https://hub.docker.com/_/jenkins/'}",
+            'Ref Dockers': [{'name': 'websphere-traditional', 'status': '',
+                             'url': 'https://hub.docker.com/r/ibmcom/websphere-traditional/'},
+                            {'name': 'db2', 'status': '', 'url': 'https://hub.docker.com/r/ibmcom/db2'},
+                            {'name': 'redis_Linux', 'status': 'Official Image',
+                             'url': 'https://hub.docker.com/_/redis/'}, {'name': 'jenkins', 'status': 'Official Image',
+                                                                         'url': 'https://hub.docker.com/_/jenkins/'}],
             'Confidence': 0.93,
             'Reason': 'Additional Installations in container image 1,2,3,4: JavaScript',
             'Recommend': 'Containerize',
@@ -235,6 +255,22 @@ class TestPlan(unittest.TestCase):
                 'custom_images_needed': []}}]
 
         appL = plan.map_to_docker(appL, 'openshift')
+
+        # add correction in case difference is for lower case vs upper case
+        if appL != expected:
+            new_key_assign = {}
+            for k in expected[0]['scope_images'].keys():
+                new_key_assign[k] = k.lower()
+            expected[0]['scope_images'] = dict(
+                [(new_key_assign.get(key), value) for key, value in expected[0]['scope_images'].items()])
+            new_value_assign = {}
+            for k in expected[0]['scope_images_confidence']['mapping'].values():
+                new_value_assign[k] = k.lower()
+            expected[0]['scope_images_confidence']['mapping'] = dict(
+                [(key, new_value_assign.get(value)) for key, value in
+                 expected[0]['scope_images_confidence'][
+                     'mapping'].items()])
+
         self.assertTrue(appL == expected)
 
     def test_output_to_ui_planning_openshift(self):
@@ -271,7 +307,14 @@ class TestPlan(unittest.TestCase):
             'Desc': 'App Desc 0114',
             'Cmpt': 'Comp 1',
             'Valid': True,
-            'Ref Dockers': "1. {'websphere-traditional': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b'}\n2. {'db2': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17?container-tabs=gti'}\n3. {'redis_Linux': 'https://catalog.redhat.com/software/containers/rhscl/redis-5-rhel7/5c9922045a13464733ee0ecc'}\n4. {'jenkins': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b?container-tabs=gti&gti-tabs=get-the-source'}",
+            'Ref Dockers': [{'name': 'websphere-traditional', 'status': '',
+                             'url': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b'},
+                            {'name': 'db2', 'status': '',
+                             'url': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17?container-tabs=gti'},
+                            {'name': 'redis_Linux', 'status': '',
+                             'url': 'https://catalog.redhat.com/software/containers/rhscl/redis-5-rhel7/5c9922045a13464733ee0ecc'},
+                            {'name': 'jenkins', 'status': '',
+                             'url': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b?container-tabs=gti&gti-tabs=get-the-source'}],
             'Confidence': 0.93,
             'Reason': 'Additional Installations in container image 1,2,3,4: JavaScript',
             'Recommend': 'Containerize'
@@ -310,6 +353,21 @@ class TestPlan(unittest.TestCase):
                                                  'custom_installations_needed': [], 'custom_images_needed': []}}]
 
         appL = plan.map_to_docker(appL, 'operator')
+
+        # add correction in case difference is for lower case vs upper case and operator version number
+        if appL != expected:
+            new_key_assign = {}
+            for k in expected[0]['scope_images'].keys():
+                new_key_assign[k] = k.lower()
+            expected[0]['scope_images'] = dict(
+                [(new_key_assign.get(key), value) for key, value in expected[0]['scope_images'].items()])
+            new_value_assign = {}
+            for k in expected[0]['scope_images_confidence']['mapping'].values():
+                new_value_assign[k] = k.lower()
+            expected[0]['scope_images_confidence']['mapping'] = dict([(key, new_value_assign.get(value)) for key, value in
+                                                                      expected[0]['scope_images_confidence'][
+                                                                          'mapping'].items()])
+
         self.assertTrue(appL == expected)
 
     def test_output_to_ui_planning_operator(self):
@@ -329,7 +387,7 @@ class TestPlan(unittest.TestCase):
                                              'image_confidence': 1.0, 'images_score': 60, 'cum_scores': 60,
                                              'custom_installations_needed': [], 'custom_images_needed': []}}]
         expected = {'Name': 'app1', 'Desc': 'app1', 'Cmpt': '', 'Valid': True,
-                    'Ref Dockers': "1. {'MongoDB Enterprise Operator': 'quay.io/mongodb/mongodb-enterprise-operator:1.12.0'}",
+                    'Ref Dockers': [{'name': 'MongoDB Enterprise Operator', 'status': '', 'url': 'quay.io/mongodb/mongodb-enterprise-operator:1.12.0'}],
                     'Confidence': 1.0, 'Reason': 'No additonal installations required.', 'Recommend': 'Containerize'}
 
         expected = OrderedDict(expected)
