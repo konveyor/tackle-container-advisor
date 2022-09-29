@@ -50,11 +50,13 @@ class Assessment():
 
                 # Tech confidence
                 if 'low_medium_confidence' in app and app['low_medium_confidence']:
-                    app['assessment_reason'].append(config['Reason_Codes']['confidence_reason']+ ' ' + json.dumps(app['low_medium_confidence']))
+                    # app['assessment_reason'].append(config['Reason_Codes']['confidence_reason']+ ' ' + json.dumps(app['low_medium_confidence']))
+                    app['assessment_reason'].append(config['Reason_Codes']['confidence_reason']+ ' ' + str(app['low_medium_confidence']))
 
                 # General technology items
                 if 'Technology' in app and app['Technology']:
-                    app['assessment_reason'].append(config['Reason_Codes']['general_technology_reason'] + ' ' + json.dumps(app['Technology']))
+                    # app['assessment_reason'].append(config['Reason_Codes']['general_technology_reason'] + ' ' + json.dumps(app['Technology']))
+                    app['assessment_reason'].append(config['Reason_Codes']['general_technology_reason'] + ' ' + str(app['Technology']))
 
                 # Unknown technology items
                 if 'unknown' in app and app['unknown']:
