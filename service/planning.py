@@ -484,6 +484,9 @@ class Plan():
 
 
                 if len(app['RepackageOS']) > 0:
+                    if catalog == "operator":
+                        continue
+
                     ## Means input need several OS to containerize
                     targetOS = ['Linux', 'Windows']
                     for os in targetOS:
@@ -526,7 +529,9 @@ class Plan():
                             subapp['planning_reason'] = ""
                             subapp['scope_images'] = []
                             subapp['scope_images_confidence'] = {}
-                            subapp['OS'] = self.__find_best_os(app, os)
+                            if catalog != operator:
+                                subapp['OS'] = self.__find_best_os(app, os)
+                            
                             for child_type in child_types:
                                 subapp[child_type] = ''
                             subapp = self.__search_docker(subapp, catalog)
