@@ -110,12 +110,18 @@ assessment_model = api.model('Standardization', {
     "KG Version": fields.String(required=False, description='KG Version')
     })
 
+image_model =  api.model('Container', {
+    'name': fields.String(),
+    'status': fields.String(),
+    'url': fields.String()
+})
+
 planning_model = api.model('Containerization', {
     "Name": fields.String(required=True, description='Name of the application'),
     "Desc": fields.String(required=True, description='Description of the application'),
     "Cmpt": fields.String(required=True, description='Component/Deployment Unit of the application'),
     "Valid": fields.Boolean(required=True, description='Is the containerization assessment valid?'),
-    "Ref Dockers": fields.String(required=False, description='Description of the application'),
+    "Ref Dockers": fields.List(fields.Nested(image_model), required=False, description='An array of candidate container images / operators'),
     "Confidence": fields.Float(required=False, description='Confidence of the assessment'),
     "Reason": fields.String(required=False, description='Reason for assessment'),
     "Recommend": fields.String(required=False, description='Recommended disposition')

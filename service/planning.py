@@ -464,13 +464,13 @@ class Plan():
 
         """
         if len(self.__dockerimage_KG) == 0 or len(self.__osBaseImages) == 0 or len(self.__inverted_dockerimageKG) == 0:
-            logging.error('service/containerize_planning.py init failed')
+            logging.error('service/planning.py init failed')
             return appL
         if len(self.__openshiftimage_KG) == 0 or len(self.__openshiftosBaseImages) == 0 or len(self.__inverted_openshiftimageKG) == 0:
-            logging.error('service/containerize_planning.py init failed')
+            logging.error('service/planning.py init failed')
             return appL
         if len(self.__operatorimage_KG) == 0 or len(self.__inverted_operatorimageKG) == 0:
-            logging.error('service/containerize_planning.py init failed')
+            logging.error('service/planning.py init failed')
             return appL
 
         containerL = []
@@ -574,7 +574,7 @@ class Plan():
             # AI Insights
             pApp['Valid'] = app["valid_planning"]
 
-            pApp["Ref Dockers"] = ""
+            pApp["Ref Dockers"] = [] # mic ""
             pApp["Confidence"] = 0
             pApp['Reason'] = app["planning_reason"]
 
@@ -588,11 +588,17 @@ class Plan():
 
                 for image in app["scope_images"]:
                     image_name = image
-                    docker_url_dict = {}
+                    # mic docker_url_dict = {}
+                    # mic start
+                    docker_url_dict = {'name': "", 'status': "", 'url': ""}
+                    docker_url_dict['name'] = image_name
+                    # mic end
                     if app['scope_images'][image]['Status']:
                         image_name = image_name + '(' + app['scope_images'][image]['Status'] + ')'
-                    docker_url_dict[image_name] = app["scope_images"][image]["Docker_URL"]
-                    pApp['Ref Dockers'] += str(counter) + ". " + str(docker_url_dict) +'\n'
+                        docker_url_dict['status'] = app['scope_images'][image]['Status']
+                    # mic docker_url_dict[image_name] = app["scope_images"][image]["Docker_URL"]
+                    docker_url_dict['url'] = app["scope_images"][image]["Docker_URL"]
+                    pApp['Ref Dockers'].append(docker_url_dict)  # mic += str(counter) + ". " + str(docker_url_dict) +'\n'
                     counter_list += str(counter) + ','
                     counter += 1
                 counter_list = counter_list[:-1]
@@ -604,10 +610,17 @@ class Plan():
                 if 'scope_images_win' in app and app['scope_images_win']:
                     counter_list = ''
                     for image in app["scope_images_win"]:
+                        # mic start
+                        docker_url_dict = {'name': "", 'status': "", 'url': ""}
+                        docker_url_dict['name'] = image_name
+                        # mic end
                         image_name = image
                         if app['scope_images_win'][image]['Status']:
                             image_name = image_name + '(' + app['scope_images_win'][image]['Status'] + ')'
-                        pApp['Ref Dockers'] += str(counter) + ". " + image_name +'|'+app["scope_images_win"][image]["Docker_URL"]+'\n'
+                            docker_url_dict['status'] = app['scope_images_win'][image]['Status']
+
+                        docker_url_dict['url'] = app["scope_images"][image]["Docker_URL"]
+                        pApp['Ref Dockers'].append(docker_url_dict)  # mic += str(counter) + ". " + image_name +'|'+app["scope_images_win"][image]["Docker_URL"]+'\n'
                         counter_list += str(counter) + ','
                         counter += 1
                     counter_list = counter_list[:-1]
@@ -632,7 +645,7 @@ class Plan():
                             pApp['Reason'] += '\n '
                         pApp['Reason'] += 'Reason 400: Not supported by any container image: ' + ', '.join(filter(None, win_not_supported))
                         app["valid_planning"] = False
-                pApp['Ref Dockers'] = pApp['Ref Dockers'][:-1]
+                # mic pApp['Ref Dockers'] = pApp['Ref Dockers'][:-1]
                 pApp["Confidence"] = round(pApp['Confidence'], 2)
                 if pApp["Confidence"] == 1:
                     if reason:
