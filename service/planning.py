@@ -331,6 +331,7 @@ class Plan():
                 if os == app['OS'] or os == app['OS'].split('|')[0] or os.split('|')[0] == app['OS'].split('|')[0]:
                     backup_images.append(osBaseImages[os])
                     break
+
         full_os_check_images = []
         parent_os_check_images = []
         if app['OS'] in inverted_containerimageKG:
@@ -482,11 +483,7 @@ class Plan():
                 app['scope_images_confidence'] = {}
 
 
-
                 if len(app['RepackageOS']) > 0:
-                    if catalog == "operator":
-                        continue
-
                     ## Means input need several OS to containerize
                     targetOS = ['Linux', 'Windows']
                     for os in targetOS:
@@ -529,8 +526,7 @@ class Plan():
                             subapp['planning_reason'] = ""
                             subapp['scope_images'] = []
                             subapp['scope_images_confidence'] = {}
-                            if catalog != operator:
-                                subapp['OS'] = self.__find_best_os(app, os)
+                            subapp['OS'] = self.__find_best_os(app, os)
                             
                             for child_type in child_types:
                                 subapp[child_type] = ''
