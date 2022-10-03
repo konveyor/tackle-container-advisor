@@ -416,7 +416,7 @@ class Plan():
                 pApp["App Server"] = ast.literal_eval(app["App Server"])
                 pApp["App"] = ast.literal_eval(app["Dependent Apps"])
                 pApp["Runtime"] = ast.literal_eval(app["Runtime"])
-                pApp["Lib"] = ast.literal_eva(app["Libs"])
+                pApp["Lib"] = ast.literal_eval(app["Libs"])
 
                 pApp['assessment_reason'] = app['Reason']
                 try:
