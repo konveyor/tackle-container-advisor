@@ -16,6 +16,7 @@
 
 import os
 import json
+import ast
 from collections import OrderedDict
 import logging
 import codecs
@@ -410,13 +411,12 @@ class Plan():
                     pApp['component_name'] = app["Cmpt"]
 
                 # Curated
-                pApp['OS'] = eval(app["OS"])
-
-                pApp['Lang'] = eval(app["Lang"])
-                pApp["App Server"] = eval(app["App Server"])
-                pApp["App"] = eval(app["Dependent Apps"])
-                pApp["Runtime"] = eval(app["Runtime"])
-                pApp["Lib"] = eval(app["Libs"])
+                pApp['OS'] = ast.literal_eval(app["OS"])
+                pApp['Lang'] = ast.literal_eval(app["Lang"])
+                pApp["App Server"] = ast.literal_eval(app["App Server"])
+                pApp["App"] = ast.literal_eval(app["Dependent Apps"])
+                pApp["Runtime"] = ast.literal_eval(app["Runtime"])
+                pApp["Lib"] = ast.literal_eva(app["Libs"])
 
                 pApp['assessment_reason'] = app['Reason']
                 try:
