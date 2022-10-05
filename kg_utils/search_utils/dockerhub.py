@@ -18,7 +18,7 @@ import logging
 import docker
 import json
 import os
-from search_utils import  utils , dockerhub_api
+from . import  utils , dockerhub_api
 from dotenv import load_dotenv ,find_dotenv
 import configparser
 
