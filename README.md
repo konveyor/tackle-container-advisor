@@ -1,4 +1,18 @@
 # Tackle Container Advisor (TCA)
+## Table of Contents
+
+### Usage
+1. [TCA Pipeline](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/README.md)
+2. [Setup and Running TCA](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/running.md)
+3. [References](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/references.md)
+
+
+### Development
+1. [Knowledge Base](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/db.md)
+2. [KG Utils](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/utils.md)
+3. [Entity standardizer](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/standardizer.md)
+4. [API's](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/service.md)
+
 
 ## Purpose
 
@@ -34,84 +48,3 @@ For OpenShift, TCA generates the following images.
 <img width="1000" alt="TCA Pipeline" src=https://github.com/konveyor/tackle-container-advisor/blob/main/images/tca_pipeline.png>
 
 The pipeline ingests raw inputs from clients data and standardizes the data to generate named entities and versions. For standardizing or normalizing raw inputs we use a tf-idf similarity based approach. To find container images we represent images in terms of named entities as well. The normalized representation helps to match legacy applications with container images to suggest the best possible recommendations.
-
-## Setting up your environment
-
-Requires Python >= 3.6 environment. You cannot run this code without having a proper
-Python environment first. We recommend that you follow the instructions
-in the [Developer's Guide](docs/development.md) before proceeding further.
-
-## Running TCA as a service
-
-There are 4 options for deploying TCA as a service.
-
-1. Install the service requirements and start the service from command line.
-
-Requires *gunicorn* standalone installation on your system.
-```
-bash setup.sh
-gunicorn --workers=2 --threads=500 --timeout 300 service:app
-OR
-waitress-serve --listen=*:8000 service:app
-```
-
-2. Running the service as a container.
-
-Using a bash script.
-```
-bash run.sh
-```
-Using command line.
-```
-docker-compose  -f 'docker-compose-api.yml' up -d --build
-```
-
-3. Running the service in a virtual machine using vagrant.
-```
-vagrant up
-vagrant ssh
-cd /vagrant
-bash run.sh
-```
-
-4. Deploy the container on Redhat Openshift Container Platform.
-
-```
-bash deploy.sh
-```
-
-## Run a performance test for TCA service
-A performance test measures the response time of TCA service under
-various load conditions. Before running
-performance test, update *config/test.ini* with the hostname
-and port where TCA service has been deployed
-
-```
-python test/performance/run_payload.py <#users> <#applications/user>
-```
-
-## Running TCA with a new version of Knowledge Base
-
-Please perform the following steps.
-
-1. Replace the existing .sql file with the new <new_db>.sql file in the db folder
-
-2. Change the *common.ini* file in the config folder as follows
-
-    version = <new_db>
-
-3. Modify the *setup.sh* and *clean.sh* scripts to reflect the version accordingly.
-
-    version=<new_db>
-
-4. Re-run *setup.sh* and then deploy the service.
-
-
-## References
-
-* Anup K. Kalia. Tackle Containerization Advisory for Legacy Applications. (link to the video: https://www.youtube.com/watch?v=VapEooROERw, link to the slides: https://www.slideshare.net/KonveyorIO/tackle-containerization-advisor-tca-for-legacy-applications)
-
-* Anup K. Kalia, Raghav Batta, Jin Xiao, Mihir Choudhury and Maja Vukovic. *ACA: Application Containerization Advisory Framework for Modernizing Legacy Applications*.  IEEE International Conference on Cloud Computing (Cloud) [Work-in-progress], sept, pages 1--3, 2021.
-
-## Code of Conduct
-Refer to Konveyor's Code of Conduct [here](https://github.com/konveyor/community/blob/main/CODE_OF_CONDUCT.md).
