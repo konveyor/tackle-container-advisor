@@ -16,7 +16,7 @@
 
 
 import sys
-#sys.path.append("./kg_utils")
+sys.path.append("./kg_utils")
 import json
 import logging
 import os
@@ -26,7 +26,7 @@ import json
 
 from textwrap import indent
 from dotenv import load_dotenv ,find_dotenv
-from kg_utils.search_utils   import load_entities , utils , save_to_csv , dockerhub , quay , operator
+from search_utils   import load_entities , utils , save_to_csv , dockerhub , quay , operator
 
 
 def save_to_kb(results: list) -> None:
