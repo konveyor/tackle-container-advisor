@@ -16,6 +16,7 @@
 
 import os
 import json
+import ast
 from collections import OrderedDict
 import logging
 import codecs
@@ -331,6 +332,7 @@ class Plan():
                 if os == app['OS'] or os == app['OS'].split('|')[0] or os.split('|')[0] == app['OS'].split('|')[0]:
                     backup_images.append(osBaseImages[os])
                     break
+
         full_os_check_images = []
         parent_os_check_images = []
         if app['OS'] in inverted_containerimageKG:
@@ -409,13 +411,12 @@ class Plan():
                     pApp['component_name'] = app["Cmpt"]
 
                 # Curated
-                pApp['OS'] = eval(app["OS"])
-
-                pApp['Lang'] = eval(app["Lang"])
-                pApp["App Server"] = eval(app["App Server"])
-                pApp["App"] = eval(app["Dependent Apps"])
-                pApp["Runtime"] = eval(app["Runtime"])
-                pApp["Lib"] = eval(app["Libs"])
+                pApp['OS'] = ast.literal_eval(app["OS"])
+                pApp['Lang'] = ast.literal_eval(app["Lang"])
+                pApp["App Server"] = ast.literal_eval(app["App Server"])
+                pApp["App"] = ast.literal_eval(app["Dependent Apps"])
+                pApp["Runtime"] = ast.literal_eval(app["Runtime"])
+                pApp["Lib"] = ast.literal_eval(app["Libs"])
 
                 pApp['assessment_reason'] = app['Reason']
                 try:
@@ -482,7 +483,6 @@ class Plan():
                 app['scope_images_confidence'] = {}
 
 
-
                 if len(app['RepackageOS']) > 0:
                     ## Means input need several OS to containerize
                     targetOS = ['Linux', 'Windows']
@@ -527,6 +527,7 @@ class Plan():
                             subapp['scope_images'] = []
                             subapp['scope_images_confidence'] = {}
                             subapp['OS'] = self.__find_best_os(app, os)
+                            
                             for child_type in child_types:
                                 subapp[child_type] = ''
                             subapp = self.__search_docker(subapp, catalog)
