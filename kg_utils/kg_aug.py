@@ -14,6 +14,12 @@ value_constraints = {
     "entity_versions": {"opensource": {"True", "False"}}
 }
 
+lowercase_constraints  = {
+    "docker_images" :  {"container_name"},
+    "openshift_images" : {"container_name"},
+    "operator_images" : {"container_name"}
+}
+
 default_value = {
     "entities": {"COTS": "N", "Legacy": "N", "ContainerImage": "N", "OpenSource": "N", "external_link": "{}"}
 }
@@ -121,6 +127,9 @@ def check_input_batch(input_entry, cur):
                             if col[1] in value_constraints[table_name].keys():
                                 if userval not in value_constraints[table_name][col[1]]:
                                     process_entry = False
+                    if table_name in lowercase_constraints.keys():
+                        if col[1] in lowercase_constraints[table_name]:
+                            userval = userval.lower()
                     userColVals.append(userval)
                     # print(process_entry)
                     i = i + 1
@@ -208,6 +217,9 @@ def get_input_cmdline(cur):
                         userval_accept = False
                         print("Not a valid entry for column -- please re-enter")
             if userval_accept:
+                if table_name in lowercase_constraints.keys():
+                    if col[1] in lowercase_constraints[table_name]:
+                        userval = userval.lower()
                 userColVals.append(userval)
     return (table_name, userColVals)
 
@@ -229,6 +241,12 @@ def check_if_duplicate(table_name, userColVals, cur):
             add_to_table = False
         if table_name == "entities":
             if len(check_for_entry_in_table(cur, "entity_mentions", "entity_mention_name", userColVals[0])) > 0:
+                add_to_table = False
+        if table_name == "docker_images" or table_name == "openshift_images":
+            if len(check_for_entry_in_table(cur, table_name, columns[10][1], userColVals[0])) > 0:
+                add_to_table = False
+        if table_name == "operator_images":
+            if len(check_for_entry_in_table(cur, table_name, columns[11][1], userColVals[0])) > 0:
                 add_to_table = False
     if table_name == "entities" or table_name == "entity_mentions" or table_name == "entity_relations":
         getIdQuery = "SELECT max(id) FROM entity_types"

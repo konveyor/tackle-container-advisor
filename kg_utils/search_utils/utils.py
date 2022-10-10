@@ -6,12 +6,45 @@ from sqlite3 import Error
 import sqlite3
 import docker 
 import os
+import configparser
 
 # NLP
 import pandas as pd
 from requests import session
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
+
+
+#config file
+config = configparser.ConfigParser()
+config_data = os.path.join("config/kg.ini")
+config.read([config_data])
+
+#path to DB
+db_path    =  config["database"]["database_path"]
+
+def create_db_connection():
+    """
+    Create connection to database
+
+    Args:
+
+        database_path (str): path to the database
+
+    Returns:
+
+        _type_: sqlite3 connection 
+
+    """
+    
+    connection = None
+    
+    try:
+        connection = sqlite3.connect(db_path)
+    except Error as e:
+        logging.error(f'{e}: Issue connecting to db. Please check whether the .db file exists.')
+    return connection
 
 
 
@@ -33,9 +66,75 @@ def clean_string_value(value):
     return value
 
 
+def get_table(table_name="entities"):
+    """
+    Connect to a table
+    """
+
+    connection =   create_db_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT   *  FROM {} ".format(table_name))
+    return cursor
+
+def remove_tags_url(url:str)-> str:
+    """
+    Remove tag from url links
+    Args:
+        url (str): input url
+
+    Raises:
+        ValueError: _description_
+
+    Returns:
+        str: A url with no tag
+    """
+    
+    image_url =""
+    
+    if "https" in url or "http" in url:
+        url_splt = url.split(":")
+        image_url = url_splt[0]+":"+url_splt[1]
+    else:
+        image_url = url.split(":")[0]
+    
+    print(image_url)
+    return image_url
+
 ################################################################################
  ############         DOCKERHUB UTILS                             ##############
 #################################################################################
+
+
+def get_column(table_name:str, column_index:int) -> list:
+    """_summary_
+
+    Args:
+        table_name (str): table_name from database.
+        column_index (int): index of a column from table_name
+
+    Returns:
+        list: list of data from column
+    """
+    cur = get_table(table_name=table_name)
+    container_names= []
+
+    for entity  in cur.fetchall():
+        container_names.append(entity[column_index])
+    return container_names
+
+
+def container_urls():
+    """
+    Retrieve all docker container urls from docker_images table
+    """
+    url_cur = get_table(table_name="docker_images")
+    urls =[]
+    for row in url_cur.fetchall():
+        urls.append(row[10])
+    return urls
+
+
+
 
 def is_exact_match(image_name: str, entity_name: str) -> bool:
     """
@@ -162,5 +261,3 @@ def docker_href( image_name: str) -> str:
  ############         QUAY UTILS                             ################
 #################################################################################
 
-
-   

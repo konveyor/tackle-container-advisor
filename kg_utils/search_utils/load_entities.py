@@ -15,9 +15,6 @@
 ################################################################################
 
 
-from curses import resetty
-from hashlib import new
-from openpyxl import load_workbook
 from sqlite3 import Error
 import sqlite3
 
@@ -25,38 +22,8 @@ import configparser
 import os
 import re
 import logging
+from . import utils
 
-
-#config file
-config = configparser.ConfigParser()
-config_data = os.path.join("config/kg.ini")
-config.read([config_data])
-
-
-
-def create_db_connection(database_path):
-    """
-    Create connection to database
-
-    Args:
-
-        database_path (str): path to the database
-
-    Returns:
-
-        _type_: sqlite3 connection 
-
-    """
-    
-    connection = None
-
-    try:
-        connection = sqlite3.connect(database_path)
-    except Error as e:
-        logging.error(f'{e}: Issue connecting to db. Please check whether the .db file exists.')
-
-   
-    return connection
 
 
 def filter_entity(entity:str)-> str:
@@ -104,6 +71,27 @@ def filter_entity(entity:str)-> str:
     else: 
         return entity.strip()
 
+
+
+def all_OS_from_db():
+    """
+    Load all entities of type OS
+    """
+    os_cursor = utils.get_table(table_name="entities")
+
+    OS= {}
+
+    for entity  in os_cursor.fetchall():
+        if entity[2] == 6:
+            os = filter_entity(entity[1])
+            OS[str(entity[0])] = os
+
+    os_cursor.close()
+
+    return OS
+
+
+
 def from_database(  entity_names = None, table_name="entities"):
 
     """
@@ -115,20 +103,11 @@ def from_database(  entity_names = None, table_name="entities"):
     if entity_names == None :
         print("No entities selected")
         exit()
-
-    db_path    =  config["database"]["database_path"]
-    
-    connection =   create_db_connection(db_path)
-    print("Connection", connection)
-
     entities = []
     suggest_entities = []
-    cursor = connection.cursor()
-   
-    cursor.execute("SELECT   *  FROM {} ".format(table_name))
+    cursor = utils.get_table(table_name="entities")
+
     for entity  in cursor.fetchall():
-    
-        print(entity)
         if entity_names == "all": 
             entity_name = filter_entity(entity[1]) 
             entities.append( (entity_name.strip(),entity[2] , entity[0]) )
@@ -148,5 +127,7 @@ def from_database(  entity_names = None, table_name="entities"):
                     suggest_entities.append(entity[1])
 
                 else: continue
+
+    cursor.close()
 
     return entities ,  suggest_entities
