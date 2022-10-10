@@ -367,9 +367,7 @@ class TestPlan(unittest.TestCase):
             expected[0]['scope_images_confidence']['mapping'] = dict([(key, new_value_assign.get(value)) for key, value in
                                                                       expected[0]['scope_images_confidence'][
                                                                           'mapping'].items()])
-        print("appL: \n", appL)
 
-        print("Expected: \n", expected)
         self.assertTrue(appL == expected)
 
     def test_output_to_ui_planning_operator(self):
