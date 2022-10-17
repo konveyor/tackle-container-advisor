@@ -78,9 +78,6 @@ Allows users to search relevant or exact container images from  DockerHub ,Quai.
 
     Data are loaded from the entities table from the database. You may search a single entity or all entities from the database.
 
-   Sample entities table
-
-   ![This is an image](https://github.com/divsan93/tackle-container-advisor/blob/kb_expansion/images/entities.png)
 
 #### Running the script
 

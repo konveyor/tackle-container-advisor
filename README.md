@@ -2,16 +2,16 @@
 ## Table of Contents
 
 ### Usage
-1. [TCA Pipeline](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/README.md)
-2. [Setup and Running TCA](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/running.md)
-3. [References](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/references.md)
+1. [TCA Pipeline](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/README.md)
+2. [Setup and Running TCA](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/running.md)
+3. [References](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/references.md)
 
 
 ### Development
-1. [Knowledge Base](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/db.md)
-2. [KG Utils](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/utils.md)
-3. [Entity standardizer](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/standardizer.md)
-4. [API's](https://github.com/divsan93/tackle-container-advisor/blob/release_fixtures/docs/service.md)
+1. [Knowledge Base](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/db.md)
+2. [KG Utils](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/utils.md)
+3. [Entity standardizer](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/standardizer.md)
+4. [API's](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/service.md)
 
 
 ## Purpose

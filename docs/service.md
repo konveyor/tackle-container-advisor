@@ -74,63 +74,6 @@ Example output:
 }
 ```
 
-### Response format to a post request /clustering:
-Please note that the above standardized output act as the input to clustering
-Following is the `json` response format to a `post /clustering` request.
-
-Payload input format:
-```
-[
-  {
-    "Name": "string",
-    "Desc": "string",
-    "Cmpt": "string",
-    "OS": "string",
-    "Lang": "string",
-    "App Server": "string",
-    "Dependent Apps": "string",
-    "Runtime": "string",
-    "Libs": "string",
-    "Reason": "string",
-    "KG Version": "string"
-  }
-]
-```
-Example input:
-```
-{
-  "status": 201,
-  "message": "Clustering completed successfully!",
-  "clusters": [
-    {
-      "id": 0,
-      "name": "unique_tech_stack_0",
-      "type": "unique",
-      "tech_stack": [
-        "DB2",
-        "Linux|*",
-        "Java|*"
-      ],
-      "num_elements": 1,
-      "apps": [
-        {
-          "Name": "App1",
-          "Desc": "application",
-          "Cmpt": "",
-          "OS": "{'rhel': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')}}",
-          "Lang": "{'java': {'Java|*': ('NA_VERSION', '21')}}",
-          "App Server": "{}",
-          "Dependent Apps": "{'db2': {'DB2': ('NA_VERSION', '11.5')}}",
-          "Runtime": "{}",
-          "Libs": "{}",
-          "Reason": "",
-          "KG Version": "1.0.4"
-        }
-      ]
-    }
-  ]
-}
-```
 
 ### Response format to a post request /containerization:
 Please note that the standardized output act as containerization input
@@ -185,6 +128,63 @@ Example output:
       "Confidence": 0.86,
       "Reason": "Additional Installations in container image 1: Java|*",
       "Recommend": "Containerize"
+    }
+  ]
+}
+```
+### Response format to a post request /clustering:
+Please note that the above standardized output act as the input to clustering
+Following is the `json` response format to a `post /clustering` request.
+
+Payload input format:
+```
+[
+  {
+    "Name": "string",
+    "Desc": "string",
+    "Cmpt": "string",
+    "OS": "string",
+    "Lang": "string",
+    "App Server": "string",
+    "Dependent Apps": "string",
+    "Runtime": "string",
+    "Libs": "string",
+    "Reason": "string",
+    "KG Version": "string"
+  }
+]
+```
+Example input:
+```
+{
+  "status": 201,
+  "message": "Clustering completed successfully!",
+  "clusters": [
+    {
+      "id": 0,
+      "name": "unique_tech_stack_0",
+      "type": "unique",
+      "tech_stack": [
+        "DB2",
+        "Linux|*",
+        "Java|*"
+      ],
+      "num_elements": 1,
+      "apps": [
+        {
+          "Name": "App1",
+          "Desc": "application",
+          "Cmpt": "",
+          "OS": "{'rhel': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')}}",
+          "Lang": "{'java': {'Java|*': ('NA_VERSION', '21')}}",
+          "App Server": "{}",
+          "Dependent Apps": "{'db2': {'DB2': ('NA_VERSION', '11.5')}}",
+          "Runtime": "{}",
+          "Libs": "{}",
+          "Reason": "",
+          "KG Version": "1.0.4"
+        }
+      ]
     }
   ]
 }
