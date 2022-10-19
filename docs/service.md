@@ -147,7 +147,7 @@ Example output:
 ```
 
 ## Clustering
-(to be filled)
+The standardized output from the Standardize step is taken and used to group together applications with an equivalent technology stack into clusters. For each cluster, the api returns the shared technology stack description, the number of applications in it, and their details.
 
 ### Response format to a post request /clustering:
 Please note that the above standardized output act as the input to clustering
@@ -170,8 +170,70 @@ Payload input format:
     "KG Version": "string"
   }
 ]
+
 ```
 Example input:
+```
+[
+  {"Name": "App 1",
+   "Desc": "",
+   "Cmpt": "Component 1",
+   "OS": "{'ZOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
+   "Lang": "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL/1': {'PL/I': ('1', '1')}}",
+   "App Server": "{}",
+   "Dependent Apps": "{}",
+   "Runtime": "{}",
+   "Libs": "{}",
+   "Reason": "",
+   "KG Version": "1.0.4"},
+  {"Name": "App 2",
+   "Desc": "",
+   "Cmpt": "Component 1",
+   "OS": "{'Windows 2016 Standard': {'Windows|Windows Server': ('2016 standard', '2016 standard')}}",
+   "Lang": "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}}",
+   "App Server": "{}",
+   "Dependent Apps": "{}",
+   "Runtime": "{}",
+   "Libs": "{}",
+   "Reason": "",
+   "KG Version": "1.0.4"},
+  {"Name": "App 3",
+   "Desc": "",
+   "Cmpt": "Component 1",
+   "OS": "{'Windows': {'Windows|*': ('NA_VERSION', 'NA_VERSION')}}",
+   "Lang": "{'C#': {'C#': ('NA_VERSION', 'NA_VERSION')}}",
+   "App Server": "{}",
+   "Dependent Apps": "{}",
+   "Runtime": "{'ASP.net': {'Active Server Pages (ASP)': ('NA_VERSION', '3')}}",
+   "Libs": "{}",
+   "Reason": "",
+   "KG Version": "1.0.4"},
+  {"Name": "App 4",
+   "Desc": "",
+   "Cmpt": "Component 1",
+   "OS": "{'AIX': {'Unix|AIX': ('NA_VERSION', 'NA_VERSION')}, 'zOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
+   "Lang": "{'Java': {'Java|*': ('NA_VERSION', 'NA_VERSION')}}",
+   "App Server": "{}",
+   "Dependent Apps": "{}",
+   "Runtime": "{}",
+   "Libs": "{}",
+   "Reason": "",
+   "KG Version": "1.0.4"},
+  {"Name": "App 5",
+   "Desc": "",
+   "Cmpt": "Component 1",
+   "OS": "{'zOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
+   "Lang": "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL1': {'PL/I': ('1', '1')}}",
+   "App Server": "{}",
+   "Dependent Apps": "{}",
+   "Runtime": "{}",
+   "Libs": "{}",
+   "Reason": "",
+   "KG Version": "1.0.4"}
+]
+
+```
+Example output:
 ```
 {
   "status": 201,
@@ -182,20 +244,110 @@ Example input:
       "name": "unique_tech_stack_0",
       "type": "unique",
       "tech_stack": [
-        "DB2",
-        "Linux|*",
+        "PL/I",
+        "MVS|*",
+        "JavaScript|*"
+      ],
+      "num_elements": 2,
+      "apps": [
+        {
+          "Name": "App 1",
+          "Desc": "",
+          "Cmpt": "Component 1",
+          "OS": "{'ZOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
+          "Lang": "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL/1': {'PL/I': ('1', '1')}}",
+          "App Server": "{}",
+          "Dependent Apps": "{}",
+          "Runtime": "{}",
+          "Libs": "{}",
+          "Reason": "",
+          "KG Version": "1.0.4"
+        },
+        {
+          "Name": "App 5",
+          "Desc": "",
+          "Cmpt": "Component 1",
+          "OS": "{'zOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
+          "Lang": "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL1': {'PL/I': ('1', '1')}}",
+          "App Server": "{}",
+          "Dependent Apps": "{}",
+          "Runtime": "{}",
+          "Libs": "{}",
+          "Reason": "",
+          "KG Version": "1.0.4"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "unique_tech_stack_1",
+      "type": "unique",
+      "tech_stack": [
+        "MVS|*",
+        "Unix|*",
         "Java|*"
       ],
       "num_elements": 1,
       "apps": [
         {
-          "Name": "App1",
-          "Desc": "application",
-          "Cmpt": "",
-          "OS": "{'rhel': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')}}",
-          "Lang": "{'java': {'Java|*': ('NA_VERSION', '21')}}",
+          "Name": "App 4",
+          "Desc": "",
+          "Cmpt": "Component 1",
+          "OS": "{'AIX': {'Unix|AIX': ('NA_VERSION', 'NA_VERSION')}, 'zOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
+          "Lang": "{'Java': {'Java|*': ('NA_VERSION', 'NA_VERSION')}}",
           "App Server": "{}",
-          "Dependent Apps": "{'db2': {'DB2': ('NA_VERSION', '11.5')}}",
+          "Dependent Apps": "{}",
+          "Runtime": "{}",
+          "Libs": "{}",
+          "Reason": "",
+          "KG Version": "1.0.4"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "unique_tech_stack_2",
+      "type": "unique",
+      "tech_stack": [
+        "Windows|*",
+        "C#",
+        "Active Server Pages (ASP)"
+      ],
+      "num_elements": 1,
+      "apps": [
+        {
+          "Name": "App 3",
+          "Desc": "",
+          "Cmpt": "Component 1",
+          "OS": "{'Windows': {'Windows|*': ('NA_VERSION', 'NA_VERSION')}}",
+          "Lang": "{'C#': {'C#': ('NA_VERSION', 'NA_VERSION')}}",
+          "App Server": "{}",
+          "Dependent Apps": "{}",
+          "Runtime": "{'ASP.net': {'Active Server Pages (ASP)': ('NA_VERSION', '3')}}",
+          "Libs": "{}",
+          "Reason": "",
+          "KG Version": "1.0.4"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "unique_tech_stack_3",
+      "type": "unique",
+      "tech_stack": [
+        "Windows|*",
+        "JavaScript|*"
+      ],
+      "num_elements": 1,
+      "apps": [
+        {
+          "Name": "App 2",
+          "Desc": "",
+          "Cmpt": "Component 1",
+          "OS": "{'Windows 2016 Standard': {'Windows|Windows Server': ('2016 standard', '2016 standard')}}",
+          "Lang": "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}}",
+          "App Server": "{}",
+          "Dependent Apps": "{}",
           "Runtime": "{}",
           "Libs": "{}",
           "Reason": "",
