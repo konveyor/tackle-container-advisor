@@ -1,4 +1,4 @@
-# entity_standardizer
+# Entity Standardizer
 Each folder contains a different approach to perform entity standardization.
 
 1. tfidf - A supervised approach that computes tfidf vectors for a given training dataset.

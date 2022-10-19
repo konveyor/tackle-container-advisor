@@ -1,4 +1,4 @@
-## References
+# References
 
 * Anup K. Kalia. Tackle Containerization Advisory for Legacy Applications. (link to the video: https://www.youtube.com/watch?v=VapEooROERw, link to the slides: https://www.slideshare.net/KonveyorIO/tackle-containerization-advisor-TDA-for-legacy-applications)
 

@@ -1,5 +1,12 @@
 # Developer Guide
 
+## Environment Setup
+1. [Using Vagrant and VirtualBox](#Using-Vagrant-and-VirtualBox)
+2. [Using Docker](#Using-Visual-Studio-Code-and-Docker)
+3. [Manual Setup](#Installing-Python-3-manually) 
+
+
+
 You will need a Python 3.8 development environment with Docker in order to use this code and bring up the environment. There are three ways to do this.
 
 ## Using Vagrant and VirtualBox

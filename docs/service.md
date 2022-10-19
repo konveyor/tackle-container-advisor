@@ -1,9 +1,14 @@
-## Table of Contents 
-1. Standardize
-2. Containerize
-3. Clustering
+# APIs
+The following are the different APIs in TCA
+1. [Standardize](#Standardize)
+2. [Containerize](#Containerize)
+3. [Clustering](#Clustering)
+
+### [Example Requests and Responses](https://divsan93.github.io/)
 
 ## Standardize
+The given application description (raw input from client) is standardized and matching entities and versions are extracted from the knowledge graph
+
 ### Response format to a post request /standardize:
 You can make RESTful calls to TCA to assess details of your application workload. As a first step, the standardize api standardizes the natural language input provided by a client.It accepts a `POST` request and a `json` payload. Following is the input data format and the output response format.
 
@@ -81,6 +86,8 @@ Example output:
 ```
 
 ## Containerize
+The standardized output from the above step is taken and matched with the container image information in the knowledge base to generate  recommendations. Image recommendations come with a confidence score, based on match accuracy.
+
 ### Response format to a post request /containerization:
 Please note that the standardized output act as containerization input
 Following is the `json` response format to a `post /containerization` request.
@@ -140,6 +147,8 @@ Example output:
 ```
 
 ## Clustering
+(to be filled)
+
 ### Response format to a post request /clustering:
 Please note that the above standardized output act as the input to clustering
 Following is the `json` response format to a `post /clustering` request.

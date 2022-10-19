@@ -1,4 +1,9 @@
 # TCA's Knowledge Base
+## Table of Contents 
+1. [Prerequisite](#Prerequisites)
+2. [ER DIAGRAM](#Entity-Relationship-in-TCA's-Knowledge-Base)
+3. [Knowledge Base Setup](#Setting-up-TCA's-Knowledge-Base) 
+4. [Table Details](#Table-Details)
 
 ### Prerequisites
 
@@ -148,4 +153,4 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 <img width="1000" alt="operators" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/operator_images.png">
 
 ##### A new entry can be added as
-	INSERT INTO operator_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Operator_Correspondent_Image_URL, Operator_Repository, Other_Operators) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+	INSERT INTO operator_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Operator_Correspondent_Image_URL, Operator_Repository) VALUES(?,?,?,?,?,?,?,?,?,?,?)

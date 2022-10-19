@@ -1,8 +1,9 @@
+# Running TCA
 ## Table of Contents 
-1. [Running TCA as a service](##Running-TCA-as-a-service)
-2. [Running TCA as a cli](##Running-TCA-as-a-cli)
+1. [Running TCA as a service](#Running-TCA-as-a-service)
+2. [Running TCA as a cli](#Running-TCA-as-a-cli)
 3. [Run a performance test for TCA service](#Run-a-performance-test-for-TCA-service) 
-4. [Running TCA with a new version of Knowledge Base](##Running-TCA-with-a-new-version-of-Knowledge-Base)
+4. [Running TCA with a new version of Knowledge Base](#Running-TCA-with-a-new-version-of-Knowledge-Base)
 
 ## Setting up your environment
 
