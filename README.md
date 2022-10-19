@@ -2,7 +2,7 @@
 ## Table of Contents
 
 ### Usage
-1. [TCA Pipeline](TCA-Pipeline)
+1. [TCA Pipeline](#TCA-Pipeline)
 2. [Setup and Running TCA](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/running.md)
 3. [API's](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/service.md)
 4. [References](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/references.md)
