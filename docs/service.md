@@ -1,3 +1,9 @@
+## Table of Contents 
+1. Standardize
+2. Containerize
+3. Clustering
+
+## Standardize
 ### Response format to a post request /standardize:
 You can make RESTful calls to TCA to assess details of your application workload. As a first step, the standardize api standardizes the natural language input provided by a client.It accepts a `POST` request and a `json` payload. Following is the input data format and the output response format.
 
@@ -74,7 +80,7 @@ Example output:
 }
 ```
 
-
+## Containerize
 ### Response format to a post request /containerization:
 Please note that the standardized output act as containerization input
 Following is the `json` response format to a `post /containerization` request.
@@ -132,6 +138,8 @@ Example output:
   ]
 }
 ```
+
+## Clustering
 ### Response format to a post request /clustering:
 Please note that the above standardized output act as the input to clustering
 Following is the `json` response format to a `post /clustering` request.

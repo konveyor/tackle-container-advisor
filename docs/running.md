@@ -1,3 +1,9 @@
+## Table of Contents 
+1. [Running TCA as a service](##Running-TCA-as-a-service)
+2. [Running TCA as a cli](##Running-TCA-as-a-cli)
+3. [Run a performance test for TCA service](#Run-a-performance-test-for-TCA-service) 
+4. [Running TCA with a new version of Knowledge Base](##Running-TCA-with-a-new-version-of-Knowledge-Base)
+
 ## Setting up your environment
 
 Requires Python >= 3.6 environment. You cannot run this code without having a proper
@@ -47,9 +53,8 @@ bash deploy.sh
 
 TCA application can be invoked from the command-line as follows:
 ```
-usage: kg_aug.py [-h] -m MODE -d DB_FILE [-b BATCH_FILE] [-r DEL_FILE]
+usage: tca_cli.py [-h] -input_json INPUT_JSON -operation OPERATION -catalog CATALOG -output_json OUTPUT_JSON
 
-modify KB by adding or deleting entities
 
 optional arguments:
   -h, --help     show this help message and exit
