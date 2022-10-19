@@ -26,7 +26,8 @@ TCA takes client applications as a natural language description and recommends w
 
 TCA takes the following steps to recommend the containerization.
 
-1. **Assessment**: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the *db* folder. For example, the inputs in *App1* get mapped as the following named entities.
+1. **Standardization**: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the [Knowledge Base](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/db.md).
+For example, the inputs in *App1* get mapped as the following named entities.
 
 ```
 1. App1: rhel: Linux|RedHat Linux, db2: DB2, java: Java, tomcat: Apache Tomcat
