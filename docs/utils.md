@@ -69,7 +69,7 @@ Allows users to search relevant or exact container images from  DockerHub ,Quai.
 
 #### Prerequisite
 
-  - Use [TCA_KG_Aumentation](https://github.ibm.com/tca-team/TCA_KG_Augmentation) repos to augmment new entities to the database by following the instructions from the README file. You can add a single entity or a batch of entities from a csv file to the entities table.
+  - Use [KG Aumentation](#KG-Augmentation) script to augmment new entities to the database.
   - Make sure you have [docker](https://docs.docker.com/engine/install/) installed locally.
 
   - The path "db\{db_version}.db", where "db_version" is the latest TCA database version and contains all entities to search(see "entity_name" table) for images.

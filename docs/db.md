@@ -1,8 +1,8 @@
 # TCA's Knowledge Base
 ## Table of Contents 
 1. [Prerequisite](#Prerequisites)
-2. [ER DIAGRAM](#Entity-Relationship-in-TCA's-Knowledge-Base)
-3. [Knowledge Base Setup](#Setting-up-TCA's-Knowledge-Base) 
+2. [ER DIAGRAM](#Entity-Relationship-in-Knowledge-Base)
+3. [Knowledge Base Setup](#Setting-up-the-Knowledge-Base) 
 4. [Table Details](#Table-Details)
 
 ### Prerequisites
@@ -12,14 +12,14 @@
 	1. https://www.sqlite.org/download.html
 
 
-### Entity-Relationship in TCA's Knowledge Base
+### Entity Relationship in Knowledge Base
 
 We represent the knowledge base in terms of a database. Below we provide an entity-relationship diagram.
 
 <img width="800" alt="ER_DIAGRAM" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/ER_diagram.png">
 
 
-### Setting up TCA's Knowledge Base
+### Setting up the Knowledge Base
 
 ##### Generate the .db file from the .sql file.
 
