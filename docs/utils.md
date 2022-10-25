@@ -1,5 +1,5 @@
 # TCA's Knowledge Base Utilities
-#####[Back to main page] (#https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+[Back to main page](https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
 ## Table of Contents
 1. [Generate JSONS and documentation](#How-to-use)
 2. [Image Search](#TCA-Image-Search)
