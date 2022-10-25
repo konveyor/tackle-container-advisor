@@ -1,8 +1,11 @@
 # TCA's Knowledge Base
-## Table of Contents 
+
+#####[Back to main page] (#https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+
+## Table of Contents
 1. [Prerequisite](#Prerequisites)
 2. [ER DIAGRAM](#Entity-Relationship-in-Knowledge-Base)
-3. [Knowledge Base Setup](#Setting-up-the-Knowledge-Base) 
+3. [Knowledge Base Setup](#Setting-up-the-Knowledge-Base)
 4. [Table Details](#Table-Details)
 
 ### Prerequisites

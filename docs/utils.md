@@ -1,5 +1,6 @@
 # TCA's Knowledge Base Utilities
-## Table of Contents 
+#####[Back to main page] (#https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+## Table of Contents
 1. [Generate JSONS and documentation](#How-to-use)
 2. [Image Search](#TCA-Image-Search)
 3. [KG Augmentation](#KG-Augmentation)
@@ -138,7 +139,7 @@ The command line script (kg_aug.py) can be executed in 2 modes:
 
 The id field for all the tables is auto generated so the user does not have to specify it. As every entry is processed there is a automatic check for dulpicate entries. If a duplicate entry is found it is skipped and not inserted into the database. For every new entity thats inserted into KG, the mentions are automatically generated from wikidata.
 
-#### A sample [csv](https://github.com/konveyor/tackle-container-advisor/blob/main/kg_utils/input.csv) file has been uploaded for reference 
+#### A sample [csv](https://github.com/konveyor/tackle-container-advisor/blob/main/kg_utils/input.csv) file has been uploaded for reference
 
 ### Running the script
 

@@ -1,8 +1,9 @@
 # Running TCA
-## Table of Contents 
+#####[Back to main page] (#https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+## Table of Contents
 1. [Running TCA as a service](#Running-TCA-as-a-service)
 2. [Running TCA as a cli](#Running-TCA-as-a-cli)
-3. [Running performance tests](#Run-a-performance-test-for-TCA-service) 
+3. [Running performance tests](#Run-a-performance-test-for-TCA-service)
 4. [Running TCA with a new version of Knowledge Base](#Running-TCA-with-a-new-version-of-Knowledge-Base)
 
 ## Setting up your environment
