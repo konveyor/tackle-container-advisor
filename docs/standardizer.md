@@ -1,4 +1,6 @@
-# entity_standardizer
+# Entity Standardizer
+[Back to main page](https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+
 Each folder contains a different approach to perform entity standardization.
 
 1. tfidf - A supervised approach that computes tfidf vectors for a given training dataset.

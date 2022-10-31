@@ -1,5 +1,13 @@
 # TCA's Knowledge Base
 
+#####[Back to main page] (#https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+
+## Table of Contents
+1. [Prerequisite](#Prerequisites)
+2. [ER DIAGRAM](#Entity-Relationship-in-Knowledge-Base)
+3. [Knowledge Base Setup](#Setting-up-the-Knowledge-Base)
+4. [Table Details](#Table-Details)
+
 ### Prerequisites
 
 ##### Install sqlite3
@@ -7,14 +15,14 @@
 	1. https://www.sqlite.org/download.html
 
 
-### Entity-Relationship in TCA's Knowledge Base
+### Entity Relationship in Knowledge Base
 
 We represent the knowledge base in terms of a database. Below we provide an entity-relationship diagram.
 
 <img width="800" alt="ER_DIAGRAM" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/ER_diagram.png">
 
 
-### Setting up TCA's Knowledge Base
+### Setting up the Knowledge Base
 
 ##### Generate the .db file from the .sql file.
 
@@ -148,4 +156,4 @@ We represent the knowledge base in terms of a database. Below we provide an enti
 <img width="1000" alt="operators" src="https://github.com/konveyor/tackle-container-advisor/blob/main/images/operator_images.png">
 
 ##### A new entry can be added as
-	INSERT INTO operator_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Operator_Correspondent_Image_URL, Operator_Repository, Other_Operators) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
+	INSERT INTO operator_images(container_name, OS, lang, lib, app, app_server, plugin, runlib, runtime, Operator_Correspondent_Image_URL, Operator_Repository) VALUES(?,?,?,?,?,?,?,?,?,?,?)
