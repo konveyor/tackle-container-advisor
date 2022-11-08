@@ -4,7 +4,11 @@ on:
   push:
     tags:
       - "v*.*.*"
-
+env:
+  REGISTRY_USER: lam_quay
+  IMAGE_REGISTRY: quay.io
+  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  
 jobs:
   tagged-release:
     runs-on: ubuntu-latest
@@ -28,3 +32,46 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body: ${{ steps.gen_changelog.outputs.changelog }}
+
+  publish-release:
+      needs: tagged-release
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout
+          uses: actions/checkout@v2
+          with:
+           ref: main
+        - name : get tag
+          run:  echo ${{needs.tagged-release.get_release_tag.outputs.tags}}
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.8'
+        - name: Cleanup
+          run: |
+            bash clean.sh
+        - name: Setup Containerization Advisor
+          run: |
+            bash setup.sh
+        - name: Test with pytest
+          id: run-tests
+          run: |
+            python -m unittest discover -v -s test -p test_*.py
+        - name: Log in to Quay.io
+          uses: redhat-actions/podman-login@v1
+          with:
+            username: ${{ env.REGISTRY_USER }}
+            password: ${{ env.REGISTRY_PASSWORD }}
+            registry: ${{ env.IMAGE_REGISTRY }}
+        - name : build image
+          run  : docker build -t tca .
+        - name : tag image
+          run  : docker tag tackle:latest  quay.io/konveyor/tackle-container-advisor:v1.0.0
+        - name : push to quay
+          run  : docker push quay.io/konveyor/tackle-container-advisor:v1.0.0
+
+
+
+
+    
+
