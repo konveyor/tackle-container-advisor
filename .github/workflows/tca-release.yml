@@ -8,6 +8,7 @@ env:
   REGISTRY_USER: lam_quay
   IMAGE_REGISTRY: quay.io
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+ 
   
 jobs:
   tagged-release:
@@ -53,10 +54,6 @@ jobs:
         - name: Setup Containerization Advisor
           run: |
             bash setup.sh
-        - name: Test with pytest
-          id: run-tests
-          run: |
-            python -m unittest discover -v -s test -p test_*.py
         - name: Log in to Quay.io
           uses: redhat-actions/podman-login@v1
           with:
@@ -64,14 +61,13 @@ jobs:
             password: ${{ env.REGISTRY_PASSWORD }}
             registry: ${{ env.IMAGE_REGISTRY }}
         - name : build image
-          run  : docker build -t tca .
+          run  : docker build -t tackle .
         - name : tag image
-          run  : docker tag tackle:latest  quay.io/konveyor/tackle-container-advisor:v1.0.0
+          run  : docker tag tackle:latest  quay.io/konveyor/tackle-container-advisor:${{ github.ref_name }} 
         - name : push to quay
-          run  : docker push quay.io/konveyor/tackle-container-advisor:v1.0.0
+          run  : docker push quay.io/konveyor/tackle-container-advisor:${{ github.ref_name }}
 
 
 
 
     
-
