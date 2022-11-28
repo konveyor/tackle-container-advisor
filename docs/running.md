@@ -1,5 +1,5 @@
 # Running TCA
-[Back to main page](https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+[Back to main page](https://github.com/konveyor/tackle-container-advisor#table-of-contents)
 ## Table of Contents
 1. [Running TCA as a service](#Running-TCA-as-a-service)
 2. [Running TCA as a cli](#Running-TCA-as-a-cli)

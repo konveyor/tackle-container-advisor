@@ -1,6 +1,6 @@
 # TCA's Knowledge Base
 
-#####[Back to main page] (#https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+#####[Back to main page] (#https://github.com/konveyor/tackle-container-advisor#table-of-contents)
 
 ## Table of Contents
 1. [Prerequisite](#Prerequisites)

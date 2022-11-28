@@ -1,5 +1,5 @@
 # Developer Guide
-[Back to main page](https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+[Back to main page](https://github.com/konveyor/tackle-container-advisor#table-of-contents)
 ## Environment Setup
 1. [Using Vagrant and VirtualBox](#Using-Vagrant-and-VirtualBox)
 2. [Using Docker](#Using-Visual-Studio-Code-and-Docker)
