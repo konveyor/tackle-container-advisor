@@ -1,6 +1,6 @@
 # TCA's Knowledge Base
 
-#####[Back to main page] (#https://github.com/konveyor/tackle-container-advisor#table-of-contents)
+[Back to main page](https://github.com/konveyor/tackle-container-advisor#table-of-contents)
 
 ## Table of Contents
 1. [Prerequisite](#Prerequisites)
