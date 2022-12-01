@@ -1,5 +1,5 @@
 # APIs
-[Back to main page](https://github.com/divsan93/tackle-container-advisor/tree/update_docs#TCA-Pipeline)
+[Back to main page](https://github.com/konveyor/tackle-container-advisor#table-of-contents)
 
 The following are the different APIs in TCA
 1. [Standardize](#Standardize)

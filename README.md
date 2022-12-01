@@ -3,16 +3,16 @@
 
 ### Usage
 1. [TCA Pipeline](#TCA-Pipeline)
-2. [Setup and Running TCA](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/running.md)
-3. [API's](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/service.md)
-4. [References](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/references.md)
+2. [Setup and Running TCA](https://github.com/konveyor/tackle-container-advisor/blob/main/docs/running.md)
+3. [API's](https://github.com/konveyor/tackle-container-advisor/blob/main/docs/service.md)
+4. [References](https://github.com/konveyor/tackle-container-advisor/blob/main/docs/references.md)
 
 
 
 ### Development
-1. [Knowledge Base](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/db.md)
-2. [KG Utils](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/utils.md)
-3. [Entity standardizer](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/standardizer.md)
+1. [Knowledge Base](https://github.com/konveyor/tackle-container-advisor/blob/main/docs/db.md)
+2. [KG Utils](https://github.com/konveyor/tackle-container-advisor/blob/main/docs/utils.md)
+3. [Entity standardizer](https://github.com/konveyor/tackle-container-advisor/blob/main/docs/standardizer.md)
 
 
 ## Purpose
@@ -26,7 +26,7 @@ TCA takes client applications as a natural language description and recommends w
 
 TCA takes the following steps to recommend the containerization.
 
-1. **Standardization**: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the [Knowledge Base](https://github.com/divsan93/tackle-container-advisor/blob/update_docs/docs/db.md).
+1. **Standardization**: It assesses the application to standardize the inputs to relevant named entities present in our knowledge base. For details on the knowledge base please check the [Knowledge Base](https://github.com/konveyor/tackle-container-advisor/blob/main/docs/docs/db.md).
 For example, the inputs in *App1* get mapped as the following named entities.
 
 ```
