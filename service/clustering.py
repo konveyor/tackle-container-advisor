@@ -73,11 +73,9 @@ class Clustering():
         fields = ['OS', 'Lang', 'App Server', 'Dependent Apps', 'Runtime', 'Libs']
         for i, app in enumerate(appL):
             for k in fields:
-                # txt = ast.literal_eval(app[k])
-                txt = app[k]
+                txt = ast.literal_eval(app[k])
                 for t in txt.keys():
-                    # entity = list(txt[t].keys())[0]
-                    entity = txt[t]['standard_name']
+                    entity = list(txt[t].keys())[0]
 
                     # keep only root of hierarchical entity
                     if entity.find('|') > 0:

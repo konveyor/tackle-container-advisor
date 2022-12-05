@@ -45,18 +45,6 @@ class Utils:
                 if x:
                     tech.append(x)
         return ', '.join(filter(None, tech))
-
-    # added to process json compatible format of entities
-    @staticmethod
-    def getStandardEntityString(obj):
-        ## obj: {snippet:{entity:version}}
-        ## return: entity, entity
-        if not obj:
-            return ''
-        tech = []
-        for x in obj.values():
-            tech.append(x['standard_name'])
-        return ', '.join(filter(None, tech))
     
     @staticmethod
     def mergeDicts(result, app_tech):
