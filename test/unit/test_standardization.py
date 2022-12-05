@@ -349,15 +349,21 @@ class TestEntityDetection(unittest.TestCase):
                      'application_description': 'desc 1',
                      'technology_summary': 'IBM Out of Profile On Prem (other non-CIO Iaas),Linux Red Hat,PHP\nJavaScript'}]
 
-        expected =  [{'application_name': 'App 1', 'application_description': 'desc 1', \
-                      'technology_summary': 'IBM Out of Profile On Prem (other non-CIO Iaas),Linux Red Hat,PHP\nJavaScript', \
-                      'KG Version': '1.0.4', \
-                      'Lang': {'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, \
-                      'PHP': {'PHP': ('NA_VERSION', '8')}}, \
-                      'HW': {}, 'Runtime': {}, 'Lib': {}, 'VM': {}, 'Plugin': {}, 'Storage': {}, 'Technology': {}, 'App Server': {}, 'App': {}, 'Runlib': {}, \
-                      'OS': {'Linux Red Hat': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')}}, \
-                      'unknown': ['Out Profile Prem (', 'non-CIO Iaas'], \
-                      'low_medium_confidence': {'IBM Out Profile Prem (': {'IBM HTTP Server': ('NA_VERSION', '9.0.0')}}}]
+        expected = [{'application_name': 'App 1', 'application_description': 'desc 1', \
+                     'technology_summary': 'IBM Out of Profile On Prem (other non-CIO Iaas),Linux Red Hat,PHP\nJavaScript', \
+                     'KG Version': '1.0.4', \
+                     'Lang': {'JavaScript': {'standard_name': 'JavaScript|*', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': 'ES6'}, \
+                              'PHP': {'standard_name': 'PHP', 'detected_version': 'NA_VERSION',
+                                      'latest_known_version': '8'}}, \
+                     'HW': {}, 'Runtime': {}, 'Lib': {}, 'VM': {}, 'Plugin': {}, 'Storage': {}, 'Technology': {},
+                     'App Server': {}, 'App': {}, 'Runlib': {}, \
+                     'OS': {'Linux Red Hat': {'standard_name': 'Linux|Red Hat Enterprise Linux',
+                                              'detected_version': 'NA_VERSION', 'latest_known_version': '8.3'}}, \
+                     'unknown': ['Out Profile Prem (', 'non-CIO Iaas'], \
+                     'low_medium_confidence': {'IBM Out Profile Prem (': {'standard_name': 'IBM HTTP Server',
+                                                                          'detected_version': 'NA_VERSION',
+                                                                          'latest_known_version': '9.0.0'}}}]
 
         standardizer = Standardization()
         app_data = standardizer.app_standardizer(app_data)
