@@ -25,7 +25,7 @@ then
 fi
 
 # Check to make sure python is installed
-if ! command -v $python &> /dev/null
+if ! command -v python &> /dev/null
 then
     echo "**** ERROR: python command could not be found. Cannot continue."
     exit 1
