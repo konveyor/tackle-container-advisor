@@ -31,6 +31,7 @@ def main():
     with open(input_json) as fin:
         app_data = json.load(fin)
 
+
     # entity standardization
     if operation == 'standardize':
         standardizer = Standardization()
@@ -58,10 +59,6 @@ def main():
     else:
         print('invalid operation')
 
-    # print(result_data)
-    # print(type(result_data[0]['num_elements']))
-    # for r in result_data:
-    #     r['num_elements'] = int(r['num_elements'])
 
     # save json output
     if result_data != '':
