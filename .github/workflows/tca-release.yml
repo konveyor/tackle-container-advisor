@@ -5,7 +5,7 @@ on:
     tags:
       - "v*.*.*"
 env:
-  REGISTRY_USER: lam_quay
+  REGISTRY_USER: konveyor+tackle_container_advisor
   IMAGE_REGISTRY: quay.io
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
  
