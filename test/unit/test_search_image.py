@@ -1,6 +1,6 @@
 import unittest
 
-from kg_utils.search_images import  Quay , DockerHubSearch ,Operators 
+from kg_utils.search_utils  import  dockerhub , quay , operator
 from kg_utils.search_utils.save_to_csv import csv_columns
 from kg_utils.search_utils.load_entities import filter_entity 
 
@@ -9,9 +9,9 @@ class test_search(unittest.TestCase):
 
     def setUp(self) -> None:
 
-        self.operator = Operators()
-        self.quay     = Quay()
-        self.docker   = DockerHubSearch()
+        self.operator = operator.Operators()
+        self.quay     = quay.Quay()
+        self.docker   = dockerhub.DockerHubSearch()
 
 
     def tearDown(self) -> None:
@@ -40,20 +40,14 @@ class test_search(unittest.TestCase):
     def test_csv_columns(self):
 
         table_name = "operator_images"
-
         cols = csv_columns(table_name)
-
-        expected = {'operator_images': '', 'container_name': '', 'OS': 576, 'lang': None, 'lib': None, 'app': None, 'app_server': None, 'plugin': None, 'runlib': None, 'runtime': None, 'Operator_Correspondent_Image_Url': [], 'Operator_Repository': ''}
-
+        expected = {'operator_images': '', 'container_name': '', 'OS': None, 'lang': None, 'lib': None, 'app': None, 'app_server': None, 'plugin': None, 'runlib': None, 'runtime': None, 'Operator_Correspondent_Image_Url': [], 'Operator_Repository': ''}
         self.assertEqual(cols , expected)
 
 
     def test_filter_entity(self):
-
-
         entity =   "MS SQL Server|SQL Server Analysis Services (SSAS)"
         expected = "SQL Server Analysis Services"
-        
         fil_entity = filter_entity(entity)
         self.assertEqual(fil_entity , expected)
 

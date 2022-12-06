@@ -346,7 +346,7 @@ class TestPlan(unittest.TestCase):
                      'Linux': {'Lang': [], 'App': ['MongoDB'], 'App Server': [], 'Runtime': []},
                      'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'],
                      'valid_assessment': True, 'valid_planning': True, 'planning_reason': '', 'scope_images': {
-                'MongoDB Enterprise Operator': {'Docker_URL': 'quay.io/mongodb/mongodb-enterprise-operator:1.12.0',
+                'MongoDB Enterprise Operator': {'Docker_URL': 'quay.io/mongodb/mongodb-enterprise-operator',
                                                 'Status': None}},
                      'scope_images_confidence': {'mapping': {'MongoDB': 'MongoDB Enterprise Operator'},
                                                  'image_confidence': 1.0, 'images_score': 60, 'cum_scores': 60,
