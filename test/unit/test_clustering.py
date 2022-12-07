@@ -22,93 +22,188 @@ class TestClustering(unittest.TestCase):
     def test_ui_to_input_assessment(self):
         cluster = Clustering()
 
-        appL = [{'Name': 'App 1',
-                 'Desc': '',
-                 'Cmpt': 'Component 1',
-                 'OS': "{'ZOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
-                 'Lang': "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL/1': {'PL/I': ('1', '1')}}",
-                 'App Server': '{}',
-                 'Dependent Apps': '{}',
-                 'Runtime': '{}',
-                 'Libs': '{}',
-                 'Reason': '',
-                 'KG Version': '1.0.4'},
-                {'Name': 'App 2',
-                 'Desc': '',
-                 'Cmpt': 'Component 1',
-                 'OS': "{'Windows 2016 Standard': {'Windows|Windows Server': ('2016 standard', '2016 standard')}}",
-                 'Lang': "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}}",
-                 'App Server': '{}',
-                 'Dependent Apps': '{}',
-                 'Runtime': '{}',
-                 'Libs': '{}',
-                 'Reason': '',
-                 'KG Version': '1.0.4'},
-                {'Name': 'App 3',
-                 'Desc': '',
-                 'Cmpt': 'Component 1',
-                 'OS': "{'Windows': {'Windows|*': ('NA_VERSION', 'NA_VERSION')}}",
-                 'Lang': "{'C#': {'C#': ('NA_VERSION', 'NA_VERSION')}}",
-                 'App Server': '{}',
-                 'Dependent Apps': '{}',
-                 'Runtime': "{'ASP.net': {'Active Server Pages (ASP)': ('NA_VERSION', '3')}}",
-                 'Libs': '{}',
-                 'Reason': '',
-                 'KG Version': '1.0.4'},
-                {'Name': 'App 4',
-                 'Desc': '',
-                 'Cmpt': 'Component 1',
-                 'OS': "{'AIX': {'Unix|AIX': ('NA_VERSION', 'NA_VERSION')}, 'zOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
-                 'Lang': "{'Java': {'Java|*': ('NA_VERSION', 'NA_VERSION')}}",
-                 'App Server': '{}',
-                 'Dependent Apps': '{}',
-                 'Runtime': '{}',
-                 'Libs': '{}',
-                 'Reason': '',
-                 'KG Version': '1.0.4'},
-                {'Name': 'App 5',
-                 'Desc': '',
-                 'Cmpt': 'Component 1',
-                 'OS': "{'zOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
-                 'Lang': "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL1': {'PL/I': ('1', '1')}}",
-                 'App Server': '{}',
-                 'Dependent Apps': '{}',
-                 'Runtime': '{}',
-                 'Libs': '{}',
-                 'Reason': '',
-                 'KG Version': '1.0.4'}]
+        appL = [
+            {
+                "Name": "App 1",
+                "Desc": "",
+                "Cmpt": "",
+                "OS": {"ZOS": {"standard_name": "MVS|z/OS", "detected_version": "NA_VERSION",
+                               "latest_known_version": "NA_VERSION"}},
+                "Lang": {"JavaScript": {"standard_name": "JavaScript|*", "detected_version": "NA_VERSION",
+                                        "latest_known_version": "ES6"},
+                         "PL/1": {"standard_name": "PL/I", "detected_version": "1", "latest_known_version": "1"}},
+                "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {}, "Reason": "",
+                "KG Version": "1.0.4"
+            },
+            {
+                "Name": "App 2",
+                "Desc": "",
+                "Cmpt": "",
+                "OS": {"Windows 2016": {"standard_name": "Windows|Windows Server", "detected_version": "2016",
+                                        "latest_known_version": "2016"}},
+                "Lang": {"JavaScript": {"standard_name": "JavaScript|*", "detected_version": "NA_VERSION",
+                                        "latest_known_version": "ES6"},
+                         "PL/1": {"standard_name": "PL/I", "detected_version": "1", "latest_known_version": "1"}},
+                "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {},
+                "Reason": "Reason 103: Unknown technologies detected: Standard",
+                "KG Version": "1.0.4"
+            },
+            {
+                "Name": "App 3",
+                "Desc": "",
+                "Cmpt": "",
+                "OS": {"Windows": {"standard_name": "Windows|*", "detected_version": "NA_VERSION",
+                                   "latest_known_version": "NA_VERSION"}},
+                "Lang": {"ASP.net": {"standard_name": "Active Server Pages (ASP)", "detected_version": "NA_VERSION",
+                                     "latest_known_version": "3"},
+                         "C#": {"standard_name": "C#", "detected_version": "NA_VERSION",
+                                "latest_known_version": "NA_VERSION"}},
+                "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {}, "Reason": "",
+                "KG Version": "1.0.4"
+            },
+            {
+                "Name": "App 4",
+                "Desc": "",
+                "Cmpt": "",
+                "OS": {"AIX": {"standard_name": "Unix|AIX", "detected_version": "NA_VERSION",
+                               "latest_known_version": "NA_VERSION"},
+                       "zOS": {"standard_name": "MVS|z/OS", "detected_version": "NA_VERSION",
+                               "latest_known_version": "NA_VERSION"}},
+                "Lang": {"Java": {"standard_name": "Java|*", "detected_version": "NA_VERSION",
+                                  "latest_known_version": "21"}},
+                "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {}, "Reason": "",
+                "KG Version": "1.0.4"
+            },
+            {
+                "Name": "App 5",
+                "Desc": "",
+                "Cmpt": "",
+                "OS": {"zOS": {"standard_name": "MVS|z/OS", "detected_version": "NA_VERSION",
+                               "latest_known_version": "NA_VERSION"}},
+                "Lang": {"JavaScript": {"standard_name": "JavaScript|*", "detected_version": "NA_VERSION",
+                                        "latest_known_version": "ES6"},
+                         "PL1": {"standard_name": "PL/I", "detected_version": "1", "latest_known_version": "1"}},
+                "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {}, "Reason": "",
+                "KG Version": "1.0.4"
+            }
+        ]
 
         expected = [
-            {'id': 0, 'name': 'unique_tech_stack_0', 'type': 'unique', 'tech_stack': ['PL/I', 'MVS|*', 'JavaScript|*'],
-             'num_elements': 2, 'apps': [{'Name': 'App 1', 'Desc': '', 'Cmpt': 'Component 1',
-                                          'OS': "{'ZOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
-                                          'Lang': "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL/1': {'PL/I': ('1', '1')}}",
-                                          'App Server': '{}', 'Dependent Apps': '{}', 'Runtime': '{}', 'Libs': '{}',
-                                          'Reason': '', 'KG Version': '1.0.4'},
-                                         {'Name': 'App 5', 'Desc': '', 'Cmpt': 'Component 1',
-                                          'OS': "{'zOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
-                                          'Lang': "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL1': {'PL/I': ('1', '1')}}",
-                                          'App Server': '{}', 'Dependent Apps': '{}', 'Runtime': '{}', 'Libs': '{}',
-                                          'Reason': '', 'KG Version': '1.0.4'}]},
-            {'id': 1, 'name': 'unique_tech_stack_1', 'type': 'unique', 'tech_stack': ['MVS|*', 'Unix|*', 'Java|*'],
-             'num_elements': 1, 'apps': [{'Name': 'App 4', 'Desc': '', 'Cmpt': 'Component 1',
-                                          'OS': "{'AIX': {'Unix|AIX': ('NA_VERSION', 'NA_VERSION')}, 'zOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}",
-                                          'Lang': "{'Java': {'Java|*': ('NA_VERSION', 'NA_VERSION')}}",
-                                          'App Server': '{}', 'Dependent Apps': '{}', 'Runtime': '{}', 'Libs': '{}',
-                                          'Reason': '', 'KG Version': '1.0.4'}]},
-            {'id': 2, 'name': 'unique_tech_stack_2', 'type': 'unique',
-             'tech_stack': ['Windows|*', 'C#', 'Active Server Pages (ASP)'], 'num_elements': 1, 'apps': [
-                {'Name': 'App 3', 'Desc': '', 'Cmpt': 'Component 1',
-                 'OS': "{'Windows': {'Windows|*': ('NA_VERSION', 'NA_VERSION')}}",
-                 'Lang': "{'C#': {'C#': ('NA_VERSION', 'NA_VERSION')}}", 'App Server': '{}', 'Dependent Apps': '{}',
-                 'Runtime': "{'ASP.net': {'Active Server Pages (ASP)': ('NA_VERSION', '3')}}", 'Libs': '{}',
-                 'Reason': '', 'KG Version': '1.0.4'}]},
-            {'id': 3, 'name': 'unique_tech_stack_3', 'type': 'unique', 'tech_stack': ['Windows|*', 'JavaScript|*'],
-             'num_elements': 1, 'apps': [{'Name': 'App 2', 'Desc': '', 'Cmpt': 'Component 1',
-                                          'OS': "{'Windows 2016 Standard': {'Windows|Windows Server': ('2016 standard', '2016 standard')}}",
-                                          'Lang': "{'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}}",
-                                          'App Server': '{}', 'Dependent Apps': '{}', 'Runtime': '{}', 'Libs': '{}',
-                                          'Reason': '', 'KG Version': '1.0.4'}]}]
+            {
+                "id": 0,
+                "name": "unique_tech_stack_0",
+                "type": "unique",
+                "tech_stack": [
+                    "PL/I",
+                    "MVS|*",
+                    "JavaScript|*"
+                ],
+                "num_elements": 2,
+                "apps": [
+                    {
+                        "Name": "App 1",
+                        "Desc": "", "Cmpt": "",
+                        "OS": {"ZOS": {"standard_name": "MVS|z/OS", "detected_version": "NA_VERSION",
+                                       "latest_known_version": "NA_VERSION"}},
+                        "Lang": {"JavaScript": {"standard_name": "JavaScript|*", "detected_version": "NA_VERSION",
+                                                "latest_known_version": "ES6"},
+                                 "PL/1": {"standard_name": "PL/I", "detected_version": "1",
+                                          "latest_known_version": "1"}},
+                        "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {}, "Reason": "",
+                        "KG Version": "1.0.4"
+                    },
+                    {
+                        "Name": "App 5",
+                        "Desc": "", "Cmpt": "",
+                        "OS": {"zOS": {"standard_name": "MVS|z/OS", "detected_version": "NA_VERSION",
+                                       "latest_known_version": "NA_VERSION"}},
+                        "Lang": {"JavaScript": {"standard_name": "JavaScript|*", "detected_version": "NA_VERSION",
+                                                "latest_known_version": "ES6"},
+                                 "PL1": {"standard_name": "PL/I", "detected_version": "1",
+                                         "latest_known_version": "1"}},
+                        "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {}, "Reason": "",
+                        "KG Version": "1.0.4"
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "name": "unique_tech_stack_1",
+                "type": "unique",
+                "tech_stack": [
+                    "PL/I",
+                    "Windows|*",
+                    "JavaScript|*"
+                ],
+                "num_elements": 1,
+                "apps": [
+                    {
+                        "Name": "App 2",
+                        "Desc": "", "Cmpt": "",
+                        "OS": {"Windows 2016": {"standard_name": "Windows|Windows Server", "detected_version": "2016",
+                                                "latest_known_version": "2016"}},
+                        "Lang": {"JavaScript": {"standard_name": "JavaScript|*", "detected_version": "NA_VERSION",
+                                                "latest_known_version": "ES6"},
+                                 "PL/1": {"standard_name": "PL/I", "detected_version": "1",
+                                          "latest_known_version": "1"}},
+                        "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {},
+                        "Reason": "Reason 103: Unknown technologies detected: Standard",
+                        "KG Version": "1.0.4"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "unique_tech_stack_2",
+                "type": "unique",
+                "tech_stack": [
+                    "MVS|*",
+                    "Unix|*",
+                    "Java|*"
+                ],
+                "num_elements": 1,
+                "apps": [
+                    {
+                        "Name": "App 4",
+                        "Desc": "", "Cmpt": "",
+                        "OS": {"AIX": {"standard_name": "Unix|AIX", "detected_version": "NA_VERSION",
+                                       "latest_known_version": "NA_VERSION"},
+                               "zOS": {"standard_name": "MVS|z/OS", "detected_version": "NA_VERSION",
+                                       "latest_known_version": "NA_VERSION"}},
+                        "Lang": {"Java": {"standard_name": "Java|*", "detected_version": "NA_VERSION",
+                                          "latest_known_version": "21"}},
+                        "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {}, "Reason": "",
+                        "KG Version": "1.0.4"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "unique_tech_stack_3",
+                "type": "unique",
+                "tech_stack": [
+                    "Windows|*",
+                    "C#",
+                    "Active Server Pages (ASP)"
+                ],
+                "num_elements": 1,
+                "apps": [
+                    {
+                        "Name": "App 3",
+                        "Desc": "", "Cmpt": "",
+                        "OS": {"Windows": {"standard_name": "Windows|*", "detected_version": "NA_VERSION",
+                                           "latest_known_version": "NA_VERSION"}},
+                        "Lang": {
+                            "ASP.net": {"standard_name": "Active Server Pages (ASP)", "detected_version": "NA_VERSION",
+                                        "latest_known_version": "3"},
+                            "C#": {"standard_name": "C#", "detected_version": "NA_VERSION",
+                                   "latest_known_version": "NA_VERSION"}},
+                        "App Server": {}, "Dependent Apps": {}, "Runtime": {}, "Libs": {}, "Reason": "",
+                        "KG Version": "1.0.4"
+                    }
+                ]
+            }
+        ]
 
         pAppL = cluster.output_to_ui_clustering(appL)
 

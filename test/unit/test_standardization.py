@@ -63,15 +63,22 @@ class TestEntityDetection(unittest.TestCase):
                      'Storage': {}, \
                      'Lib': {}, \
                      'Runtime': {}, \
-                     'App': {'PostgreSQL': {'PostgreSQL': ('NA_VERSION', '14')}, \
-                             'Redis': {'Redis': ('NA_VERSION', '6.2.4')} \
+                     'App': {'PostgreSQL': {'standard_name': 'PostgreSQL', 'detected_version': 'NA_VERSION',
+                                            'latest_known_version': '14'}, \
+                             'Redis': {'standard_name': 'Redis', 'detected_version': 'NA_VERSION',
+                                       'latest_known_version': '6.2.4'} \
                              }, \
                      'VM': {}, \
-                     'Technology': {'HTTP Client': {'HTTP client': ('NA_VERSION', 'NA_VERSION')}}, \
-                     'App Server': {'Oracle WebLogic Server 14c': {'Oracle WebLogic Server': ('14c', '14c')}}, \
-                     'OS': {'Oracle Linux 4.5': {'Linux|Oracle Linux': ('4.5', '4.9')}}, \
+                     'Technology': {'HTTP Client': {'standard_name': 'HTTP client', 'detected_version': 'NA_VERSION',
+                                                    'latest_known_version': 'NA_VERSION'}}, \
+                     'App Server': {'Oracle WebLogic Server 14c': {'standard_name': 'Oracle WebLogic Server',
+                                                                   'detected_version': '14c',
+                                                                   'latest_known_version': '14c'}}, \
+                     'OS': {'Oracle Linux 4.5': {'standard_name': 'Linux|Oracle Linux', 'detected_version': '4.5',
+                                                 'latest_known_version': '4.9'}}, \
                      'Runlib': {}, \
-                     'Lang': {'PHP': {'PHP': ('NA_VERSION', '8')}}, \
+                     'Lang': {'PHP': {'standard_name': 'PHP', 'detected_version': 'NA_VERSION',
+                                      'latest_known_version': '8'}}, \
                      'HW': {} \
                      }]
         standardizer = Standardization()
@@ -126,16 +133,26 @@ class TestEntityDetection(unittest.TestCase):
                      'VM': {}, \
                      'Plugin': {}, \
                      'Technology': {}, \
-                     'App': {'Sybase SQL Server 4.9': {'Sybase SQL Server|*': ('4.9', '4.9.2')}, \
-                             'Splunk 6': {'Splunk': ('6', '6.6')}, \
-                             'Nexus Repository OSS 3.22.0': {'Nexus Repository OSS': ('3.22.0', '3.29.1')}, \
-                             }, \
+                     'App': {
+                         'Sybase SQL Server 4.9': {'standard_name': 'Sybase SQL Server|*', 'detected_version': '4.9',
+                                                   'latest_known_version': '4.9.2'}, \
+                         'Splunk 6': {'standard_name': 'Splunk', 'detected_version': '6',
+                                      'latest_known_version': '6.6'}, \
+                         'Nexus Repository OSS 3.22.0': {'standard_name': 'Nexus Repository OSS',
+                                                         'detected_version': '3.22.0',
+                                                         'latest_known_version': '3.29.1'}, \
+                         }, \
                      'HW': {}, \
                      'Lib': {}, \
-                     'App Server': {'Oracle WebLogic Server 14c': {'Oracle WebLogic Server': ('14c', '14c')}}, \
+                     'App Server': {'Oracle WebLogic Server 14c': {'standard_name': 'Oracle WebLogic Server',
+                                                                   'detected_version': '14c',
+                                                                   'latest_known_version': '14c'}}, \
                      'Runlib': {}, \
-                     'Lang': {'Java 1.2': {'Java|*': ('1.2', '1.4')}}, \
-                     'OS': {'Linux|Amazon Linux 2013.09.1': {'Linux|Amazon Linux': ('2013.09.1', '2013.09.2')}}
+                     'Lang': {'Java 1.2': {'standard_name': 'Java|*', 'detected_version': '1.2',
+                                           'latest_known_version': '1.4'}}, \
+                     'OS': {'Linux|Amazon Linux 2013.09.1': {'standard_name': 'Linux|Amazon Linux',
+                                                             'detected_version': '2013.09.1',
+                                                             'latest_known_version': '2013.09.2'}}
                      }]
         standardizer = Standardization()
         app_data = standardizer.app_standardizer(app_data)
@@ -185,18 +202,24 @@ class TestEntityDetection(unittest.TestCase):
                      'test_automation_%': '50%', \
                      'performance_testing_enabled': 'No', \
                      'KG Version': '1.0.4', \
-                     'App': {'Oracle SQl Developer 19.2': {'Oracle SQL Developer': ('19.2', '19.4')}, \
-                             'PeopleSoft 7': {'PeopleSoft': ('7', '7.5')} \
+                     'App': {'Oracle SQl Developer 19.2': {'standard_name': 'Oracle SQL Developer',
+                                                           'detected_version': '19.2', 'latest_known_version': '19.4'}, \
+                             'PeopleSoft 7': {'standard_name': 'PeopleSoft', 'detected_version': '7',
+                                              'latest_known_version': '7.5'} \
                              }, \
                      'Runlib': {}, \
                      'Lib': {}, \
                      'HW': {}, \
-                     'App Server': {'JBoss 4.0.1': {'JBoss|*': ('4.0.1', '4.2.3')}}, \
-                     'Lang': {'python 3.9.6': {'Python': ('3.9.6', '3.10.0')}}, \
-                     'OS': {'RHEL 8.1': {'Linux|Red Hat Enterprise Linux': ('8.1', '8.3')}}, \
+                     'App Server': {'JBoss 4.0.1': {'standard_name': 'JBoss|*', 'detected_version': '4.0.1',
+                                                    'latest_known_version': '4.2.3'}}, \
+                     'Lang': {'python 3.9.6': {'standard_name': 'Python', 'detected_version': '3.9.6',
+                                               'latest_known_version': '3.10.0'}}, \
+                     'OS': {'RHEL 8.1': {'standard_name': 'Linux|Red Hat Enterprise Linux', 'detected_version': '8.1',
+                                         'latest_known_version': '8.3'}}, \
                      'Runtime': {}, \
                      'VM': {}, \
-                     'Technology': {'HTTP Client 4.5.6': {'HTTP client': ('4.5.6', '4.5.6')}}, \
+                     'Technology': {'HTTP Client 4.5.6': {'standard_name': 'HTTP client', 'detected_version': '4.5.6',
+                                                          'latest_known_version': '4.5.6'}}, \
                      'Storage': {}, \
                      'Plugin': {} \
                      }]
@@ -222,35 +245,53 @@ class TestEntityDetection(unittest.TestCase):
         expected = [{'application_name': 'App 1 ', 'application_description': 'desc 1', \
                      'technology_summary': 'ZOS, JavaScript\nPL1, Private Cloud', \
                      'KG Version': '1.0.4', \
-                     'Lang': {'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, 'PL1': {'PL/I': ('1', '1')}}, \
+                     'Lang': {'JavaScript': {'standard_name': 'JavaScript|*', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': 'ES6'}, \
+                              'PL1': {'standard_name': 'PL/I', 'detected_version': '1', 'latest_known_version': '1'}}, \
                      'Runlib': {}, \
                      'Storage': {}, \
-                     'OS': {'ZOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}, \
+                     'OS': {'ZOS': {'standard_name': 'MVS|z/OS', 'detected_version': 'NA_VERSION',
+                                    'latest_known_version': 'NA_VERSION'}}, \
                      'Plugin': {}, 'App': {}, \
-                     'Technology': {'Private Cloud': {'Cloud': ('NA_VERSION', 'NA_VERSION')}}, \
+                     'Technology': {'Private Cloud': {'standard_name': 'Cloud', 'detected_version': 'NA_VERSION',
+                                                      'latest_known_version': 'NA_VERSION'}}, \
                      'VM': {}, 'Lib': {}, 'App Server': {}, 'HW': {}, 'Runtime': {}}, \
                     {'application_name': 'App 2', 'application_description': 'desc 2', \
                      'technology_summary': 'ZOS, PL1, Linux Red Hat\nLinux Ubuntu, JavaScript\nNode.js\nPHP\nPython\nScala', \
                      'KG Version': '1.0.4', \
-                     'Lang': {'PL1': {'PL/I': ('1', '1')}, 'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, \
-                              'PHP': {'PHP': ('NA_VERSION', '8')}, 'Python': {'Python': ('NA_VERSION', '3.10.0')}, \
-                              'Scala': {'Scala': ('NA_VERSION', '2.9.0')}}, \
+                     'Lang': {'PL1': {'standard_name': 'PL/I', 'detected_version': '1', 'latest_known_version': '1'},
+                              'JavaScript': {'standard_name': 'JavaScript|*', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': 'ES6'}, \
+                              'PHP': {'standard_name': 'PHP', 'detected_version': 'NA_VERSION',
+                                      'latest_known_version': '8'},
+                              'Python': {'standard_name': 'Python', 'detected_version': 'NA_VERSION',
+                                         'latest_known_version': '3.10.0'}, \
+                              'Scala': {'standard_name': 'Scala', 'detected_version': 'NA_VERSION',
+                                        'latest_known_version': '2.9.0'}}, \
                      'Runlib': {}, 'Storage': {}, \
-                     'OS': {'Linux Red Hat': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')},
-                            'Linux Ubuntu': {'Linux|Ubuntu': ('NA_VERSION', '20.10')},
-                            'ZOS': {'MVS|z/OS': ('NA_VERSION', 'NA_VERSION')}}, \
+                     'OS': {'Linux Red Hat': {'standard_name': 'Linux|Red Hat Enterprise Linux',
+                                              'detected_version': 'NA_VERSION', 'latest_known_version': '8.3'},
+                            'Linux Ubuntu': {'standard_name': 'Linux|Ubuntu', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': '20.10'},
+                            'ZOS': {'standard_name': 'MVS|z/OS', 'detected_version': 'NA_VERSION',
+                                    'latest_known_version': 'NA_VERSION'}}, \
                      'Plugin': {}, 'App': {}, 'Technology': {}, 'VM': {}, 'Lib': {}, 'App Server': {}, 'HW': {}, \
-                     'Runtime': {'Node.js': {'Node.js': ('NA_VERSION', '18')}} \
+                     'Runtime': {'Node.js': {'standard_name': 'Node.js', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': '18'}}
                      }, \
                     {'application_name': 'App 3', 'application_description': 'desc 3', \
                      'technology_summary': 'AIX\nLinux Red Hat, Java\nOther, microservices, angular', \
                      'KG Version': '1.0.4', \
-                     'Lang': {'Java': {'Java|*': ('NA_VERSION', '21')}}, \
+                     'Lang': {'Java': {'standard_name': 'Java|*', 'detected_version': 'NA_VERSION',
+                                       'latest_known_version': '21'}}, \
                      'Runlib': {}, 'Storage': {}, \
-                     'OS': {'AIX': {'Unix|AIX': ('NA_VERSION', 'NA_VERSION')},
-                            'Linux Red Hat': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')}}, \
+                     'OS': {'AIX': {'standard_name': 'Unix|AIX', 'detected_version': 'NA_VERSION',
+                                    'latest_known_version': 'NA_VERSION'},
+                            'Linux Red Hat': {'standard_name': 'Linux|Red Hat Enterprise Linux',
+                                              'detected_version': 'NA_VERSION', 'latest_known_version': '8.3'}}, \
                      'Plugin': {}, 'App': {}, 'Technology': {}, 'VM': {}, \
-                     'Lib': {'angular': {'JavaScript|AngularJS': ('NA_VERSION', 'NA_VERSION')}}, \
+                     'Lib': {'angular': {'standard_name': 'JavaScript|AngularJS', 'detected_version': 'NA_VERSION',
+                                         'latest_known_version': 'NA_VERSION'}}, \
                      'App Server': {}, 'HW': {}, 'Runtime': {}, \
                      'unknown': ['microservices']}]
 
@@ -270,17 +311,31 @@ class TestEntityDetection(unittest.TestCase):
         expected = [{'application_name': 'App 1 ', 'application_description': 'desc 1', \
                      'technology_summary': 'RHEL Java db2 10.0 WebSphere Application Server Redis angularJs,express.js,jenkins', \
                      'KG Version': '1.0.4', \
-                     'Technology': {'Application Server': {'Application Server': ('NA_VERSION', 'NA_VERSION')}}, \
+                     'Technology': {
+                         'Application Server': {'standard_name': 'Application Server', 'detected_version': 'NA_VERSION',
+                                                'latest_known_version': 'NA_VERSION'}}, \
                      'Runtime': {}, 'Runlib': {}, 'Plugin': {}, \
-                     'Lang': {'Java': {'Java|*': ('NA_VERSION', '21')}}, 'Storage': {}, \
-                     'App': {'db2 10.0': {'DB2': ('10.0', '10.5')}, 'Redis': {'Redis': ('NA_VERSION', '6.2.4')},
-                             'jenkins': {'Jenkins': ('NA_VERSION', '2.314')}}, \
-                     'OS': {'RHEL': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')}}, \
-                     'Lib': {'angularJs': {'JavaScript|AngularJS': ('NA_VERSION', 'NA_VERSION')},
-                             'express.js': {'JavaScript|Express.js': ('NA_VERSION', 'NA_VERSION')}}, \
+                     'Lang': {'Java': {'standard_name': 'Java|*', 'detected_version': 'NA_VERSION',
+                                       'latest_known_version': '21'}}, 'Storage': {}, \
+                     'App': {'db2 10.0': {'standard_name': 'DB2', 'detected_version': '10.0',
+                                          'latest_known_version': '10.5'},
+                             'Redis': {'standard_name': 'Redis', 'detected_version': 'NA_VERSION',
+                                       'latest_known_version': '6.2.4'},
+                             'jenkins': {'standard_name': 'Jenkins', 'detected_version': 'NA_VERSION',
+                                         'latest_known_version': '2.314'}}, \
+                     'OS': {
+                         'RHEL': {'standard_name': 'Linux|Red Hat Enterprise Linux', 'detected_version': 'NA_VERSION',
+                                  'latest_known_version': '8.3'}}, \
+                     'Lib': {'angularJs': {'standard_name': 'JavaScript|AngularJS', 'detected_version': 'NA_VERSION',
+                                           'latest_known_version': 'NA_VERSION'},
+                             'express.js': {'standard_name': 'JavaScript|Express.js', 'detected_version': 'NA_VERSION',
+                                            'latest_known_version': 'NA_VERSION'}}, \
                      'VM': {}, 'HW': {},
                      'App Server': {
-                         'WebSphere Application Server': {'Websphere Application Server (WAS)': ('NA_VERSION', '9')}}}]
+                         'WebSphere Application Server': {'standard_name': 'Websphere Application Server (WAS)',
+                                                          'detected_version': 'NA_VERSION',
+                                                          'latest_known_version': '9'}}}]
+
         standardizer = Standardization()
         app_data = standardizer.app_standardizer(app_data)
         if app_data != expected:
@@ -294,15 +349,21 @@ class TestEntityDetection(unittest.TestCase):
                      'application_description': 'desc 1',
                      'technology_summary': 'IBM Out of Profile On Prem (other non-CIO Iaas),Linux Red Hat,PHP\nJavaScript'}]
 
-        expected =  [{'application_name': 'App 1', 'application_description': 'desc 1', \
-                      'technology_summary': 'IBM Out of Profile On Prem (other non-CIO Iaas),Linux Red Hat,PHP\nJavaScript', \
-                      'KG Version': '1.0.4', \
-                      'Lang': {'JavaScript': {'JavaScript|*': ('NA_VERSION', 'ES6')}, \
-                      'PHP': {'PHP': ('NA_VERSION', '8')}}, \
-                      'HW': {}, 'Runtime': {}, 'Lib': {}, 'VM': {}, 'Plugin': {}, 'Storage': {}, 'Technology': {}, 'App Server': {}, 'App': {}, 'Runlib': {}, \
-                      'OS': {'Linux Red Hat': {'Linux|Red Hat Enterprise Linux': ('NA_VERSION', '8.3')}}, \
-                      'unknown': ['Out Profile Prem (', 'non-CIO Iaas'], \
-                      'low_medium_confidence': {'IBM Out Profile Prem (': {'IBM HTTP Server': ('NA_VERSION', '9.0.0')}}}]
+        expected = [{'application_name': 'App 1', 'application_description': 'desc 1', \
+                     'technology_summary': 'IBM Out of Profile On Prem (other non-CIO Iaas),Linux Red Hat,PHP\nJavaScript', \
+                     'KG Version': '1.0.4', \
+                     'Lang': {'JavaScript': {'standard_name': 'JavaScript|*', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': 'ES6'}, \
+                              'PHP': {'standard_name': 'PHP', 'detected_version': 'NA_VERSION',
+                                      'latest_known_version': '8'}}, \
+                     'HW': {}, 'Runtime': {}, 'Lib': {}, 'VM': {}, 'Plugin': {}, 'Storage': {}, 'Technology': {},
+                     'App Server': {}, 'App': {}, 'Runlib': {}, \
+                     'OS': {'Linux Red Hat': {'standard_name': 'Linux|Red Hat Enterprise Linux',
+                                              'detected_version': 'NA_VERSION', 'latest_known_version': '8.3'}}, \
+                     'unknown': ['Out Profile Prem (', 'non-CIO Iaas'], \
+                     'low_medium_confidence': {'IBM Out Profile Prem (': {'standard_name': 'IBM HTTP Server',
+                                                                          'detected_version': 'NA_VERSION',
+                                                                          'latest_known_version': '9.0.0'}}}]
 
         standardizer = Standardization()
         app_data = standardizer.app_standardizer(app_data)
