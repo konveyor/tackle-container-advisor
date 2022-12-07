@@ -32,3 +32,4 @@ class TestUtils(unittest.TestCase):
         expectedList.sort()
         expected = ' '.join(expectedList)
         self.assertEqual(tech_stack, expected)
+

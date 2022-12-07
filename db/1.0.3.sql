@@ -9913,7 +9913,6 @@ CREATE TABLE operator_images (
                                         runtime integer,
                                         Operator_Correspondent_Image_URL text NOT NULL,
                                         Operator_Repository text,
-                                        Other_Operators text,
                                         FOREIGN KEY (OS) REFERENCES entities (id),
                                         FOREIGN KEY (lang) REFERENCES entities (id),
                                         FOREIGN KEY (lib) REFERENCES entities (id),
@@ -9923,69 +9922,70 @@ CREATE TABLE operator_images (
                                         FOREIGN KEY (runlib) REFERENCES entities (id),
                                         FOREIGN KEY (runtime) REFERENCES entities (id)
                                     );
-INSERT INTO operator_images VALUES(1,'Apache Spark Operator',426,331,NULL,280,NULL,NULL,NULL,NULL,'quay.io/radanalyticsio/spark-operator:1.0.2','https://github.com/radanalyticsio/spark-operator','[[Spark Operator, gcr.io/spark-operator/spark-operator:v2.4.0-v1beta1-latest, https://github.com/GoogleCloudPlatform/spark-on-k8s-operator]]');
-INSERT INTO operator_images VALUES(2,'Banzai Cloud Kafka Operator',426,323,NULL,9,NULL,NULL,NULL,NULL,'banzaicloud/kafka-operator:0.3.1','https://github.com/banzaicloud/kafka-operator/tree/master','');
-INSERT INTO operator_images VALUES(3,'Camel K Operator',426,323,NULL,378,NULL,NULL,NULL,NULL,'docker.io/apache/camel-k:1.3.0','https://github.com/apache/camel-k','');
-INSERT INTO operator_images VALUES(4,'GrdsCloud MySQL for Kubernetes',426,NULL,NULL,122,NULL,NULL,NULL,NULL,'grds/mysql-operator:1.0.0','https://github.com/GrdsCloud','');
-INSERT INTO operator_images VALUES(5,'Hive for Red Hat OpenShift',426,323,NULL,8,NULL,NULL,NULL,NULL,'quay.io/openshift-hive/hive:v1.0.17','https://github.com/openshift/hive','');
-INSERT INTO operator_images VALUES(6,'IBM Spectrum Scale CSI Plugin Operator',426,323,NULL,74,NULL,NULL,NULL,NULL,'quay.io/ibm-spectrum-scale/ibm-spectrum-scale-csi-operator:v2.3.0','https://github.com/IBM/ibm-spectrum-scale-csi/','');
-INSERT INTO operator_images VALUES(7,'Jenkins Operator',426,323,NULL,90,NULL,NULL,NULL,NULL,'virtuslab/jenkins-operator:v0.3.0','https://github.com/jenkinsci/kubernetes-operator','');
-INSERT INTO operator_images VALUES(8,'Postgresql Operator',426,NULL,NULL,157,NULL,NULL,NULL,NULL,'quay.io/deekshah86/postgresql-operator','https://github.com/janepelladinesh/postgresql-operator','[[Crunchy PostgreSQL for Kubernetes, registry.developers.crunchydata.com/crunchydata/postgres-operator:centos8-4.7.0, https://github.com/CrunchyData/postgres-operator],  [Postgres-Operator, registry.opensource.zalan.do/acid/postgres-operator:v1.3.0, https://github.com/zalando/postgres-operator], [PostgreSQL Operator by Dev4Ddevs.com, quay.io/dev4devs-com/postgresql-operator:0.1.1, https://github.com/dev4devs-com/postgresql-operator]]');
-INSERT INTO operator_images VALUES(9,'Redis Operator',426,323,NULL,168,NULL,NULL,NULL,NULL,'quay.io/opstree/redis-operator:v0.3.0','https://github.com/ot-container-kit/redis-operator','');
-INSERT INTO operator_images VALUES(10,'WildFly',426,323,NULL,493,NULL,NULL,NULL,NULL,'quay.io/wildfly/wildfly-operator:0.3.0','https://github.com/wildfly/wildfly-operator','');
-INSERT INTO operator_images VALUES(11,'MongoDB Enterprise Operator',426,NULL,NULL,116,NULL,NULL,NULL,NULL,'quay.io/mongodb/mongodb-enterprise-operator:1.12.0','https://github.com/mongodb/mongodb-enterprise-kubernetes','[[Percona Distribution for MongoDB Operator, percona/percona-server-mongodb-operator:1.9.0, https://github.com/percona/percona-server-mongodb-operator ]]');
-INSERT INTO operator_images VALUES(12,'Apache Spark Operator',426,NULL,NULL,280,NULL,NULL,NULL,NULL,'quay.io/radanalyticsio/spark-operator:1.0.2','https://github.com/radanalyticsio/spark-operator','[[Spark Operator, gcr.io/spark-operator/spark-operator:v2.4.0-v1beta1-latest, https://github.com/GoogleCloudPlatform/spark-on-k8s-operator]]');
-INSERT INTO operator_images VALUES(13,'Banzai Cloud Kafka Operator',426,NULL,NULL,9,NULL,NULL,NULL,NULL,'banzaicloud/kafka-operator:0.3.1','https://github.com/banzaicloud/kafka-operator/tree/master','');
-INSERT INTO operator_images VALUES(14,'Camel K Operator',426,NULL,NULL,378,NULL,NULL,NULL,NULL,'docker.io/apache/camel-k:1.3.0','https://github.com/apache/camel-k','');
-INSERT INTO operator_images VALUES(15,'GrdsCloud MySQL for Kubernetes',426,NULL,NULL,122,NULL,NULL,NULL,NULL,'grds/mysql-operator:1.0.0','https://github.com/GrdsCloud','');
-INSERT INTO operator_images VALUES(16,'Hive for Red Hat OpenShift',426,NULL,NULL,8,NULL,NULL,NULL,NULL,'quay.io/openshift-hive/hive:v1.0.17','https://github.com/openshift/hive','');
-INSERT INTO operator_images VALUES(17,'IBM Spectrum Scale CSI Plugin Operator',426,NULL,NULL,74,NULL,NULL,NULL,NULL,'quay.io/ibm-spectrum-scale/ibm-spectrum-scale-csi-operator:v2.3.0','https://github.com/IBM/ibm-spectrum-scale-csi/','');
-INSERT INTO operator_images VALUES(18,'Jenkins Operator',426,NULL,NULL,90,NULL,NULL,NULL,NULL,'virtuslab/jenkins-operator:v0.3.0','https://github.com/jenkinsci/kubernetes-operator','');
-INSERT INTO operator_images VALUES(19,'Postgresql Operator',426,NULL,NULL,157,NULL,NULL,NULL,NULL,'quay.io/deekshah86/postgresql-operator','https://github.com/janepelladinesh/postgresql-operator','[[Crunchy PostgreSQL for Kubernetes, registry.developers.crunchydata.com/crunchydata/postgres-operator:centos8-4.7.0, https://github.com/CrunchyData/postgres-operator],  [Postgres-Operator, registry.opensource.zalan.do/acid/postgres-operator:v1.3.0, https://github.com/zalando/postgres-operator], [PostgreSQL Operator by Dev4Ddevs.com, quay.io/dev4devs-com/postgresql-operator:0.1.1, https://github.com/dev4devs-com/postgresql-operator]]');
-INSERT INTO operator_images VALUES(20,'Redis Operator',426,NULL,NULL,168,NULL,NULL,NULL,NULL,'quay.io/opstree/redis-operator:v0.3.0','https://github.com/ot-container-kit/redis-operator','');
-INSERT INTO operator_images VALUES(21,'WildFly',426,NULL,NULL,493,NULL,NULL,NULL,NULL,'quay.io/wildfly/wildfly-operator:0.3.0','https://github.com/wildfly/wildfly-operator','');
-INSERT INTO operator_images VALUES(22,'MongoDB Enterprise Operator',426,NULL,NULL,116,NULL,NULL,NULL,NULL,'quay.io/mongodb/mongodb-enterprise-operator:1.12.0','https://github.com/mongodb/mongodb-enterprise-kubernetes','[[Percona Distribution for MongoDB Operator, percona/percona-server-mongodb-operator:1.9.0, https://github.com/percona/percona-server-mongodb-operator ]]');
-INSERT INTO operator_images VALUES(23,'Instana Agent Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,611,'instana/instana-agent-operator:0.3.7','https://github.com/instana/instana-agent-operator','');
-INSERT INTO operator_images VALUES(24,'credstash-operator',426,NULL,NULL,612,NULL,NULL,NULL,NULL,'quay.io/ouzi/credstash-operator:v1.13.0','https://github.com/ouzi-dev/credstash-operator','');
-INSERT INTO operator_images VALUES(25,'Snyk Operator',426,NULL,NULL,613,NULL,NULL,NULL,NULL,'docker.io/snyk/kubernetes-operator:1.59.3','https://github.com/snyk/kubernetes-monitor','');
-INSERT INTO operator_images VALUES(26,'Akka Cluster Operator',426,NULL,NULL,614,NULL,NULL,NULL,NULL,'lightbend-docker-registry.bintray.io/lightbend/akkacluster-operator:v1.0.0','https://github.com/lightbend/akka-cluster-operator','');
-INSERT INTO operator_images VALUES(27,'Varnish Operator',426,NULL,NULL,NULL,615,NULL,NULL,NULL,'ibmcom/varnish-operator:0.27.2','https://github.com/IBM/varnish-operator','');
-INSERT INTO operator_images VALUES(28,'Datadog Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,616,'datadog/operator:0.3.0','https://github.com/DataDog/datadog-operator','');
-INSERT INTO operator_images VALUES(29,'Hazelcast Enterprise Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,618,'hazelcast/hazelcast-enterprise-operator:0.3.7','https://github.com/hazelcast/hazelcast-operator','');
-INSERT INTO operator_images VALUES(30,'infinispan',426,NULL,NULL,619,NULL,NULL,NULL,NULL,'docker.io/jboss/infinispan-operator:0.3.0','https://github.com/infinispan/infinispan-operator','');
-INSERT INTO operator_images VALUES(31,'Nuxeo Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,620,'docker.io/appzygy/nuxeo-operator:0.7.1','https://github.com/aceeric/nuxeo-operator','');
-INSERT INTO operator_images VALUES(32,'ArangoDB',426,NULL,NULL,621,NULL,NULL,NULL,NULL,'arangodb/kube-arangodb:1.0.2','https://github.com/arangodb/kube-arangodb','');
-INSERT INTO operator_images VALUES(33,'Eclipse Che',426,NULL,NULL,622,NULL,NULL,NULL,NULL,'quay.io/eclipse/che-operator@sha256:ea3641202e11ad00bd639b59809b6f4a6508f2c143d260b1683a9f36d74ed54f','https://github.com/eclipse-che/che-operator','');
-INSERT INTO operator_images VALUES(34,'AWS S3 Operator',426,NULL,NULL,623,NULL,NULL,NULL,NULL,'quay.io/screeley44/aws-s3-provisioner:v1.0.0','https://github.com/yard-turkey/aws-s3-provisioner','');
-INSERT INTO operator_images VALUES(35,'Altinity ClickHouse Operator',426,NULL,NULL,624,NULL,NULL,NULL,NULL,'altinity/clickhouse-operator:0.9.9','https://github.com/altinity/clickhouse-operator','');
-INSERT INTO operator_images VALUES(36,'MinIO Operator',426,NULL,NULL,625,NULL,NULL,NULL,NULL,'minio/k8s-operator:1.0.3','https://github.com/minio/minio-operator','');
-INSERT INTO operator_images VALUES(37,'Elastic Cloud on Kubernetes',426,NULL,NULL,626,NULL,NULL,NULL,NULL,'docker.elastic.co/eck/eck-operator:1.0.0-beta1','https://github.com/elastic/cloud-on-k8s','');
-INSERT INTO operator_images VALUES(38,'Percona XtraDB Cluster Operator',426,NULL,NULL,627,NULL,NULL,NULL,NULL,'percona/percona-xtradb-cluster-operator:1.7.0','https://github.com/percona/percona-xtradb-cluster-operator','');
-INSERT INTO operator_images VALUES(39,'Keycloak Operator',426,NULL,NULL,628,NULL,NULL,NULL,NULL,'quay.io/keycloak/keycloak-operator:9.0.2','https://github.com/keycloak/keycloak-operator','');
-INSERT INTO operator_images VALUES(40,'Grafana Operator',426,NULL,NULL,629,NULL,NULL,NULL,NULL,'quay.io/integreatly/grafana-operator:v3.10.1','https://github.com/integr8ly/grafana-operator','');
-INSERT INTO operator_images VALUES(41,'Mattermost Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,630,'docker.io/mattermost/mattermost-operator:v0.5.0','https://github.com/mattermost/mattermost-operator','');
-INSERT INTO operator_images VALUES(42,'synapse-helm',426,NULL,NULL,631,NULL,NULL,NULL,NULL,'quay.io/mgoerens/synapse-helm:v0.0.11','https://github.com/opdev/synapse-helm','');
-INSERT INTO operator_images VALUES(43,'IBM Cloud IAM Operator',426,NULL,NULL,632,NULL,NULL,NULL,NULL,'cloudoperators/ibmcloud-iam-operator:0.1.0','https://github.com/IBM/ibmcloud-iam-operator','');
-INSERT INTO operator_images VALUES(44,'Knative Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,633,'gcr.io/knative-releases/knative.dev/operator/cmd/operator:v0.20.0','https://github.com/knative/operator','');
-INSERT INTO operator_images VALUES(45,'Cassandra',426,NULL,NULL,634,NULL,NULL,NULL,NULL,'gcr.io/cassandra-operator/cassandra-operator:v2.0.0','https://github.com/instaclustr/cassandra-operator','');
-INSERT INTO operator_images VALUES(46,'Kubeflow',426,NULL,NULL,NULL,NULL,NULL,NULL,635,'aipipeline/kubeflow-operator:v1.0.0','https://github.com/kubeflow/kfctl','');
-INSERT INTO operator_images VALUES(47,'Openshift Qiskit Operator',426,NULL,NULL,636,NULL,NULL,NULL,NULL,'https://hub.docker.com/repository/docker/singhp11/openshift-qiskit-operator','https://github.com/qiskit-community/openshift-quantum-operators/tree/master/operators-examples/openshift-qiskit-operator','');
-INSERT INTO operator_images VALUES(48,'Azure Service Operator',426,NULL,NULL,637,NULL,NULL,NULL,NULL,'mcr.microsoft.com/k8s/azureserviceoperator:1.0.27207','https://github.com/Azure/azure-service-operator','');
-INSERT INTO operator_images VALUES(49,'Strimzi',426,NULL,NULL,NULL,NULL,NULL,NULL,638,'docker.io/strimzi/operator@sha256:62218aee7553b31db1f65bc30b3c6b6595c2fd631b2e1792e24e554a47080aa6','https://github.com/strimzi/strimzi-kafka-operator','');
-INSERT INTO operator_images VALUES(50,'Sematext Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,639,'docker.io/sematext/sematext-operator:1.0.33','https://github.com/sematext/sematext-operator','');
-INSERT INTO operator_images VALUES(51,'Eclipse Hawkbit',426,NULL,NULL,640,NULL,NULL,NULL,NULL,'docker.io/ctron/hawkbit-operator:0.1.4','https://github.com/ctron/hawkbit-operator','');
-INSERT INTO operator_images VALUES(52,'Eclipse Ditto',426,NULL,NULL,641,NULL,NULL,NULL,NULL,'docker.io/ctron/ditto-operator:0.1.0','https://github.com/ctron/ditto-operator','');
-INSERT INTO operator_images VALUES(53,'Mariadb Operator',426,NULL,NULL,642,NULL,NULL,NULL,NULL,'quay.io/manojdhanorkar/mariadb-operator:v0.0.1','https://github.com/abalki001/mariadb-operator','');
-INSERT INTO operator_images VALUES(54,'Zadara Operator',426,NULL,NULL,643,NULL,NULL,NULL,NULL,'zadara/zoperator:0.3.6','https://github.com/zadarastorage/zadara-operator','');
-INSERT INTO operator_images VALUES(55,'Istio',426,NULL,NULL,644,NULL,NULL,NULL,NULL,'banzaicloud/istio-operator:0.1.6','https://github.com/banzaicloud/istio-operator/tree/release-1.1','');
-INSERT INTO operator_images VALUES(56,'Vault Helm',426,NULL,NULL,645,NULL,NULL,NULL,NULL,'quay.io/brejohns/vault-helm:0.0.1','https://github.com/SDBrett/vault-helm','');
-INSERT INTO operator_images VALUES(57,'druid-operator',426,NULL,NULL,646,NULL,NULL,NULL,NULL,'druidio/druid-operator:0.0.6','https://github.com/druid-io/druid-operator','');
-INSERT INTO operator_images VALUES(58,'etcd',426,NULL,NULL,647,NULL,NULL,NULL,NULL,'quay.io/coreos/etcd-operator@sha256:66a37fd61a06a43969854ee6d3e21087a98b93838e284a6086b13917f96b0d9b','https://github.com/coreos/etcd-operator','');
-INSERT INTO operator_images VALUES(59,'Traefikee Operator',426,NULL,NULL,NULL,648,NULL,NULL,NULL,'containous/traefikee-operator:v0.3.0','https://github.com/containous/traefikee-operator','');
-INSERT INTO operator_images VALUES(60,'IBM Cloud Operator',426,NULL,NULL,649,NULL,NULL,NULL,NULL,'cloudoperators/ibmcloud-operator:0.1.10','https://github.com/IBM/cloud-operators','');
-INSERT INTO operator_images VALUES(61,'Yugabyte Operator',426,NULL,NULL,650,NULL,NULL,NULL,NULL,'quay.io/yugabyte/yugabytedb-operator','https://github.com/yugabyte/yugabyte-operator','');
-INSERT INTO operator_images VALUES(62,'CockroachDB',426,NULL,NULL,651,NULL,NULL,NULL,NULL,'quay.io/helmoperators/cockroachdb:v3.0.7','https://github.com/dmesser/cockroachdb-operator','');
-INSERT INTO operator_images VALUES(63,'Community Jaeger Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,652,'docker.io/jaegertracing/jaeger-operator:1.11.1','https://github.com/jaegertracing/jaeger-operator','');
+INSERT INTO operator_images VALUES(1,'Apache Spark Operator',426,331,NULL,280,NULL,NULL,NULL,NULL,'quay.io/radanalyticsio/spark-operator:1.0.2','https://github.com/radanalyticsio/spark-operator');
+INSERT INTO operator_images VALUES(2,'Banzai Cloud Kafka Operator',426,323,NULL,9,NULL,NULL,NULL,NULL,'banzaicloud/kafka-operator:0.3.1','https://github.com/banzaicloud/kafka-operator/tree/master');
+INSERT INTO operator_images VALUES(3,'Camel K Operator',426,323,NULL,378,NULL,NULL,NULL,NULL,'docker.io/apache/camel-k:1.3.0','https://github.com/apache/camel-k');
+INSERT INTO operator_images VALUES(4,'GrdsCloud MySQL for Kubernetes',426,NULL,NULL,122,NULL,NULL,NULL,NULL,'grds/mysql-operator:1.0.0','https://github.com/GrdsCloud');
+INSERT INTO operator_images VALUES(5,'Hive for Red Hat OpenShift',426,323,NULL,8,NULL,NULL,NULL,NULL,'quay.io/openshift-hive/hive:v1.0.17','https://github.com/openshift/hive');
+INSERT INTO operator_images VALUES(6,'IBM Spectrum Scale CSI Plugin Operator',426,323,NULL,74,NULL,NULL,NULL,NULL,'quay.io/ibm-spectrum-scale/ibm-spectrum-scale-csi-operator:v2.3.0','https://github.com/IBM/ibm-spectrum-scale-csi/');
+INSERT INTO operator_images VALUES(7,'Jenkins Operator',426,323,NULL,90,NULL,NULL,NULL,NULL,'virtuslab/jenkins-operator:v0.3.0','https://github.com/jenkinsci/kubernetes-operator');
+INSERT INTO operator_images VALUES(8,'Postgresql Operator',426,NULL,NULL,157,NULL,NULL,NULL,NULL,'quay.io/deekshah86/postgresql-operator','https://github.com/janepelladinesh/postgresql-operator');
+INSERT INTO operator_images VALUES(9,'Redis Operator',426,323,NULL,168,NULL,NULL,NULL,NULL,'quay.io/opstree/redis-operator:v0.3.0','https://github.com/ot-container-kit/redis-operator');
+INSERT INTO operator_images VALUES(10,'WildFly',426,323,NULL,493,NULL,NULL,NULL,NULL,'quay.io/wildfly/wildfly-operator:0.3.0','https://github.com/wildfly/wildfly-operator');
+INSERT INTO operator_images VALUES(11,'MongoDB Enterprise Operator',426,NULL,NULL,116,NULL,NULL,NULL,NULL,'quay.io/mongodb/mongodb-enterprise-operator:1.12.0','https://github.com/mongodb/mongodb-enterprise-kubernetes');
+INSERT INTO operator_images VALUES(12,'Apache Spark Operator',426,NULL,NULL,280,NULL,NULL,NULL,NULL,'quay.io/radanalyticsio/spark-operator:1.0.2','https://github.com/radanalyticsio/spark-operator');
+INSERT INTO operator_images VALUES(13,'Banzai Cloud Kafka Operator',426,NULL,NULL,9,NULL,NULL,NULL,NULL,'banzaicloud/kafka-operator:0.3.1','https://github.com/banzaicloud/kafka-operator/tree/master');
+INSERT INTO operator_images VALUES(14,'Camel K Operator',426,NULL,NULL,378,NULL,NULL,NULL,NULL,'docker.io/apache/camel-k:1.3.0','https://github.com/apache/camel-k');
+INSERT INTO operator_images VALUES(15,'GrdsCloud MySQL for Kubernetes',426,NULL,NULL,122,NULL,NULL,NULL,NULL,'grds/mysql-operator:1.0.0','https://github.com/GrdsCloud');
+INSERT INTO operator_images VALUES(16,'Hive for Red Hat OpenShift',426,NULL,NULL,8,NULL,NULL,NULL,NULL,'quay.io/openshift-hive/hive:v1.0.17','https://github.com/openshift/hive');
+INSERT INTO operator_images VALUES(17,'IBM Spectrum Scale CSI Plugin Operator',426,NULL,NULL,74,NULL,NULL,NULL,NULL,'quay.io/ibm-spectrum-scale/ibm-spectrum-scale-csi-operator:v2.3.0','https://github.com/IBM/ibm-spectrum-scale-csi/');
+INSERT INTO operator_images VALUES(18,'Jenkins Operator',426,NULL,NULL,90,NULL,NULL,NULL,NULL,'virtuslab/jenkins-operator:v0.3.0','https://github.com/jenkinsci/kubernetes-operator');
+INSERT INTO operator_images VALUES(19,'Postgresql Operator',426,NULL,NULL,157,NULL,NULL,NULL,NULL,'quay.io/deekshah86/postgresql-operator','https://github.com/janepelladinesh/postgresql-operator');
+INSERT INTO operator_images VALUES(20,'Redis Operator',426,NULL,NULL,168,NULL,NULL,NULL,NULL,'quay.io/opstree/redis-operator:v0.3.0','https://github.com/ot-container-kit/redis-operator');
+INSERT INTO operator_images VALUES(21,'WildFly',426,NULL,NULL,493,NULL,NULL,NULL,NULL,'quay.io/wildfly/wildfly-operator:0.3.0','https://github.com/wildfly/wildfly-operator');
+INSERT INTO operator_images VALUES(22,'MongoDB Enterprise Operator',426,NULL,NULL,116,NULL,NULL,NULL,NULL,'quay.io/mongodb/mongodb-enterprise-operator:1.12.0','https://github.com/mongodb/mongodb-enterprise-kubernetes');
+INSERT INTO operator_images VALUES(23,'Instana Agent Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,611,'instana/instana-agent-operator:0.3.7','https://github.com/instana/instana-agent-operator');
+INSERT INTO operator_images VALUES(24,'credstash-operator',426,NULL,NULL,612,NULL,NULL,NULL,NULL,'quay.io/ouzi/credstash-operator:v1.13.0','https://github.com/ouzi-dev/credstash-operator');
+INSERT INTO operator_images VALUES(25,'Snyk Operator',426,NULL,NULL,613,NULL,NULL,NULL,NULL,'docker.io/snyk/kubernetes-operator:1.59.3','https://github.com/snyk/kubernetes-monitor');
+INSERT INTO operator_images VALUES(26,'Akka Cluster Operator',426,NULL,NULL,614,NULL,NULL,NULL,NULL,'lightbend-docker-registry.bintray.io/lightbend/akkacluster-operator:v1.0.0','https://github.com/lightbend/akka-cluster-operator');
+INSERT INTO operator_images VALUES(27,'Varnish Operator',426,NULL,NULL,NULL,615,NULL,NULL,NULL,'ibmcom/varnish-operator:0.27.2','https://github.com/IBM/varnish-operator');
+INSERT INTO operator_images VALUES(28,'Datadog Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,616,'datadog/operator:0.3.0','https://github.com/DataDog/datadog-operator');
+INSERT INTO operator_images VALUES(29,'Hazelcast Enterprise Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,618,'hazelcast/hazelcast-enterprise-operator:0.3.7','https://github.com/hazelcast/hazelcast-operator');
+INSERT INTO operator_images VALUES(30,'infinispan',426,NULL,NULL,619,NULL,NULL,NULL,NULL,'docker.io/jboss/infinispan-operator:0.3.0','https://github.com/infinispan/infinispan-operator');
+INSERT INTO operator_images VALUES(31,'Nuxeo Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,620,'docker.io/appzygy/nuxeo-operator:0.7.1','https://github.com/aceeric/nuxeo-operator');
+INSERT INTO operator_images VALUES(32,'ArangoDB',426,NULL,NULL,621,NULL,NULL,NULL,NULL,'arangodb/kube-arangodb:1.0.2','https://github.com/arangodb/kube-arangodb');
+INSERT INTO operator_images VALUES(33,'Eclipse Che',426,NULL,NULL,622,NULL,NULL,NULL,NULL,'quay.io/eclipse/che-operator@sha256:ea3641202e11ad00bd639b59809b6f4a6508f2c143d260b1683a9f36d74ed54f','https://github.com/eclipse-che/che-operator');
+INSERT INTO operator_images VALUES(34,'AWS S3 Operator',426,NULL,NULL,623,NULL,NULL,NULL,NULL,'quay.io/screeley44/aws-s3-provisioner:v1.0.0','https://github.com/yard-turkey/aws-s3-provisioner');
+INSERT INTO operator_images VALUES(35,'Altinity ClickHouse Operator',426,NULL,NULL,624,NULL,NULL,NULL,NULL,'altinity/clickhouse-operator:0.9.9','https://github.com/altinity/clickhouse-operator');
+INSERT INTO operator_images VALUES(36,'MinIO Operator',426,NULL,NULL,625,NULL,NULL,NULL,NULL,'minio/k8s-operator:1.0.3','https://github.com/minio/minio-operator');
+INSERT INTO operator_images VALUES(37,'Elastic Cloud on Kubernetes',426,NULL,NULL,626,NULL,NULL,NULL,NULL,'docker.elastic.co/eck/eck-operator:1.0.0-beta1','https://github.com/elastic/cloud-on-k8s');
+INSERT INTO operator_images VALUES(38,'Percona XtraDB Cluster Operator',426,NULL,NULL,627,NULL,NULL,NULL,NULL,'percona/percona-xtradb-cluster-operator:1.7.0','https://github.com/percona/percona-xtradb-cluster-operator');
+INSERT INTO operator_images VALUES(39,'Keycloak Operator',426,NULL,NULL,628,NULL,NULL,NULL,NULL,'quay.io/keycloak/keycloak-operator:9.0.2','https://github.com/keycloak/keycloak-operator');
+INSERT INTO operator_images VALUES(40,'Grafana Operator',426,NULL,NULL,629,NULL,NULL,NULL,NULL,'quay.io/integreatly/grafana-operator:v3.10.1','https://github.com/integr8ly/grafana-operator');
+INSERT INTO operator_images VALUES(41,'Mattermost Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,630,'docker.io/mattermost/mattermost-operator:v0.5.0','https://github.com/mattermost/mattermost-operator');
+INSERT INTO operator_images VALUES(42,'synapse-helm',426,NULL,NULL,631,NULL,NULL,NULL,NULL,'quay.io/mgoerens/synapse-helm:v0.0.11','https://github.com/opdev/synapse-helm');
+INSERT INTO operator_images VALUES(43,'IBM Cloud IAM Operator',426,NULL,NULL,632,NULL,NULL,NULL,NULL,'cloudoperators/ibmcloud-iam-operator:0.1.0','https://github.com/IBM/ibmcloud-iam-operator');
+INSERT INTO operator_images VALUES(44,'Knative Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,633,'gcr.io/knative-releases/knative.dev/operator/cmd/operator:v0.20.0','https://github.com/knative/operator');
+INSERT INTO operator_images VALUES(45,'Cassandra',426,NULL,NULL,634,NULL,NULL,NULL,NULL,'gcr.io/cassandra-operator/cassandra-operator:v2.0.0','https://github.com/instaclustr/cassandra-operator');
+INSERT INTO operator_images VALUES(46,'Kubeflow',426,NULL,NULL,NULL,NULL,NULL,NULL,635,'aipipeline/kubeflow-operator:v1.0.0','https://github.com/kubeflow/kfctl');
+INSERT INTO operator_images VALUES(47,'Openshift Qiskit Operator',426,NULL,NULL,636,NULL,NULL,NULL,NULL,'https://hub.docker.com/repository/docker/singhp11/openshift-qiskit-operator','https://github.com/qiskit-community/openshift-quantum-operators/tree/master/operators-examples/openshift-qiskit-operator');
+INSERT INTO operator_images VALUES(48,'Azure Service Operator',426,NULL,NULL,637,NULL,NULL,NULL,NULL,'mcr.microsoft.com/k8s/azureserviceoperator:1.0.27207','https://github.com/Azure/azure-service-operator');
+INSERT INTO operator_images VALUES(49,'Strimzi',426,NULL,NULL,NULL,NULL,NULL,NULL,638,'docker.io/strimzi/operator@sha256:62218aee7553b31db1f65bc30b3c6b6595c2fd631b2e1792e24e554a47080aa6','https://github.com/strimzi/strimzi-kafka-operator');
+INSERT INTO operator_images VALUES(50,'Sematext Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,639,'docker.io/sematext/sematext-operator:1.0.33','https://github.com/sematext/sematext-operator');
+INSERT INTO operator_images VALUES(51,'Eclipse Hawkbit',426,NULL,NULL,640,NULL,NULL,NULL,NULL,'docker.io/ctron/hawkbit-operator:0.1.4','https://github.com/ctron/hawkbit-operator');
+INSERT INTO operator_images VALUES(52,'Eclipse Ditto',426,NULL,NULL,641,NULL,NULL,NULL,NULL,'docker.io/ctron/ditto-operator:0.1.0','https://github.com/ctron/ditto-operator');
+INSERT INTO operator_images VALUES(53,'Mariadb Operator',426,NULL,NULL,642,NULL,NULL,NULL,NULL,'quay.io/manojdhanorkar/mariadb-operator:v0.0.1','https://github.com/abalki001/mariadb-operator');
+INSERT INTO operator_images VALUES(54,'Zadara Operator',426,NULL,NULL,643,NULL,NULL,NULL,NULL,'zadara/zoperator:0.3.6','https://github.com/zadarastorage/zadara-operator');
+INSERT INTO operator_images VALUES(55,'Istio',426,NULL,NULL,644,NULL,NULL,NULL,NULL,'banzaicloud/istio-operator:0.1.6','https://github.com/banzaicloud/istio-operator/tree/release-1.1');
+INSERT INTO operator_images VALUES(56,'Vault Helm',426,NULL,NULL,645,NULL,NULL,NULL,NULL,'quay.io/brejohns/vault-helm:0.0.1','https://github.com/SDBrett/vault-helm');
+INSERT INTO operator_images VALUES(57,'druid-operator',426,NULL,NULL,646,NULL,NULL,NULL,NULL,'druidio/druid-operator:0.0.6','https://github.com/druid-io/druid-operator');
+INSERT INTO operator_images VALUES(58,'etcd',426,NULL,NULL,647,NULL,NULL,NULL,NULL,'quay.io/coreos/etcd-operator@sha256:66a37fd61a06a43969854ee6d3e21087a98b93838e284a6086b13917f96b0d9b','https://github.com/coreos/etcd-operator');
+INSERT INTO operator_images VALUES(59,'Traefikee Operator',426,NULL,NULL,NULL,648,NULL,NULL,NULL,'containous/traefikee-operator:v0.3.0','https://github.com/containous/traefikee-operator');
+INSERT INTO operator_images VALUES(60,'IBM Cloud Operator',426,NULL,NULL,649,NULL,NULL,NULL,NULL,'cloudoperators/ibmcloud-operator:0.1.10','https://github.com/IBM/cloud-operators');
+INSERT INTO operator_images VALUES(61,'Yugabyte Operator',426,NULL,NULL,650,NULL,NULL,NULL,NULL,'quay.io/yugabyte/yugabytedb-operator','https://github.com/yugabyte/yugabyte-operator');
+INSERT INTO operator_images VALUES(62,'CockroachDB',426,NULL,NULL,651,NULL,NULL,NULL,NULL,'quay.io/helmoperators/cockroachdb:v3.0.7','https://github.com/dmesser/cockroachdb-operator');
+INSERT INTO operator_images VALUES(63,'Community Jaeger Operator',426,NULL,NULL,NULL,NULL,NULL,NULL,652,'docker.io/jaegertracing/jaeger-operator:1.11.1','https://github.com/jaegertracing/jaeger-operator');
+
 CREATE TABLE docker_environment_variables(
                                         id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                                         Environment_Variables text,

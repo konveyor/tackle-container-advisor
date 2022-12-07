@@ -23,6 +23,11 @@ RUN groupadd --gid $USER_GID $USERNAME \
 WORKDIR /app
 RUN python -m pip install --upgrade pip setuptools wheel
 
+COPY  service/requirements.txt .
+
+RUN pip --no-cache-dir install -U pip wheel && \
+    pip --no-cache-dir install -r requirements.txt
+
 # Enable color terminal for docker exec bash
 ENV TERM=xterm-256color
 

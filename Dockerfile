@@ -27,13 +27,14 @@ COPY ./service /app/service
 COPY ./kg /app/kg
 COPY ./config /app/config
 COPY ./entity_standardizer /app/entity_standardizer
+COPY ./requirements.txt /app/requirements.txt
 RUN  python -m pip install --upgrade pip wheel build setuptools; \
      pip install -r entity_standardizer/requirements.txt; \
      cd entity_standardizer; python -m build; pip install dist/entity_standardizer_tca-1.0-py3-none-any.whl; cd ..; \
-     pip install -r service/requirements.txt; \
+     pip install -r /app/requirements.txt; \
      python benchmarks/generate_data.py; \
      python benchmarks/run_models.py;
-     
+
 RUN chown -R 1001:0 ./
 
 # Become a non-root user again
@@ -44,4 +45,4 @@ ENV PORT 8000
 EXPOSE $PORT
 
 ENV GUNICORN_BIND 0.0.0.0:$PORT
-CMD ["gunicorn", "--workers=2", "--threads=500", "--timeout", "300", "service:app"]
+CMD ["gunicorn", "-c", "config/gunicorn.py", "service:app"]

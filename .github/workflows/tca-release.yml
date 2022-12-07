@@ -1,0 +1,73 @@
+name: Create and Publish a TCA release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+env:
+  REGISTRY_USER: lam_quay
+  IMAGE_REGISTRY: quay.io
+  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+ 
+  
+jobs:
+  tagged-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Get release tag
+        id: get_release_tag
+        run: echo ::set-output name=tag_name::${GITHUB_REF#refs/tags/}
+      - name: Build Changelog
+        id: gen_changelog
+        uses: mikepenz/release-changelog-builder-action@v1
+        with:
+          failOnError: "true"
+          configuration: .github/workflows/release_config.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{ steps.gen_changelog.outputs.changelog }}
+
+  publish-release:
+      needs: tagged-release
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout
+          uses: actions/checkout@v2
+          with:
+           ref: main
+        - name : get tag
+          run:  echo ${{needs.tagged-release.get_release_tag.outputs.tags}}
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.8'
+        - name: Cleanup
+          run: |
+            bash clean.sh
+        - name: Setup Containerization Advisor
+          run: |
+            bash setup.sh
+        - name: Log in to Quay.io
+          uses: redhat-actions/podman-login@v1
+          with:
+            username: ${{ env.REGISTRY_USER }}
+            password: ${{ env.REGISTRY_PASSWORD }}
+            registry: ${{ env.IMAGE_REGISTRY }}
+        - name : build image
+          run  : docker build -t tackle .
+        - name : tag image
+          run  : docker tag tackle:latest  quay.io/konveyor/tackle-container-advisor:${{ github.ref_name }} 
+        - name : push to quay
+          run  : docker push quay.io/konveyor/tackle-container-advisor:${{ github.ref_name }}
+
+
+
+
+    

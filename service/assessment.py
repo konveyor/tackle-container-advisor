@@ -50,11 +50,13 @@ class Assessment():
 
                 # Tech confidence
                 if 'low_medium_confidence' in app and app['low_medium_confidence']:
-                    app['assessment_reason'].append(config['Reason_Codes']['confidence_reason']+ ' ' + json.dumps(app['low_medium_confidence']))
+                    # app['assessment_reason'].append(config['Reason_Codes']['confidence_reason']+ ' ' + json.dumps(app['low_medium_confidence']))
+                    app['assessment_reason'].append(config['Reason_Codes']['confidence_reason']+ ' ' + str(app['low_medium_confidence']))
 
                 # General technology items
                 if 'Technology' in app and app['Technology']:
-                    app['assessment_reason'].append(config['Reason_Codes']['general_technology_reason'] + ' ' + json.dumps(app['Technology']))
+                    # app['assessment_reason'].append(config['Reason_Codes']['general_technology_reason'] + ' ' + json.dumps(app['Technology']))
+                    app['assessment_reason'].append(config['Reason_Codes']['general_technology_reason'] + ' ' + str(app['Technology']))
 
                 # Unknown technology items
                 if 'unknown' in app and app['unknown']:
@@ -78,7 +80,7 @@ class Assessment():
         pAppL = []
         try :
             for app in appL:
-                # Order dictionry to fix the order of columns in the output
+                # Order dictionary to fix the order of columns in the output
                 pApp = OrderedDict()
 
                 # Raw Fields
@@ -92,20 +94,24 @@ class Assessment():
                 if 'component_name' in app:
                     pApp['Cmpt'] = app["component_name"]
 
+
                 # Curated
-                pApp['OS'] = app["OS"]
-                pApp['Lang'] = app["Lang"]
-                pApp["App Server"] = app["App Server"]
-                pApp["Dependent Apps"] = app["App"]
-                pApp["Runtime"] = app["Runtime"]
-                pApp["Libs"] = app["Lib"]
+                try:
+                    pApp['OS'] = app["OS"]
+                    pApp['Lang'] = app["Lang"]
+                    pApp["App Server"] = app["App Server"]
+                    pApp["Dependent Apps"] = app["App"]
+                    pApp["Runtime"] = app["Runtime"]
+                    pApp["Libs"] = app["Lib"]
+
+                    pApp['Reason'] = app["assessment_reason"]
+                except:
+                    pApp['Reason'] = 'Technology Summary empty or does not match TCA input format'
 
                 try :
                     pApp["KG Version"] = app["KG Version"]
                 except :
                     pApp["KG Version"] = 'Not Available'
-
-                pApp['Reason'] = app["assessment_reason"]
 
                 pAppL.append(pApp)
 

@@ -96,39 +96,49 @@ def get_benchmark_data(config, all_train=False):
         logging.error(f"Mentions json file {mentions_file_name} does not exist. Run kg generator to create this file.")
         exit()
         
-    with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
-        entities = json.load(entity_file)
+    # with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
+    #     entities = json.load(entity_file)
     with open(mentions_file_name, 'r', encoding='utf-8') as mentions_file:
-        mentions = json.load(mentions_file)
+        all_mentions = json.load(mentions_file)
 
     train_data = {}
     inf_data   = {}
     inf_idx    = 0
-    for idx, mentions_data in mentions["data"].items():
+    for idx, mentions_data in all_mentions["data"].items():
         train_data[idx] = {}
         entity_id = mentions_data["entity_id"]        
-        mentions  = mentions_data["mentions"]
+        mentions = mentions_data["mentions"]
         for source, mention_list in mentions.items():
             if source == "others":
                 if all_train:
-                    for mention in mention_list:
-                        train_data[idx]["mentions"] = train_data[idx].get("mentions", [])
-                        train_data[idx]["mentions"] += [clean(mention) for mention in mention_list]
+                    # for mention in mention_list:
+                    train_data[idx]["mentions"] = train_data[idx].get("mentions", [])
+                    train_data[idx]["mentions"] += [clean(mention) for mention in mention_list]
                     train_data[idx]["entity_id"] = entity_id
                 else:
+                    std_mention = split(mentions["standardized"])
+                    if std_mention is not None:
+                        std_mention = clean(std_mention)
+
                     for mention in mention_list:
-                        inf_data[inf_idx] = {}
-                        inf_data[inf_idx]["mention"] = clean(mention)
-                        inf_data[inf_idx]["entity_id"]  = entity_id
-                        inf_idx += 1
+                        # must be different from the standard version
+                        if std_mention is not None and clean(mention) != std_mention:
+                            inf_data[inf_idx] = {}
+                            inf_data[inf_idx]["mention"] = clean(mention)
+                            inf_data[inf_idx]["entity_id"] = entity_id
+                            inf_idx += 1
             else:
                 train_data[idx]["mentions"] = train_data[idx].get("mentions", [])
                 if source == "standardized":
                     mention = split(mention_list)
                     if mention is not None:
                         train_data[idx]["mentions"].append(mention)
+
                 else:
-                    train_data[idx]["mentions"] += [clean(mention) for mention in mention_list]
+                    cleaned_mentions = []
+                    if "others" in mentions.keys():
+                        cleaned_mentions = [clean(m) for m in mentions["others"]]
+                    train_data[idx]["mentions"] += [clean(mention) for mention in mention_list if clean(mention) not in cleaned_mentions]
                     
                 train_data[idx]["entity_id"] = entity_id
 
@@ -195,7 +205,7 @@ def create_wikidata_benchmark(config, train_data, inf_data):
     entity_file_name = os.path.join(kg_dir, ent_json)
     if not os.path.exists(entity_file_name):
         logging.error(f"Entities json file {entity_file_name} does not exist. Run kg generator to create this file.")
-        exit()    
+        exit()
 
     with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
         entities = json.load(entity_file)

@@ -33,5 +33,6 @@ class TestApplySIM(unittest.TestCase):
             entity_names = mention_data.get("entity_names", [""])
             conf_scores  = mention_data.get("confidence", [0.0])
             extracted.append([entity_names[0], conf_scores[0]]) 
-        expected = [['COBOL|*', 1.0], ['Java|*', 1.0], ['JavaScript', 1.0], ['Unix|*', 1.0], ['mainframe', 1.0], ['DB2', 1.0]]
+        expected = [['COBOL', 1.0], ['Java|*', 1.0], ['JavaScript|*', 1.0], ['Unix|*', 1.0], ['mainframe', 1.0], ['DB2', 1.0]]
         self.assertTrue(extracted == expected)
+        print(extracted)
