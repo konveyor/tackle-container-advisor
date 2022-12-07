@@ -73,7 +73,7 @@ performance test, update *config/test.ini* with the hostname
 and port where TCA service has been deployed
 
 ```
-python test/performance/run_payload.py <#users> <#applications/user>
+python test/performance/run_payload.py
 ```
 
 ### Performance Benchmarking

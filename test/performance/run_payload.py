@@ -104,7 +104,7 @@ for pt in dpts:
     print("Working on", pt)
     result = get_performance_data(pt[0], pt[1])
     results.append(result)
-print(results)
+
 with open(os.path.join("test", "performance", "results.json"), 'w') as f:
     json.dump(results, f, indent=4)
 
