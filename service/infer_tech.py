@@ -148,18 +148,24 @@ class InferTech:
             ## Infer Language from Lib if language is missing
             ## If a lib supports multiple langages, we do not infer the language
             if app['Lib']:
+
                 for snippet, obj in app['Lib'].items():
                     if not obj:
                         continue
-                    for tech, version in obj.items():
-                        if '|' in tech:
-                            inferred_tech = tech.split('|')[0]
-                            app_lang = Utils.getEntityString(app['Lang']).split(', ')
-                            if inferred_tech not in app_lang:
-                                if snippet not in app['Lang']:
-                                    app['Lang'][snippet] = {}
-                                app['Lang'][snippet][inferred_tech] = version
-                                app['Inferred']['Lang'].append(inferred_tech)
+
+                    tech = obj['standard_name']
+
+                    # for tech, version in obj.items():
+                    if '|' in tech:
+                        inferred_tech = tech.split('|')[0] + '|*'
+
+                        app_lang = Utils.getStandardEntityString(app['Lang']).split(', ')
+
+                        if inferred_tech not in app_lang:
+                            if snippet not in app['Lang']:
+                                app['Lang'][snippet] = {}
+                            app['Lang'][snippet] = {'standard_name': inferred_tech, 'detected_version': 'NA_VERSION', 'latest_known_version': 'NA_VERSION'}
+                            app['Inferred']['Lang'].append(inferred_tech)
 
             # Infer App from Plugin if App is missing
             ## If a plugin supports multiple Apps, we do not infer the App
@@ -167,15 +173,17 @@ class InferTech:
                 for snippet, obj in app['Plugin'].items():
                     if not obj:
                         continue
-                    for tech, version in obj.items():
-                        if '|' in tech:
-                            inferred_tech = tech.split('|')[0]
-                            app_App = Utils.getEntityString(app['App']).split(', ')
-                            if inferred_tech not in app_App:
-                                if snippet not in app['App']:
-                                    app['App'][snippet] = {}
-                                app['App'][snippet][inferred_tech] = version
-                                app['Inferred']['App'].append(inferred_tech)
+
+                    tech = obj['standard_name']
+                    # for tech, version in obj.items():
+                    if '|' in tech:
+                        inferred_tech = tech.split('|')[0] + '|*'
+                        app_App = Utils.getStandardEntityString(app['App']).split(', ')
+                        if inferred_tech not in app_App:
+                            if snippet not in app['App']:
+                                app['App'][snippet] = {}
+                            app['App'][snippet] = {'standard_name': inferred_tech, 'detected_version': 'NA_VERSION', 'latest_known_version': 'NA_VERSION'}
+                            app['Inferred']['App'].append(inferred_tech)
 
             # Infer App Server and Runtime from Runlib
             ## If a runlib supports multiple App Servers or Runtimes, we do not infer them
@@ -183,21 +191,23 @@ class InferTech:
                 for snippet, obj in app['Runlib'].items():
                     if not obj:
                         continue
-                    for tech, version in obj.items():
-                        if '|' in tech:
-                            inferred_tech = tech.split('|')[0]
-                            app_AppServer = Utils.getEntityString(app['App Server']).split(', ')
-                            app_Runtime = Utils.getEntityString(app['Runtime']).split(', ')
-                            if self.__class_type_mapper['mappings'].get(inferred_tech, 'NA') == 'App Server' and inferred_tech not in app_AppServer:
-                                if snippet not in app['App Server']:
-                                    app['App Server'][snippet] = {}
-                                app['App Server'][snippet][inferred_tech] = version
-                                app['Inferred']['App Server'].append(inferred_tech)
-                            elif self.__class_type_mapper['mappings'].get(inferred_tech, 'NA') == 'Runtime' and inferred_tech not in app_Runtime:
-                                if snippet not in app['Runtime']:
-                                    app['Runtime'][snippet] = {}
-                                app['Runtime'][snippet][inferred_tech] = version
-                                app['Inferred']['Runtime'].append(inferred_tech)
+
+                    tech = obj['standard_name']
+                    # for tech, version in obj.items():
+                    if '|' in tech:
+                        inferred_tech = tech.split('|')[0] + '|*'
+                        app_AppServer = Utils.getStandardEntityString(app['App Server']).split(', ')
+                        app_Runtime = Utils.getStandardEntityString(app['Runtime']).split(', ')
+                        if self.__class_type_mapper['mappings'].get(inferred_tech, 'NA') == 'App Server' and inferred_tech not in app_AppServer:
+                            if snippet not in app['App Server']:
+                                app['App Server'][snippet] = {}
+                            app['App Server'][snippet] = {'standard_name': inferred_tech, 'detected_version': 'NA_VERSION', 'latest_known_version': 'NA_VERSION'}
+                            app['Inferred']['App Server'].append(inferred_tech)
+                        elif self.__class_type_mapper['mappings'].get(inferred_tech, 'NA') == 'Runtime' and inferred_tech not in app_Runtime:
+                            if snippet not in app['Runtime']:
+                                app['Runtime'][snippet] = {}
+                            app['Runtime'][snippet] = {'standard_name': inferred_tech, 'detected_version': 'NA_VERSION', 'latest_known_version': 'NA_VERSION'}
+                            app['Inferred']['Runtime'].append(inferred_tech)
 
             app['Linux'] = {'Lang':[],'App':[], 'App Server':[], 'Runtime':[]}
             app['Windows'] = {'Lang':[],'App':[], 'App Server':[], 'Runtime':[]}
@@ -211,7 +221,10 @@ class InferTech:
             containerize_not_supported = []
             if (app['Lang'] or app['App'] or app['App Server'] or app['Runtime']):
                 is_need_check_compatible = True
-                app_OS = Utils.getEntityString(app['OS']).split(', ')
+
+                #mic
+                app_OS = Utils.getStandardEntityString(app['OS']).split(', ')
+
                 if len(app_OS) == 0:
                     is_need_check_compatible = False
 
@@ -219,8 +232,8 @@ class InferTech:
                 is_init_recommended_OS = False
                 for child_type in child_types:
                     if app[child_type]:
-                        for child in Utils.getEntityString(app[child_type]).split(', '):
-                            
+                        for child in Utils.getStandardEntityString(app[child_type]).split(', '):
+
                             if child != 'score':
                                 candidate_OS = self.__get_candidate_OS(child)
                                 if not candidate_OS or len(candidate_OS) == 0:

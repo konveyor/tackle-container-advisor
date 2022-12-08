@@ -128,6 +128,16 @@ class Standardization():
 
         return apps
 
+    # format mentions metadata (standard entity name, detected version,
+    def format_mentions(self, apps):
+        for app in apps:
+            for k in app.keys():
+                if type(app[k]) is dict:
+                    for m in app[k].keys():
+                        app[k][m] = { 'standard_name': list(app[k][m].keys())[0] , 'detected_version': list(app[k][m].values())[0][0], 'latest_known_version': list(app[k][m].values())[0][1] }
+
+        return apps
+
     def entity_standardizer(self, mention_data):
         """
         Invokes detect_access_token for accesstoken validation and if it's valid, it will call
@@ -163,7 +173,7 @@ class Standardization():
             dict(status=201, message="Entity standardization completed successfully!", result=list(mentions.values())), 201
 
         infer_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": uniques}
-
+        logging.info(f"{len(uniques)} unique mentions will be standardized.")
         tfidf            = TFIDF("deploy")
         tfidf_start      = time.time()
         tfidf_data       = tfidf.infer(infer_data)
@@ -603,5 +613,7 @@ class Standardization():
         # remove redundant mentions and entity matching scores
         app_data = self.remove_redundant_mentions(app_data)
         app_data = self.remove_scores(app_data)
+        app_data = self.format_mentions(app_data)
+
 
         return app_data
