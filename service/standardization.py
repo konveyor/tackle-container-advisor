@@ -173,7 +173,7 @@ class Standardization():
             dict(status=201, message="Entity standardization completed successfully!", result=list(mentions.values())), 201
 
         infer_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": uniques}
-
+        logging.info(f"{len(uniques)} unique mentions will be standardized.")
         tfidf            = TFIDF("deploy")
         tfidf_start      = time.time()
         tfidf_data       = tfidf.infer(infer_data)
