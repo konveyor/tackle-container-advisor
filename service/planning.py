@@ -209,7 +209,7 @@ class Plan():
                                     break
                             scope_image = best_image
                             images_score += scores_dict[child_type]
-                            # print(str(scope_image))
+
                             app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
                             app['scope_images_confidence']['mapping'][child] = scope_image
                             if child_type in app_appserver_child_types:
@@ -283,7 +283,6 @@ class Plan():
         if not app['scope_images'] and scope_images:
             # find best for OS
             scope_image = scope_images[0]
-            # print(scope_image)
             app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
             # app['scope_images_confidence']['mapping'][child] = scope_image
 
@@ -340,6 +339,7 @@ class Plan():
         if (app['OS'].split('|')[0] != app['OS']) and app['OS'].split('|')[0] in inverted_containerimageKG:
             parent_os_check_images = inverted_containerimageKG[app['OS'].split('|')[0]]
 
+
         # parent_os_scope_images = []
         child_types = ["App Server", "App", "Runtime","Lang"]
         for child_type in child_types:
@@ -369,7 +369,7 @@ class Plan():
         """
         linux_list = ['Linux|Red Hat Enterprise Linux', 'Linux|Ubuntu', 'Linux|CentOS', 'Linux|Fedora', 'Linux|Debian', '	Linux|Oracle Linux', '	Linux|openSUSE', '	Linux|Amazon Linux']
         result = os
-        for inputOS in Utils.getEntityString(app['OS']).split(', '):
+        for inputOS in Utils.getStandardEntityString(app['OS']).split(', '):
             if inputOS and '|' in inputOS and os == inputOS.split('|')[0]:
                 result = inputOS
                 break
@@ -382,7 +382,7 @@ class Plan():
 
     def ui_to_input_assessment(self, assessment_data):
         """
-        ui_to_input_assessment method takes the assessment ouput and format it to list of application details
+        ui_to_input_assessment method takes the assessment output and format it to list of application details
         which will be further used for planning
 
         :param assessment_data: list of assessment output for each component
@@ -411,12 +411,19 @@ class Plan():
                     pApp['component_name'] = app["Cmpt"]
 
                 # Curated
-                pApp['OS'] = ast.literal_eval(app["OS"])
-                pApp['Lang'] = ast.literal_eval(app["Lang"])
-                pApp["App Server"] = ast.literal_eval(app["App Server"])
-                pApp["App"] = ast.literal_eval(app["Dependent Apps"])
-                pApp["Runtime"] = ast.literal_eval(app["Runtime"])
-                pApp["Lib"] = ast.literal_eval(app["Libs"])
+                # mic
+                # pApp['OS'] = ast.literal_eval(app["OS"])
+                # pApp['Lang'] = ast.literal_eval(app["Lang"])
+                # pApp["App Server"] = ast.literal_eval(app["App Server"])
+                # pApp["App"] = ast.literal_eval(app["Dependent Apps"])
+                # pApp["Runtime"] = ast.literal_eval(app["Runtime"])
+                # pApp["Lib"] = ast.literal_eval(app["Libs"])
+                pApp['OS'] = app["OS"]
+                pApp['Lang'] = app["Lang"]
+                pApp["App Server"] = app["App Server"]
+                pApp["App"] = app["Dependent Apps"]
+                pApp["Runtime"] = app["Runtime"]
+                pApp["Lib"] = app["Libs"]
 
                 pApp['assessment_reason'] = app['Reason']
                 try:
@@ -499,6 +506,7 @@ class Plan():
                                 subapp[child_type] = ', '.join(filter(None, app[os][child_type]))
 
                             subapp = self.__search_docker(subapp, catalog)
+
                             try:
                                 subapp['unknown'] = app['unknown']
                             except Exception :
@@ -598,6 +606,7 @@ class Plan():
                         image_name = image_name + '(' + app['scope_images'][image]['Status'] + ')'
                         docker_url_dict['status'] = app['scope_images'][image]['Status']
                     # mic docker_url_dict[image_name] = app["scope_images"][image]["Docker_URL"]
+
                     docker_url_dict['url'] = app["scope_images"][image]["Docker_URL"]
                     pApp['Ref Dockers'].append(docker_url_dict)  # mic += str(counter) + ". " + str(docker_url_dict) +'\n'
                     counter_list += str(counter) + ','
@@ -609,18 +618,20 @@ class Plan():
                 if app['scope_images_confidence']:
                     pApp["Confidence"] = app['scope_images_confidence']['image_confidence']
                 if 'scope_images_win' in app and app['scope_images_win']:
+
                     counter_list = ''
                     for image in app["scope_images_win"]:
-                        # mic start
+
                         docker_url_dict = {'name': "", 'status': "", 'url': ""}
                         docker_url_dict['name'] = image_name
-                        # mic end
+
                         image_name = image
                         if app['scope_images_win'][image]['Status']:
                             image_name = image_name + '(' + app['scope_images_win'][image]['Status'] + ')'
                             docker_url_dict['status'] = app['scope_images_win'][image]['Status']
 
-                        docker_url_dict['url'] = app["scope_images"][image]["Docker_URL"]
+                        docker_url_dict['url'] = app["scope_images_win"][image]["Docker_URL"]
+
                         pApp['Ref Dockers'].append(docker_url_dict)  # mic += str(counter) + ". " + image_name +'|'+app["scope_images_win"][image]["Docker_URL"]+'\n'
                         counter_list += str(counter) + ','
                         counter += 1
