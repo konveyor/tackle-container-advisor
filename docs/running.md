@@ -73,8 +73,46 @@ performance test, update *config/test.ini* with the hostname
 and port where TCA service has been deployed
 
 ```
-python test/performance/run_payload.py <#users> <#applications/user>
+python test/performance/run_payload.py
 ```
+
+### Performance Benchmarking
+
+- TCA Api was run as a podman container on IntelCore i9-10885H CPU @ 2.40GHz with 8 Cores, 16 Logical Processors with 4GB Memory limit
+	
+<table>
+  <tr>
+    <td> #Records </td>
+    <td> Avg. Response Time </td>
+    <td> Server Peak Mem.   </td>
+    <td> Network I/O        </td>	  
+  </tr>
+  <tr>	
+    <td> 10 </td>
+    <td> 4.7s </td>
+    <td> 477.1MB / 4.194GB </td>
+    <td> 10.57kB / 8.129kB </td>
+  </tr>
+  <tr>	
+    <td> 100 </td>
+    <td> 13.73s </td>
+    <td> 470.5MB / 4.194GB </td>
+    <td> 81.78kB / 50.87kB </td>
+  </tr>
+  <tr>	
+    <td> 1000 </td>
+    <td> 42.75s </td>
+    <td> 446.8MB / 4.194GB </td>
+    <td> 644.3kB / 377.4kB </td>
+  </tr>
+  <tr>	
+    <td> 5000 </td>
+    <td> 226.29s </td>
+    <td> 497.8MB / 4.194GB </td>
+    <td> 3.814MB / 2.375MB </td>
+  </tr>
+</table>
+
 
 ## Running TCA with a new version of Knowledge Base
 
