@@ -5,8 +5,9 @@ on:
     tags:
       - "v*.*.*"
 env:
-  REGISTRY_USER: lam_quay
+  
   IMAGE_REGISTRY: quay.io
+  REGISTRY_USER: konveyor+tackle_container_advisor
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
  
   
@@ -66,8 +67,3 @@ jobs:
           run  : docker tag tackle:latest  quay.io/konveyor/tackle-container-advisor:${{ github.ref_name }} 
         - name : push to quay
           run  : docker push quay.io/konveyor/tackle-container-advisor:${{ github.ref_name }}
-
-
-
-
-    
