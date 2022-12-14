@@ -16,6 +16,7 @@
 
 import unittest
 from service.clustering import Clustering
+from kg_utils.test_check import Test_check
 
 class TestClustering(unittest.TestCase):
 
@@ -207,4 +208,4 @@ class TestClustering(unittest.TestCase):
 
         pAppL = cluster.output_to_ui_clustering(appL)
 
-        assert pAppL == expected
+        assert Test_check.checkEqual(Test_check,expected,pAppL)
