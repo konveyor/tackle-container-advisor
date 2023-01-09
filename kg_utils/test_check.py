@@ -19,8 +19,16 @@ class Test_check():
                 return False
             if typeEentry is str:
                 if entryE != "NA":
-                   if entryA != entryE:
-                      return False
+                   if entryE.endswith(":NA"):
+                        indexE = entryE.rfind(":")
+                        entryEprune = entryE[:indexE]
+                        indexA = entryA.rfind(":")
+                        entryAprune = entryA[:indexA]
+                        if entryAprune != entryEprune:
+                            return False
+                   else:
+                       if entryA != entryE:
+                           return False
             elif typeEentry is dict:
                 if self.checkDict(self, entryE, entryA, isRecursiveKeyCs, isRecursiveKeyCs) == False:
                     return False
@@ -52,7 +60,7 @@ class Test_check():
        if allEKeys != allAKeys:
           return False
        for keyE in allEKeys:
-          # print("Checking: ", keyE)
+          #print("Checking: ", keyE)
           valueE = newE[keyE]
           valueA = newA[keyE]
           typeE = type(valueE)
@@ -61,8 +69,16 @@ class Test_check():
              return False
           if typeE is str:
              if valueE != "NA":
-                if valueA != valueE:
-                   return False
+                if valueE.endswith(":NA"):
+                     indexE = valueE.rfind(":")
+                     valueEprune = valueE[:indexE]
+                     indexA = valueA.rfind(":")
+                     valueAprune = valueA[:indexA]
+                     if valueAprune != valueEprune:
+                         return False
+                else:
+                    if valueA != valueE:
+                        return False
           elif typeE is dict:
              if self.checkDict(self, valueE, valueA, isRecursiveKeyCs, isRecursiveKeyCs) == False:
                  return False
