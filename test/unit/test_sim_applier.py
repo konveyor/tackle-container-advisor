@@ -17,6 +17,8 @@
 import unittest
 from entity_standardizer.tfidf import utils
 from service.standardization import Standardization
+from kg_utils.test_check import Test_check
+import numpy as np
 
 class TestApplySIM(unittest.TestCase):
 
@@ -26,13 +28,14 @@ class TestApplySIM(unittest.TestCase):
         mention_data = []
         for idx, mention in enumerate(mentions):
             mention_data.append({"mention_id": idx, "mention": mention})
-        standardizer = Standardization()   
+        standardizer = Standardization()
         std_mentions = standardizer.entity_standardizer(mention_data)
         extracted = []
         for mention_data in std_mentions:
             entity_names = mention_data.get("entity_names", [""])
             conf_scores  = mention_data.get("confidence", [0.0])
-            extracted.append([entity_names[0], conf_scores[0]]) 
-        expected = [['COBOL', 1.0], ['Java|*', 1.0], ['JavaScript|*', 1.0], ['Unix|*', 1.0], ['mainframe', 1.0], ['DB2', 1.0]]
-        self.assertTrue(extracted == expected)
-        print(extracted)
+            extracted.append([entity_names[0], conf_scores[0]])
+        expected = [['COBOL', np.float64(1.0)], ['Java|*', np.float64(1.0)], ['JavaScript|*', np.float64(1.0)], ['Unix|*', np.float64(1.0)], ['mainframe', np.float64(1.0)], ['DB2', np.float64(1.0)]]
+        print("Expected",expected)
+        print("extracted", extracted)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,extracted))
