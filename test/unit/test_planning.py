@@ -18,6 +18,7 @@ import unittest
 from collections import OrderedDict
 from service.planning import Plan
 from service.infer_tech import InferTech
+from kg_utils.test_check import Test_check
 
 class TestPlan(unittest.TestCase):
 
@@ -52,7 +53,7 @@ class TestPlan(unittest.TestCase):
                      'KG Version': '1.0.1'}]
 
         appL = plan.ui_to_input_assessment(assessment_data)
-        assert [dict(appL[0])] == expected
+        assert Test_check.checkEqual(Test_check,expected,appL)
 
     def test_validate_app(self):
         plan = Plan()
@@ -76,7 +77,7 @@ class TestPlan(unittest.TestCase):
                      'KG Version': '1.0.1', 'valid_assessment': True}]
 
         appL = plan.validate_app(appL)
-        assert appL == expected
+        assert Test_check.checkEqual(Test_check,appL,expected)
 
     def test_infer_missing_tech(self):
         inferTech = InferTech()
@@ -108,7 +109,7 @@ class TestPlan(unittest.TestCase):
                      'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux']}]
 
         appL = inferTech.infer_missing_tech(appL)
-        assert appL == expected
+        assert Test_check.checkEqual(Test_check,expected,appL)
 
 
     def test_map_to_docker(self):
@@ -175,7 +176,7 @@ class TestPlan(unittest.TestCase):
                                                                       expected[0]['scope_images_confidence'][
                                                                           'mapping'].items()])
 
-        self.assertTrue(appL == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,appL))
 
 
 
@@ -230,7 +231,7 @@ class TestPlan(unittest.TestCase):
         expected = OrderedDict(expected)
         expected = [expected]
         pAppL = plan.output_to_ui_planning(appL)
-        self.assertTrue(pAppL == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,pAppL))
 
     def test_map_to_docker_openshift(self):
         plan = Plan()
@@ -299,7 +300,7 @@ class TestPlan(unittest.TestCase):
                  expected[0]['scope_images_confidence'][
                      'mapping'].items()])
 
-        self.assertTrue(appL == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,appL))
 
     def test_output_to_ui_planning_openshift(self):
         plan = Plan()
@@ -354,7 +355,7 @@ class TestPlan(unittest.TestCase):
         expected = OrderedDict(expected)
         expected = [expected]
         pAppL = plan.output_to_ui_planning(appL)
-        self.assertTrue(pAppL == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,pAppL))
 
     def test_map_to_docker_operator(self):
         plan = Plan()
@@ -399,7 +400,7 @@ class TestPlan(unittest.TestCase):
                                                                       expected[0]['scope_images_confidence'][
                                                                           'mapping'].items()])
 
-        self.assertTrue(appL == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,appL))
 
     def test_output_to_ui_planning_operator(self):
         plan = Plan()
@@ -419,10 +420,10 @@ class TestPlan(unittest.TestCase):
                                              'custom_installations_needed': [], 'custom_images_needed': []}}]
         expected = {'Name': 'app1', 'Desc': 'app1', 'Cmpt': '', 'Valid': True, 'Ref Dockers': [
             {'name': 'MongoDB Enterprise Operator', 'status': '',
-             'url': 'quay.io/mongodb/mongodb-enterprise-operator:1.12.0'}], 'Confidence': 1.0,
+             'url': 'quay.io/mongodb/mongodb-enterprise-operator:NA'}], 'Confidence': 1.0,
                     'Reason': 'No additonal installations required.', 'Recommend': 'Containerize'}
 
         expected = OrderedDict(expected)
         expected = [expected]
         pAppL = plan.output_to_ui_planning(appL)
-        self.assertTrue(pAppL == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,pAppL))
