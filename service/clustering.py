@@ -56,8 +56,6 @@ class Clustering():
             logging.error(f'entities[{entities_filepath}] is empty or not exists')
 
 
-
-
     def output_to_ui_clustering(self, appL):
         """
         output_to_ui clustering methods takes the final assessed data as input and formats it & keeps
@@ -73,17 +71,21 @@ class Clustering():
         fields = ['OS', 'Lang', 'App Server', 'Dependent Apps', 'Runtime', 'Libs']
         for i, app in enumerate(appL):
             for k in fields:
-                # txt = ast.literal_eval(app[k])
-                txt = app[k]
-                for t in txt.keys():
-                    # entity = list(txt[t].keys())[0]
-                    entity = txt[t]['standard_name']
 
-                    # keep only root of hierarchical entity
-                    if entity.find('|') > 0:
-                        entity = f"{entity.split('|')[0]}|*"
+                if k in app.keys():
+                    if type(app[k]) is str:
+                        txt = ast.literal_eval(app[k])
+                    else:
+                        txt = app[k]
+                    for t in txt.keys():
+                        # entity = list(txt[t].keys())[0]
+                        entity = txt[t]['standard_name']
 
-                    tech_stack[i][self.entity_names == entity] = 1
+                        # keep only root of hierarchical entity
+                        if entity.find('|') > 0:
+                            entity = f"{entity.split('|')[0]}|*"
+
+                        tech_stack[i][self.entity_names == entity] = 1
 
         # find unique clusters
         clusters, index, counts = np.unique(tech_stack, return_inverse=True, return_counts=True, axis=0)
