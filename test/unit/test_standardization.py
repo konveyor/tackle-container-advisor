@@ -17,6 +17,7 @@
 import unittest
 from service.standardization import Standardization
 from deepdiff import DeepDiff
+from kg_utils.test_check import Test_check
 
 class TestEntityDetection(unittest.TestCase):
     def test_compose_app1(self):
@@ -86,7 +87,7 @@ class TestEntityDetection(unittest.TestCase):
         if app_data != expected:
             diff = DeepDiff(expected, app_data)
             print("Test app1 diff = ", diff)
-        self.assertTrue(app_data == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))
 
     def test_compose_app2(self):
         app_data = [
@@ -160,7 +161,7 @@ class TestEntityDetection(unittest.TestCase):
             diff = DeepDiff(expected, app_data)
             print("Test app2 Diff = ", diff)
 
-        self.assertTrue(app_data == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))
 
     def test_compose_app3(self):
         app_data = [
@@ -228,7 +229,7 @@ class TestEntityDetection(unittest.TestCase):
         if app_data != expected:
             diff = DeepDiff(expected, app_data)
             print("Test app3 Diff = ", diff)
-        self.assertTrue(app_data == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))
 
 
     def test_compose_app4(self):
@@ -300,7 +301,7 @@ class TestEntityDetection(unittest.TestCase):
         if app_data != expected:
             diff = DeepDiff(expected, app_data)
             print("Test app4 Diff = ", diff)
-        self.assertTrue(app_data == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))
 
 
     def test_compose_app5(self):
@@ -341,7 +342,7 @@ class TestEntityDetection(unittest.TestCase):
         if app_data != expected:
             diff = DeepDiff(expected, app_data)
             print("Test app5 Diff = ", diff)
-        self.assertTrue(app_data == expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))
 
 
     def test_compose_app6(self):
@@ -370,6 +371,4 @@ class TestEntityDetection(unittest.TestCase):
         if app_data != expected:
             diff = DeepDiff(expected, app_data)
             print("Test app6 Diff = ", diff)
-        self.assertTrue(app_data == expected)
-
-
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))

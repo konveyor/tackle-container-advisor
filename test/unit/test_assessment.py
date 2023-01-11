@@ -17,6 +17,7 @@
 import unittest
 from collections import OrderedDict
 from service.assessment import Assessment
+from kg_utils.test_check import Test_check
 
 
 class TestAssessment(unittest.TestCase):
@@ -65,4 +66,6 @@ class TestAssessment(unittest.TestCase):
         expected = OrderedDict(expected)
         expected = [expected]
         pAppL = assessment.output_to_ui_assessment(appL)
-        self.assertTrue(pAppL == expected)
+        print(pAppL)
+        print(expected)
+        self.assertTrue(Test_check.checkEqual(Test_check,expected,pAppL))
