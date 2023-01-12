@@ -394,7 +394,7 @@ class Plan():
 
         try:
             for app in assessment_data:
-                # Order dictionry to fix the order of columns in the output
+                # Order dictionary to fix the order of columns in the output
                 pApp = OrderedDict()
 
                 # Raw Fields
@@ -411,21 +411,39 @@ class Plan():
                     pApp['component_name'] = app["Cmpt"]
 
                 # Curated
-                # mic
-                # pApp['OS'] = ast.literal_eval(app["OS"])
-                # pApp['Lang'] = ast.literal_eval(app["Lang"])
-                # pApp["App Server"] = ast.literal_eval(app["App Server"])
-                # pApp["App"] = ast.literal_eval(app["Dependent Apps"])
-                # pApp["Runtime"] = ast.literal_eval(app["Runtime"])
-                # pApp["Lib"] = ast.literal_eval(app["Libs"])
-                pApp['OS'] = app["OS"]
-                pApp['Lang'] = app["Lang"]
-                pApp["App Server"] = app["App Server"]
-                pApp["App"] = app["Dependent Apps"]
-                pApp["Runtime"] = app["Runtime"]
-                pApp["Lib"] = app["Libs"]
+                if type(app["OS"]) is str:
+                    pApp['OS'] = ast.literal_eval(app["OS"])
+                else:
+                    pApp['OS'] = app["OS"]
+
+                if type(app["Lang"]) is str:
+                    pApp['Lang'] = ast.literal_eval(app["Lang"])
+                else:
+                    pApp['Lang'] = app["Lang"]
+
+                if type(app["App Server"]) is str:
+                    pApp["App Server"] = ast.literal_eval(app["App Server"])
+                else:
+                    pApp["App Server"] = app["App Server"]
+
+                if type(app["Dependent Apps"]) is str:
+                    pApp["App"] = ast.literal_eval(app["Dependent Apps"])
+                else:
+                    pApp["App"] = app["Dependent Apps"]
+
+                if type(app["Runtime"]) is str:
+                    pApp["Runtime"] = ast.literal_eval(app["Runtime"])
+                else:
+                    pApp["Runtime"] = app["Runtime"]
+
+                if type(app["Libs"]) is str:
+                    pApp["Lib"] = ast.literal_eval(app["Libs"])
+                else:
+                    pApp["Lib"] = app["Libs"]
+
 
                 pApp['assessment_reason'] = app['Reason']
+
                 try:
                     pApp["KG Version"] = app["KG Version"]
                 except:
@@ -583,7 +601,7 @@ class Plan():
             # AI Insights
             pApp['Valid'] = app["valid_planning"]
 
-            pApp["Ref Dockers"] = [] # mic ""
+            pApp["Ref Dockers"] = []
             pApp["Confidence"] = 0
             pApp['Reason'] = app["planning_reason"]
 
@@ -597,18 +615,17 @@ class Plan():
 
                 for image in app["scope_images"]:
                     image_name = image
-                    # mic docker_url_dict = {}
-                    # mic start
+
                     docker_url_dict = {'name': "", 'status': "", 'url': ""}
                     docker_url_dict['name'] = image_name
-                    # mic end
+
                     if app['scope_images'][image]['Status']:
                         image_name = image_name + '(' + app['scope_images'][image]['Status'] + ')'
                         docker_url_dict['status'] = app['scope_images'][image]['Status']
-                    # mic docker_url_dict[image_name] = app["scope_images"][image]["Docker_URL"]
+                    #  docker_url_dict[image_name] = app["scope_images"][image]["Docker_URL"]
 
                     docker_url_dict['url'] = app["scope_images"][image]["Docker_URL"]
-                    pApp['Ref Dockers'].append(docker_url_dict)  # mic += str(counter) + ". " + str(docker_url_dict) +'\n'
+                    pApp['Ref Dockers'].append(docker_url_dict)  # += str(counter) + ". " + str(docker_url_dict) +'\n'
                     counter_list += str(counter) + ','
                     counter += 1
                 counter_list = counter_list[:-1]
@@ -632,7 +649,7 @@ class Plan():
 
                         docker_url_dict['url'] = app["scope_images_win"][image]["Docker_URL"]
 
-                        pApp['Ref Dockers'].append(docker_url_dict)  # mic += str(counter) + ". " + image_name +'|'+app["scope_images_win"][image]["Docker_URL"]+'\n'
+                        pApp['Ref Dockers'].append(docker_url_dict)  #  += str(counter) + ". " + image_name +'|'+app["scope_images_win"][image]["Docker_URL"]+'\n'
                         counter_list += str(counter) + ','
                         counter += 1
                     counter_list = counter_list[:-1]
@@ -657,7 +674,7 @@ class Plan():
                             pApp['Reason'] += '\n '
                         pApp['Reason'] += 'Reason 400: Not supported by any container image: ' + ', '.join(filter(None, win_not_supported))
                         app["valid_planning"] = False
-                # mic pApp['Ref Dockers'] = pApp['Ref Dockers'][:-1]
+                #  pApp['Ref Dockers'] = pApp['Ref Dockers'][:-1]
                 pApp["Confidence"] = round(pApp['Confidence'], 2)
                 if pApp["Confidence"] == 1:
                     if reason:
