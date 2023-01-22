@@ -8,15 +8,68 @@ import argparse
 db_file = "/app/db/1.0.4.db"
 
 
+class Table():
+
+    def __init__(self,name:str,num_columns:int , num_foreign_keys:str):
+        """_summary_
+
+        Args:
+            name (str): table name
+            num_columns (int): number of columns 
+            num_foreign_keys (str): number of foreign keys
+
+        Returns:
+            _type_(None): none
+        """
+        self.table_name = name
+        self.num_columns = num_columns
+        self.number_of_foreign_keys = num_foreign_keys
+
+    def  primary_key(self):
+        """_summary_
+        """
+        pass
+    def foreign_key(self):
+        """
+        
+
+        """
+        pass
+    def default_val(self):
+        """_summary_
+        """
+        pass
+
+
+    def structure(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
+        
+     
+    
+    def unique(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
+
+
+        pass
+    
+    
+
 #View all current tables
-def current_table_names(conn):
+def table_names(conn):
     cursor = conn.cursor()
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = []
 
     for col in cursor.fetchall():
         tables.append(col[0])
-
     return tables
 
     print("Tables: {}".format(tables))
@@ -38,7 +91,9 @@ def create_table(conn, table_name:str, columns:str):
     # table2 = "CREATE TABLE {}(Id INTEGER PRIMARY KEY, label TEXT NOT NULL, label_url TEXT, \
     #         container_name TEXT, container_image_url TEXT , repository_url TEXT )".format(table_name)
     res = cur.execute(table)
+    
 
+def constraints()
 
 def table_cmd():
 
@@ -52,7 +107,8 @@ def table_cmd():
                     prog = 'add_tables.py',
                     description = 'Add a new table to the database')
     parser.add_argument('-t', '--table_name')      #
-    parser.add_argument('-n', '--num_columns') 
+    parser.add_argument('-n', '--num_columns')
+    parser.add_argument('-f',  '--num_foreign_keys') 
 
     return parser.parse_args() 
 
@@ -63,28 +119,40 @@ if "__name__==__main__":
     conn = sqlite3.connect(db_file)
    
     entries = table_cmd()
-    print(entries.table_name)
+
+
+    if entries.table_name in table_names(conn):
+        print("{} is already in the database.".format(entries.table_name))
+        Ans = input("Would you like to drop {} table? Y/N".format(entries.table_name))
+        if Ans.lower()  == "y": 
+            conn.execute("DROP TABLE {}".format(entries.table_name))
+        else: exit()
 
     columns = '('
-    print("For common mysql datatypes, refer to the doc: https://dev.mysql.com/doc/refman/8.0/en/data-types.html")
+    print("Enter column name followed by  data type along with any additional column constraints(PRIMARY KEY, FOREIGN KEY, NOT NULL, AUTOINCREMENT, DEFAULT, DETAILS,  ETC ...)")
+    print("For common mysql data types, please refer to the documentation at: https://dev.mysql.com/doc/refman/8.0/en/data-types.html")
 
     
-    if entries.table_name in current_table_names(conn):
-        print("Cannot have duplicated Table name")
-    # for num in list(range(int(entries.num_columns))):
-    #     col_name = input("column {} name: ".format(num))
-    #     col_data_type = input("{} data type : ".format(col_name))
-        
-    #     if num + 1 < int(entries.num_columns):
-    #         columns += col_name + ' ' + col_data_type + ', '
-    #     else : columns += col_name + ' ' +col_data_type
-    
-    # columns += ')'
-    #create_table(conn,entries.table_name,columns)
+    for num in list(range(int(entries.num_columns))):
+        col_ = input("Enter column {} name  , data type , constraints if any.: ".format(num))
+        if num +1 == int(entries.num_columns) : columns += col_
+        else: columns += col_ + ', '
+
+    if entries.num_foreign_keys == 0: columns += ')'
+
+    else:
+        for num in list(range(int(entries.num_foreign_keys))):
+            f_key = input("Enter FOREIGN KEY {} : ".format(num+1))
+            columns += col_ + ', '
+
 
     
-    #explore_db(conn)
-    #conn.execute("DROP TABLE {}".format(entries.table_name))
+
+    print(columns)
+
+    create_table(conn,entries.table_name,columns)
+    print(table_names(conn))
+
 
 
 
