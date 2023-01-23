@@ -1,69 +1,27 @@
 
 import sqlite3
-
 import argparse
+import configparser
+import os
+import logging
 
-# Connect to the 
-
-db_file = "/app/db/1.0.4.db"
-
-
-class Table():
-
-    def __init__(self,name:str,num_columns:int , num_foreign_keys:str):
-        """_summary_
-
-        Args:
-            name (str): table name
-            num_columns (int): number of columns 
-            num_foreign_keys (str): number of foreign keys
-
-        Returns:
-            _type_(None): none
-        """
-        self.table_name = name
-        self.num_columns = num_columns
-        self.number_of_foreign_keys = num_foreign_keys
-
-    def  primary_key(self):
-        """_summary_
-        """
-        pass
-    def foreign_key(self):
-        """
-        
-
-        """
-        pass
-    def default_val(self):
-        """_summary_
-        """
-        pass
+#config file
+config = configparser.ConfigParser()
+config_data = os.path.join("config/kg.ini")
+config.read([config_data])
+db_file = config["database"]["database_path"]    
 
 
-    def structure(self):
-        """_summary_
-
-        Returns:
-            _type_: _description_
-        """
-        
-     
+def table_names(conn) ->list:
+    """
+    View table names.
     
-    def unique(self):
-        """_summary_
+    Args:
+        conn (_type_): Connection to the database.
 
-        Returns:
-            _type_: _description_
-        """
-
-
-        pass
-    
-    
-
-#View all current tables
-def table_names(conn):
+    Returns:
+        list: A list containing all table names.
+    """
     cursor = conn.cursor()
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = []
@@ -72,35 +30,29 @@ def table_names(conn):
         tables.append(col[0])
     return tables
 
-    print("Tables: {}".format(tables))
 
 
+def create_table(conn, table_name:str, columns:str):
 
-def create_table(conn, table_name:str, columns:str): 
     """
-    Create a custom table
+    Create a custom table.
 
     Args:
-        conn (_type_): _description_
+        conn (_type_): Connection to the database.
     """
     cur = conn.cursor()
 
     table = "CREATE TABLE {}{}".format(table_name, columns)
-
-    print(table)
-    # table2 = "CREATE TABLE {}(Id INTEGER PRIMARY KEY, label TEXT NOT NULL, label_url TEXT, \
-    #         container_name TEXT, container_image_url TEXT , repository_url TEXT )".format(table_name)
-    res = cur.execute(table)
+    cur.execute(table)
+    logging.info("{} added to the database!".format(table_name))
     
 
-def constraints()
 
-def table_cmd():
-
+def table_cmd()->object:
     """
-
-    _summary_
-
+    Parses input arguments
+    Returns:
+        object: A parser
     """
 
     parser = argparse.ArgumentParser(
@@ -109,7 +61,6 @@ def table_cmd():
     parser.add_argument('-t', '--table_name')      #
     parser.add_argument('-n', '--num_columns')
     parser.add_argument('-f',  '--num_foreign_keys') 
-
     return parser.parse_args() 
 
    
@@ -120,38 +71,30 @@ if "__name__==__main__":
    
     entries = table_cmd()
 
-
-    if entries.table_name in table_names(conn):
-        print("{} is already in the database.".format(entries.table_name))
-        Ans = input("Would you like to drop {} table? Y/N".format(entries.table_name))
-        if Ans.lower()  == "y": 
-            conn.execute("DROP TABLE {}".format(entries.table_name))
-        else: exit()
-
     columns = '('
-    print("Enter column name followed by  data type along with any additional column constraints(PRIMARY KEY, FOREIGN KEY, NOT NULL, AUTOINCREMENT, DEFAULT, DETAILS,  ETC ...)")
+    print("Enter column name followed by  data type along with any additional column constraints(PRIMARY KEY, NOT NULL, AUTOINCREMENT, DEFAULT, DETAILS,  ETC ...)")
     print("For common mysql data types, please refer to the documentation at: https://dev.mysql.com/doc/refman/8.0/en/data-types.html")
-
+    print("============================================================================================================================")
     
     for num in list(range(int(entries.num_columns))):
-        col_ = input("Enter column {} name  , data type , constraints if any.: ".format(num))
+        col_ = input("column {}: ".format(num))
         if num +1 == int(entries.num_columns) : columns += col_
         else: columns += col_ + ', '
-
-    if entries.num_foreign_keys == 0: columns += ')'
-
-    else:
-        for num in list(range(int(entries.num_foreign_keys))):
-            f_key = input("Enter FOREIGN KEY {} : ".format(num+1))
-            columns += col_ + ', '
-
-
     
-
-    print(columns)
-
+    print("\n")
+    if entries.num_foreign_keys == 0: columns += ')'
+    
+    else:
+        print("Enter FOREIGN KEYS.")
+        print("Format: FOREIGN KEY (column_name) REFERENCES <table_name> (<corresponding column from table_name>)")
+        print("Example: FOREIGN KEY (entity_id) REFERENCES entities (id)")
+        print("==============================================================================================")
+        for num in list(range(int(entries.num_foreign_keys))):
+            f_key = input("FOREIGN KEY {} : ".format(num+1))
+            columns +=  ', '  + f_key
+    
+    columns += ')'
     create_table(conn,entries.table_name,columns)
-    print(table_names(conn))
 
 
 
