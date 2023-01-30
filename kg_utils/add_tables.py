@@ -46,8 +46,7 @@ def create_table(conn, table_name:str, columns:str):
     cur.execute(table)
     logging.info("{} added to the database!".format(table_name))
     
-
-
+    
 def table_cmd()->object:
     """
     Parses input arguments
