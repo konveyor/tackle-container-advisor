@@ -203,7 +203,7 @@ class Assessment(Resource):
 
 
 @api.route('/containerize', strict_slashes=False)
-@api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift or operator', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift', 'operator']}})
+@api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift, operator or move2kube', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift', 'operator','move2kube']}})
 class Planning(Resource):
     """
     Planning class creates the assessment in the form of assessment_model for the
@@ -230,7 +230,7 @@ class Planning(Resource):
         if not catalog:
             catalog = 'dockerhub'
         catalog = catalog.lower()
-        if catalog not in ['dockerhub', 'openshift', 'operator']:
+        if catalog not in ['dockerhub', 'openshift', 'operator','move2kube']:
             catalog = 'dockerhub'
 
         return functions.do_planning(auth_url,dict(request.headers),auth_headers,api.payload,catalog)
