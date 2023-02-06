@@ -37,7 +37,7 @@ default_os_id =  [_id   for  _id , val in all_os_entities.items() if val.lower()
 db_connection = create_db_connection()
 
 
-with open("/app/kg/class_type_mapper.json", 'r', encoding="utf-8") as type_map:  
+with open("kg/class_type_mapper.json", 'r', encoding="utf-8") as type_map:  
     type_mapper = json.load(type_map)
 
 
