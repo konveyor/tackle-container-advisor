@@ -23,6 +23,7 @@ import codecs
 from service.utils import Utils
 import re
 
+
 import configparser
 
 config = configparser.ConfigParser()
@@ -34,7 +35,7 @@ config.read([common, kg])
 class Plan():
     def __init__(self, logger=False):
         '''
-        Loads the docker, openshift and operator KG json file data
+        Loads the docker, openshift, operator and move2kube KG json file data
         '''
 
         logging.basicConfig(level=logging.INFO)
@@ -123,6 +124,37 @@ class Plan():
             logging.error(f'inverted_operatorimageKG[{inverted_operatorimageKG_filepath}] is empty or not exists')
 
 
+        #move2kube kg 
+
+        move2kubeimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['move2kubeimageKG'])
+        if os.path.exists(move2kubeimageKG_filepath):
+            with open(move2kubeimageKG_filepath, 'r') as f:
+                self.__move2kubeimage_KG = json.load(f)
+        else:
+            self.__move2kubeimage_KG = {}
+            logging.error(f'operatorimageKG[{move2kubeimageKG_filepath}] is empty or not exists')
+        
+        #move2kube kg: add baseOS images
+
+        if os.path.exists(baseOSKG_filepath):
+            with open(baseOSKG_filepath, 'r') as f:
+                baseOSKG = json.load(f)
+
+            for image_name in baseOSKG['Container Images']:
+                self.__move2kubeimage_KG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
+        else:
+            logging.error(f'baseOSKG[{baseOSKG_filepath}] is empty or not exists')
+
+        
+        inverted_move2kubeimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['inverted_move2kubeimageKG'])
+        if os.path.exists(inverted_move2kubeimageKG_filepath):
+            with open(inverted_move2kubeimageKG_filepath, 'r') as f:
+                self.__inverted_move2kubeimageKG = json.load(f)
+        else:
+            self.__inverted_move2kubeimageKG = {}
+            logging.error(f'inverted_operatorimageKG[{inverted_move2kubeimageKG_filepath}] is empty or not exists')
+
+
         COTSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['COTSKG'])
         if os.path.exists(COTSKG_filepath):
             with open(COTSKG_filepath, 'r') as f:
@@ -164,6 +196,9 @@ class Plan():
         if catalog == 'operator':
             inverted_containerimageKG = self.__inverted_operatorimageKG
             containerimageKG = self.__operatorimage_KG
+        if catalog == 'move2kube':
+            inverted_containerimageKG = self.__inverted_move2kubeimageKG
+            containerimageKG = self.__move2kubeimage_KG
 
         # Compute maximum value of confidence
         cum_scores = scores_dict['OS']
@@ -321,6 +356,10 @@ class Plan():
             inverted_containerimageKG = self.__inverted_openshiftimageKG
         if catalog == 'operator':
             inverted_containerimageKG = self.__inverted_operatorimageKG
+            
+        if catalog == 'move2kube':
+            inverted_containerimageKG = self.__inverted_move2kubeimageKG
+
 
         app['scope_images'] = []
         backup_images = []
@@ -498,6 +537,10 @@ class Plan():
         if len(self.__operatorimage_KG) == 0 or len(self.__inverted_operatorimageKG) == 0:
             logging.error('service/planning.py init failed')
             return appL
+        if len(self.__move2kubeimage_KG) == 0 or len(self.__inverted_move2kubeimageKG) == 0:
+            logging.error('service/planning.py init failed')
+            return appL
+
 
         containerL = []
         for app in appL:

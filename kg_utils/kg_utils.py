@@ -982,7 +982,7 @@ def create_version(db_connection):
     save_json(ver_kg, "entity_versionsKG")
 
 
-def create_operator_image_kg(db_connect):
+def create_image_kg(db_connect , table_name=""):
     """
     Create operator image KG.
 
@@ -992,9 +992,14 @@ def create_operator_image_kg(db_connect):
     :returns: Saves operator image KG to the ontology folder.
     :rtype: JSON file
 
+
     """
-    operator_cursor = db_connect.cursor()
-    operator_cursor.execute("SELECT * FROM operator_images")
+    if table_name=="":
+        logging.warning("Please provide a table name")
+        exit()
+        
+    cursor = db_connect.cursor()
+    cursor.execute("SELECT * FROM {}".format(table_name))
     entities = entity_mapper(db_connect)
 
     operator_image_kg = {}
@@ -1002,9 +1007,15 @@ def create_operator_image_kg(db_connect):
     operator_image_kg["KG Version"] = config["general"]["version"]
 
     operator_image_kg["Container Images"] = {}
-    for image in operator_cursor.fetchall():
-        container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, operator_URL, operator_repository = image[
+    for image in cursor.fetchall():
+
+        if table_name =="operator_images":
+            container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, operator_URL, operator_repository = image[
                                                                                                                                                                      1:]
+            kg_name = "operatorimageKG"
+        else: 
+            container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, move2kube_image_url = image[1:]
+            kg_name = "move2kubeimageKG"
 
         operator_image_kg["Container Images"][container_name] = {}
         operator_image_kg["Container Images"][container_name]["OS"] = [
@@ -1052,14 +1063,17 @@ def create_operator_image_kg(db_connect):
         else:
             operator_image_kg["Container Images"][container_name]["Runtime"] = [
                 {"Class": entities[str(runtime_id)], "Variants": '', 'Versions': '', 'Type': "Runtime", 'Subtype': ''}]
+        
+        if table_name =="operator_images":
+            operator_image_kg["Container Images"][container_name]["Docker_URL"] = operator_URL
+            operator_image_kg["Container Images"][container_name]["OperatorRepository"] = operator_repository
+        if table_name =="move2kube_images":
+            operator_image_kg["Container Images"][container_name]["Docker_URL"] = move2kube_image_url
+        
+    save_json(operator_image_kg, kg_name)
 
-        operator_image_kg["Container Images"][container_name]["Docker_URL"] = operator_URL
-        operator_image_kg["Container Images"][container_name]["OperatorRepository"] = operator_repository
-       
-    save_json(operator_image_kg, "operatorimageKG")
 
-
-def create_inverted_operator_image_kg(database_connect):
+def create_inverted_image_kg(database_connect, table_name = ""):
     """
     Create inverted operator image KG.
 
@@ -1071,102 +1085,124 @@ def create_inverted_operator_image_kg(database_connect):
 
     """
 
+    if table_name =="":
+        logging.warning("Please provide table name")
+        exit()
+
+    if table_name =="operator_images":
+        inverted_kg_name = "inverted_operatorimageKG"
+    if table_name =="move2kube_images":
+        inverted_kg_name = "inverted_move2kubeimageKG"
+
+
     inverted_cur = database_connect.cursor()
-    inverted_cur.execute("SELECT * FROM operator_images")
+    inverted_cur.execute("SELECT * FROM {}".format(table_name))
     entities = entity_mapper(database_connect)
-    inverted_operator_images_kg = {}
-    inverted_operator_images_kg['Version'] = config["general"]["version"]
+    inverted_images_kg = {}
+    inverted_images_kg['Version'] = config["general"]["version"]
     cur = database_connect.cursor()
-    cur.execute("SELECT * FROM operator_images")
+    cur.execute("SELECT * FROM {}".format(table_name))
 
     for img in cur.fetchall():
-        _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id, runtim_id, _, _ = img[1:]
+
+        if table_name == "operator_images":
+            _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id, runtim_id, _, _ = img[1:]
+        
+        if table_name == "move2kube_images":
+            _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id, runtim_id, _ = img[1:]
+
 
         if os_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(os_id)]] = []
+            inverted_images_kg[entities[str(os_id)]] = []
 
         if lan_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(lan_id)]] = []
+            inverted_images_kg[entities[str(lan_id)]] = []
 
         if libr_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(libr_id)]] = []
+            inverted_images_kg[entities[str(libr_id)]] = []
 
         if appl_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(appl_id)]] = []
+            inverted_images_kg[entities[str(appl_id)]] = []
 
         if appl_server_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(appl_server_id)]] = []
+            inverted_images_kg[entities[str(appl_server_id)]] = []
 
         if plug_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(plug_id)]] = []
+            inverted_images_kg[entities[str(plug_id)]] = []
 
         if runlibr_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(runlibr_id)]] = []
+            inverted_images_kg[entities[str(runlibr_id)]] = []
 
         if runtim_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(runtim_id)]] = []
+            inverted_images_kg[entities[str(runtim_id)]] = []
 
     for image in inverted_cur.fetchall():
-        _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _, _ = image[
+
+        if table_name == "operator_images": _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _, _ = image[
                                                                                                                              :]
+        
+        if table_name =="move2kube_images":
+            _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _ = image[
+                                                                                                                             :]
+                                                                                                                            
 
         if os_entity_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(os_entity_id)]].append(container_name)
+            inverted_images_kg[entities[str(os_entity_id)]].append(container_name)
 
         if lang_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(lang_id)]].append(container_name)
+            inverted_images_kg[entities[str(lang_id)]].append(container_name)
 
         if lib_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(lib_id)]].append(container_name)
+            inverted_images_kg[entities[str(lib_id)]].append(container_name)
 
         if app_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(app_id)]].append(container_name)
+            inverted_images_kg[entities[str(app_id)]].append(container_name)
 
         if app_server_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(app_server_id)]].append(container_name)
+            inverted_images_kg[entities[str(app_server_id)]].append(container_name)
 
         if plugin_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(plugin_id)]].append(container_name)
+            inverted_images_kg[entities[str(plugin_id)]].append(container_name)
 
         if runlib_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(runlib_id)]].append(container_name)
+            inverted_images_kg[entities[str(runlib_id)]].append(container_name)
 
         if runtime_id == None:
             pass
         else:
-            inverted_operator_images_kg[entities[str(runtime_id)]].append(container_name)
+            inverted_images_kg[entities[str(runtime_id)]].append(container_name)
 
-    save_json(inverted_operator_images_kg, "inverted_operatorimageKG")
+    save_json(inverted_images_kg, inverted_kg_name)
 
 
 def create_db_connection(db_file):
@@ -1226,5 +1262,13 @@ if __name__== '__main__':
         create_openshift_base_os_kg(connection)
         create_cot_kg(connection)
         create_version(connection)
-        create_operator_image_kg(connection)
-        create_inverted_operator_image_kg(connection)
+
+        #create kg for operator images
+        create_image_kg(connection , table_name = "operator_images")
+        create_inverted_image_kg(connection , table_name = "operator_images")
+
+        #create kg for move2kube images
+        create_image_kg(connection , table_name = "move2kube_images")
+        create_inverted_image_kg(connection , table_name = "move2kube_images")
+
+       

@@ -18,8 +18,14 @@
 import json
 import logging
 import csv
-from .load_entities import all_OS_from_db
-from .utils import  get_column , remove_tags_url
+
+
+from .load_entities import all_OS_from_db, filter_entity
+from .utils import  get_column , remove_tags_url , create_db_connection
+
+# from load_entities import all_OS_from_db, filter_entity
+# from utils import  get_column , remove_tags_url , create_db_connection
+
 
 
 #List of all OS
@@ -28,10 +34,41 @@ all_os_entities = all_OS_from_db()
 #Assign default OS as linux
 default_os_id =  [_id   for  _id , val in all_os_entities.items() if val.lower()=="linux"]
 
+db_connection = create_db_connection()
+
+
+with open("kg/class_type_mapper.json", 'r', encoding="utf-8") as type_map:  
+    type_mapper = json.load(type_map)
+
+
+def entity_mapper(db_connection):
+    """
+    Loads entity names from "entities" table from mysql db
+
+    :param db_connection: A connection to mysql
+    :type db_connection:  <class 'sqlite3.Connection'>
+
+    :returns: A dictionary of entity_names
+    :rtype: dict
+
+    """
+    parent_class = {}
+
+    parent_cursor = db_connection.cursor()
+    parent_cursor.execute("SELECT * FROM entities")
+
+    for entity_row in parent_cursor.fetchall():
+        
+        class_id, entity = entity_row[0], entity_row[1]
+        parent_class[ entity]= str(class_id) 
+    return parent_class
+
+entity_mapping_ids = entity_mapper(db_connection)
+
 
 def search_results():
     """
-    load results 
+    load results.
 
     Returns:
         None:  Json file containing  search results
@@ -67,7 +104,7 @@ def entity_type_mapper( entity_type: int , entity_id : str)-> dict:
 
 def write_to_csv(data:list, file_name:str):
     """
-    Write results to csv file 
+    Writes results to csv file.
 
     Args:
         data (list): A list containing data to save.
@@ -78,7 +115,7 @@ def write_to_csv(data:list, file_name:str):
     with open("kg_utils/image_search_kg/{}.csv".format(file_name) , "w" , encoding="utf-8") as op_csv:
 
         if data == []:
-            print("No {} found".format(file_name))
+            logging.warning("No {} found".format(file_name))
             return
 
         columns = list(data[0].keys())
@@ -95,6 +132,15 @@ def write_to_csv(data:list, file_name:str):
                             "Operator_Correspondent_Image_Url": row["Operator_Correspondent_Image_Url"] ,\
                                 "Operator_Repository" : row["Operator_Repository"]
                                 }) 
+
+        if file_name == "move2kube_images":
+            for row in data:
+                writer.writerow({"move2kube_images":row["move2kube_images"],'container_name': row["container_name"], 'OS': row["OS"] \
+                    , "lang":row["lang"],  "lib": row["lib"] , "app": row["app"] \
+                        ,"app_server": row["app_server"] , "plugin":row["plugin"] , \
+                            "runlib": row["runlib"] , "runtime": row["runtime"] , \
+                            "move2kube_correspondent_image_url": row["move2kube_correspondent_image_url"] }) 
+
         if file_name == "docker_images":
             for row in data:
 
@@ -147,10 +193,7 @@ def get_exact_images(all_images: dict , catalogue ="operators", index = 2):
         
         
         image_name = list(image.keys())[0]
-        
-        
-           
-    
+
         if  image[image_name][index][catalogue] != []:
             
         
@@ -165,7 +208,7 @@ def get_exact_images(all_images: dict , catalogue ="operators", index = 2):
 
 def csv_columns( table_name:str ):
     """
-    Build the columns headers for the csv files.
+    Builds column headers for csv files.
 
     Args:
         table_name (str, optional):The name of the table from the database.
@@ -175,12 +218,10 @@ def csv_columns( table_name:str ):
     """
     
     columns = { table_name: "", "container_name":"", "OS": None, "lang" : None, "lib": None, "app": None, "app_server": None,"plugin": None,"runlib": None,"runtime": None }
-
     docker_col_extension = {"Docker_Url":"", "Notes": "", "CertOfImageAndPublisher": "" }
-
     openshift_col_extension = {"Openshift_Correspondent_Image_Url":"", "DockerImageType": ""}
-
     operator_col_extension ={"Operator_Correspondent_Image_Url":[],"Operator_Repository": ""}
+    move2kube_col_extension = {"move2kube_correspondent_image_url":[]}
 
     if table_name == "openshift_images":
         columns.update(openshift_col_extension) 
@@ -189,23 +230,26 @@ def csv_columns( table_name:str ):
         columns.update(docker_col_extension)
     elif table_name == "operator_images":
         columns.update(operator_col_extension)
+    elif table_name == "move2kube_images":
+        columns.update(move2kube_col_extension)
     else: 
-        logging.debug("Wrong table's name. Enter one of the following table's names: docker_images, operator_images,operator_images")
+        logging.debug("Wrong table's name. Enter a valid table name from the database")
         exit()
         
     return columns
         
 def operator_images():
     """
-    Saves operator images to a operator_images.csv
+    Saves operator images to operator_images.csv.
 
     """
     row_data = []
     cols = csv_columns(table_name="operator_images")
     images_ = search_results()
     operator_images  = get_column("operator_images", column_index=1)
-
-    operator_exact_images = get_exact_images(images_ , catalogue="operators") #All exact images from the three catalogs.
+    
+    #All exact images from the three catalogs.
+    operator_exact_images = get_exact_images(images_ , catalogue="operators")
     
     for operator_image in operator_exact_images:
         image_name = list(operator_image.keys())[0]
@@ -220,7 +264,7 @@ def operator_images():
             op_data["container_name"] = op["display_name"].lower().strip()
 
             if op_data["container_name"] in operator_images:
-                print("{}  is already present".format(op_data["container_name"]))
+                logging.info("{}  is already present".format(op_data["container_name"]))
                 continue
         
             op_data["OS"] = default_os_id[0]
@@ -232,7 +276,7 @@ def operator_images():
 
             if len(op["container_images"]) >=1:
                 Operator_Correspondent_Image_Url = remove_tags_url(op["container_images"][0])
-                print("{}  ==> {}".format(op["container_images"][0], Operator_Correspondent_Image_Url))
+                logging.info("{}  ==> {}".format(op["container_images"][0], Operator_Correspondent_Image_Url))
                 op_data["Operator_Correspondent_Image_Url"] = Operator_Correspondent_Image_Url
             else:
                 op_data["Operator_Correspondent_Image_Url"] = None
@@ -242,7 +286,7 @@ def operator_images():
 
 def docker_os_type_id(os_types:list ) -> dict:
     """
-    Get OS ids.
+    Retrieves OS ids.
     Args:
         os_types (list):  List of OS names
        
@@ -261,7 +305,7 @@ def docker_os_types(exact_image:dict)-> list:
     """
     Get the OS type ( Linux , Centos , Ubuntu etc ..) of an image. 
     Args:
-        exact_image (dict): An  image from dockerhub
+        exact_image (dict): An  image from dockerhub.
     Returns:
         list: list of OS types this particular image runs on. 
     """
@@ -276,21 +320,11 @@ def docker_os_types(exact_image:dict)-> list:
     else:
         return os_type_ids
 
-def containers_with_multiple_os(container_names: list) -> list:
-    """_summary_
-
-    Args:
-        container_names (list): _description_
-
-    Returns:
-        list: _description_
-    """
-    pass
-
 
 def docker_images() -> None:
     """
-    Saves docker images to docker_images.csv
+    Saves docker images to docker_images.csv.
+
     """
     
     row_data = []
@@ -409,3 +443,145 @@ def openshift_images():
                 row_data.append(img_data)
     write_to_csv(row_data , "openshift_images")
 
+
+
+def default_id(component:str)-> int:
+    """
+    Assign default OS ids 
+    Args:
+        component (str): component_type [ OS, Lang, Lib, App, App Server, Plugin, Runlib, Runtime]
+
+    Returns:
+        int: default os id. 
+    """
+    if component == "OS":
+        return default_os_id[0]
+    
+
+
+def standard_name_type(standard_name: str) ->str:
+
+    return type_mapper[standard_name]
+
+    
+def standard_name_ids(type_data: dict , type_name:str) -> list:
+    """
+    Get standard name from type_data.
+    Args:
+        type_data (dict): Contains data 
+        type_name (str): _description_
+
+    Returns:
+        list: List of tuple containing (entity_id, entity_type).
+
+    """
+
+    ids , standard_name_type = [] , []
+    entity_names = list(type_data[type_name].keys())
+    
+    if len(entity_names) == 0:
+        return []
+
+    else: 
+        for entity_name in entity_names:
+            standard_name = type_data[type_name][entity_name].get("standard_name",None)
+            id = entity_mapping_ids[str(standard_name)]
+            standard_name_type = type_mapper["mappings"][standard_name]
+            ids.append((id , standard_name_type))
+    return ids
+    
+
+def create_n_rows( column_data: dict , ids: list,  url :str):
+
+     rows = []
+     component_columns=  {'Lang': 'lang', 'Lib': 'lib', 'App Server': 'app server', "Runlib": "runlib", 'Runtime': 'runtime',"Plugin": 'plugin' ,'App': 'app', 'OS': 'OS'}
+
+     for n_row , id in enumerate(ids):
+        row_data = column_data.copy()
+        entity_id , entity_type = id[0] , id[1]
+        col_name = component_columns[entity_type]
+        row_data[col_name] = entity_id
+
+        if row_data["OS"] == None: row_data["OS"] = int(default_os_id[0])
+        row_data["move2kube_correspondent_image_url"] = url
+        rows.append(row_data)
+        print("row {} , data: {} , ===> type: {}".format(n_row, row_data, entity_type))
+        del row_data
+
+     return rows
+    
+  
+
+
+
+
+
+def move2kube():
+    """
+    Convert move2kube json data to csv
+    """
+
+    columns = csv_columns(table_name="move2kube_images")
+    row_data = []
+
+
+    with open("kg_utils/image_search_kg/ibm_cloud_catalog_standardized.json", "r" , encoding="utf-8") as catalog:
+        ibm_cloud_catalog = json.load(catalog)
+
+    with open("kg_utils/image_search_kg/ibm_cloud_catalog.json", "r" , encoding="utf-8") as catalog_url:
+        ibm_cloud_catalog_url = json.load(catalog_url)
+
+    for idx , cat in enumerate(ibm_cloud_catalog[:]):
+        app_data = cat.copy()
+        column_data = columns.copy()
+        app_data.update({"container_name": app_data.pop("Name")})
+        app_data.pop("Desc") 
+        app_data.pop("Cmpt")
+        app_data.pop("Reason")
+        app_data.pop("KG Version")
+        app_data.update({"move2kube_correspondent_image_url":ibm_cloud_catalog_url[idx]["application_url"]}) 
+
+        #update row_data
+        column_data["move2kube_images"] = "move2kube_images"
+        column_data["container_name"] = app_data["container_name"]
+
+        components = ["OS", "Lang" , "Libs" , "App" ,"App Server" , "Plugin", "Runlib", "Runtime", "Dependent Apps"]
+        component_columns=  {'Lang': 'lang', 'Lib': 'lib', 'App Server': 'app server', "Runlib": "runlib", 'Runtime': 'runtime',"Plugin": 'plugin' ,'App': 'app', 'OS': 'OS'}
+        create_multiple_rows = False
+        rows = None
+
+        for component in components:
+            if component in list(app_data.keys()):  
+                ids  = standard_name_ids(app_data , component)
+                if len(ids) > 1:
+                    rows = create_n_rows(column_data, ids, app_data["move2kube_correspondent_image_url"] )
+                    create_multiple_rows = True
+                    continue
+                else:
+                    for id in ids:
+                        entity_id , entity_type = id[0] , id[1]
+                        col_name = component_columns[entity_type]
+                        column_data[col_name] = entity_id           
+            else:
+                if component != "Dependent Apps":
+                    col_name = component_columns[component] 
+                    column_data[col_name] = None
+
+        if create_multiple_rows:
+            for ro in rows:
+                row_data.append(ro)
+        else: 
+            if column_data["OS"] == None: column_data["OS"] = int(default_os_id[0])
+            column_data["move2kube_correspondent_image_url"] = app_data["move2kube_correspondent_image_url"]
+            row_data.append(column_data)
+            
+    write_to_csv(row_data, "move2kube_images")
+
+    
+    
+if "__name__==__main__":
+
+    move2kube()
+    # docker_images()
+    # openshift_images()
+    # openshift_images()
