@@ -23,6 +23,7 @@ import codecs
 from service.utils import Utils
 import re
 
+
 import configparser
 
 config = configparser.ConfigParser()
@@ -152,8 +153,6 @@ class Plan():
         else:
             self.__inverted_move2kubeimageKG = {}
             logging.error(f'inverted_operatorimageKG[{inverted_move2kubeimageKG_filepath}] is empty or not exists')
-
-
 
 
         COTSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['COTSKG'])
@@ -359,7 +358,7 @@ class Plan():
             inverted_containerimageKG = self.__inverted_operatorimageKG
             
         if catalog == 'move2kube':
-            inverted_containerimageKG = self.__move2kubeimage_KG
+            inverted_containerimageKG = self.__inverted_move2kubeimageKG
 
 
         app['scope_images'] = []
