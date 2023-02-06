@@ -27,14 +27,19 @@ from .utils import  get_column , remove_tags_url , create_db_connection
 # from utils import  get_column , remove_tags_url , create_db_connection
 
 
+
 #List of all OS
 all_os_entities = all_OS_from_db() 
 
 #Assign default OS as linux
 default_os_id =  [_id   for  _id , val in all_os_entities.items() if val.lower()=="linux"]
 
-
 db_connection = create_db_connection()
+
+
+with open("/app/kg/class_type_mapper.json", 'r', encoding="utf-8") as type_map:  
+    type_mapper = json.load(type_map)
+
 
 def entity_mapper(db_connection):
     """
@@ -57,8 +62,6 @@ def entity_mapper(db_connection):
         class_id, entity = entity_row[0], entity_row[1]
         parent_class[ entity]= str(class_id) 
     return parent_class
-
-
 
 entity_mapping_ids = entity_mapper(db_connection)
 
@@ -190,10 +193,7 @@ def get_exact_images(all_images: dict , catalogue ="operators", index = 2):
         
         
         image_name = list(image.keys())[0]
-        
-        
-           
-    
+
         if  image[image_name][index][catalogue] != []:
             
         
@@ -459,6 +459,11 @@ def default_id(component:str)-> int:
     
 
 
+def standard_name_type(standard_name: str) ->str:
+
+    return type_mapper[standard_name]
+
+    
 def standard_name_ids(type_data: dict , type_name:str) -> list:
     """
     Get standard name from type_data.
@@ -467,31 +472,48 @@ def standard_name_ids(type_data: dict , type_name:str) -> list:
         type_name (str): _description_
 
     Returns:
-        list: List of standard names.
+        list: List of tuple containing (entity_id, entity_type).
 
     """
-    ids = []
-    entity_names = list(type_data[type_name].keys())
 
+    ids , standard_name_type = [] , []
+    entity_names = list(type_data[type_name].keys())
+    
     if len(entity_names) == 0:
         return []
 
-    if len(entity_names) == 1: 
-        name = entity_names[0]
-        standard_name = type_data[type_name][name].get("standard_name",None)
-        id = entity_mapping_ids[str(standard_name)] 
-        ids.append(id)
-
-    else:   
-        standard_names = []
-        for ord , entity_name in enumerate(entity_names):
+    else: 
+        for entity_name in entity_names:
             standard_name = type_data[type_name][entity_name].get("standard_name",None)
             id = entity_mapping_ids[str(standard_name)]
-            ids.append(entity_mapping_ids[str(standard_name)])
-            standard_names.append(standard_name) 
-    
+            standard_name_type = type_mapper["mappings"][standard_name]
+            ids.append((id , standard_name_type))
     return ids
     
+
+def create_n_rows( column_data: dict , ids: list,  url :str):
+
+     rows = []
+     component_columns=  {'Lang': 'lang', 'Lib': 'lib', 'App Server': 'app server', "Runlib": "runlib", 'Runtime': 'runtime',"Plugin": 'plugin' ,'App': 'app', 'OS': 'OS'}
+
+     for n_row , id in enumerate(ids):
+        row_data = column_data.copy()
+        entity_id , entity_type = id[0] , id[1]
+        col_name = component_columns[entity_type]
+        row_data[col_name] = entity_id
+
+        if row_data["OS"] == None: row_data["OS"] = int(default_os_id[0])
+        row_data["move2kube_correspondent_image_url"] = url
+        rows.append(row_data)
+        print("row {} , data: {} , ===> type: {}".format(n_row, row_data, entity_type))
+        del row_data
+
+     return rows
+    
+  
+
+
+
 
 
 def move2kube():
@@ -517,34 +539,42 @@ def move2kube():
         app_data.pop("Cmpt")
         app_data.pop("Reason")
         app_data.pop("KG Version")
-        app_data.pop("Dependent Apps")
         app_data.update({"move2kube_correspondent_image_url":ibm_cloud_catalog_url[idx]["application_url"]}) 
 
-        #update rowdata
+        #update row_data
         column_data["move2kube_images"] = "move2kube_images"
         column_data["container_name"] = app_data["container_name"]
-        components = ["OS", "Lang" , "Libs" , "App" ,"App Server" , "Plugin", "Runlib", "Runtime"]
+
+        components = ["OS", "Lang" , "Libs" , "App" ,"App Server" , "Plugin", "Runlib", "Runtime", "Dependent Apps"]
+        component_columns=  {'Lang': 'lang', 'Lib': 'lib', 'App Server': 'app server', "Runlib": "runlib", 'Runtime': 'runtime',"Plugin": 'plugin' ,'App': 'app', 'OS': 'OS'}
+        create_multiple_rows = False
+        rows = None
 
         for component in components:
-
-            if component in list(app_data.keys()):
-                
-                id = standard_name_ids(app_data , component)
-                if len(id) == 1:
-                    
-                    if component =="App Server": component = "app_server"
-                    if component =="Libs": component = "lib"
-                    column_data[component.lower()] = int(id[0])
-                elif len(id) > 1:
-                    logging.warning("{} has multiple ids : {}".format(column_data["container_name"], id))
-                    column_data[component.lower()] = int(id[0])
-                else:
+            if component in list(app_data.keys()):  
+                ids  = standard_name_ids(app_data , component)
+                if len(ids) > 1:
+                    rows = create_n_rows(column_data, ids, app_data["move2kube_correspondent_image_url"] )
+                    create_multiple_rows = True
                     continue
-        if column_data["OS"] == None: column_data["OS"] = int(default_os_id[0])
-        if "App" not in list(column_data.keys()): column_data["app"] = None
-        column_data["move2kube_correspondent_image_url"] = app_data["move2kube_correspondent_image_url"]
-        row_data.append(column_data)
+                else:
+                    for id in ids:
+                        entity_id , entity_type = id[0] , id[1]
+                        col_name = component_columns[entity_type]
+                        column_data[col_name] = entity_id           
+            else:
+                if component != "Dependent Apps":
+                    col_name = component_columns[component] 
+                    column_data[col_name] = None
 
+        if create_multiple_rows:
+            for ro in rows:
+                row_data.append(ro)
+        else: 
+            if column_data["OS"] == None: column_data["OS"] = int(default_os_id[0])
+            column_data["move2kube_correspondent_image_url"] = app_data["move2kube_correspondent_image_url"]
+            row_data.append(column_data)
+            
     write_to_csv(row_data, "move2kube_images")
 
     
@@ -552,6 +582,6 @@ def move2kube():
 if "__name__==__main__":
 
     move2kube()
-    docker_images()
-    openshift_images()
-    openshift_images()
+    # docker_images()
+    # openshift_images()
+    # openshift_images()
