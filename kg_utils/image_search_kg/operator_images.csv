@@ -1,0 +1,21 @@
+operator_images,container_name,OS,lang,lib,app,app_server,plugin,runlib,runtime,Operator_Correspondent_Image_Url,Operator_Repository
+operator_images,ansible galaxy,576,,,5,,,,,quay.io/pulp/pulp-operator,https://github.com/pulp/pulp-operator
+operator_images,awx,576,,,5,,,,,quay.io/ansible/awx-operator,https://github.com/ansible/awx-operator
+operator_images,percona operator for mysql based on percona xtradb cluster,576,,,122,,,,,docker.io/percona/percona-xtradb-cluster-operator,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,aws controllers for kubernetes - memorydb,576,,,168,,,,,,https://github.com/aws-controllers-k8s
+operator_images,aws controllers for kubernetes - amazon acm,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,aws controllers for kubernetes - amazon cloudtrail,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,aws controllers for kubernetes - amazon kinesis,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,aws controllers for kubernetes - memorydb,576,353,,,,,,,,https://github.com/aws-controllers-k8s
+operator_images,camel karavan operator,576,,378,,,,,,,https://github.com/apache/camel-karavan
+operator_images,astra trident,576,,,,,,,497,docker.io/netapp/trident-operator,https://github.com/netapp/trident
+operator_images,ipfs operator,576,,,,,,,497,quay.io/redhat-et-ipfs/ipfs-operator,https://github.com/ipfs-cluster/ipfs-operator
+operator_images,windup operator,576,584,,,,,,,quay.io/windupeng/windup-operator-native,https://github.com/windup/windup-operator/
+operator_images,percona operator for mysql based on percona xtradb cluster,576,,,627,,,,,docker.io/percona/percona-xtradb-cluster-operator,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,edp keycloak operator,576,,,628,,,,,docker.io/epamedp/keycloak-operator,https://github.com/epam/edp-keycloak-operator
+operator_images,community loki operator,576,,,629,,,,,docker.io/grafana/loki-operator,https://github.com/grafana/loki/tree/main/operator
+operator_images,synapse operator,576,,,631,,,,,quay.io/opdev/synapse-operator,https://github.com/opdev/synapse-operator
+operator_images,cockroachdb helm operator,576,,,651,,,,,quay.io/helmoperators/cockroachdb,https://github.com/dmesser/cockroachdb-operator
+operator_images,percona operator for mysql based on percona xtradb cluster,576,,,,,,,661,docker.io/percona/percona-xtradb-cluster-operator,https://github.com/percona/percona-xtradb-cluster-operator
+operator_images,kubero,576,,,677,,,,,,https://github.com/kubero-dev/kubero
+operator_images,percona operator for mysql based on percona xtradb cluster,576,,,684,,,,,docker.io/percona/percona-xtradb-cluster-operator,https://github.com/percona/percona-xtradb-cluster-operator
