@@ -10,7 +10,7 @@
 echo "+---------------------------------------------------------+"
 echo "|---------Setting up Tackle Containerzation Adviser-------|"
 echo "+---------------------------------------------------------+"
-version="1.0.4"
+version="1.0.5"
 sql_file="$version.sql"
 db_file="$version.db"
 python="python"
