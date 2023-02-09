@@ -203,7 +203,7 @@ class Assessment(Resource):
 
 
 @api.route('/containerize', strict_slashes=False)
-@api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift, operator or move2kube', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift', 'operator','ibmcloud']}})
+@api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift, operator or ibmcloud', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift', 'operator','ibmcloud']}})
 class Planning(Resource):
     """
     Planning class creates the assessment in the form of assessment_model for the
