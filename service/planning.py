@@ -35,7 +35,7 @@ config.read([common, kg])
 class Plan():
     def __init__(self, logger=False):
         '''
-        Loads the docker, openshift, operator and move2kube KG json file data
+        Loads the docker, openshift, operator and ibmcloud KG json file data
         '''
 
         logging.basicConfig(level=logging.INFO)
@@ -124,35 +124,35 @@ class Plan():
             logging.error(f'inverted_operatorimageKG[{inverted_operatorimageKG_filepath}] is empty or not exists')
 
 
-        #move2kube kg 
+        #ibmcloud kg 
 
-        move2kubeimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['move2kubeimageKG'])
-        if os.path.exists(move2kubeimageKG_filepath):
-            with open(move2kubeimageKG_filepath, 'r') as f:
-                self.__move2kubeimage_KG = json.load(f)
+        ibmcloudimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['ibmcloudimageKG'])
+        if os.path.exists(ibmcloudimageKG_filepath):
+            with open(ibmcloudimageKG_filepath, 'r') as f:
+                self.__ibmcloudimage_KG = json.load(f)
         else:
-            self.__move2kubeimage_KG = {}
-            logging.error(f'operatorimageKG[{move2kubeimageKG_filepath}] is empty or not exists')
+            self.__ibmcloudimage_KG = {}
+            logging.error(f'ibmcloudimageKG[{ibmcloudimageKG_filepath}] is empty or not exists')
         
-        #move2kube kg: add baseOS images
+        #ibmcloud kg: add baseOS images
 
         if os.path.exists(baseOSKG_filepath):
             with open(baseOSKG_filepath, 'r') as f:
                 baseOSKG = json.load(f)
 
             for image_name in baseOSKG['Container Images']:
-                self.__move2kubeimage_KG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
+                self.__ibmcloudimage_KG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
         else:
             logging.error(f'baseOSKG[{baseOSKG_filepath}] is empty or not exists')
 
         
-        inverted_move2kubeimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['inverted_move2kubeimageKG'])
-        if os.path.exists(inverted_move2kubeimageKG_filepath):
-            with open(inverted_move2kubeimageKG_filepath, 'r') as f:
-                self.__inverted_move2kubeimageKG = json.load(f)
+        inverted_ibmcloudimageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['inverted_ibmcloudimageKG'])
+        if os.path.exists(inverted_ibmcloudimageKG_filepath):
+            with open(inverted_ibmcloudimageKG_filepath, 'r') as f:
+                self.__inverted_ibmcloudimageKG = json.load(f)
         else:
-            self.__inverted_move2kubeimageKG = {}
-            logging.error(f'inverted_operatorimageKG[{inverted_move2kubeimageKG_filepath}] is empty or not exists')
+            self.__inverted_ibmcloudimageKG = {}
+            logging.error(f'inverted_ibmcloudimageKG[{inverted_ibmcloudimageKG_filepath}] is empty or not exists')
 
 
         COTSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['COTSKG'])
@@ -196,9 +196,9 @@ class Plan():
         if catalog == 'operator':
             inverted_containerimageKG = self.__inverted_operatorimageKG
             containerimageKG = self.__operatorimage_KG
-        if catalog == 'move2kube':
-            inverted_containerimageKG = self.__inverted_move2kubeimageKG
-            containerimageKG = self.__move2kubeimage_KG
+        if catalog == 'ibmcloud':
+            inverted_containerimageKG = self.__inverted_ibmcloudimageKG
+            containerimageKG = self.__ibmcloudimage_KG
 
         # Compute maximum value of confidence
         cum_scores = scores_dict['OS']
@@ -357,8 +357,8 @@ class Plan():
         if catalog == 'operator':
             inverted_containerimageKG = self.__inverted_operatorimageKG
             
-        if catalog == 'move2kube':
-            inverted_containerimageKG = self.__inverted_move2kubeimageKG
+        if catalog == 'ibmcloud':
+            inverted_containerimageKG = self.__inverted_ibmcloudimageKG
 
 
         app['scope_images'] = []
@@ -537,7 +537,7 @@ class Plan():
         if len(self.__operatorimage_KG) == 0 or len(self.__inverted_operatorimageKG) == 0:
             logging.error('service/planning.py init failed')
             return appL
-        if len(self.__move2kubeimage_KG) == 0 or len(self.__inverted_move2kubeimageKG) == 0:
+        if len(self.__ibmcloudimage_KG) == 0 or len(self.__inverted_ibmcloudimageKG) == 0:
             logging.error('service/planning.py init failed')
             return appL
 
