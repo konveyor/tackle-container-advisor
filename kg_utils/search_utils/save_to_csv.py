@@ -20,11 +20,11 @@ import logging
 import csv
 
 
-# from .load_entities import all_OS_from_db, filter_entity
-# from .utils import  get_column , remove_tags_url , create_db_connection
+from .load_entities import all_OS_from_db, filter_entity
+from .utils import  get_column , remove_tags_url , create_db_connection
 
-from load_entities import all_OS_from_db, filter_entity
-from utils import  get_column , remove_tags_url , create_db_connection
+# from load_entities import all_OS_from_db, filter_entity
+# from utils import  get_column , remove_tags_url , create_db_connection
 
 
 
@@ -570,8 +570,3 @@ def ibmcloud() -> None:
             row_data.append(column_data)
             
     write_to_csv(row_data, "ibm_cloud_images")
-
-
-
-if "__name__==__main__":
-    ibmcloud()
