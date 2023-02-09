@@ -18,16 +18,14 @@
 import sys
 sys.path.append("./kg_utils")
 import json
-import logging
-import os
-import configparser
 import argparse
+import logging
 import json
 
-from textwrap import indent
-from dotenv import load_dotenv ,find_dotenv
-from search_utils   import load_entities , utils , save_to_csv , dockerhub , quay , operator
+from search_utils   import load_entities , save_to_csv , dockerhub , quay , operator
 
+
+logging.basicConfig(level=logging.INFO,  filename="search.txt", filemode="w")
 
 def save_to_kb(results: list) -> None:
     """
@@ -128,12 +126,10 @@ def get_entities():
     Return: list of valid  entities  from db 
     """
     
-    print("Enter entity(ies) from the entity_name table to search for matching container images\n")
-
     try:
         args = cmdline_args()  
     except:
-        print('Try $python    -e <entity_names>    -db <database_path"> or type $python  src/search_images.py --help')
+        logging.error(f'Missing arguments:Try $python    -e <entity_names>    -db <database_path"> or type $python  src/search_images.py --help ')
         exit()
 
     if args.entity == 'all':
