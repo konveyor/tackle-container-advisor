@@ -1,6 +1,0 @@
-docker_images,container_name,OS,lang,lib,app,app_server,plugin,runlib,runtime,Docker_Url,Notes,CertOfImageAndPublisher
-docker_images,redislabs/redis,576,,,168,,,,,https://hub.docker.com/r/redislabs/redis,,Verified Publisher
-docker_images,percona/haproxy,576,,,,264,,,,https://hub.docker.com/r/percona/haproxy,,Verified Publisher
-docker_images,circleci/nginx,576,,,,274,,,,https://hub.docker.com/r/circleci/nginx,,Verified Publisher
-docker_images,intel/spark,576,,,,280,,,,https://hub.docker.com/r/intel/spark,,Verified Publisher
-docker_images,bitnami/jaeger,576,,,,,,,652,https://hub.docker.com/r/bitnami/jaeger,,Verified Publisher
