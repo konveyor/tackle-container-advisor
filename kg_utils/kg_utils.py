@@ -1014,8 +1014,8 @@ def create_image_kg(db_connect , table_name=""):
                                                                                                                                                                      1:]
             kg_name = "operatorimageKG"
         else: 
-            container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, move2kube_image_url = image[1:]
-            kg_name = "move2kubeimageKG"
+            container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, ibmcloud_image_url = image[1:]
+            kg_name = "ibmcloudimageKG"
 
         operator_image_kg["Container Images"][container_name] = {}
         operator_image_kg["Container Images"][container_name]["OS"] = [
@@ -1067,8 +1067,8 @@ def create_image_kg(db_connect , table_name=""):
         if table_name =="operator_images":
             operator_image_kg["Container Images"][container_name]["Docker_URL"] = operator_URL
             operator_image_kg["Container Images"][container_name]["OperatorRepository"] = operator_repository
-        if table_name =="move2kube_images":
-            operator_image_kg["Container Images"][container_name]["Docker_URL"] = move2kube_image_url
+        if table_name =="ibm_cloud_images":
+            operator_image_kg["Container Images"][container_name]["Docker_URL"] = ibmcloud_image_url
         
     save_json(operator_image_kg, kg_name)
 
@@ -1091,8 +1091,8 @@ def create_inverted_image_kg(database_connect, table_name = ""):
 
     if table_name =="operator_images":
         inverted_kg_name = "inverted_operatorimageKG"
-    if table_name =="move2kube_images":
-        inverted_kg_name = "inverted_move2kubeimageKG"
+    if table_name =="ibm_cloud_images":
+        inverted_kg_name = "inverted_ibmcloudimageKG"
 
 
     inverted_cur = database_connect.cursor()
@@ -1108,7 +1108,7 @@ def create_inverted_image_kg(database_connect, table_name = ""):
         if table_name == "operator_images":
             _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id, runtim_id, _, _ = img[1:]
         
-        if table_name == "move2kube_images":
+        if table_name == "ibm_cloud_images":
             _, os_id, lan_id, libr_id, appl_id, appl_server_id, plug_id, runlibr_id, runtim_id, _ = img[1:]
 
 
@@ -1157,7 +1157,7 @@ def create_inverted_image_kg(database_connect, table_name = ""):
         if table_name == "operator_images": _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _, _ = image[
                                                                                                                              :]
         
-        if table_name =="move2kube_images":
+        if table_name =="ibm_cloud_images":
             _, container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, _ = image[
                                                                                                                              :]
                                                                                                                             
@@ -1267,8 +1267,8 @@ if __name__== '__main__':
         create_image_kg(connection , table_name = "operator_images")
         create_inverted_image_kg(connection , table_name = "operator_images")
 
-        #create kg for move2kube images
-        create_image_kg(connection , table_name = "move2kube_images")
-        create_inverted_image_kg(connection , table_name = "move2kube_images")
+        #create kg for ibmcloud images
+        create_image_kg(connection , table_name = "ibm_cloud_images")
+        create_inverted_image_kg(connection , table_name = "ibm_cloud_images")
 
        

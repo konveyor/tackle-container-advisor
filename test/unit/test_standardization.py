@@ -15,7 +15,7 @@
 ################################################################################
 
 import unittest
-from service.standardization import Standardization
+from service.standardization import Standardization, is_version
 from deepdiff import DeepDiff
 from kg_utils.test_check import Test_check
 
@@ -59,7 +59,7 @@ class TestEntityDetection(unittest.TestCase):
                      'devops_tooling': 'Jenkins, Git, JIRA', \
                      'test_automation_%': '50%', \
                      'performance_testing_enabled': 'No', \
-                     'KG Version': '1.0.4', \
+                     'KG Version': '1.0.5', \
                      'Plugin': {}, \
                      'Storage': {}, \
                      'Lib': {}, \
@@ -128,7 +128,7 @@ class TestEntityDetection(unittest.TestCase):
                      'devops_tooling': 'Jenkins, Git, JIRA', \
                      'test_automation_%': '50%', \
                      'performance_testing_enabled': 'No', \
-                     'KG Version': '1.0.4', \
+                     'KG Version': '1.0.5', \
                      'Storage': {}, \
                      'Runtime': {}, \
                      'VM': {}, \
@@ -202,7 +202,7 @@ class TestEntityDetection(unittest.TestCase):
                      'devops_tooling': 'Jenkins, Git, JIRA', \
                      'test_automation_%': '50%', \
                      'performance_testing_enabled': 'No', \
-                     'KG Version': '1.0.4', \
+                     'KG Version': '1.0.5', \
                      'App': {'Oracle SQl Developer 19.2': {'standard_name': 'Oracle SQL Developer',
                                                            'detected_version': '19.2', 'latest_known_version': '19.4'}, \
                              'PeopleSoft 7': {'standard_name': 'PeopleSoft', 'detected_version': '7',
@@ -245,7 +245,7 @@ class TestEntityDetection(unittest.TestCase):
 
         expected = [{'application_name': 'App 1 ', 'application_description': 'desc 1', \
                      'technology_summary': 'ZOS, JavaScript\nPL1, Private Cloud', \
-                     'KG Version': '1.0.4', \
+                     'KG Version': '1.0.5', \
                      'Lang': {'JavaScript': {'standard_name': 'JavaScript|*', 'detected_version': 'NA_VERSION',
                                              'latest_known_version': 'ES6'}, \
                               'PL1': {'standard_name': 'PL/I', 'detected_version': '1', 'latest_known_version': '1'}}, \
@@ -259,7 +259,7 @@ class TestEntityDetection(unittest.TestCase):
                      'VM': {}, 'Lib': {}, 'App Server': {}, 'HW': {}, 'Runtime': {}}, \
                     {'application_name': 'App 2', 'application_description': 'desc 2', \
                      'technology_summary': 'ZOS, PL1, Linux Red Hat\nLinux Ubuntu, JavaScript\nNode.js\nPHP\nPython\nScala', \
-                     'KG Version': '1.0.4', \
+                     'KG Version': '1.0.5', \
                      'Lang': {'PL1': {'standard_name': 'PL/I', 'detected_version': '1', 'latest_known_version': '1'},
                               'JavaScript': {'standard_name': 'JavaScript|*', 'detected_version': 'NA_VERSION',
                                              'latest_known_version': 'ES6'}, \
@@ -282,7 +282,7 @@ class TestEntityDetection(unittest.TestCase):
                      }, \
                     {'application_name': 'App 3', 'application_description': 'desc 3', \
                      'technology_summary': 'AIX\nLinux Red Hat, Java\nOther, microservices, angular', \
-                     'KG Version': '1.0.4', \
+                     'KG Version': '1.0.5', \
                      'Lang': {'Java': {'standard_name': 'Java|*', 'detected_version': 'NA_VERSION',
                                        'latest_known_version': '21'}}, \
                      'Runlib': {}, 'Storage': {}, \
@@ -311,7 +311,7 @@ class TestEntityDetection(unittest.TestCase):
 
         expected = [{'application_name': 'App 1 ', 'application_description': 'desc 1', \
                      'technology_summary': 'RHEL Java db2 10.0 WebSphere Application Server Redis angularJs,express.js,jenkins', \
-                     'KG Version': '1.0.4', \
+                     'KG Version': '1.0.5', \
                      'Technology': {
                          'Application Server': {'standard_name': 'Application Server', 'detected_version': 'NA_VERSION',
                                                 'latest_known_version': 'NA_VERSION'}}, \
@@ -352,7 +352,7 @@ class TestEntityDetection(unittest.TestCase):
 
         expected = [{'application_name': 'App 1', 'application_description': 'desc 1', \
                      'technology_summary': 'IBM Out of Profile On Prem (other non-CIO Iaas),Linux Red Hat,PHP\nJavaScript', \
-                     'KG Version': '1.0.4', \
+                     'KG Version': '1.0.5', \
                      'Lang': {'JavaScript': {'standard_name': 'JavaScript|*', 'detected_version': 'NA_VERSION',
                                              'latest_known_version': 'ES6'}, \
                               'PHP': {'standard_name': 'PHP', 'detected_version': 'NA_VERSION',
@@ -372,3 +372,94 @@ class TestEntityDetection(unittest.TestCase):
             diff = DeepDiff(expected, app_data)
             print("Test app6 Diff = ", diff)
         self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))
+
+    
+    def test_is_version(self):
+        """Test versions"""
+
+        app_data = [{'application_name': 'App 1 ',
+                 'application_description': 'desc 1',
+                'technology_summary': 'RHEL Java db2 10.0 WebSphere Application Server Redis angularJs,express.js,jenkins'}]
+
+        standardizer = Standardization()
+        app_data = standardizer.app_standardizer(app_data)
+        self.assertTrue(is_version('10.0'))
+     
+    
+    def test_loggings(self):
+        """Test Loggings"""
+
+        app_data = [{'application_name': 'App 1 ',
+                     'application_description': 'desc 1',
+                     'technology_summary': "ZOS, JavaScript\nPL1, Private Cloud"},
+                    {'application_name': 'App 2',
+                     'application_description': 'desc 2',
+                     'technology_summary': 'ZOS, PL1, Linux Red Hat\nLinux Ubuntu, JavaScript\nNode.js\nPHP\nPython\nScala'},
+                    {'application_name': 'App 3',
+                     'application_description': 'desc 3',
+                     'technology_summary': 'AIX\nLinux Red Hat, Java\nOther, microservices, angular'}]
+
+        expected = [{'application_name': 'App 1 ', 'application_description': 'desc 1', \
+                     'technology_summary': 'ZOS, JavaScript\nPL1, Private Cloud', \
+                     'KG Version': '1.0.5', \
+                     'Lang': {'JavaScript': {'standard_name': 'JavaScript|*', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': 'ES6'}, \
+                              'PL1': {'standard_name': 'PL/I', 'detected_version': '1', 'latest_known_version': '1'}}, \
+                     'Runlib': {}, \
+                     'Storage': {}, \
+                     'OS': {'ZOS': {'standard_name': 'MVS|z/OS', 'detected_version': 'NA_VERSION',
+                                    'latest_known_version': 'NA_VERSION'}}, \
+                     'Plugin': {}, 'App': {}, \
+                     'Technology': {'Private Cloud': {'standard_name': 'Cloud', 'detected_version': 'NA_VERSION',
+                                                      'latest_known_version': 'NA_VERSION'}}, \
+                     'VM': {}, 'Lib': {}, 'App Server': {}, 'HW': {}, 'Runtime': {}}, \
+                    {'application_name': 'App 2', 'application_description': 'desc 2', \
+                     'technology_summary': 'ZOS, PL1, Linux Red Hat\nLinux Ubuntu, JavaScript\nNode.js\nPHP\nPython\nScala', \
+                     'KG Version': '1.0.5', \
+                     'Lang': {'PL1': {'standard_name': 'PL/I', 'detected_version': '1', 'latest_known_version': '1'},
+                              'JavaScript': {'standard_name': 'JavaScript|*', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': 'ES6'}, \
+                              'PHP': {'standard_name': 'PHP', 'detected_version': 'NA_VERSION',
+                                      'latest_known_version': '8'},
+                              'Python': {'standard_name': 'Python', 'detected_version': 'NA_VERSION',
+                                         'latest_known_version': '3.10.0'}, \
+                              'Scala': {'standard_name': 'Scala', 'detected_version': 'NA_VERSION',
+                                        'latest_known_version': '2.9.0'}}, \
+                     'Runlib': {}, 'Storage': {}, \
+                     'OS': {'Linux Red Hat': {'standard_name': 'Linux|Red Hat Enterprise Linux',
+                                              'detected_version': 'NA_VERSION', 'latest_known_version': '8.3'},
+                            'Linux Ubuntu': {'standard_name': 'Linux|Ubuntu', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': '20.10'},
+                            'ZOS': {'standard_name': 'MVS|z/OS', 'detected_version': 'NA_VERSION',
+                                    'latest_known_version': 'NA_VERSION'}}, \
+                     'Plugin': {}, 'App': {}, 'Technology': {}, 'VM': {}, 'Lib': {}, 'App Server': {}, 'HW': {}, \
+                     'Runtime': {'Node.js': {'standard_name': 'Node.js', 'detected_version': 'NA_VERSION',
+                                             'latest_known_version': '18'}}
+                     }, \
+                    {'application_name': 'App 3', 'application_description': 'desc 3', \
+                     'technology_summary': 'AIX\nLinux Red Hat, Java\nOther, microservices, angular', \
+                     'KG Version': '1.0.5', \
+                     'Lang': {'Java': {'standard_name': 'Java|*', 'detected_version': 'NA_VERSION',
+                                       'latest_known_version': '21'}}, \
+                     'Runlib': {}, 'Storage': {}, \
+                     'OS': {'AIX': {'standard_name': 'Unix|AIX', 'detected_version': 'NA_VERSION',
+                                    'latest_known_version': 'NA_VERSION'},
+                            'Linux Red Hat': {'standard_name': 'Linux|Red Hat Enterprise Linux',
+                                              'detected_version': 'NA_VERSION', 'latest_known_version': '8.3'}}, \
+                     'Plugin': {}, 'App': {}, 'Technology': {}, 'VM': {}, \
+                     'Lib': {'angular': {'standard_name': 'JavaScript|AngularJS', 'detected_version': 'NA_VERSION',
+                                         'latest_known_version': 'NA_VERSION'}}, \
+                     'App Server': {}, 'HW': {}, 'Runtime': {}, \
+                     'unknown': ['microservices']}]
+
+                
+        with self.assertLogs() as cm:      
+            standardizer = Standardization()
+            app_data = standardizer.app_standardizer(app_data)
+            print(cm.output)
+            self.assertIn("unique" , cm.records[0].getMessage())
+            if app_data != expected:
+                diff = DeepDiff(expected, app_data)
+                print("Test app4 Diff = ", diff)
+            self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))
+
