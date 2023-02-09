@@ -20,11 +20,11 @@ import logging
 import csv
 
 
-from .load_entities import all_OS_from_db, filter_entity
-from .utils import  get_column , remove_tags_url , create_db_connection
+# from .load_entities import all_OS_from_db, filter_entity
+# from .utils import  get_column , remove_tags_url , create_db_connection
 
-# from load_entities import all_OS_from_db, filter_entity
-# from utils import  get_column , remove_tags_url , create_db_connection
+from load_entities import all_OS_from_db, filter_entity
+from utils import  get_column , remove_tags_url , create_db_connection
 
 
 
@@ -133,13 +133,13 @@ def write_to_csv(data:list, file_name:str):
                                 "Operator_Repository" : row["Operator_Repository"]
                                 }) 
 
-        if file_name == "move2kube_images":
+        if file_name == "ibm_cloud_images":
             for row in data:
-                writer.writerow({"move2kube_images":row["move2kube_images"],'container_name': row["container_name"], 'OS': row["OS"] \
+                writer.writerow({"ibm_cloud_images":row["ibm_cloud_images"],'container_name': row["container_name"], 'OS': row["OS"] \
                     , "lang":row["lang"],  "lib": row["lib"] , "app": row["app"] \
                         ,"app_server": row["app_server"] , "plugin":row["plugin"] , \
                             "runlib": row["runlib"] , "runtime": row["runtime"] , \
-                            "move2kube_correspondent_image_url": row["move2kube_correspondent_image_url"] }) 
+                            "ibm_cloud_correspondent_image_url": row["ibm_cloud_correspondent_image_url"] }) 
 
         if file_name == "docker_images":
             for row in data:
@@ -221,7 +221,7 @@ def csv_columns( table_name:str ):
     docker_col_extension = {"Docker_Url":"", "Notes": "", "CertOfImageAndPublisher": "" }
     openshift_col_extension = {"Openshift_Correspondent_Image_Url":"", "DockerImageType": ""}
     operator_col_extension ={"Operator_Correspondent_Image_Url":[],"Operator_Repository": ""}
-    move2kube_col_extension = {"move2kube_correspondent_image_url":[]}
+    move2kube_col_extension = {"ibm_cloud_correspondent_image_url":[]}
 
     if table_name == "openshift_images":
         columns.update(openshift_col_extension) 
@@ -230,7 +230,7 @@ def csv_columns( table_name:str ):
         columns.update(docker_col_extension)
     elif table_name == "operator_images":
         columns.update(operator_col_extension)
-    elif table_name == "move2kube_images":
+    elif table_name == "ibm_cloud_images":
         columns.update(move2kube_col_extension)
     else: 
         logging.debug("Wrong table's name. Enter a valid table name from the database")
@@ -505,23 +505,17 @@ def create_n_rows( column_data: dict , ids: list,  url :str):
         if row_data["OS"] == None: row_data["OS"] = int(default_os_id[0])
         row_data["move2kube_correspondent_image_url"] = url
         rows.append(row_data)
-        print("row {} , data: {} , ===> type: {}".format(n_row, row_data, entity_type))
         del row_data
 
      return rows
     
-  
 
-
-
-
-
-def move2kube():
+def ibmcloud() -> None:
     """
-    Convert move2kube json data to csv
+    Convert ibmcloud json data to csv
     """
 
-    columns = csv_columns(table_name="move2kube_images")
+    columns = csv_columns(table_name="ibm_cloud_images")
     row_data = []
 
 
@@ -539,10 +533,10 @@ def move2kube():
         app_data.pop("Cmpt")
         app_data.pop("Reason")
         app_data.pop("KG Version")
-        app_data.update({"move2kube_correspondent_image_url":ibm_cloud_catalog_url[idx]["application_url"]}) 
+        app_data.update({"ibm_cloud_correspondent_image_url":ibm_cloud_catalog_url[idx]["application_url"]}) 
 
         #update row_data
-        column_data["move2kube_images"] = "move2kube_images"
+        column_data["ibm_cloud_images"] = "ibm_cloud_images"
         column_data["container_name"] = app_data["container_name"]
 
         components = ["OS", "Lang" , "Libs" , "App" ,"App Server" , "Plugin", "Runlib", "Runtime", "Dependent Apps"]
@@ -554,7 +548,7 @@ def move2kube():
             if component in list(app_data.keys()):  
                 ids  = standard_name_ids(app_data , component)
                 if len(ids) > 1:
-                    rows = create_n_rows(column_data, ids, app_data["move2kube_correspondent_image_url"] )
+                    rows = create_n_rows(column_data, ids, app_data["ibm_cloud_correspondent_image_url"] )
                     create_multiple_rows = True
                     continue
                 else:
@@ -572,16 +566,12 @@ def move2kube():
                 row_data.append(ro)
         else: 
             if column_data["OS"] == None: column_data["OS"] = int(default_os_id[0])
-            column_data["move2kube_correspondent_image_url"] = app_data["move2kube_correspondent_image_url"]
+            column_data["ibm_cloud_correspondent_image_url"] = app_data["ibm_cloud_correspondent_image_url"]
             row_data.append(column_data)
             
-    write_to_csv(row_data, "move2kube_images")
+    write_to_csv(row_data, "ibm_cloud_images")
 
-    
-    
+
+
 if "__name__==__main__":
-
-    move2kube()
-    # docker_images()
-    # openshift_images()
-    # openshift_images()
+    ibmcloud()
