@@ -1,5 +1,5 @@
 {
-    "last updated": "10/04/2022",
+    "last updated": "01/30/2023",
     "verified_publishers": [
         "amazon",
         "balena",
@@ -54,6 +54,18 @@
         "redis",
         "graphcore",
         "slimdotai",
-        "uffizzi"
+        "uffizzi",
+        "mattermost",
+        "jetbrains",
+        "opensearchproject",
+        "passbolt",
+        "redislabs",
+        "mariadb",
+        "solace",
+        "mongodb",
+        "solaceiotteam",
+        "solacecommunity",
+        "daggerio",
+        "vertica"
     ]
 }

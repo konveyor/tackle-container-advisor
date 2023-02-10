@@ -21,7 +21,7 @@ from kg_utils import kg_aug
 
 class TestAug(unittest.TestCase):
     def test_insert_to_kg(self):
-        conn = sqlite3.connect("./db/1.0.4.db")
+        conn = sqlite3.connect("./db/1.0.5.db")
         cur = conn.cursor()
         appL = kg_aug.insert_to_kg("batch", "./test/unit/test.csv", cur, True)
         expected = "Entry 0 inserted to table..Entry 1 cannot be processed.."
