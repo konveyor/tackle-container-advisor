@@ -28,6 +28,7 @@ COPY ./kg /app/kg
 COPY ./config /app/config
 COPY ./entity_standardizer /app/entity_standardizer
 COPY ./requirements.txt /app/requirements.txt
+COPY ./tca_cli.py /app/tca_cli.py
 RUN  python -m pip install --upgrade pip wheel build setuptools; \
      pip install -r entity_standardizer/requirements.txt; \
      cd entity_standardizer; python -m build; pip install dist/entity_standardizer_tca-1.0-py3-none-any.whl; cd ..; \
