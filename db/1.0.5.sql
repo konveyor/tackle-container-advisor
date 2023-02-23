@@ -1,10 +1,17 @@
 --
--- File generated with SQLiteStudio v3.3.3 on Wed Feb 8 14:47:06 2023
+-- File generated with SQLiteStudio v3.3.3 on Thu Feb 23 15:22:35 2023
 --
 -- Text encoding used: UTF-8
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
+
+-- Table: catalogs
+CREATE TABLE catalogs(id integer PRIMARY KEY AUTOINCREMENT, names text NOT NULL);
+INSERT INTO catalogs (id, names) VALUES (1, 'dockerhub');
+INSERT INTO catalogs (id, names) VALUES (2, 'openshift');
+INSERT INTO catalogs (id, names) VALUES (3, 'operators');
+INSERT INTO catalogs (id, names) VALUES (4, 'ibmcloud');
 
 -- Table: docker_baseos_images
 CREATE TABLE docker_baseos_images (

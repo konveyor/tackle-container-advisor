@@ -1204,6 +1204,19 @@ def create_inverted_image_kg(database_connect, table_name = ""):
 
     save_json(inverted_images_kg, inverted_kg_name)
 
+def create_catalog_kg(con):
+
+    catalog_names = "catalogKG"
+    cursor = con.cursor()
+    cursor.execute("SELECT *  FROM  catalogs")
+    catalog_kg = {}
+    names = []
+    for name in cursor.fetchall():
+        names.append(name[1])
+    
+    catalog_kg["names"] = names
+    save_json(catalog_kg , catalog_names)
+    return names
 
 def create_db_connection(db_file):
     """
@@ -1270,5 +1283,6 @@ if __name__== '__main__':
         #create kg for ibmcloud images
         create_image_kg(connection , table_name = "ibm_cloud_images")
         create_inverted_image_kg(connection , table_name = "ibm_cloud_images")
+        create_catalog_kg(connection)
 
        
