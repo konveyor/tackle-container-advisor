@@ -348,7 +348,7 @@ def create_openshift_base_os_kg(db_connection):
         base_os["Container Images"][baseos_image]["Notes"], base_os["Container Images"][baseos_image][
             "CertOfImageAndPublisher"] = Note, Status
 
-    save_json(base_os, "openshiftbaseOSKG")
+    save_json(base_os, "openshift_baseOSKG")
 
 
 def create_inverted_openshift_base_os_kg(db_connection):
@@ -375,7 +375,7 @@ def create_inverted_openshift_base_os_kg(db_connection):
         os, os_id = base_image[1], base_image[2]
         inverted_openshift_kg[mapped_os[str(os_id)]] = [os]
 
-    save_json(inverted_openshift_kg, "inverted_openshiftbaseOSKG")
+    save_json(inverted_openshift_kg, "inverted_openshift_baseOSKG")
 
 
 def create_inverted_base_os_kg(db_connection):
@@ -580,7 +580,7 @@ def create_docker_image_kg(db_connect):
         docker_image_kg["Container Images"][container_name]["Note"] = Notes
         docker_image_kg["Container Images"][container_name]["CertOfImageAndPublisher"] = CertOfImageAndPublisher
 
-    save_json(docker_image_kg, "dockerimageKG")
+    save_json(docker_image_kg, "dockerhub_imageKG")
 
 
 def create_openshift_image_kg(db_connect):
@@ -659,7 +659,7 @@ def create_openshift_image_kg(db_connect):
 
         openshift_image_kg["Container Images"][container_name]["CertOfImageAndPublisher"] = ''
 
-    save_json(openshift_image_kg, "openshiftimageKG")
+    save_json(openshift_image_kg, "openshift_imageKG")
 
 
 def create_inverted_docker_image_kg(database_connect):
@@ -767,7 +767,7 @@ def create_inverted_docker_image_kg(database_connect):
         else:
             inverted_docker_images_kg[entities[str(runtime_id)]].append(container_name)
 
-    save_json(inverted_docker_images_kg, "inverted_dockerimageKG")
+    save_json(inverted_docker_images_kg, "inverted_dockerhub_imageKG")
 
 
 def create_inverted_openshifht_image_kg(db_connection):
@@ -876,7 +876,7 @@ def create_inverted_openshifht_image_kg(db_connection):
         else:
             inverted_openshift_images_kg[entities[str(runtime_id)]].append(container_name)
 
-    save_json(inverted_openshift_images_kg, "inverted_openshiftimageKG")
+    save_json(inverted_openshift_images_kg, "inverted_openshift_imageKG")
 
 
 def create_env_var_kg(connection):
@@ -1012,10 +1012,10 @@ def create_image_kg(db_connect , table_name=""):
         if table_name =="operator_images":
             container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, operator_URL, operator_repository = image[
                                                                                                                                                                      1:]
-            kg_name = "operatorimageKG"
+            kg_name = "operators_imageKG"
         else: 
             container_name, os_entity_id, lang_id, lib_id, app_id, app_server_id, plugin_id, runlib_id, runtime_id, ibmcloud_image_url = image[1:]
-            kg_name = "ibmcloudimageKG"
+            kg_name = "ibmcloud_imageKG"
 
         operator_image_kg["Container Images"][container_name] = {}
         operator_image_kg["Container Images"][container_name]["OS"] = [
@@ -1090,9 +1090,9 @@ def create_inverted_image_kg(database_connect, table_name = ""):
         exit()
 
     if table_name =="operator_images":
-        inverted_kg_name = "inverted_operatorimageKG"
+        inverted_kg_name = "inverted_operators_imageKG"
     if table_name =="ibm_cloud_images":
-        inverted_kg_name = "inverted_ibmcloudimageKG"
+        inverted_kg_name = "inverted_ibmcloud_imageKG"
 
 
     inverted_cur = database_connect.cursor()

@@ -16,6 +16,15 @@
 
 import re
 import logging
+import configparser
+import os
+import json
+
+config = configparser.ConfigParser()
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
+
 
 class Utils:
 
@@ -79,5 +88,95 @@ class Utils:
 
         except Exception as e:
             logging.error(str(e))
+    @staticmethod
+    def get_imageKG(catalogKG:str) ->dict:
+        """
+        Load image KG
+        Args:
+            catalogKG (str): Catalog name.
+
+        Returns:
+            dict: catalog KG.
+        """
+        imageKG = {} 
+        imageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames'][catalogKG])
+        if os.path.exists(imageKG_filepath):   
+            with open(imageKG_filepath, 'r') as f:
+                imageKG = json.load(f)     
+        else:
+            logging.error(f'imageKG[{imageKG_filepath}] is empty or not exists')
+        return imageKG
+    
+    @staticmethod
+    def get_baseOS(imageKG: dict,baseOSKG:str):
+        """
+        Load base OS.
+
+        Args:
+            imageKG (dict): image catalog KG.
+            baseOSKG (str): file name.
+
+        Returns:
+            _type_: _description_
+        """
+        baseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames'][baseOSKG])
+        osBaseImages = {}
+        if os.path.exists(baseOSKG_filepath):
+            with open(baseOSKG_filepath, 'r') as f:
+                baseOSKG = json.load(f)
+
+            for image_name in baseOSKG['Container Images']:
+                osBaseImages[baseOSKG['Container Images'][image_name]['OS'][0]['Class']] = image_name
+                imageKG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
+        else:
+            logging.error(f'baseOSKG[{baseOSKG_filepath}] is empty or not exists')
+        return osBaseImages , imageKG
+    
+    @staticmethod
+    def get_inverted_imageKG(inverted_catalogKG:str)-> dict:
+        """
+        Load inverted catalog KG
+        Args:
+            inverted_catalogKG (str): KG name
+
+        Returns:
+            dict: inverted indexes
+        """
+        inverted_imageKG = {}
+        inverted_imageKG = os.path.join(config['general']['kg_dir'], config['filenames'][inverted_catalogKG])
+        if os.path.exists(inverted_imageKG):
+            with open(inverted_imageKG, 'r') as f:
+                inverted_imageKG = json.load(f)
+        else:
+            logging.error(f'inverted_dockerimageKG[{inverted_imageKG}] is empty or not exists')
+        return inverted_imageKG
+
+    @staticmethod
+    def get_COT() ->dict:
+        """
+          Load COTS KG.
+
+        Returns:
+            dict: COTS KG
+        """
+        COTSKG = {}
+        COTSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['COTSKG'])
+        if os.path.exists(COTSKG_filepath):
+            with open(COTSKG_filepath, 'r') as f:
+                COTSKG = json.load(f)
+        else:
+            logging.error(f'COTSKG[{COTSKG_filepath}] is empty or not exists')
         
+        return COTSKG
+
+     
+       
+
+        
+        
+ 
+        
+    
+    
+   
 

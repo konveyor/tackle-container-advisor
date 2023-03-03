@@ -234,7 +234,7 @@ class TestPlan(unittest.TestCase):
         self.assertTrue(Test_check.checkEqual(Test_check,expected,pAppL))
 
     def test_map_to_docker_openshift(self):
-        plan = Plan()
+        plan = Plan(catalog="openshift")
         appL = [{'application_name': 'App Name 0114', 'application_description': 'App Desc 0114',
                  'component_name': 'Comp 1', 'OS': {"RHEL": {"standard_name": "Linux|Red Hat Enterprise Linux"}},
                  'Lang': {"Java": {"standard_name": "Java|*"},
@@ -299,8 +299,10 @@ class TestPlan(unittest.TestCase):
                 [(key, new_value_assign.get(value)) for key, value in
                  expected[0]['scope_images_confidence'][
                      'mapping'].items()])
-
+        #print(appL)
+        print("\n")
         self.assertTrue(Test_check.checkEqual(Test_check,expected,appL))
+       # print(expected)
 
     def test_output_to_ui_planning_openshift(self):
         plan = Plan()
@@ -358,7 +360,7 @@ class TestPlan(unittest.TestCase):
         self.assertTrue(Test_check.checkEqual(Test_check,expected,pAppL))
 
     def test_map_to_docker_operator(self):
-        plan = Plan()
+        plan = Plan(catalog="operators")
         appL = [{'application_name': 'app1', 'application_description': 'app1', 'component_name': '',
                  'OS': {'linux': {"standard_name": "Linux|*"}}, 'Lang': {}, 'App Server': {},
                  'App': {'mongodb': {"standard_name": "MongoDB"}}, 'Runtime': {}, 'Lib': {}, 'assessment_reason': '',
