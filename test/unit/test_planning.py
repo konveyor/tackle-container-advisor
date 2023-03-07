@@ -386,7 +386,7 @@ class TestPlan(unittest.TestCase):
                                                  'image_confidence': 1.0, 'images_score': 60, 'cum_scores': 60,
                                                  'custom_installations_needed': [], 'custom_images_needed': []}}]
 
-        appL = plan.map_to_docker(appL, 'operator')
+        appL = plan.map_to_docker(appL, 'operators')
 
         # add correction in case difference is for lower case vs upper case and operator version number
         if appL != expected:
@@ -405,7 +405,7 @@ class TestPlan(unittest.TestCase):
         self.assertTrue(Test_check.checkEqual(Test_check,expected,appL))
 
     def test_output_to_ui_planning_operator(self):
-        plan = Plan()
+        plan = Plan(catalog="operators")
         appL = [{'application_name': 'app1', 'application_description': 'app1', 'component_name': '',
                  'OS': {'linux': {"standard_name": "Linux|*"}}, 'Lang': {}, 'App Server': {},
                  'App': {'mongodb': {"standard_name": "MongoDB"}}, 'Runtime': {}, 'Lib': {}, 'assessment_reason': '',
@@ -429,3 +429,6 @@ class TestPlan(unittest.TestCase):
         expected = [expected]
         pAppL = plan.output_to_ui_planning(appL)
         self.assertTrue(Test_check.checkEqual(Test_check,expected,pAppL))
+    
+
+    
