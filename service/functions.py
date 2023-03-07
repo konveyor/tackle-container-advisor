@@ -33,7 +33,7 @@ from service.infer_tech import InferTech
 from service.clustering import Clustering
 
 class Functions:
-    def __init__(self):
+    def __init__(self, catalog = "dockerhub"):
         """
         Init method for planner class
         Create instances for EntityDetection & Assessment classes
@@ -42,7 +42,7 @@ class Functions:
         self.inferTech  = InferTech()
         self.standardize= Standardization()
         self.assess     = Assessment()
-        self.plan       = Plan()
+        self.plan       = Plan(catalog=catalog)
         self.cluster = Clustering()
 
         config  = configparser.ConfigParser()
@@ -217,7 +217,7 @@ def do_planning(auth_url, headers, auth_headers, assessment_data, catalog):
     """
     controller = None
     if not controller:
-        controller = Functions()
+        controller = Functions(catalog=catalog)
     resp, code = controller.planning(auth_url, headers, auth_headers, assessment_data, catalog)
 
     return resp, code

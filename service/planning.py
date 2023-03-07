@@ -20,6 +20,16 @@ import logging
 import codecs
 from service.utils import Utils
 import re
+import os
+import configparser
+import json
+
+config = configparser.ConfigParser()
+
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
+
 
 class Plan():
     def __init__(self, logger=False, catalog ="dockerhub"):
@@ -29,22 +39,61 @@ class Plan():
         logging.basicConfig(level=logging.INFO)
         if logger == True:
             self.logfile = codecs.open('logfile.txt','w',encoding='utf-8')
-
+        
         self.catalogKG = catalog + "_imageKG"
         self.inverted_catalogKG = "inverted_" + catalog + "_imageKG"
-        if "openshift" in catalog:
-            self.baseOSKG = "openshift_baseOSKG"
-        else: self.baseOSKG = "baseOSKG"
+        self.__osBaseImages = {}
 
         #Load imageKG
-        imageKG = Utils.get_imageKG(self.catalogKG)
-        #Load BaseOS
-        self.__osBaseImages, self.__imageKG = Utils.get_baseOS(imageKG,  self.baseOSKG)
-        #Load inverted image kg
-        self.__inverted_imageKG  = Utils.get_inverted_imageKG(self.inverted_catalogKG)
-        #Load COTS
-        self.__COTSKG = Utils.get_COT()
+        self.__imageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames'][self.catalogKG])
+        if os.path.exists(self.__imageKG_filepath):   
+            with open(self.__imageKG_filepath, 'r') as f:
+                self.__imageKG = json.load(f)            
+        else:
+            logging.error(f'imageKG[{self.__imageKG_filepath}] is empty or not exists')
+        
+        #load BaseOS
+        if "openshift" in catalog: 
+            self.openshiftbaseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['openshift_baseOSKG'])
+            
+            if os.path.exists(self.openshiftbaseOSKG_filepath):
+                with open(self.openshiftbaseOSKG_filepath, 'r') as f:
+                    openshiftbaseOSKG = json.load(f)
+                for image_name in openshiftbaseOSKG['Container Images']:
+                    self.__osBaseImages[openshiftbaseOSKG['Container Images'][image_name]['OS'][0]['Class']] = image_name
+                    self.__imageKG['Container Images'][image_name] = openshiftbaseOSKG['Container Images'][image_name]
+            else:
+                logging.error(f'openshiftbaseOSKG[{self.openshiftbaseOSKG_filepath}] is empty or not exists')
 
+        else:
+            self.baseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['baseOSKG'])
+            if os.path.exists(self.baseOSKG_filepath):
+                with open(self.baseOSKG_filepath, 'r') as f:
+                    baseOSKG = json.load(f)
+
+                for image_name in baseOSKG['Container Images']:
+                    self.__osBaseImages[baseOSKG['Container Images'][image_name]['OS'][0]['Class']] = image_name
+                    self.__imageKG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
+            else:
+                logging.error(f'baseOSKG[{self.baseOSKG_filepath}] is empty or not exists') 
+
+        #Load inverted image kg
+        self.__inverted_imageKG_path = os.path.join(config['general']['kg_dir'], config['filenames'][self.inverted_catalogKG])
+        if os.path.exists(self.__inverted_imageKG_path):
+            with open(self.__inverted_imageKG_path, 'r') as f:
+                self.__inverted_imageKG = json.load(f)
+        else:
+            logging.error(f'inverted_dockerimageKG[{self.__inverted_imageKG_path}] is empty or not exists')
+       
+        #Load COTS
+        self.__COTSKG = {}
+        self.__COTSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['COTSKG'])
+        if os.path.exists(self.__COTSKG_filepath):
+            with open(self.__COTSKG_filepath, 'r') as f:
+                self.__COTSKG = json.load(f)
+        else:
+            logging.error(f'COTSKG[{self.__COTSKG_filepath}] is empty or not exists')
+        
         self.MAJOR_VERSION_NUMBER_REGEX = re.compile('([0-9]+)')
 
 
