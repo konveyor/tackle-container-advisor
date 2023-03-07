@@ -1,6 +1,11 @@
 name: test
 on: [push,pull_request]
 jobs:
+  no-deps:
+      runs-on: ${{ matrix.os }}
+      strategy:
+        matrix:
+          os: [macos-latest, windows-latest, ubuntu-latest]
   run-unit-tests:
     name: Run unit test cases
     runs-on: ubuntu-latest
@@ -24,9 +29,3 @@ jobs:
         run: |
           python -m unittest discover -v -s test -p test_*.py
       
-       
-      - name: Upload code coverage
-        uses: codecov/codecov-action@v2
-        with:
-          version: "v0.1.13"      
-  
