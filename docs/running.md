@@ -61,7 +61,7 @@ usage: tca_cli.py [-h] -input_json INPUT_JSON -operation OPERATION -catalog CATA
 optional arguments:
   -h, --help     show this help message and exit
   -input_json INPUT_JSON  input to the application in json format
-  -operation OPERATION    operation to perform: standardize (default)| containerize
+  -operation OPERATION    operation to perform: standardize (default)| containerize | clustering | all | standardize+containerize | standardize+clustering | containerize+clustering
   -catalog CATALOG  catalog: dockerhub (defailt) | openshift | operator
   -output_json OUTPUT_JSON  output from the application in json format
 ```
@@ -79,7 +79,7 @@ python test/performance/run_payload.py
 ### Performance Benchmarking
 
 - TCA Api was run as a podman container on IntelCore i9-10885H CPU @ 2.40GHz with 8 Cores, 16 Logical Processors with 4GB Memory limit
-	
+
 <table>
   <tr>
     <td> #Records </td>
@@ -87,25 +87,25 @@ python test/performance/run_payload.py
     <td> Server Peak Mem.   </td>
     <td> Network I/O        </td>	  
   </tr>
-  <tr>	
+  <tr>
     <td> 10 </td>
     <td> 4.7s </td>
     <td> 477.1MB / 4.194GB </td>
     <td> 10.57kB / 8.129kB </td>
   </tr>
-  <tr>	
+  <tr>
     <td> 100 </td>
     <td> 13.73s </td>
     <td> 470.5MB / 4.194GB </td>
     <td> 81.78kB / 50.87kB </td>
   </tr>
-  <tr>	
+  <tr>
     <td> 1000 </td>
     <td> 42.75s </td>
     <td> 446.8MB / 4.194GB </td>
     <td> 644.3kB / 377.4kB </td>
   </tr>
-  <tr>	
+  <tr>
     <td> 5000 </td>
     <td> 226.29s </td>
     <td> 497.8MB / 4.194GB </td>
