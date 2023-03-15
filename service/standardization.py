@@ -24,6 +24,7 @@ import numpy as np
 # from word2number import w2n
 
 from entity_standardizer.tfidf import TFIDF
+from entity_standardizer.siamese import SIAMESE
 from entity_standardizer.tfidf import utils
 from service.version_detector import version_detector
 from service.utils import Utils
@@ -91,11 +92,11 @@ class Standardization():
                                 "integration_services_and_additional_softwares": "tech_stack",
                                 "technology_summary": "tech_stack"
                             }
-        
+
         class_type_mapper_filepath = os.path.join(kg_dir, class_type_mapper)
         if os.path.exists(class_type_mapper_filepath):
             with open(class_type_mapper_filepath, 'r') as f:
-                self.__class_type_mapper = json.load(f)            
+                self.__class_type_mapper = json.load(f)
         else:
             self.__class_type_mapper = {}
             logging.error(f'class_type_mapper[{class_type_mapper_filepath}] is empty or not exists')
@@ -111,10 +112,10 @@ class Standardization():
         # Get mapping of entity id to entity names
         with open(entity_file_name, 'r', encoding='utf-8') as entity_file:
             entities = json.load(entity_file)
-        
+
         self.__entity_data = {}
         for idx, entity in entities["data"].items():
-            entity_name = entity["entity_name"] 
+            entity_name = entity["entity_name"]
             tca_id      = entity["entity_id"]
             entity_type_name = entity["entity_type_name"]
             self.__entity_data[tca_id] = (entity_name, entity_type_name)
@@ -147,9 +148,9 @@ class Standardization():
             mentions = {}  # Holds all mentions as pointers to unique mention
             menhash  = {}  # Maps mention string to unique mention id
             uniques  = {}  # Holds unique mentions
-            appid    = {}  # Holds mapping of mention_id -> app_id 
-            for mention in mention_data:        
-                app_id     = mention.get("app_id", None)    
+            appid    = {}  # Holds mapping of mention_id -> app_id
+            for mention in mention_data:
+                app_id     = mention.get("app_id", None)
                 mention_id = mention.get("mention_id", None)
                 mention_name = mention.get("mention", "")
 
@@ -174,18 +175,19 @@ class Standardization():
 
         infer_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": uniques}
         logging.info(f"{len(uniques)} unique mentions will be standardized.")
-        tfidf            = TFIDF("deploy")
-        tfidf_start      = time.time()
-        tfidf_data       = tfidf.infer(infer_data)
-        tfidf_end        = time.time()
-        # tfidf_time       = (tfidf_end-tfidf_start)
+        print("Running SIAMESE")
+        model            = SIAMESE("deploy")
+        model_start      = time.time()
+        model_data       = model.infer(infer_data)
+        model_end        = time.time()
+        # model_time       = (model_end-model_start)
         # entities         = {}
-        mention_data     = tfidf_data.get("data", {})
+        mention_data     = model_data.get("data", {})
 
         for idx, mention in mention_data.items():
             mention_name= mention.get("mention", "")
             predictions = mention.get("predictions", [])
-            if not predictions:            
+            if not predictions:
                 logging.info(f"No predictions for {mention}")
                 # continue
             entity_names= [self.__entity_data[p[0]][0] for p in predictions if p[1] > self.medium_threshold]
@@ -440,13 +442,13 @@ class Standardization():
         except Exception as e:
             logging.error(str(e))
 
-    
+
     def app_standardizer(self, app_data):
         """
         app_standardizer methods takes app_data as input, extracts mentions for entity and
         version standardization followed by assessment of high, low, medium confidence and
         unknown technology data predictions
-        """                
+        """
         if (not app_data)  or len(app_data) == 0:
             return app_data
 

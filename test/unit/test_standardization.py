@@ -373,7 +373,7 @@ class TestEntityDetection(unittest.TestCase):
             print("Test app6 Diff = ", diff)
         self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))
 
-    
+
     def test_is_version(self):
         """Test versions"""
 
@@ -384,8 +384,8 @@ class TestEntityDetection(unittest.TestCase):
         standardizer = Standardization()
         app_data = standardizer.app_standardizer(app_data)
         self.assertTrue(is_version('10.0'))
-     
-    
+
+
     def test_loggings(self):
         """Test Loggings"""
 
@@ -452,8 +452,8 @@ class TestEntityDetection(unittest.TestCase):
                      'App Server': {}, 'HW': {}, 'Runtime': {}, \
                      'unknown': ['microservices']}]
 
-                
-        with self.assertLogs() as cm:      
+
+        with self.assertLogs() as cm:
             standardizer = Standardization()
             app_data = standardizer.app_standardizer(app_data)
             print(cm.output)
@@ -462,4 +462,3 @@ class TestEntityDetection(unittest.TestCase):
                 diff = DeepDiff(expected, app_data)
                 print("Test app4 Diff = ", diff)
             self.assertTrue(Test_check.checkEqual(Test_check,expected,app_data))
-

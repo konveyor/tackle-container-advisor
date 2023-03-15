@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 
 def parser():
     parser = argparse.ArgumentParser(description="Train and evaluate TCA entity standardization models")
-    parser.add_argument("-model_type", type=str, default="tf_idf", help="tf_idf (default) | wiki_data_api | all")
+    parser.add_argument("-model_type", type=str, default="tf_idf", help="tf_idf (default) | wiki_data_api | siamese | all")
     parser.add_argument("-mode", type=str, default="deploy", help="deploy (default) | benchmark")
     return parser.parse_args()
 
@@ -40,7 +40,7 @@ def print_gh_markdown(table_data):
 
     :returns: Return cleaned string with non-ascii characters removed/replaced
     """
-    
+
     logging.info(f"<p><table>")
     logging.info(f"<thead>")
     logging.info(f"<tr><th>Method</th><th>top-1</th><th>top-3</th><th>top-5</th><th>top-10</th><th>top-inf(count)</th><th>False positive rate</th><th>Runtime (on cpu)</th></tr>")
@@ -105,7 +105,7 @@ def plot(x_data, topk_data, style, color, label):
             linestyle=style,
             color=color,
             alpha=0.5,
-            marker='o', label=label) 
+            marker='o', label=label)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s", filemode='w')
@@ -162,7 +162,7 @@ if __name__ == "__main__":
         tfidf_time = (tfidf_end - tfidf_start)
         tfidf_x_data = []
         tfidf_topk_data = [[] for k in range(3)]
-        for thr in np.arange(0.0,1.0,0.05):        
+        for thr in np.arange(0.0,1.0,0.05):
             tfidf_topk = topk(tfidf_infer, thr)
             tfidf_x_data.append(tfidf_topk['fpr']/tfidf_topk['unks'])
             for k in range(3):
@@ -184,7 +184,7 @@ if __name__ == "__main__":
 
     if model_type == "siamese" or model_type == "all":
         logging.info("----------- SIAMESE -------------")
-        
+
         from entity_standardizer.siamese import SIAMESE
         if mode != 'deploy':
             mode = 'tca'
@@ -198,7 +198,7 @@ if __name__ == "__main__":
         siamese_time = (siamese_end - siamese_start)
         siamese_x_data = []
         siamese_topk_data = [[] for k in range(3)]
-        for thr in np.arange(0.0,1.0,0.05):        
+        for thr in np.arange(0.0,1.0,0.05):
             siamese_topk = topk(siamese_infer, thr)
             siamese_x_data.append(siamese_topk['fpr']/siamese_topk['unks'])
             for k in range(3):
@@ -229,10 +229,10 @@ if __name__ == "__main__":
         wdapi_infer = copy.deepcopy(wikidata_infer_data)
         wdapi_infer = wdapi.infer(wdapi_infer)
         wdapi_end = time.time()
-        wdapi_time = (wdapi_end - wdapi_start)    
+        wdapi_time = (wdapi_end - wdapi_start)
         wdapi_x_data = []
         wdapi_topk_data = [[] for k in range(3)]
-        for thr in np.arange(0.0,1.0,0.05):                    
+        for thr in np.arange(0.0,1.0,0.05):
             wdapi_topk = topk(wdapi_infer, thr)
             wdapi_x_data.append(wdapi_topk['fpr']/tfidf_topk['unks'])
             for k in range(3):
@@ -246,7 +246,7 @@ if __name__ == "__main__":
         table_data["wdapi"]["fpr"] = wdapi_topk["fpr"]
         table_data["wdapi"]["unks"] = wdapi_topk["unks"]
         table_data["wdapi"]["time"] = wdapi_time
-    
+
     if mode != 'deploy':
         plt.xlabel("False positive rate")
         plt.ylabel("Top-1 accuracy")

@@ -36,6 +36,6 @@ class TestApplySIM(unittest.TestCase):
             conf_scores  = mention_data.get("confidence", [0.0])
             extracted.append([entity_names[0], conf_scores[0]])
         expected = [['COBOL', np.float64(1.0)], ['Java|*', np.float64(1.0)], ['JavaScript|*', np.float64(1.0)], ['Unix|*', np.float64(1.0)], ['mainframe', np.float64(1.0)], ['DB2', np.float64(1.0)]]
-        print("Expected",expected)
-        print("extracted", extracted)
+        # print("Expected",expected)
+        # print("extracted", extracted)
         self.assertTrue(Test_check.checkEqual(Test_check,expected,extracted))
