@@ -113,7 +113,7 @@ class TestPlan(unittest.TestCase):
 
 
     def test_map_to_docker(self):
-        plan = Plan()
+        plan = Plan(catalog="dockerhub")
         appL = [{'application_name': 'App Name 0114', 'application_description': 'App Desc 0114',
                  'component_name': 'Comp 1', 'OS': {"RHEL": {"standard_name": "Linux|Red Hat Enterprise Linux"}},
                  'Lang': {"Java": {"standard_name": "Java|*"},
@@ -271,19 +271,19 @@ class TestPlan(unittest.TestCase):
                      'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'],
                      'valid_planning': True, 'planning_reason': '', 'scope_images': {'websphere-traditional': {
                 'Docker_URL': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b',
-                'Status': ''}, 'db2': {
+                'Status': None}, 'db2': {
                 'Docker_URL': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17',
-                'Status': ''}, 'redis_Linux': {
+                'Status': None}, 'redis_Linux': {
                 'Docker_URL': 'https://catalog.redhat.com/software/containers/rhel8/redis-5/5c401b0cbed8bd75a2c4c287',
-                'Status': ''}, 'jenkins': {
+                'Status': None}, 'jenkins': {
                 'Docker_URL': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b',
-                'Status': ''}}, 'scope_images_confidence': {
+                'Status': None}}, 'scope_images_confidence': {
                 'mapping': {'Websphere Application Server (WAS)': 'websphere-traditional', 'DB2': 'db2',
                             'Redis': 'redis_Linux', 'Jenkins': 'jenkins'}, 'image_confidence': 0.929,
                 'images_score': 130, 'cum_scores': 140, 'custom_installations_needed': ['JavaScript|*'],
                 'custom_images_needed': []}}]
 
-        appL = plan.map_to_docker(appL, 'openshift')
+        appL = plan.map_to_docker(appL, catalog='openshift')
 
         # add correction in case difference is for lower case vs upper case
         if appL != expected:
@@ -299,13 +299,11 @@ class TestPlan(unittest.TestCase):
                 [(key, new_value_assign.get(value)) for key, value in
                  expected[0]['scope_images_confidence'][
                      'mapping'].items()])
-        #print(appL)
-        print("\n")
+
         self.assertTrue(Test_check.checkEqual(Test_check,expected,appL))
-       # print(expected)
 
     def test_output_to_ui_planning_openshift(self):
-        plan = Plan()
+        plan = Plan(catalog="openshift")
         appL = [{'application_name': 'App Name 0114', 'application_description': 'App Desc 0114',
                  'component_name': 'Comp 1', 'OS': {'RHEL': {"standard_name": "Linux|Red Hat Enterprise Linux"}},
                  'Lang': {'Java': {"standard_name": "Java|*"},
@@ -386,7 +384,7 @@ class TestPlan(unittest.TestCase):
                                                  'image_confidence': 1.0, 'images_score': 60, 'cum_scores': 60,
                                                  'custom_installations_needed': [], 'custom_images_needed': []}}]
 
-        appL = plan.map_to_docker(appL, 'operators')
+        appL = plan.map_to_docker(appL, catalog='operators')
 
         # add correction in case difference is for lower case vs upper case and operator version number
         if appL != expected:
@@ -429,6 +427,3 @@ class TestPlan(unittest.TestCase):
         expected = [expected]
         pAppL = plan.output_to_ui_planning(appL)
         self.assertTrue(Test_check.checkEqual(Test_check,expected,pAppL))
-    
-
-    

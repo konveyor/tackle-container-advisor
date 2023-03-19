@@ -37,24 +37,27 @@ class Plan():
         Loads catalog KG json file data
         '''
         logging.basicConfig(level=logging.INFO)
+
         if logger == True:
             self.logfile = codecs.open('logfile.txt','w',encoding='utf-8')
         
-        self.catalogKG = catalog + "_imageKG"
-        self.inverted_catalogKG = "inverted_" + catalog + "_imageKG"
+        self.catalog = catalog
+        self.catalogKG = self.catalog + "_imageKG"
+        self.inverted_catalogKG = "inverted_" + self.catalog + "_imageKG"
         self.__osBaseImages = {}
+        
 
         #Load imageKG
         self.__imageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames'][self.catalogKG])
         if os.path.exists(self.__imageKG_filepath):   
             with open(self.__imageKG_filepath, 'r') as f:
-                self.__imageKG = json.load(f)            
+                self.__imageKG = json.load(f)           
         else:
             logging.error(f'imageKG[{self.__imageKG_filepath}] is empty or not exists')
         
         #load BaseOS
-        if "openshift" in catalog: 
-            self.openshiftbaseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['openshift_baseOSKG'])
+        if self.catalog =="openshift": 
+            self.openshiftbaseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames'][self.catalog +"_baseOSKG"])
             
             if os.path.exists(self.openshiftbaseOSKG_filepath):
                 with open(self.openshiftbaseOSKG_filepath, 'r') as f:
@@ -62,6 +65,7 @@ class Plan():
                 for image_name in openshiftbaseOSKG['Container Images']:
                     self.__osBaseImages[openshiftbaseOSKG['Container Images'][image_name]['OS'][0]['Class']] = image_name
                     self.__imageKG['Container Images'][image_name] = openshiftbaseOSKG['Container Images'][image_name]
+                   
             else:
                 logging.error(f'openshiftbaseOSKG[{self.openshiftbaseOSKG_filepath}] is empty or not exists')
 
@@ -70,20 +74,21 @@ class Plan():
             if os.path.exists(self.baseOSKG_filepath):
                 with open(self.baseOSKG_filepath, 'r') as f:
                     baseOSKG = json.load(f)
-
                 for image_name in baseOSKG['Container Images']:
                     self.__osBaseImages[baseOSKG['Container Images'][image_name]['OS'][0]['Class']] = image_name
                     self.__imageKG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
             else:
-                logging.error(f'baseOSKG[{self.baseOSKG_filepath}] is empty or not exists') 
+                     logging.error(f'baseOSKG[{self.baseOSKG_filepath}] is empty or not exists') 
 
         #Load inverted image kg
         self.__inverted_imageKG_path = os.path.join(config['general']['kg_dir'], config['filenames'][self.inverted_catalogKG])
         if os.path.exists(self.__inverted_imageKG_path):
             with open(self.__inverted_imageKG_path, 'r') as f:
                 self.__inverted_imageKG = json.load(f)
+                
+
         else:
-            logging.error(f'inverted_dockerimageKG[{self.__inverted_imageKG_path}] is empty or not exists')
+            logging.error(f'inverted_imageKG[{self.__inverted_imageKG_path}] is empty or not exists')
        
         #Load COTS
         self.__COTSKG = {}
@@ -117,7 +122,8 @@ class Plan():
 
         inverted_containerimageKG = self.__inverted_imageKG
         containerimageKG = self.__imageKG
-        imageurl = 'Docker_URL'
+        imageurl = 'image_url'
+
        
         # Compute maximum value of confidence
         cum_scores = scores_dict['OS']
@@ -166,6 +172,7 @@ class Plan():
 
                             app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
                             app['scope_images_confidence']['mapping'][child] = scope_image
+
                             if child_type in app_appserver_child_types:
                                 has_images_for_app_appserver = True
                             lang = containerimageKG['Container Images'][scope_image]['Lang']
@@ -237,9 +244,9 @@ class Plan():
         if not app['scope_images'] and scope_images:
             # find best for OS
             scope_image = scope_images[0]
-            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
+            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
             # app['scope_images_confidence']['mapping'][child] = scope_image
-
+           
 
         app['scope_images_confidence']['image_confidence'] = round(images_score/cum_scores,3)
         app['scope_images_confidence']['images_score'] = images_score
