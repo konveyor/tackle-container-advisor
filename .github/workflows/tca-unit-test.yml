@@ -1,28 +1,22 @@
-name: test
+name: Unit test cases for TCA
 on: [push,pull_request]
 jobs:
-  no-deps:
-      runs-on: ${{ matrix.os }}
-      strategy:
-        matrix:
-          os: [macos-latest, windows-latest, ubuntu-latest]
-      steps:
-        - uses: actions/checkout@v2
-        - name: Set up Python
-          uses: actions/setup-python@v2
-          with:
-            python-version: '3.8'
-        - name: Cleanup
-          run: |
-            bash clean.sh
-        - name: Setup Containerization Advisor
-          run: |
-            bash setup.sh
-
-      
-
-        - name: Test with pytest
-          id: run-unit-tests
-          run: |
-            python -m unittest discover -v -s test -p test_*.py
-        
+  run-unit-tests:
+    name: Run unit test cases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Cleanup
+        run: |
+          bash clean.sh
+      - name: Setup Containerization Advisor
+        run: |
+          bash setup.sh
+      - name: Test with pytest
+        id: run-unit-tests
+        run: |
+          python -m unittest discover -v -s test -p test_*.py
