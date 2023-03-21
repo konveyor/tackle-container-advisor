@@ -47,10 +47,10 @@ def cleanStrValue(value):
 
 
 def table_names(connect):
-    """_summary_
-
+    """
+    Show all table names.
     Args:
-        connect (_type_): _description_
+        connect (_type_): Connection to the database.
 
     """
     cursor = connect.cursor()
@@ -63,6 +63,11 @@ def table_names(connect):
 
 
 def explore_db(conn):
+    """
+    Show all tables and print the first five rows.
+    Args:
+        conn (_type_): Connection to the database.
+    """
     cursor = conn.cursor()
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = table_names(conn)
@@ -81,13 +86,15 @@ def explore_db(conn):
 
 
 def type_mapper(db_connection):
-    """Maps each entity to the corresponding type
+    """
+    Maps each entity to the corresponding type.
 
     :param conn:  A connection to mysql
     :type conn:  <class 'sqlite3.Connection'>
 
     :returns: {'1': 'Lang', '2': 'Lib', '3': 'App Server', '4': 'Runtime', '5': 'App', '6': 'OS'}
-    :rtype: dict
+    
+    :rtype: A dict of mapped entity_typ  to a unique number.
 
 
     """
@@ -106,15 +113,13 @@ def type_mapper(db_connection):
 
 def entity_mapper(db_connection):
     """
-    Method to load entity names from "entities" table from mysql db
+        Method to load entity names from "entities" table from mysql db. Maps entities to unique ids
 
-    :param db_connection: A connection to mysql
-    :type db_connection:  <class 'sqlite3.Connection'>
-
-    :returns: A dictionary of entity_names
-    :rtype: dict
-
+    Keyword arguments:
+    db_connection -- Connection to the database.
+    Return: A dict containing entities mapped to unique ids.
     """
+    
     parent_class = {}
 
     parent_cursor = db_connection.cursor()
@@ -131,11 +136,15 @@ def entity_mapper(db_connection):
     return parent_class
 
 
-def save_json(json_file, file_name):
+def save_json(json_file:str, file_name:str)->None:
     """
-    Save json file to the ontologies folder
+    Saves Corresponding knowledge graph (json_file) to a file.
+    Args:
+        json_file (str): Knowledge graph
+        file_name (str): file name.
+    """
 
-    """
+    
     dst_pth = config["general"]["kg_dir"]
 
     if not os.path.isdir(dst_pth):
@@ -183,12 +192,12 @@ def create_class_type_mapper(db_connection):
 
 def create_inverted_compatibility_kg(db_connection):
     """
-    Create inverted compatibility kwonledge graph.
+    Create inverted compatibility knowledge graph.
 
     :param db_connection:  A connection to mysql
     :type db_connection:  <class 'sqlite3.Connection'>
 
-    :returns: Saves inverted compatibility kwonledge to the ontology folder
+    :returns: Saves inverted compatibility knowledge to the ontology folder
     :rtype: JSON file
 
     """
@@ -264,7 +273,7 @@ def create_base_os_kg(db_connection):
 
     """
 
-    # current base OS list
+    # current base OS list. We currently support only two base OS
     current_base_os = ["dockerhub", "openshift"]
     current_corresponding_kg_names = ["baseOSKG", "openshift_baseOSKG"]
 
@@ -522,6 +531,11 @@ def create_version(db_connection):
 
 
 def create_catalog_kg(con):
+    """
+    Create a knowledge graph(Json file) our catalog table.
+    Args:
+        con (_type_): A connection to the database.
+    """
 
     catalog_names = "catalogKG"
     cursor = con.cursor()
@@ -530,7 +544,6 @@ def create_catalog_kg(con):
     names = []
     for name in cursor.fetchall():
         names.append(name[1])
-
     catalog_kg["names"] = names
     save_json(catalog_kg, catalog_names)
 
@@ -558,7 +571,8 @@ def create_db_connection(db_file):
     return connection
 
 
-def catalogs(connect):
+def catalogs(connect)->str:
+ 
     """
     retrieve all catalog names.
     Args:
@@ -597,8 +611,7 @@ def create_catalog_image_kg(connect):
         kg_name = catalog + "_imageKG"
         cursor.execute("SELECT * FROM {}".format(table_name))
         image_kg["Container Images"] = {}
-        inverted_images_kg = {}
-
+       
         col_name_list = [tuple[0] for tuple in cursor.description]
 
         for image in cursor.fetchall():
@@ -630,11 +643,12 @@ def create_catalog_image_kg(connect):
         save_json(image_kg, kg_name)
 
 
-def create_inverted_catalog_kg(connect):
-    """"   
+def create_inverted_catalog_kg(connect) -> None:
+    """" 
+    Create inverted knowledge graph for each catalog.  
     Keyword arguments:
-    argument -- description
-    Return: return_description
+    connect -- Connection to the database.
+    Return: None
     """
 
     tables = catalogs(connect)
@@ -673,6 +687,7 @@ def create_inverted_catalog_kg(connect):
 
 
 if __name__ == '__main__':
+
     logging.basicConfig(
         level=logging.INFO, format="[%(asctime)s] %(name)s:%(levelname)s in %(filename)s:%(lineno)s - %(message)s", filemode='w')
 
@@ -686,25 +701,20 @@ if __name__ == '__main__':
     db_path = os.path.join(db_dir, version + ".db")
     if not os.path.isfile(db_path):
         logging.error(
-            f'{db_path} is not a file. Run "sh setup" from /tackle-advise-containerizeation folder to generate db files')
+            f'{db_path} is not a file. Run "bash setup.sh" to generate db files')
         exit()
 
     else:
-
         connection = create_db_connection(db_path)
-
+        explore_db(connection)
         create_class_type_mapper(connection)
         create_cot_kg(connection)
         create_version(connection)
         create_base_os_kg(connection)
-
         create_compatibility_os_kg(connection)
         create_compatibilty_kg(connection)
-        # explore_db(connection)
-
         create_catalog_kg(connection)
         create_catalog_image_kg(connection)
         create_inverted_catalog_kg(connection)
-
         create_inverted_compatibility_kg(connection)
         create_inverted_base_os_kg(connection)
