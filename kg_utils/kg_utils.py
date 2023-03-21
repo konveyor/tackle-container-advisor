@@ -300,7 +300,7 @@ def create_base_os_kg(db_connection):
 
                 base_os["Container Images"][baseos_image]["Plugin"], base_os["Container Images"][baseos_image]["Runlib"], \
                     base_os["Container Images"][baseos_image]["Runtime"] = [], [], []
-                base_os["Container Images"][baseos_image]["Docker_URL"] = docker_url
+                base_os["Container Images"][baseos_image]["image_url"] = docker_url
 
                 base_os["Container Images"][baseos_image]["Notes"], base_os["Container Images"][baseos_image][
                     "CertOfImageAndPublisher"] = Note, Status

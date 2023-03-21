@@ -79,7 +79,6 @@ def main():
         if op == 'standardize':
             standardizer = Standardization()
             result_data = standardizer.app_standardizer(app_data)
-
             assessment = Assessment()
             result_data = assessment.app_validation(result_data)
             result_data = assessment.output_to_ui_assessment(result_data)
@@ -90,10 +89,16 @@ def main():
             inferTech  = InferTech()
 
             result_data = plan.ui_to_input_assessment(app_data)
+            
             result_data = inferTech.infer_missing_tech(result_data)
+            #print(json.dumps(result_data, indent=4))
             result_data = plan.validate_app(result_data)
+            
             result_data = plan.map_to_docker(result_data, 'ibmcloud')
+            
+
             result_data = plan.output_to_ui_planning(result_data)
+           
 
         elif op == 'clustering':
             cluster = Clustering()

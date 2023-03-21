@@ -42,10 +42,15 @@ class Plan():
             self.logfile = codecs.open('logfile.txt','w',encoding='utf-8')
         
         self.catalog = catalog
-        self.catalogKG = self.catalog + "_imageKG"
-        self.inverted_catalogKG = "inverted_" + self.catalog + "_imageKG"
+        self.catalogKG = catalog + "_imageKG"
+        self.inverted_catalogKG = "inverted_" + catalog + "_imageKG"
         self.__osBaseImages = {}
-        
+        if "openshift" in [self.catalog]:
+            self.baseOS = catalog + "_baseOSKG"
+            self.baseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames'][self.baseOS])
+        else:
+            self.baseOS = "baseOSKG"
+            self.baseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames'][self.baseOS])
 
         #Load imageKG
         self.__imageKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames'][self.catalogKG])
@@ -54,39 +59,22 @@ class Plan():
                 self.__imageKG = json.load(f)           
         else:
             logging.error(f'imageKG[{self.__imageKG_filepath}] is empty or not exists')
-        
+    
         #load BaseOS
-        if self.catalog =="openshift": 
-            self.openshiftbaseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames'][self.catalog +"_baseOSKG"])
-            
-            if os.path.exists(self.openshiftbaseOSKG_filepath):
-                with open(self.openshiftbaseOSKG_filepath, 'r') as f:
-                    openshiftbaseOSKG = json.load(f)
-                for image_name in openshiftbaseOSKG['Container Images']:
-                    self.__osBaseImages[openshiftbaseOSKG['Container Images'][image_name]['OS'][0]['Class']] = image_name
-                    self.__imageKG['Container Images'][image_name] = openshiftbaseOSKG['Container Images'][image_name]
-                   
-            else:
-                logging.error(f'openshiftbaseOSKG[{self.openshiftbaseOSKG_filepath}] is empty or not exists')
-
+        if os.path.exists(self.baseOSKG_filepath):
+            with open(self.baseOSKG_filepath, 'r') as f:
+                baseOSKG = json.load(f)
+            for image_name in baseOSKG['Container Images']:
+                self.__osBaseImages[baseOSKG['Container Images'][image_name]['OS'][0]['Class']] = image_name
+                self.__imageKG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
         else:
-            self.baseOSKG_filepath = os.path.join(config['general']['kg_dir'], config['filenames']['baseOSKG'])
-            if os.path.exists(self.baseOSKG_filepath):
-                with open(self.baseOSKG_filepath, 'r') as f:
-                    baseOSKG = json.load(f)
-                for image_name in baseOSKG['Container Images']:
-                    self.__osBaseImages[baseOSKG['Container Images'][image_name]['OS'][0]['Class']] = image_name
-                    self.__imageKG['Container Images'][image_name] = baseOSKG['Container Images'][image_name]
-            else:
-                     logging.error(f'baseOSKG[{self.baseOSKG_filepath}] is empty or not exists') 
+            logging.error(f'baseOSKG[{self.baseOSKG_filepath}] is empty or not exists') 
 
         #Load inverted image kg
         self.__inverted_imageKG_path = os.path.join(config['general']['kg_dir'], config['filenames'][self.inverted_catalogKG])
         if os.path.exists(self.__inverted_imageKG_path):
             with open(self.__inverted_imageKG_path, 'r') as f:
-                self.__inverted_imageKG = json.load(f)
-                
-
+                self.__inverted_imageKG = json.load(f)          
         else:
             logging.error(f'inverted_imageKG[{self.__inverted_imageKG_path}] is empty or not exists')
        
@@ -170,7 +158,7 @@ class Plan():
                             scope_image = best_image
                             images_score += scores_dict[child_type]
 
-                            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
+                            app['scope_images'][scope_image] = {'Image_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
                             app['scope_images_confidence']['mapping'][child] = scope_image
 
                             if child_type in app_appserver_child_types:
@@ -234,7 +222,7 @@ class Plan():
                                 break
                         scope_image = best_image
                         images_score += scores_dict['Lang']
-                        app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
+                        app['scope_images'][scope_image] = {'Image_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
                         app['scope_images_confidence']['mapping'][child] = scope_image
                     else:
                         custom_installations_needed.append(child)
@@ -244,7 +232,7 @@ class Plan():
         if not app['scope_images'] and scope_images:
             # find best for OS
             scope_image = scope_images[0]
-            app['scope_images'][scope_image] = {'Docker_URL': containerimageKG['Container Images'][scope_image]['Docker_URL'], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
+            app['scope_images'][scope_image] = {'Image_URL': containerimageKG['Container Images'][scope_image][imageurl], 'Status': containerimageKG['Container Images'][scope_image].get('CertOfImageAndPublisher')}
             # app['scope_images_confidence']['mapping'][child] = scope_image
            
 
@@ -573,9 +561,9 @@ class Plan():
                     if app['scope_images'][image]['Status']:
                         image_name = image_name + '(' + app['scope_images'][image]['Status'] + ')'
                         docker_url_dict['status'] = app['scope_images'][image]['Status']
-                    #  docker_url_dict[image_name] = app["scope_images"][image]["Docker_URL"]
+                    #  docker_url_dict[image_name] = app["scope_images"][image]["Image_URL"]
 
-                    docker_url_dict['url'] = app["scope_images"][image]["Docker_URL"]
+                    docker_url_dict['url'] = app["scope_images"][image]["Image_URL"]
                     pApp['Ref Dockers'].append(docker_url_dict)  # += str(counter) + ". " + str(docker_url_dict) +'\n'
                     counter_list += str(counter) + ','
                     counter += 1
@@ -598,9 +586,9 @@ class Plan():
                             image_name = image_name + '(' + app['scope_images_win'][image]['Status'] + ')'
                             docker_url_dict['status'] = app['scope_images_win'][image]['Status']
 
-                        docker_url_dict['url'] = app["scope_images_win"][image]["Docker_URL"]
+                        docker_url_dict['url'] = app["scope_images_win"][image]["Image_URL"]
 
-                        pApp['Ref Dockers'].append(docker_url_dict)  #  += str(counter) + ". " + image_name +'|'+app["scope_images_win"][image]["Docker_URL"]+'\n'
+                        pApp['Ref Dockers'].append(docker_url_dict)  #  += str(counter) + ". " + image_name +'|'+app["scope_images_win"][image]["Image_URL"]+'\n'
                         counter_list += str(counter) + ','
                         counter += 1
                     counter_list = counter_list[:-1]

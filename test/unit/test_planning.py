@@ -149,11 +149,11 @@ class TestPlan(unittest.TestCase):
                                'App Server': ['Websphere Application Server (WAS)'], 'Runtime': []},
                      'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'],
                      'valid_planning': True, 'planning_reason': '', 'scope_images': {
-                'websphere-traditional': {'Docker_URL': 'https://hub.docker.com/r/ibmcom/websphere-traditional/',
+                'websphere-traditional': {'Image_URL': 'https://hub.docker.com/r/ibmcom/websphere-traditional/',
                                           'Status': ''},
-                'db2': {'Docker_URL': 'https://hub.docker.com/r/ibmcom/db2', 'Status': 'Verified Publisher'},
-                'redis_Linux': {'Docker_URL': 'https://hub.docker.com/_/redis/', 'Status': 'Official Image'},
-                'jenkins': {'Docker_URL': 'https://hub.docker.com/_/jenkins/', 'Status': 'Official Image'}},
+                'db2': {'Image_URL': 'https://hub.docker.com/r/ibmcom/db2', 'Status': 'Verified Publisher'},
+                'redis_Linux': {'Image_URL': 'https://hub.docker.com/_/redis/', 'Status': 'Official Image'},
+                'jenkins': {'Image_URL': 'https://hub.docker.com/_/jenkins/', 'Status': 'Official Image'}},
                      'scope_images_confidence': {
                          'mapping': {'Websphere Application Server (WAS)': 'websphere-traditional', 'DB2': 'db2',
                                      'Redis': 'redis_Linux', 'Jenkins': 'jenkins'}, 'image_confidence': 0.929,
@@ -200,11 +200,11 @@ class TestPlan(unittest.TestCase):
                            'App Server': ['Websphere Application Server (WAS)'], 'Runtime': []},
                  'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'],
                  'valid_planning': True, 'planning_reason': '', 'scope_images': {
-                'websphere-traditional': {'Docker_URL': 'https://hub.docker.com/r/ibmcom/websphere-traditional/',
+                'websphere-traditional': {'Image_URL': 'https://hub.docker.com/r/ibmcom/websphere-traditional/',
                                           'Status': ''},
-                'db2': {'Docker_URL': 'https://hub.docker.com/r/ibmcom/db2', 'Status': 'Verified Publisher'},
-                'redis_Linux': {'Docker_URL': 'https://hub.docker.com/_/redis/', 'Status': 'Official Image'},
-                'jenkins': {'Docker_URL': 'https://hub.docker.com/_/jenkins/', 'Status': 'Official Image'}},
+                'db2': {'Image_URL': 'https://hub.docker.com/r/ibmcom/db2', 'Status': 'Verified Publisher'},
+                'redis_Linux': {'Image_URL': 'https://hub.docker.com/_/redis/', 'Status': 'Official Image'},
+                'jenkins': {'Image_URL': 'https://hub.docker.com/_/jenkins/', 'Status': 'Official Image'}},
                  'scope_images_confidence': {
                      'mapping': {'Websphere Application Server (WAS)': 'websphere-traditional', 'DB2': 'db2',
                                  'Redis': 'redis_Linux', 'Jenkins': 'jenkins'}, 'image_confidence': 0.929,
@@ -270,13 +270,13 @@ class TestPlan(unittest.TestCase):
                                'App Server': ['Websphere Application Server (WAS)'], 'Runtime': []},
                      'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'],
                      'valid_planning': True, 'planning_reason': '', 'scope_images': {'websphere-traditional': {
-                'Docker_URL': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b',
+                'Image_URL': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b',
                 'Status': None}, 'db2': {
-                'Docker_URL': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17',
+                'Image_URL': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17',
                 'Status': None}, 'redis_Linux': {
-                'Docker_URL': 'https://catalog.redhat.com/software/containers/rhel8/redis-5/5c401b0cbed8bd75a2c4c287',
+                'Image_URL': 'https://catalog.redhat.com/software/containers/rhel8/redis-5/5c401b0cbed8bd75a2c4c287',
                 'Status': None}, 'jenkins': {
-                'Docker_URL': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b',
+                'Image_URL': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b',
                 'Status': None}}, 'scope_images_confidence': {
                 'mapping': {'Websphere Application Server (WAS)': 'websphere-traditional', 'DB2': 'db2',
                             'Redis': 'redis_Linux', 'Jenkins': 'jenkins'}, 'image_confidence': 0.929,
@@ -322,13 +322,13 @@ class TestPlan(unittest.TestCase):
                            'App Server': ['Websphere Application Server (WAS)'], 'Runtime': []},
                  'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'],
                  'valid_planning': True, 'planning_reason': '', 'scope_images': {'websphere-traditional': {
-                'Docker_URL': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b',
+                'Image_URL': 'https://catalog.redhat.com/software/containers/r/ibmcom/websphere-traditional/5d77b2e4702c566f4cbf438b',
                 'Status': ''}, 'db2': {
-                'Docker_URL': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17',
+                'Image_URL': 'https://catalog.redhat.com/software/containers/ibm/ibm-db2z-ui/5d8bd4bf69aea310b5373e17',
                 'Status': ''}, 'redis_Linux': {
-                'Docker_URL': 'https://catalog.redhat.com/software/containers/rhel8/redis-5/5c401b0cbed8bd75a2c4c287',
+                'Image_URL': 'https://catalog.redhat.com/software/containers/rhel8/redis-5/5c401b0cbed8bd75a2c4c287',
                 'Status': ''}, 'jenkins': {
-                'Docker_URL': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b',
+                'Image_URL': 'https://catalog.redhat.com/software/containers/openshift3/jenkins-2-rhel7/581d2f4500e5d05639b6517b',
                 'Status': ''}}, 'scope_images_confidence': {
                 'mapping': {'Websphere Application Server (WAS)': 'websphere-traditional', 'DB2': 'db2',
                             'Redis': 'redis_Linux', 'Jenkins': 'jenkins'}, 'image_confidence': 0.929,
@@ -378,7 +378,7 @@ class TestPlan(unittest.TestCase):
                      'Linux': {'Lang': [], 'App': ['MongoDB'], 'App Server': [], 'Runtime': []},
                      'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'],
                      'valid_assessment': True, 'valid_planning': True, 'planning_reason': '', 'scope_images': {
-                'MongoDB Enterprise Operator': {'Docker_URL': 'quay.io/mongodb/mongodb-enterprise-operator',
+                'MongoDB Enterprise Operator': {'Image_URL': 'quay.io/mongodb/mongodb-enterprise-operator',
                                                 'Status': None}},
                      'scope_images_confidence': {'mapping': {'MongoDB': 'MongoDB Enterprise Operator'},
                                                  'image_confidence': 1.0, 'images_score': 60, 'cum_scores': 60,
@@ -413,7 +413,7 @@ class TestPlan(unittest.TestCase):
                  'Linux': {'Lang': [], 'App': ['MongoDB'], 'App Server': [], 'Runtime': []},
                  'Windows': {'Lang': [], 'App': [], 'App Server': [], 'Runtime': []}, 'RepackageOS': ['Linux'],
                  'valid_assessment': True, 'valid_planning': True, 'planning_reason': '', 'scope_images': {
-                'MongoDB Enterprise Operator': {'Docker_URL': 'quay.io/mongodb/mongodb-enterprise-operator:1.12.0',
+                'MongoDB Enterprise Operator': {'Image_URL': 'quay.io/mongodb/mongodb-enterprise-operator:1.12.0',
                                                 'Status': None}},
                  'scope_images_confidence': {'mapping': {'MongoDB': 'MongoDB Enterprise Operator'},
                                              'image_confidence': 1.0, 'images_score': 60, 'cum_scores': 60,
