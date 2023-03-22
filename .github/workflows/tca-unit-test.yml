@@ -1,4 +1,4 @@
-name: Unit test cases for TCA
+name: Unit tests
 on: [push,pull_request]
 jobs:
   run-unit-tests:
