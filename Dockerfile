@@ -14,7 +14,7 @@
 # limitations under the License.
 ################################################################################
 
-FROM registry.access.redhat.com/ubi8/python-38
+FROM registry.access.redhat.com/ubi8/python-39:1-105
 
 # Need to be root to install dependencies
 USER 0
