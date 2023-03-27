@@ -29,9 +29,12 @@ app.config.from_object('config')
 # Set up logging
 if __name__ != '__main__':
         app.logger.setLevel(logging.INFO)
-        ch = app.logger.handlers[0]
-        formatter = logging.Formatter("[%(asctime)s] %(levelname)s in %(filename)s:%(lineno)s - %(message)s")
-        ch.setFormatter(formatter)
+        try:
+                ch = app.logger.handlers[0]
+                formatter = logging.Formatter("[%(asctime)s] %(levelname)s in %(filename)s:%(lineno)s - %(message)s")
+                ch.setFormatter(formatter)
+        except:
+                formatter = logging.Formatter("[%(asctime)s] %(levelname)s in %(filename)s:%(lineno)s - %(message)s")
 
 app.logger.info(70 * '*')
 app.logger.info('  Runtime Graph API  '.center(70, '*'))
