@@ -25,10 +25,15 @@ from . import app
 import service.functions as functions
 
 import configparser
+import json
 
 config = configparser.ConfigParser()
 common = os.path.join("config", "common.ini")
+name_path = os.path.join("kg", "catalogNames.json")
 config.read(common)
+
+with open(name_path, 'r', encoding="utf-8") as cat_file:
+    catalog_names =json.load(cat_file)
 
 authorizations = {
     'apikey': {
@@ -203,7 +208,7 @@ class Assessment(Resource):
 
 
 @api.route('/containerize', strict_slashes=False)
-@api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift, operator or ibmcloud', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': ['dockerhub', 'openshift', 'operator','ibmcloud']}})
+@api.doc(params={'catalog': {'description': 'catalog of container images: dockerhub, openshift, operator or ibmcloud', 'in': 'query', 'type': 'string', 'default':'dockerhub', 'enum': catalog_names["names"]}})
 class Planning(Resource):
     """
     Planning class creates the assessment in the form of assessment_model for the
@@ -230,7 +235,7 @@ class Planning(Resource):
         if not catalog:
             catalog = 'dockerhub'
         catalog = catalog.lower()
-        if catalog not in ['dockerhub', 'openshift', 'operator','ibmcloud']:
+        if catalog not in catalog_names['names']:
             catalog = 'dockerhub'
 
         return functions.do_planning(auth_url,dict(request.headers),auth_headers,api.payload,catalog)

@@ -17,6 +17,7 @@ def parser():
     parser.add_argument("-input_string", dest="input_string", type=str, help="input string", required=False)
     parser.add_argument("-operation", dest="operation", type=str, default="standardize", help="operation to perform: standardize (default) | containerize | clustering | all | standardize+containerize | standardize+clustering | containerize+clustering ")
     parser.add_argument("-output_json", dest="output_json", type=str, help="output json", required=False)
+    parser.add_argument("-catalog", dest="catalog", type=str, help="catalog", default="ibmcloud", required=False)
     return parser.parse_args()
 
 
@@ -78,21 +79,26 @@ def main():
         if op == 'standardize':
             standardizer = Standardization()
             result_data = standardizer.app_standardizer(app_data)
-
             assessment = Assessment()
             result_data = assessment.app_validation(result_data)
             result_data = assessment.output_to_ui_assessment(result_data)
 
 
         elif op == 'containerize':
-            plan = Plan()
+            plan = Plan(catalog="ibmcloud")
             inferTech  = InferTech()
 
             result_data = plan.ui_to_input_assessment(app_data)
+            
             result_data = inferTech.infer_missing_tech(result_data)
+            #print(json.dumps(result_data, indent=4))
             result_data = plan.validate_app(result_data)
-            result_data = plan.map_to_docker(result_data, 'docker')
+            
+            result_data = plan.map_to_docker(result_data, 'ibmcloud')
+            
+
             result_data = plan.output_to_ui_planning(result_data)
+           
 
         elif op == 'clustering':
             cluster = Clustering()
