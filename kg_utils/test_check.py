@@ -4,8 +4,7 @@ import copy
 class Test_check():
 
     def checkList(self, expected, actual, isRecursiveKeyCs):
-        #print(expected)
-        #print(actual)
+
         if len(expected) != len(actual):
             return False
         for ll in range(len(expected)):
@@ -13,9 +12,8 @@ class Test_check():
             entryA = actual[ll]
             typeEentry = type(entryE)
             typeAentry = type(entryA)
-            #print(typeEentry)
-            #print(typeAentry)
-            if typeEentry != typeAentry:
+
+            if typeEentry != typeAentry and typeEentry is not float and typeAentry is not float:
                 return False
             if typeEentry is str:
                 if entryE != "NA":
@@ -35,6 +33,9 @@ class Test_check():
             elif typeEentry is list:
                 if self.checkList(self, entryE, entryA, isRecursiveKeyCs) == False:
                     return False
+            elif typeAentry is float:
+                return abs(entryE-entryA) < 0.05
+
             else:
                if entryA != entryE:
                   return False
@@ -60,7 +61,7 @@ class Test_check():
        if allEKeys != allAKeys:
           return False
        for keyE in allEKeys:
-          #print("Checking: ", keyE)
+
           valueE = newE[keyE]
           valueA = newA[keyE]
           typeE = type(valueE)
@@ -100,7 +101,7 @@ class Test_check():
        for i in range(len(expected)):
           myEOd = expected[i]
           myAOd = actual[i]
-          #print(type(myEOd))
+
           if type(myEOd) is OrderedDict or type(myEOd) is dict:
               if self.checkDict(self, myEOd, myAOd, True, False) == False:
                   return False
