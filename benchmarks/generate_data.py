@@ -19,6 +19,9 @@ import logging
 import os
 import json
 import numpy as np
+from itertools import combinations
+from math import comb
+from random import sample
 
 def clean(mention):
     """
@@ -112,8 +115,8 @@ def get_benchmark_data(config, all_train=False):
             if source == "others":
                 if all_train:
                     # for mention in mention_list:
-                    train_data[idx]["mentions"] = train_data[idx].get("mentions", [])
-                    train_data[idx]["mentions"] += [clean(mention) for mention in mention_list]
+                    train_data[idx]["mention(s)"] = train_data[idx].get("mention(s)", [])
+                    train_data[idx]["mention(s)"] += [clean(mention) for mention in mention_list]
                     train_data[idx]["entity_id"] = entity_id
                 else:
                     std_mention = split(mentions["standardized"])
@@ -124,31 +127,77 @@ def get_benchmark_data(config, all_train=False):
                         # must be different from the standard version
                         if std_mention is not None and clean(mention) != std_mention:
                             inf_data[inf_idx] = {}
-                            inf_data[inf_idx]["mention"] = clean(mention)
+                            inf_data[inf_idx]["mention(s)"] = clean(mention)
                             inf_data[inf_idx]["entity_id"] = entity_id
                             inf_idx += 1
             else:
-                train_data[idx]["mentions"] = train_data[idx].get("mentions", [])
+                train_data[idx]["mention(s)"] = train_data[idx].get("mention(s)", [])
                 if source == "standardized":
                     mention = split(mention_list)
                     if mention is not None:
-                        train_data[idx]["mentions"].append(mention)
+                        train_data[idx]["mention(s)"].append(mention)
 
                 else:
                     cleaned_mentions = []
                     if "others" in mentions.keys():
                         cleaned_mentions = [clean(m) for m in mentions["others"]]
-                    train_data[idx]["mentions"] += [clean(mention) for mention in mention_list if clean(mention) not in cleaned_mentions]
+                    train_data[idx]["mention(s)"] += [clean(mention) for mention in mention_list if clean(mention) not in cleaned_mentions]
                     
                 train_data[idx]["entity_id"] = entity_id
 
     return train_data, inf_data
 
-def create_deploy_benchmark(config, train_data, inf_data):
+
+def convert_to_binary(data):
     """
-    Create benckmark train and infer json files with entity id as label
+    Create multi-class classification data to binary classification data (similar/dissimilar)
+    :param data: Dictionary of multi-class classification data  
+    :type  data: dict
+
+    :returns: Returns dictionary containing similar and dissimilar mentions
+    """
+    label2mentions = {}
+    for idx, value in data.items():
+        label = value["entity_id"]
+        mentions = label2mentions.get(label, [])
+        if type(value["mention(s)"]) == list:
+            mentions += value["mention(s)"]
+        else:
+            mentions.append(value["mention(s)"])
+        label2mentions[label] = mentions
     
-    :returns: Creates train.json and infer.json inside config["data_dir"]/tca
+    # Similar pairs
+    bdata = {}
+    bidx  = 0
+    for label in label2mentions:
+        pairs = list(combinations(label2mentions[label],2))
+        for pair in pairs:
+            bdata[str(bidx)] = {}
+            bdata[str(bidx)]["mention_0"] = pair[0]
+            bdata[str(bidx)]["mention_1"] = pair[1]
+            bdata[str(bidx)]["similarity"] = 1
+            bidx += 1
+
+    # Dissimilar pairs
+    num_similar = len(bdata)
+    for i in range(num_similar):
+        labels   = sample(list(label2mentions.keys()),2)
+        mention0 = (sample(label2mentions[labels[0]],1))[0]
+        mention1 = (sample(label2mentions[labels[1]],1))[0]
+        bdata[str(bidx)] = {}
+        bdata[str(bidx)]["mention_0"] = mention0
+        bdata[str(bidx)]["mention_1"] = mention1
+        bdata[str(bidx)]["similarity"] = 0
+        bidx += 1
+
+    return bdata
+
+def create_sim_benchmark(config, train_data, inf_data):
+    """
+    Create benckmark train and infer json files with similarity = 1 for mentions
+    from the same class and similarity = 0 for mentions in different classes
+    
+    :returns: Creates train.json and infer.json inside config["data_dir"]/sim
     """
     try:
         data_dir = config["general"]["data_dir"]
@@ -157,12 +206,18 @@ def create_deploy_benchmark(config, train_data, inf_data):
         exit()
         
     data_dir = config["general"]["data_dir"]
-    name     = "deploy"
+    name     = "sim"
     os.makedirs(os.path.join(data_dir, name), exist_ok=True)
-    json_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": train_data}
-    with open(os.path.join(data_dir, name, 'train.json'), 'w', encoding='utf-8') as json_file:
+
+    bin_inf_data = convert_to_binary(inf_data)
+    json_data = {"data_type": "strings", "data": bin_inf_data}
+    with open(os.path.join(data_dir, name, 'infer.json'), 'w', encoding='utf-8') as json_file:
         json.dump(json_data, json_file, indent=4)
 
+    bin_train_data = convert_to_binary(train_data)
+    json_data = {"data_type": "strings", "data": bin_train_data}
+    with open(os.path.join(data_dir, name, 'train.json'), 'w', encoding='utf-8') as json_file:
+        json.dump(json_data, json_file, indent=4)
 
 def create_tca_benchmark(config, train_data, inf_data):
     """
@@ -183,6 +238,25 @@ def create_tca_benchmark(config, train_data, inf_data):
     with open(os.path.join(data_dir, name, 'infer.json'), 'w', encoding='utf-8') as json_file:
         json.dump(json_data, json_file, indent=4)
 
+    json_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": train_data}
+    with open(os.path.join(data_dir, name, 'train.json'), 'w', encoding='utf-8') as json_file:
+        json.dump(json_data, json_file, indent=4)
+
+def create_deploy_benchmark(config, train_data, inf_data):
+    """
+    Create benckmark train and infer json files with entity id as label
+    
+    :returns: Creates train.json and infer.json inside config["data_dir"]/tca
+    """
+    try:
+        data_dir = config["general"]["data_dir"]
+    except KeyError as k:
+        logging.error(f'{k}  is not a key in your common.ini file.')
+        exit()
+        
+    data_dir = config["general"]["data_dir"]
+    name     = "deploy"
+    os.makedirs(os.path.join(data_dir, name), exist_ok=True)
     json_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": train_data}
     with open(os.path.join(data_dir, name, 'train.json'), 'w', encoding='utf-8') as json_file:
         json.dump(json_data, json_file, indent=4)
@@ -251,6 +325,7 @@ if __name__ == '__main__':
     kg       = os.path.join("config", "kg.ini")
     config.read([common, kg])
     train_data, inf_data = get_benchmark_data(config, all_train=False)
+    create_sim_benchmark(config, train_data, inf_data)
     create_tca_benchmark(config, train_data, inf_data)
     create_wikidata_benchmark(config, train_data, inf_data)
     train_data, inf_data = get_benchmark_data(config, all_train=True)

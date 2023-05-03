@@ -21,8 +21,8 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    # package_dir={"tfidf": "tfidf", "wdapi": "wdapi"},
+    # package_dir={"tfidf": "tfidf", "wdapi": "wdapi", "gnn": "gnn"},
     # packages=find_packages(where="src"),
-    packages=["entity_standardizer", "entity_standardizer.tfidf", "entity_standardizer.siamese", "entity_standardizer.wdapi"],
+    packages=["entity_standardizer", "entity_standardizer.tfidf", "entity_standardizer.wdapi", "entity_standardizer.siamese"],
     python_requires=">=3.6",
 )

@@ -168,7 +168,7 @@ class Standardization():
                     else:
                         ulen                  = len(uniques)
                         menhash[mention_name] = ulen
-                        uniques[ulen] = {"mention": mention_name}
+                        uniques[ulen] = {"mention(s)": mention_name}
                         mentions[mention_id] = uniques[ulen]
 
         except Exception as e:
@@ -194,7 +194,7 @@ class Standardization():
         mention_data = model_data.get("data", {})
 
         for idx, mention in mention_data.items():
-            mention_name = mention.get("mention", "")
+            mention_name = mention.get("mention(s)", "")
             predictions = mention.get("predictions", [])
             if not predictions:
                 logging.info(f"No predictions for {mention}")
@@ -202,6 +202,7 @@ class Standardization():
             entity_names= [self.__entity_data[p[0]][0] for p in predictions if p[1] > self.medium_threshold]
             entity_types= [self.__entity_data[p[0]][1] for p in predictions if p[1] > self.medium_threshold]
             conf_scores = [round(p[1],2) for p in predictions if p[1] > self.medium_threshold]
+            mention["mention"]      = mention_name
             mention["entity_names"] = entity_names
             versions    = []
             for entity, score in zip(entity_names, conf_scores):
@@ -211,6 +212,7 @@ class Standardization():
             mention["confidence"]   = conf_scores
             mention["versions"]     = versions
             del mention["predictions"]
+            del mention["mention(s)"]
 
         import copy
         for idx in mentions:
