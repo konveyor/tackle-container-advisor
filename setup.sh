@@ -13,7 +13,7 @@ echo "+---------------------------------------------------------+"
 version="1.0.5"
 sql_file="$version.sql"
 db_file="$version.db"
-python="python"
+python="python3"
 pip="pip3"
 
 echo "------------------Checking Dependencies--------------------"
@@ -109,8 +109,10 @@ echo "----------------Generated KG Utility Files--------------------"
 ######################################################################
 echo "--------------Generating Entity Standardizer Models------------------"
 $python benchmarks/generate_data.py
-wget https://ibm.box.com/shared/static/mnp323fxslbel8qjecfmryvs8yypooka.pt -O "./models/deploy/siamese.pt"
-$python benchmarks/run_models.py
+# wget https://ibm.box.com/shared/static/mnp323fxslbel8qjecfmryvs8yypooka.pt -O "./models/deploy/siamese.pt"
+mkdir -p models/deploy
+wget https://www.dropbox.com/s/efpx2qy7n9z5niu/siamese.pt -O "./models/deploy/siamese.pt"
+$python benchmarks/run_models.py -model_type siamese
 echo "---------Generated Entity Standardizer Models--------------"
 
 echo "+---------------------------------------------------------+"
