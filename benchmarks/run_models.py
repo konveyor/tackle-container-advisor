@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 
 def parser():
     parser = argparse.ArgumentParser(description="Train and evaluate TCA entity standardization models")
-    parser.add_argument("-model_type", type=str, default="tf_idf", help="tf_idf (default) | wiki_data_api | siamese | all")
+    parser.add_argument("-model_type", type=str, default="siamese", help="tf_idf | wiki_data_api | siamese (default)| all")
     parser.add_argument("-mode", type=str, default="deploy", help="deploy (default) | benchmark")
     return parser.parse_args()
 
