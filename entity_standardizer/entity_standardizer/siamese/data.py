@@ -14,51 +14,22 @@
 # limitations under the License.
 ################################################################################
 
-import random
-import json
-import os
-def generate_train_entity_sets(entity_id_mentions, entity_id_name, group_size, anchor=True):
-    # split entity mentions into groups
-    # anchor = False, don't add entity name to each group, simply treat it as a normal mention
-    entity_sets = []
-    if anchor:
-        for id, mentions in entity_id_mentions.items():
-            random.shuffle(mentions)
-            positives = [mentions[i:i + group_size] for i in range(0, len(mentions), group_size)]
-            anchor_positive = [([entity_id_name[id]]+p, id) for p in positives]
-            entity_sets.extend(anchor_positive)
-    else:
-        for id, mentions in entity_id_mentions.items():
-            group = list(set([entity_id_name[id]] + mentions))
-            random.shuffle(group)
-            positives = [(mentions[i:i + group_size], id) for i in range(0, len(mentions), group_size)]
-            entity_sets.extend(positives)
-    return entity_sets
+import torch.nn as nn
+from transformers import AutoModel, AutoTokenizer
+import transformers
+transformers.utils.logging.set_verbosity_error()
 
-def batchGenerator(data, batch_size):
-    for i in range(0, len(data), batch_size):
-        batch = data[i:i+batch_size]
-        x, y = [], []
-        for t in batch:
-            x.extend(t[0])
-            y.extend([t[1]]*len(t[0]))
-        yield x, y
+class Model(nn.Module):
+    def __init__(self, params):
+        super().__init__()
+        self.backbone = params["model"].get("backbone", "prajjwal1/bert-small")
+        self.tokenizer = AutoTokenizer.from_pretrained(self.backbone)
+        self.encoder = AutoModel.from_pretrained(self.backbone)
 
-
-def loader(config):
-    kg_dir = config['general']['kg_dir']
-    kg_file_name = os.path.join(kg_dir, 'tca_entities.json')
-    with open(kg_file_name, 'r', encoding='utf-8') as file:
-        entities = json.load(file)
-    all_entity_id_name = {entity['entity_id']: entity['entity_name'] for _, entity in entities['data'].items()}
-
-    data_dir = config['general']['data_dir']
-    name        = config['task']['name']
-    json_file_name = os.path.join(data_dir, name, 'train.json')
-    with open(json_file_name, 'r', encoding='utf-8') as file:
-        train = json.load(file)
-
-    train_entity_id_mentions = {data['entity_id']: data['mentions'] for _, data in train['data'].items()}
-    train_entity_id_name = {data['entity_id']: all_entity_id_name[data['entity_id']] for _, data in train['data'].items()}
-    
-    return train_entity_id_mentions, train_entity_id_name
+    def forward(self, inputs, device):
+        inputs = self.tokenizer(inputs, padding=True, return_tensors='pt')
+        inputs = inputs.to(device)
+        outputs = self.encoder(**inputs)
+        cls = outputs.last_hidden_state[:,0,:]
+        del inputs
+        return cls
