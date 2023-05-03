@@ -21,7 +21,6 @@ import logging
 import configparser
 import re
 import numpy as np
-# from word2number import w2n
 
 from entity_standardizer.tfidf import TFIDF
 from entity_standardizer.siamese import SIAMESE
@@ -66,13 +65,20 @@ class Standardization():
         config = configparser.ConfigParser()
         common = os.path.join("config", "common.ini")
         kg     = os.path.join("config", "kg.ini")
-        config.read([common, kg])
+        deploy_configs = os.listdir(os.path.join("config", "deploy"))
+        deploys = [os.path.join("config", "deploy",x) for x in deploy_configs]
+        config.read([common, kg] + deploys)
 
         try:
             kg_dir                = config["general"]["kg_dir"]
             entities_json         = config["tca"]["entities"]
-            self.high_threshold   = float(config["Thresholds"]["HIGH_THRESHOLD"])
-            self.medium_threshold = float(config["Thresholds"]["MEDIUM_THRESHOLD"])
+            self.model = config["model"]["model_type"]
+
+            self.high_threshold   = float(config[f"infer_thresholds_{self.model}"]["HIGH_THRESHOLD"])
+            self.medium_threshold = float(config[f"infer_thresholds_{self.model}"]["MEDIUM_THRESHOLD"])
+            self.length_threshold = float(config[f"infer_thresholds_{self.model}"]["LENGTH_THRESHOLD"])
+            self.terms_threshold = float(config[f"infer_thresholds_{self.model}"]["TERMS_THRESHOLD"])
+
             na_category           = config['NA_VALUES']['NA_CATEGORY']
             self.na_version       = config['NA_VALUES']['NA_VERSION']
             class_type_mapper     = config['filenames']['class_type_mapper']
@@ -173,19 +179,22 @@ class Standardization():
         if not uniques:
             dict(status=201, message="Entity standardization completed successfully!", result=list(mentions.values())), 201
 
+
         infer_data = {"label_type": "int", "label": "entity_id", "data_type": "strings", "data": uniques}
         logging.info(f"{len(uniques)} unique mentions will be standardized.")
-        print("Running SIAMESE")
-        model            = SIAMESE("deploy")
-        model_start      = time.time()
-        model_data       = model.infer(infer_data)
-        model_end        = time.time()
-        # model_time       = (model_end-model_start)
-        # entities         = {}
-        mention_data     = model_data.get("data", {})
+
+        # load model and score it on the infer data
+        if self.model == 'siamese':
+            model = SIAMESE("deploy")
+
+        if self.model == 'tfidf':
+            model = TFIDF("deploy")
+
+        model_data = model.infer(infer_data)
+        mention_data = model_data.get("data", {})
 
         for idx, mention in mention_data.items():
-            mention_name= mention.get("mention", "")
+            mention_name = mention.get("mention", "")
             predictions = mention.get("predictions", [])
             if not predictions:
                 logging.info(f"No predictions for {mention}")
@@ -379,6 +388,7 @@ class Standardization():
             for m in mentions:
                 if 'combo_id' not in m.keys():
                     m['combo_id'] = m['mention_id']
+
                 if len(m['entity_names']) > 0:
                     words = str(m['mention']).split(' ')
 
@@ -391,19 +401,35 @@ class Standardization():
                         else:
                             words_to_entities[w_id] = {'entities': [m],
                                                     'scores': [m['confidence'][0]]}  # m['entity_names'][0]
-                else:
-                    m_to_keep.append(m)
-
 
             used_mentions = np.unique(np.array(used_mentions.split(' '))).tolist()
             if '' in used_mentions:
                 used_mentions.remove('')
 
-
             for m in used_mentions:
                 ind = np.argsort(np.array(words_to_entities[m]['scores']))[::-1]
-                if words_to_entities[m]['entities'][ind[0]] not in m_to_keep:
-                    m_to_keep.append(words_to_entities[m]['entities'][ind[0]])
+
+                lim_ind = 0
+                while lim_ind < len(words_to_entities[m]['scores'])-1 and np.abs(float(words_to_entities[m]['scores'][ind[lim_ind+1]]) - float(words_to_entities[m]['scores'][ind[0]])) < 0.03:
+                    lim_ind += 1
+
+                m_to_remove = []
+
+                if lim_ind > 0:
+
+                    for i in range(0, lim_ind + 1):
+                        m_temp = words_to_entities[m]['entities'][ind[i]]
+                        temp_words = str(m_temp['mention']).split(' ')
+                        if len(temp_words) > 1:
+                            for w in temp_words:
+                                if w != m:
+                                    w_id = w + '_' + str(m_temp['combo_id'])
+                                    if float(words_to_entities[m]['scores'][ind[i]]) < np.max(np.array(words_to_entities[w_id]['scores'])): #   and words_to_entities[m]['combo_id'] != words_to_entities[w_id]['combo_id']:
+                                        m_to_remove.append(m_temp)
+
+                for i in range(0,lim_ind+1):
+                    if words_to_entities[m]['entities'][ind[i]] not in m_to_keep and words_to_entities[m]['entities'][ind[i]] not in m_to_remove:
+                        m_to_keep.append(words_to_entities[m]['entities'][ind[i]])
 
         return m_to_keep
 
@@ -412,6 +438,10 @@ class Standardization():
     def compute_combinations(self, tech_stack):
         """Split the text with white space delimiter compute all combinations of words"""
         try:
+
+            if len(tech_stack) > 7 and tech_stack[:7] == 'NOCOMBO':
+                return [tech_stack[7:]]
+
             limit = 6
 
             text0 = tech_stack
@@ -469,6 +499,9 @@ class Standardization():
                     component_string = str(app[header])
                     component_string = self.remove_stopwords(component_string)
 
+                    if header != 'technology_summary':
+                        component_string = 'NOCOMBO' + component_string
+
                     if tech_stack:
                         tech_stack = tech_stack + ', ' + component_string
                     else:
@@ -490,6 +523,7 @@ class Standardization():
                     mentions_to_combos[num_mentions] = num_combo
 
                 num_combo += 1
+
 
 
             app["KG Version"] = self.__class_type_mapper['kg_version']
@@ -535,13 +569,14 @@ class Standardization():
                     found = False
                     m_to_remove = []
                     for m in app[general_term_key]:
+
                         if entity.split('|')[0] == list(app[general_term_key][m].keys())[0].split('|')[0] and\
                                 len(intersection(m.split(' '),mention_words)) > 0  and \
                                 mentions_to_combos[mention_id] == mentions_to_combos[app[general_term_key][m]['mention_id']]: # .split('|')[0] .split('|')[0]
 
                             if (app[general_term_key][m]['score'] < score and \
                                 len(mention) > len(m)) or \
-                                    (abs(app[general_term_key][m]['score'] - score) < 0.1 and (
+                                    (abs(app[general_term_key][m]['score'] - score) < self.length_threshold and (
                                              len(mention) > len(m)) or \
                                      (mention.split(' ')[-1].replace('.', '').isdigit() and not m.split(' ')[
                                          -1].replace('.', '').isdigit())):
@@ -571,13 +606,14 @@ class Standardization():
 
                             for m in app[self.__class_type_mapper['mappings'][entity]]:
 
-                                if entity.split('|')[0] == list(app[self.__class_type_mapper['mappings'][entity]][m].keys())[0].split('|')[0] and \
-                                        len(intersection(m.split(' '),mention_words)) > 0 and \
+                                if ((entity.split('|')[0] == list(app[self.__class_type_mapper['mappings'][entity]][m].keys())[0].split('|')[0] and \
+                                        len(intersection(m.split(' '),mention_words)) > 0 ) or \
+                                    (len(intersection(m.split(' '),mention_words)) > len(m.split(' '))*self.terms_threshold or len(intersection(m.split(' '),mention_words)) > len(mention_words)*self.terms_threshold)  ) and \
                                         mentions_to_combos[mention_id] == mentions_to_combos[app[self.__class_type_mapper['mappings'][entity]][m]['mention_id']]:  # .split('|')[0]  .split('|')[0]
 
                                     if (app[self.__class_type_mapper['mappings'][entity]][m]['score'] < score and \
                                         len(mention) > len(m) )  or \
-                                            (abs(app[self.__class_type_mapper['mappings'][entity]][m]['score'] - score) < 0.1 and (
+                                            (abs(app[self.__class_type_mapper['mappings'][entity]][m]['score'] - score) < self.length_threshold and (
                                                     len(mention) > len(m)) or \
                                              (mention.split(' ')[-1].replace('.', '').isdigit() and not m.split(' ')[
                                                  -1].replace('.', '').isdigit())):
