@@ -14,7 +14,8 @@
 # limitations under the License.
 ################################################################################
 
-import os, logging, random
+import os, logging, random, time
+import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 import torch
 from tqdm import tqdm
@@ -23,6 +24,7 @@ import pickle
 from .loss import batch_all_triplet_loss, batch_hard_triplet_loss
 from .model import Model
 from .data import generate_train_entity_sets, batchGenerator, loader
+from sklearn.metrics.pairwise import cosine_similarity
 
 class SIAMESE():
     def __init__(self, task_name):
@@ -75,22 +77,74 @@ class SIAMESE():
                 num_entities = len(embeddings)
                 logging.info(f"Loading embeddings of {num_entities} entities from {entity_vector_path}.")
 
-        x_test = [d['mention'] for _, d in infer_data['data'].items()]
-        # y_test = [d['entity_id'] for _, d in infer_data['data'].items()]
+        inf_start     = time.time()
+        label         = infer_data.get("label", None)
+        if label:
+            x_test = [d['mention(s)'] for _, d in infer_data['data'].items()]
+            # y_test = [d['entity_id'] for _, d in infer_data['data'].items()]
 
-        knn = KNeighborsClassifier(n_neighbors=1, metric='cosine').fit(embeddings, labels)
+            knn = KNeighborsClassifier(n_neighbors=1, metric='cosine').fit(embeddings, labels)
+            cls_test = model(x_test, device)
+            n_neighbors = int(self.config['infer'].get('topk', 10))
+            distances, indices = knn.kneighbors(cls_test.detach().cpu().numpy(),  n_neighbors=n_neighbors)
+            distances, indices = distances.tolist(), indices.tolist()
+            pred_label_ids = []
+            for pred in indices: 
+                label = [labels[i] for i in pred]
+                pred_label_ids.append(label)
+            for idx, inf_id in enumerate(infer_data['data']):
+                predictions = list(zip(pred_label_ids[idx], [1-d for d in distances[idx]]))
+                infer_data['data'][inf_id]['predictions'] = predictions
+        else:
+            data = infer_data["data"]
+            slice_size = 5000
+            with tqdm(range(int(np.ceil(len(data)/slice_size))), ncols=100) as progress:
+                for i in progress:
+                    mention_0s = []
+                    mention_1s = []
+                    for idx in range(i*slice_size, min(len(data), (i+1)*slice_size)):
+                        mention_0s.append(data[str(idx)]["mention_0"])
+                        mention_1s.append(data[str(idx)]["mention_1"])
 
-        cls_test = model(x_test, device)
-        n_neighbors = int(self.config['infer'].get('topk', 10))
-        distances, indices = knn.kneighbors(cls_test.detach().cpu().numpy(),  n_neighbors=n_neighbors)
-        distances, indices = distances.tolist(), indices.tolist()
-        pred_label_ids = []
-        for pred in indices: 
-            label = [labels[i] for i in pred]
-            pred_label_ids.append(label)
-        for idx, inf_id in enumerate(infer_data['data']):
-            predictions = list(zip(pred_label_ids[idx], [1-d for d in distances[idx]]))
-            infer_data['data'][inf_id]['predictions'] = predictions
+                    m0_set = list(set(mention_0s))
+                    cls_test    = model(m0_set, device)
+                    m0_vecs_slc = cls_test.detach().cpu().numpy()
+                    m0_vecs_dct = {}
+                    for idx, mention in enumerate(m0_set):
+                        m0_vecs_dct[mention] = m0_vecs_slc[idx]
+
+                    m1_set = list(set(mention_1s))
+                    cls_test    = model(m1_set, device)
+                    m1_vecs_slc = cls_test.detach().cpu().numpy()
+                    m1_vecs_dct = {}
+                    for idx, mention in enumerate(m1_set):
+                        m1_vecs_dct[mention] = m1_vecs_slc[idx]
+                
+                    m0_vecs = []
+                    for idx, mention in enumerate(mention_0s):
+                        m0_vecs.append(m0_vecs_dct[mention])
+                    m0_vecs = np.array(m0_vecs)
+                    m0_vecs_dct.clear()
+
+                    m1_vecs = []
+                    for idx, mention in enumerate(mention_1s):
+                        m1_vecs.append(m1_vecs_dct[mention])
+                    m1_vecs = np.array(m1_vecs)    
+                    m1_vecs_dct.clear()
+
+                    idx       = 0
+                    for m0,m1 in zip(m0_vecs, m1_vecs):
+                        men0 = data[str(i*slice_size+idx)]["mention_0"]
+                        men1 = data[str(i*slice_size+idx)]["mention_1"]
+                        csim      = cosine_similarity(np.array([m0]), np.array([m1]))
+                        sim       = torch.from_numpy(csim)        
+                        _, max_sim_idx = torch.topk(sim, 1, dim=1)
+                        sim_score = sim[max_sim_idx].item()
+                        data[str(i*slice_size+idx)]["sim_score"] = sim_score
+                        idx += 1
+        inf_end     = time.time()
+        logging.info(f"Inference took {inf_end-inf_start:.2f} seconds.")
+
         return infer_data
 
 

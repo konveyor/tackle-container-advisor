@@ -58,7 +58,7 @@ def loader(config):
     with open(json_file_name, 'r', encoding='utf-8') as file:
         train = json.load(file)
 
-    train_entity_id_mentions = {data['entity_id']: data['mentions'] for _, data in train['data'].items()}
+    train_entity_id_mentions = {data['entity_id']: data['mention(s)'] for _, data in train['data'].items()}
     train_entity_id_name = {data['entity_id']: all_entity_id_name[data['entity_id']] for _, data in train['data'].items()}
     
     return train_entity_id_mentions, train_entity_id_name
