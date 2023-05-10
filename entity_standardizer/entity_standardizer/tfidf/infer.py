@@ -41,7 +41,7 @@ def predict(config, json_data):
 
     mentions   = {}
     for idx in json_data["data"]:
-        mention = json_data["data"][idx]["mention"]        
+        mention = json_data["data"][idx]["mention(s)"]        
         mentions[idx] = mention
         
     model_path = os.path.join(model_dir, name)
@@ -118,7 +118,7 @@ def train(config):
             data      = json_data["data"]
             label       = json_data.get("label", "label")
             for idx, item in data.items():
-                for mention in item["mentions"]:
+                for mention in item["mention(s)"]:
                     data_to_eid[mention] = item[label]
     except OSError as exception:
         logging.error(exception)

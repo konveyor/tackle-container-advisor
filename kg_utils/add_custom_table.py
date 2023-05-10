@@ -32,19 +32,17 @@ def table_names(conn) ->list:
 
 
 
-def create_table(conn, table_name:str, columns:str):
-
+def create_table(conn, table_name:str, columns:str)->None:
     """
-    Create a custom table.
-
+    Add a new table to db.
     Args:
-        conn (_type_): Connection to the database.
+        conn (_type_): _description_
+        table_name (str): Name of the table.
+        columns (str): all columns.
     """
     cur = conn.cursor()
-    tab ="CREATE TABLE ibm-cloud-images (id integer PRIMARY KEY AUTOINCREMENT, container_name text NOT NULL, OS integer NOT NULL, lang integer, lib integer, app integer, app_server integer, plugin integer, runlib integer, runtime integer, ibm_cloud_correspondent_image_url text, FOREIGN KEY (OS) REFERENCES entities (id), FOREIGN KEY (lang) REFERENCES entities (id), FOREIGN KEY (lib) REFERENCES entities (id), FOREIGN KEY (app) REFERENCES entities (id), FOREIGN KEY (app_server) REFERENCES entities (id), FOREIGN KEY (plugin) REFERENCES entities (id), FOREIGN KEY (runlib) REFERENCES entities (id), FOREIGN KEY (runtime) REFERENCES entities (id))"
     table = "CREATE TABLE {}{}".format(table_name, columns)
-    print(table)
-    cur.execute(tab)
+    cur.execute(table)
     logging.info("{} added to the database!".format(table_name))
     
     
@@ -102,7 +100,6 @@ if "__name__==__main__":
         for num in list(range(int(entries.num_foreign_keys))):
             f_key = input("FOREIGN KEY {} : ".format(num+1))
             columns +=  ', '  + f_key
-    
     columns += ')'
     create_table(conn,entries.table_name,columns)
 

@@ -228,7 +228,7 @@ def csv_columns( table_name:str ):
 
     elif table_name == "docker_images":
         columns.update(docker_col_extension)
-    elif table_name == "operator_images":
+    elif table_name == "operators_images":
         columns.update(operator_col_extension)
     elif table_name == "ibm_cloud_images":
         columns.update(move2kube_col_extension)

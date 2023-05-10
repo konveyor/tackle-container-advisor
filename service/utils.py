@@ -16,6 +16,15 @@
 
 import re
 import logging
+import configparser
+import os
+import json
+
+config = configparser.ConfigParser()
+common = os.path.join("config", "common.ini")
+kg     = os.path.join("config", "kg.ini")
+config.read([common, kg])
+
 
 class Utils:
 
@@ -79,5 +88,14 @@ class Utils:
 
         except Exception as e:
             logging.error(str(e))
+
+    
+
         
+        
+ 
+        
+    
+    
+   
 
