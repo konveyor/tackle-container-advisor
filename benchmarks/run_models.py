@@ -30,7 +30,7 @@ from matplotlib import pyplot
 
 def parser():
     parser = argparse.ArgumentParser(description="Train and evaluate TCA entity standardization models")
-    parser.add_argument("-model_type", type=str, default="tf_idf", help="tf_idf (default) | siamese | wiki_data_api | all")
+    parser.add_argument("-model_type", type=str, default="siamese", help=" siamese (default) | tf_idf | wiki_data_api | all")
     parser.add_argument("-mode", type=str, default="deploy", help="deploy (default) | benchmark")
     parser.add_argument("-show", action="store_true", help="False (default)")
 
@@ -155,19 +155,21 @@ if __name__ == "__main__":
 
     common = os.path.join("config", "common.ini")
     kg     = os.path.join("config", "kg.ini")
-    config.read([common, kg])
+    deploy_configs = os.listdir(os.path.join("config", "deploy"))
+    deploys = [os.path.join("config", "deploy", x) for x in deploy_configs]
+    config.read([common, kg]+deploys)
 
     try:
         data_dir = config['general']['data_dir']
         kg_dir   = config['general']['kg_dir']
-        threshold= float(config['Thresholds']['HIGH_THRESHOLD'])
+        threshold= float(config[f"infer_thresholds_{model_type}"]["HIGH_THRESHOLD"])
     except KeyError as k:
         logging.error(f'{k} is not a key in your common.ini file.')
         exit()
 
     tasks = {'sim':'tca', 'tca': 'tca', 'wikidata':'wikidata', 'deploy': 'deploy'}
     task  = tasks[mode]
-    tca_infer_file_name = os.path.join(data_dir, mode, "infer.json")
+    tca_infer_file_name = os.path.join(data_dir, 'tca', "infer.json")
     with open(tca_infer_file_name, 'r', encoding='utf-8') as tca_infer_file:
         tca_infer_data = json.load(tca_infer_file)
     num_pos_data = len(tca_infer_data["data"])
@@ -222,7 +224,7 @@ if __name__ == "__main__":
         if label:    # Classification task    
             if mode != 'deploy':
                 cls_metrics(siamese_infer, "Siamese")
-            threshold = float(siamese.config['Thresholds']['HIGH_THRESHOLD'])
+            threshold = float(siamese.config['infer_thresholds_siamese']['HIGH_THRESHOLD'])
             siamese_topk = topk(siamese_infer, threshold)
             table_data["siamese"] = {}
             table_data["siamese"]["topk"] = siamese_topk["topk"]
