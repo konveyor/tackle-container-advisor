@@ -20,7 +20,7 @@ Entity standardizer package contains the following two single-shot models:
 2. *siamese* - A supervised approach that uses BERT models connected in a Siamese network. The default model is the siamese model.
 
 Use the following steps to install, train, and inference with the entity standardizer models as a standalone package.
-The entity standardizer package requires python >= 3.6 environment.
+The entity standardizer package requires python >= 3.6 environment. To train the model, switch to the gpu version of pytorch. Currently the cpu version is used and it can be modified in the requirements.txt under the entity_standardizer folder. 
 
 1. Run *setup.sh* to install dependencies and entity standardizer package
 ```
