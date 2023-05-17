@@ -1,5 +1,5 @@
 # Image for a Python 3 development environment
-FROM python:3.8-slim
+FROM registry.access.redhat.com/ubi8/python-39:1-105
 
 # Add any tools that are needed beyond Python
 RUN apt-get update && \
