@@ -32,6 +32,7 @@ def parser():
     parser = argparse.ArgumentParser(description="Train and evaluate TCA entity standardization models")
     parser.add_argument("-model_type", type=str, default="siamese", help=" siamese (default) | tf_idf | wiki_data_api | all")
     parser.add_argument("-mode", type=str, default="deploy", help="deploy (default) | benchmark")
+    parser.add_argument("-batch_size", type=int, default=0, help="optional, batch size for siamese model. Default is 0, meaning no batching")
     parser.add_argument("-show", action="store_true", help="False (default)")
 
     return parser.parse_args()
@@ -147,6 +148,7 @@ if __name__ == "__main__":
 
     model_type = args.model_type
     mode = args.mode
+    batch_size = args.batch_size
     show = args.show
 
     table_data       = {}
@@ -216,24 +218,26 @@ if __name__ == "__main__":
 
         siamese_start = time.time()
         siamese_infer = copy.deepcopy(tca_infer_data)
+        print(len(siamese_infer['data']))
         label         = siamese_infer.get("label", None)
-        siamese_infer = siamese.infer(siamese_infer)
+        siamese_infer = siamese.infer(siamese_infer, batch_size=batch_size)
         siamese_end = time.time()
         siamese_time = (siamese_end - siamese_start)
 
-        if label:    # Classification task    
-            if mode != 'deploy':
+        if mode != 'deploy':
+            if label:    # Classification task
+                # if mode != 'deploy':
                 cls_metrics(siamese_infer, "Siamese")
-            threshold = float(siamese.config['infer_thresholds_siamese']['HIGH_THRESHOLD'])
-            siamese_topk = topk(siamese_infer, threshold)
-            table_data["siamese"] = {}
-            table_data["siamese"]["topk"] = siamese_topk["topk"]
-            table_data["siamese"]["kns"] = siamese_topk["kns"]
-            table_data["siamese"]["fpr"] = siamese_topk["fpr"]
-            table_data["siamese"]["unks"] = siamese_topk["unks"]
-            table_data["siamese"]["time"] = siamese_time
-        else:
-            (score_auc, score_f1) = sim_metrics(siamese_infer, "Siamese")   
+                threshold = float(siamese.config['infer_thresholds_siamese']['HIGH_THRESHOLD'])
+                siamese_topk = topk(siamese_infer, threshold)
+                table_data["siamese"] = {}
+                table_data["siamese"]["topk"] = siamese_topk["topk"]
+                table_data["siamese"]["kns"] = siamese_topk["kns"]
+                table_data["siamese"]["fpr"] = siamese_topk["fpr"]
+                table_data["siamese"]["unks"] = siamese_topk["unks"]
+                table_data["siamese"]["time"] = siamese_time
+            else:
+                (score_auc, score_f1) = sim_metrics(siamese_infer, "Siamese")
     '''
     if model_type == "gnn" or model_type == "all":
         logging.info("----------- GNN -------------")

@@ -15,7 +15,7 @@
 ################################################################################
 
 import torch.nn as nn
-from transformers import AutoModel, AutoTokenizer
+from transformers import AutoModel, BertTokenizer# AutoTokenizer
 import transformers
 transformers.utils.logging.set_verbosity_error()
 
@@ -23,8 +23,8 @@ class Model(nn.Module):
     def __init__(self, params):
         super().__init__()
         self.backbone = params["model"].get("backbone", "prajjwal1/bert-small")
-        self.tokenizer = AutoTokenizer.from_pretrained(self.backbone)
-        self.encoder = AutoModel.from_pretrained(self.backbone)
+        self.tokenizer = BertTokenizer.from_pretrained(self.backbone, cache_dir='models/deploy/siamese_model')
+        self.encoder = AutoModel.from_pretrained(self.backbone, cache_dir='models/deploy/siamese_model')
 
     def forward(self, inputs, device):
         inputs = self.tokenizer(inputs, padding=True, return_tensors='pt')

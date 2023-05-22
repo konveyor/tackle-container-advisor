@@ -39,18 +39,20 @@ class SIAMESE():
         self.config["task"] = {}
         self.config["task"]["name"] = self.task_name
                    
-    def infer(self, infer_data):
+    def infer(self, infer_data, batch_size=0):
 
-        if self.config['train']['disable_cuda']=='False' and torch.cuda.is_available():
+        logging.info(f"batch_size {batch_size}.")
+
+        if self.config['train']['disable_cuda'] == 'False' and torch.cuda.is_available():
             device    = torch.device('cuda')    
         else:
             device    = torch.device('cpu')
         logging.info(f"Device = {device}")
 
-        model_dir  = os.path.join(self.config['general']['model_dir'], self.config['task']['name'])
-        model_name = 'siamese.pt'
+        model_dir = os.path.join(self.config['general']['model_dir'], self.config['task']['name'],'siamese_model')
+        model_name = 'pytorch_model.bin' #'siamese.pt'
         model_path = os.path.join(model_dir, model_name)
-        model  = Model(self.config)
+        model = Model(self.config)
 
         if not os.path.exists(model_path):
             logging.info(f"{model_name} does not exist, running training to generate model.")
@@ -58,6 +60,7 @@ class SIAMESE():
         else:
             logging.info(f"Loading training parameters from {model_path}.")
             model.load_state_dict(torch.load(model_path, map_location=device))
+            logging.info(f"Done.")
 
         model.to(device=device)
         model.eval()
@@ -65,29 +68,67 @@ class SIAMESE():
         entity_vector_name = 'entity_vector.pickle'
         entity_vector_path = os.path.join(model_dir, entity_vector_name)
         if not os.path.exists(entity_vector_path):
+            logging.info(f"Computing training embeddings to {entity_vector_path}.")
             _, train_entity_id_to_name = loader(self.config)
             train_entities, labels = list(train_entity_id_to_name.values()), list(train_entity_id_to_name.keys())
-            cls = model(train_entities, device)
-            embeddings = cls.detach().cpu().numpy()
+
+            if batch_size > 0:
+                for i in tqdm(range(0, int(len(train_entities)/batch_size)+1)):
+                    if i * batch_size < len(train_entities) - 1:
+                        # logging.info(f'{i}/{int(len(train_entities)/batch_size)}')
+                        cls = model(train_entities[i*batch_size:min(len(train_entities),(i+1)*batch_size)], device)
+                        if i == 0:
+                            embeddings = cls.detach().cpu().numpy()
+                        else:
+                            embeddings = np.concatenate((embeddings, cls.detach().cpu().numpy()), axis=0)
+            else:
+                cls = model(train_entities, device)
+                embeddings = cls.detach().cpu().numpy()
+
+            logging.info(f'writing to {entity_vector_path}')
             with open(entity_vector_path, 'wb') as f:
                 pickle.dump((embeddings, labels), f)
+
+            logging.info('done')
         else:
             with open(entity_vector_path, 'rb') as f:
                 embeddings,  labels = pickle.load(f)
                 num_entities = len(embeddings)
-                logging.info(f"Loading embeddings of {num_entities} entities from {entity_vector_path}.")
+            logging.info(f"Loading embeddings of {num_entities} entities from {entity_vector_path}.")
+
 
         inf_start     = time.time()
         label         = infer_data.get("label", None)
         if label:
+            logging.info('doing test embeddings extraction')
+
             x_test = [d['mention(s)'] for _, d in infer_data['data'].items()]
             # y_test = [d['entity_id'] for _, d in infer_data['data'].items()]
 
             knn = KNeighborsClassifier(n_neighbors=1, metric='cosine').fit(embeddings, labels)
-            cls_test = model(x_test, device)
+
+            if batch_size > 0:
+                for i in tqdm(range(0, int(len(x_test)/batch_size)+1)):
+                    if i*batch_size < len(x_test)-1:
+                        # logging.info(f'{i}/{int(len(train_entities)/batch_size)}')
+                        cls_test = model(x_test[i*batch_size:min(len(x_test),(i+1)*batch_size)], device)
+                        if i == 0:
+                            test_embeddings = cls_test.detach().cpu().numpy()
+                        else:
+                            test_embeddings = np.concatenate((test_embeddings, cls_test.detach().cpu().numpy()), axis=0)
+            else:
+                cls_test = model(x_test, device)
+                test_embeddings = cls_test.detach().cpu().numpy()
+
+
+
             n_neighbors = int(self.config['infer'].get('topk', 10))
-            distances, indices = knn.kneighbors(cls_test.detach().cpu().numpy(),  n_neighbors=n_neighbors)
+
+            logging.info('doing knn matching')
+
+            distances, indices = knn.kneighbors(test_embeddings,  n_neighbors=n_neighbors)
             distances, indices = distances.tolist(), indices.tolist()
+
             pred_label_ids = []
             for pred in indices: 
                 label = [labels[i] for i in pred]
@@ -96,6 +137,7 @@ class SIAMESE():
                 predictions = list(zip(pred_label_ids[idx], [1-d for d in distances[idx]]))
                 infer_data['data'][inf_id]['predictions'] = predictions
         else:
+            logging.info('get infer data')
             data = infer_data["data"]
             slice_size = 5000
             with tqdm(range(int(np.ceil(len(data)/slice_size))), ncols=100) as progress:

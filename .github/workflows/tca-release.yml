@@ -44,15 +44,15 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
           with:
            ref: main
         - name : get tag
           run:  echo ${{needs.tagged-release.get_release_tag.outputs.tags}}
         - name: Set up Python
-          uses: actions/setup-python@v2
+          uses: actions/setup-python@v4
           with:
-            python-version: '3.8'
+            python-version: '3.9'
         - name: Cleanup
           run: |
             bash clean.sh
