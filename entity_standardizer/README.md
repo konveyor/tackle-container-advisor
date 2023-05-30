@@ -16,11 +16,11 @@ of entities.
 # Training and Inference with single-shot models
 Entity standardizer package contains the following two single-shot models:
 
-1. *tfidf* - A supervised approach that computes tfidf vectors for a given training dataset.
-2. *siamese* - A supervised approach that uses BERT models connected in a Siamese network. The default model is the siamese model.
+1. *siamese* - A supervised approach that uses BERT models connected in a Siamese network. The default model is the siamese model.
+2. *tfidf* - A supervised approach that computes tfidf vectors for a given training dataset.
 
 Use the following steps to install, train, and inference with the entity standardizer models as a standalone package.
-The entity standardizer package requires python >= 3.6 environment.
+The entity standardizer package requires python >= 3.9 environment.
 
 1. Run *setup.sh* to install dependencies and entity standardizer package
 ```

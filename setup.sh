@@ -109,10 +109,11 @@ echo "----------------Generated KG Utility Files--------------------"
 ######################################################################
 echo "--------------Generating Entity Standardizer Models------------------"
 $python benchmarks/generate_data.py
-# wget https://ibm.box.com/shared/static/mnp323fxslbel8qjecfmryvs8yypooka.pt -O "./models/deploy/siamese.pt"
 mkdir -p models/deploy
-wget https://www.dropbox.com/s/efpx2qy7n9z5niu/siamese.pt -O "./models/deploy/siamese.pt"
-$python benchmarks/run_models.py -model_type siamese
+wget https://www.dropbox.com/s/bobcey7ufklw7mr/siamese_model.zip -O "./models/deploy/siamese_model.zip"
+unzip models/deploy/siamese_model.zip -d models/deploy/
+rm models/deploy/siamese_model.zip
+$python benchmarks/run_models.py -model_type siamese -batch_size 5
 echo "---------Generated Entity Standardizer Models--------------"
 
 echo "+---------------------------------------------------------+"
