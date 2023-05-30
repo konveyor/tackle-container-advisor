@@ -34,7 +34,11 @@ RUN  python -m pip install --upgrade pip wheel build setuptools; \
      cd entity_standardizer; python -m build; pip install dist/entity_standardizer_tca-1.0-py3-none-any.whl; cd ..; \
      pip install -r /app/requirements.txt; \
      python benchmarks/generate_data.py; \
-     python benchmarks/run_models.py;
+     mkdir -p models/deploy; \
+     wget https://www.dropbox.com/s/bobcey7ufklw7mr/siamese_model.zip -O "./models/deploy/siamese_model.zip"; \
+     unzip models/deploy/siamese_model.zip -d models/deploy/; \
+     rm models/deploy/siamese_model.zip; \
+     python benchmarks/run_models.py -model_type siamese -batch_size 5;
 
 RUN chown -R 1001:0 ./
 
